@@ -13,6 +13,11 @@ return [
     | a conventional file to locate the various service credentials.
     |
     */
+    'facebook'=>[
+        'client_id'=> env('FACEBOOK_ID','207291093802635'),
+        'client_secret'=>env('FACEBOOK_SECRET','d833b3d038487693f21b334e1ad9b31f'),
+        'redirect'=>env('FACEBOOK_REDIRECT','http://127.0.0.1:8000/auth/facebook/callback')
+    ],
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),

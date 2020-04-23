@@ -7,15 +7,15 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" type="text/css" href="css/animate.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/line-awesome.css">
-    <link rel="stylesheet" type="text/css" href="css/line-awesome-font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="lib/slick/slick.css">
-    <link rel="stylesheet" type="text/css" href="lib/slick/slick-theme.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/animate.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/line-awesome.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/line-awesome-font-awesome.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/font-awesome.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('lib/slick/slick.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('lib/slick/slick-theme.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/responsive.css')}}">
 
 
 
@@ -42,6 +42,7 @@
                                 <img src="images/cm-main-img.png" alt="">
                             </div><!--cmp-info end-->
                         </div>
+
                         <div class="col-lg-6">
                             <div class="login-sec">
                                 <ul class="sign-control">
@@ -111,7 +112,7 @@
                                     <div class="login-resources">
                                         <h4>Login Via Social Account</h4>
                                         <ul>
-                                            <li><a href="#" title="" class="fb"><i class="fa fa-facebook"></i>Login Via Facebook</a></li>
+                                            <li><a href="{{ url('auth/facebook') }}" title="" class="fb"><i class="fa fa-facebook"></i>Login Via Facebook</a></li>
                                             <li><a href="#" title="" class="tw"><i class="fa fa-twitter"></i>Login Via Twitter</a></li>
                                         </ul>
                                     </div><!--login-resources end-->
@@ -191,7 +192,18 @@
 
                                 </div>
                             </div><!--login-sec end-->
+
                         </div>
+
+
+
+
+
+
+
+
+
+
                     </div>
                 </div><!--signin-pop end-->
             </div><!--signin-popup end-->
@@ -207,7 +219,9 @@
                         <li><a href="#" title="">Language</a></li>
                         <li><a href="#" title="">Copyright Policy</a></li>
                     </ul>
-                    <p><img src="images/copy-icon.png" alt="">Copyright 2018</p>
+                    <p><img src="{{asset('images/copy-icon.png')}}" alt="">Copyright <span id="date-nd"></span>
+                        <script >var d = new Date();
+                            document.getElementById("date-nd").innerHTML = d.getFullYear();</script></p>
                 </div>
             </div><!--footy-sec end-->
         </div><!--sign-in-page end-->
