@@ -148,7 +148,7 @@
                         <div class="fgt-sec">
                             <input type="checkbox" name="Terms" id="c2" required
                                 title="You should Agree Our Terms & Conditions.">
-                            <label for="c2">
+                            <label for="c2" id="checkcolor">
                                 <span></span>
                                 {{__('Yes, I understand and agree
                                 to the workwise Terms & Conditions.')}}
@@ -177,8 +177,7 @@
                 console.log('good');
             } else {
                 console.log('bad');
-                document.getElementById("checkcolor").style
-                    .color = 'red';
+                document.getElementById("checkcolor").style.color = 'red';
                 document.getElementById('c2').style
                     .backgroundColor = 'red';
             }
