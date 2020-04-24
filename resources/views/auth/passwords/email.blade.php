@@ -1,6 +1,46 @@
-@extends('layouts.resetPass')
+@extends('layouts.header')
+@section('title')
+    <title> {{ config('app.name')." | ".__("Rest Password") }}</title>
+@endsection
+@section('style')
+<style>
+    #tab1 {
+        padding: 5px 5px 5px 5px;
+        background-color: orangered;
+        border-radius: 5px;
+        text-decoration-color: #fff3cd;
+        color: #fff3cd;
 
+    }
+
+    #tab2 {
+        color: black;
+        padding: 3px 3px 3px 3px;
+        background-color: gray;
+        border-radius: 5px;
+        text-decoration-color: black;
+    }
+
+    #tab1:hover {
+        padding: 10px 10px 10px 10px;
+        border-radius: 10px;
+    }
+
+    #tab2:hover {
+        padding: 6px 6px 6px 6px;
+        border-radius: 10px;
+    }
+
+</style>
+@endsection
 @section('content')
+@if(!Auth::check())
+<ul class="sign-control">
+    <a data-tab="tab-1" id="tab1" class="current" href="{{url('login')}}" title="">Sign in</a>
+    <a data-tab="tab-2" id="tab2" href="{{url('register')}}" title="">Sign
+        up</a>
+</ul>
+@endif
     <div class="sign_in_sec current" >
         @include('includes.errors.all')
         <div class="card-body">

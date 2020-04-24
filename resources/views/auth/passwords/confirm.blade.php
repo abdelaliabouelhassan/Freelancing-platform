@@ -1,7 +1,17 @@
 
-@extends('layouts.resetPass')
-
+@extends('layouts.header')
+@section('title')
+    <title> {{ config('app.name')." | ".__("Change Password") }}</title>
+@endsection
 @section('content')
+@section('content')
+@if(!Auth::check())
+<ul class="sign-control">
+    <a data-tab="tab-1" id="tab1" class="current" href="{{url('login')}}" title="">Sign in</a>
+    <a data-tab="tab-2" id="tab2" href="{{url('register')}}" title="">Sign
+        up</a>
+</ul>
+@endif
     <div class="sign_in_sec current" >
         @include('includes.errors.all')
         <div class="card-body">
