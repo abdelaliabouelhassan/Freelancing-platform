@@ -16,9 +16,6 @@
     <link rel="stylesheet" type="text/css" href="{{asset('lib/slick/slick-theme.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/responsive.css')}}">
-
-
-
 </head>
 <body>
 <div class="flex-center position-ref full-height">
@@ -192,18 +189,7 @@
 
                                 </div>
                             </div><!--login-sec end-->
-
                         </div>
-
-
-
-
-
-
-
-
-
-
                     </div>
                 </div><!--signin-pop end-->
             </div><!--signin-popup end-->
@@ -230,10 +216,10 @@
     </div><!--theme-layout end-->
 
 
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/popper.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="lib/slick/slick.min.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/popper.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('lib/slick/slick.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
     </body>
 </html>
