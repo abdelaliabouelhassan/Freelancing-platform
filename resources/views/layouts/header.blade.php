@@ -8,7 +8,6 @@
     <meta name="keywords" content="" />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -48,7 +47,7 @@
                             <div class="col-lg-6">
                                 <div class="login-sec">
                                     @yield('content')
-                                    <!--sign_in_sec end-->                                    
+                                    <!--sign_in_sec end-->
                                 </div>
                                 <!--login-sec end-->
                             </div>
