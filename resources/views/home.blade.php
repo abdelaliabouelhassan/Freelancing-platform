@@ -13,8 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                        Welcome To Brikol Platform This Platform Still In Development Mode ! That Is Why You Are Special That You Can See The Progress (:
+                    Welcome To Brikol Platform This Platform Still In Development Mode ! That Is Why You Are Special That You Can See The Progress (:
                 </div>
             </div>
         </div>
