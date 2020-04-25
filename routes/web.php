@@ -36,8 +36,8 @@ Route::get('auth/facebook/callback', 'Auth\FacebookController@handleFacebookCall
 Route::get('details', function () {
 
 //    $ip =  "41.141.217.80";
-    $ip =   request()->ip();
-    $data = Location::get($ip);
-    dd($data);
+   return   $_SERVER['REMOTE_ADDR'];
+//    $data = Location::get($ip);
+//    dd($data);
 
 });
