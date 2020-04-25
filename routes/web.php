@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
+use Stevebauman\Location\Facades\Location;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +32,12 @@ Route::get('facebook', function () {
 });
 Route::get('auth/facebook', 'Auth\FacebookController@redirectToFacebook');
 Route::get('auth/facebook/callback', 'Auth\FacebookController@handleFacebookCallback');
+
+Route::get('details', function () {
+
+//    $ip =  "41.141.217.80";
+    $ip =   request()->ip();
+    $data = Location::get($ip);
+    dd($data);
+
+});

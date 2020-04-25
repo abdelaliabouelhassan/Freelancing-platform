@@ -1,193 +1,192 @@
 @extends('layouts.header')
 @section('title')
-    <title> {{ config('app.name')." | ".__("Sign up or Sign in") }}</title>
+<title> {{ config('app.name')." | ".__("Sign up or Sign in") }}</title>
 @endsection
 @section('content')
-    <ul class="sign-control">
-        <li data-tab="tab-1" class="
+<ul class="sign-control">
+    <li data-tab="tab-1" class="
     @if(\Request::is('login') || Request::is('/') && !session()->has('good'))
         current
     @endif">
-            <a href="{{ route('login') }}" title="login">Sign in</a></li>
-        <li data-tab="tab-2" class="
+        <a href="{{ route('login') }}" title="login">Sign in</a></li>
+    <li data-tab="tab-2" class="
     @if(\Request::is('register') || session()->has('good'))
         current
     @endif"><a href="{{ route('register') }}" title="register">Sign up</a></li>
-    </ul>
+</ul>
 
-    <div class="sign_in_sec
-    @if(\Request::is('login') || Request::is('/') && !session()->has('good'))
-    current
+<div class="sign_in_sec 
+    @if(Request::is('login') || Request::is('/') && !session()->has('good'))
+        current
     @endif" id="tab-1">
-        @if(!session()->has('good'))
-        @include('includes.errors.all')
-        @endif
-        <h3>Sign In</h3>
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+    @if(!session()->has('good'))
+    @include('includes.errors.all')
+    @endif
+    <h3>Sign In</h3>
+    <form method="POST" action="{{ route('login') }}">
+        @csrf
 
-            <div class="row">
-                <div class="col-lg-12 no-pdd">
-                    <div class="sn-field">
-                        <input type="email" name="email" @if(!session()->has('good'))
-                        @error('email')
-                        style="border: 1px solid red" @enderror @endif
-                        placeholder="{{ __('E-Mail Address') }}"
-                        value="{{ old('email') }}" required autocomplete="email"
-                        autofocus>
-                        <i class="la la-user"></i>
-                        @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }} </strong>
-                        </span>
-                        @enderror
-                    </div>
-                    <!--sn-field end-->
+        <div class="row">
+            <div class="col-lg-12 no-pdd">
+                <div class="sn-field">
+                    <input type="email" name="email" @if(!session()->has('good'))
+                    @error('email')
+                    style="border: 1px solid red" @enderror @endif
+                    placeholder="{{ __('E-Mail Address') }}"
+                    value="{{ old('email') }}" required autocomplete="email"
+                    autofocus>
+                    <i class="la la-user"></i>
+                    @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }} </strong>
+                    </span>
+                    @enderror
                 </div>
-                <div class="col-lg-12 no-pdd">
-                    <div class="sn-field">
-                        <input type="password" @if(!session()->has('good'))
-                        @error('email') style="border: 1px solid red" @enderror
-                        @endif name="password" placeholder="{{ __('Password') }}"
-                        required autocomplete="current-password">
-                        <i class="la la-lock"></i>
+                <!--sn-field end-->
+            </div>
+            <div class="col-lg-12 no-pdd">
+                <div class="sn-field">
+                    <input type="password" @if(!session()->has('good'))
+                    @error('email') style="border: 1px solid red" @enderror
+                    @endif name="password" placeholder="{{ __('Password') }}"
+                    required autocomplete="current-password">
+                    <i class="la la-lock"></i>
 
-                    </div>
-                </div>
-                <div class="col-lg-12 no-pdd">
-                    <div class="checky-sec">
-                        <div class="fgt-sec">
-                            <input type="checkbox" name="remember" id="c1" {{ old('remember') ? 'checked' : '' }}>
-                            <label for="c1">
-                                <span></span>
-                                {{ __('Remember Me') }}
-                            </label>
-
-                        </div>
-                        <!--fgt-sec end-->
-                        @if (Route::has('password.request'))
-                        <a href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
-                        </a>
-                        @endif
-                    </div>
-                </div>
-                <div class="col-lg-12 no-pdd">
-                    <button type="submit"> {{ __('Login') }}</button>
                 </div>
             </div>
-        </form>
-        <div class="login-resources">
-            <h4>Login Via Social Account</h4>
-            <ul>
-                <li><a href="{{ url('auth/facebook') }}" title="" class="fb"><i class="fa fa-facebook"></i>Login Via
-                        Facebook</a></li>
-                <li><a href="#" title="" class="tw"><i class="fa fa-twitter"></i>Login
-                        Via Twitter</a></li>
-            </ul>
+            <div class="col-lg-12 no-pdd">
+                <div class="checky-sec">
+                    <div class="fgt-sec">
+                        <input type="checkbox" name="remember" id="c1" {{ old('remember') ? 'checked' : '' }}>
+                        <label for="c1">
+                            <span></span>
+                            {{ __('Remember Me') }}
+                        </label>
+
+                    </div>
+                    <!--fgt-sec end-->
+                    @if (Route::has('password.request'))
+                    <a href="{{ route('password.request') }}">
+                        {{ __('Forgot Your Password?') }}
+                    </a>
+                    @endif
+                </div>
+            </div>
+            <div class="col-lg-12 no-pdd">
+                <button type="submit"> {{ __('Login') }}</button>
+            </div>
         </div>
-        <!--login-resources end-->
+    </form>
+    <div class="login-resources">
+        <h4>Login Via Social Account</h4>
+        <ul>
+            <li><a href="{{ url('auth/facebook') }}" title="" class="fb"><i class="fa fa-facebook"></i>Login Via
+                    Facebook</a></li>
+            <li><a href="#" title="" class="tw"><i class="fa fa-twitter"></i>Login
+                    Via Twitter</a></li>
+        </ul>
     </div>
+    <!--login-resources end-->
+</div>
 
 
-    <!--sign_in_sec end-->
-    <div class="sign_in_sec
+<!--sign_in_sec end-->
+<div class="sign_in_sec
     @if(\Request::is('register') || session()->has('good'))
     current
         @endif
     " id="tab-2">
-        <h3>Sign Up</h3>
-        @if(session()->has('good'))
-        @include('includes.errors.all')
-        @endif
-        <!--signup-tab end-->
-        <div class="dff-tab current" id="tab-3">
-            <form method="POST" action="{{ route('register') }}">
-                @csrf
-                <div class="row">
-                    <div class="col-lg-12 no-pdd">
-                        <div class="sn-field">
-                            <input id="name" type="text" @if(session()->has('good'))
-                            @error('name') style="border: 1px solid red" @enderror
-                            @endif name="name" value="{{ old('name') }}"
-                            placeholder="{{ __('Full Name') }}" required
-                            autocomplete="name" autofocus>
-                            <i class="la la-male"></i>
-                        </div>
+    <h3>Sign Up</h3>
+    @if(session()->has('good'))
+    @include('includes.errors.all')
+    @endif
+    <!--signup-tab end-->
+    <div class="dff-tab current" id="tab-3">
+        <form method="POST" action="{{ route('register') }}">
+            @csrf
+            <div class="row">
+                <div class="col-lg-12 no-pdd">
+                    <div class="sn-field">
+                        <input id="name" type="text" @if(session()->has('good'))
+                        @error('name') style="border: 1px solid red" @enderror
+                        @endif name="name" value="{{ old('name') }}"
+                        placeholder="{{ __('Full Name') }}" required
+                        autocomplete="name" autofocus>
+                        <i class="la la-male"></i>
                     </div>
-                    <div class="col-lg-12 no-pdd">
-                        <div class="sn-field">
-                            <input id="email" type="email" @if(session()->has('good'))
-                            @error('email')
-                            style="border: 1px solid red" @enderror @endif
-                            name="email" value="{{ old('email') }}" required
-                            autocomplete="email"
-                            placeholder="{{ __('E-Mail Address') }}">
-                            <i class="la la-user"></i>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 no-pdd">
-                        <div class="sn-field">
-                            <input id="password" type="password" @if(session()->has('good')) @error('password')
-                            style="border: 1px solid red" @enderror @endif
-                            name="password" required autocomplete="password"
-                            placeholder="{{ __('Password') }}">
-                            <i class="la la-lock"></i>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 no-pdd">
-                        <div class="sn-field">
-                            <input id="password-confirm" type="password" name="password_confirmation" required
-                                autocomplete="new-password" placeholder="{{ __('Confirm Password') }}">
-                            <i class="la la-lock"></i>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12 no-pdd">
-                        <div class="checky-sec st2">
-                            <div class="fgt-sec">
-                                <input type="checkbox" name="Terms" id="c2" required
-                                    title="You should Agree Our Terms & Conditions.">
-                                <label for="c2">
-                                    <span></span>
-                                    {{__('Yes, I understand and agree
-                                to the workwise Terms & Conditions.')}}
-                                </label>                            
-                            </div>
-                            <!--fgt-sec end-->
-                        </div>
-                    </div>
-                    <div class="col-lg-12 no-pdd">
-                        <button type="submit" id="btn" value="submit">Get
-                            Started</button>
-                    </div>                    
                 </div>
-            </form>
-        </div>
-        <!--dff-tab end-->
+                <div class="col-lg-12 no-pdd">
+                    <div class="sn-field">
+                        <input id="email" type="email" @if(session()->has('good'))
+                        @error('email')
+                        style="border: 1px solid red" @enderror @endif
+                        name="email" value="{{ old('email') }}" required
+                        autocomplete="email"
+                        placeholder="{{ __('E-Mail Address') }}">
+                        <i class="la la-user"></i>
+                    </div>
+                </div>
+                <div class="col-lg-12 no-pdd">
+                    <div class="sn-field">
+                        <input id="password" type="password" @if(session()->has('good')) @error('password')
+                        style="border: 1px solid red" @enderror @endif
+                        name="password" required autocomplete="password"
+                        placeholder="{{ __('Password') }}">
+                        <i class="la la-lock"></i>
+                    </div>
+                </div>
+                <div class="col-lg-12 no-pdd">
+                    <div class="sn-field">
+                        <input id="password-confirm" type="password" name="password_confirmation" required
+                            autocomplete="new-password" placeholder="{{ __('Confirm Password') }}">
+                        <i class="la la-lock"></i>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 no-pdd">
+                    <div class="checky-sec st2">
+                        <div class="fgt-sec">
+                            <input type="checkbox" name="Terms" id="c2" required
+                                title="You should Agree Our Terms & Conditions.">
+                            <label for="c2" id="checkcolor">
+                                <span></span>
+                                {{__('Yes, I understand and agree
+                                to the workwise Terms & Conditions.')}}
+                            </label>
+                        </div>
+                        <!--fgt-sec end-->
+                    </div>
+                </div>
+                <div class="col-lg-12 no-pdd">
+                    <button type="submit" id="btn" value="submit">Get
+                        Started</button>
+                </div>
+            </div>
+        </form>
     </div>
+    <!--dff-tab end-->
+</div>
 @endsection
 @section('script')
-    <script>
-        var checkBox = document.getElementById("c2");
-        document.getElementById("btn").addEventListener("click",
-            function () {
+<script>
+    var checkBox = document.getElementById("c2");
+    document.getElementById("btn").addEventListener("click",
+        function () {
 
-                if (checkBox.checked) {
-                    console.log('good');
-                } else {
-                    console.log('bad');
-                    document.getElementById("checkcolor").style
-                        .color = 'red';
-                    document.getElementById('c2').style
-                        .backgroundColor = 'red';
-                }
-            });
+            if (checkBox.checked) {
+                console.log('good');
+            } else {
+                console.log('bad');
+                document.getElementById("checkcolor").style.color = 'red';
+                document.getElementById('c2').style
+                    .backgroundColor = 'red';
+            }
+        });
 
-    </script>
-    <script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/popper.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('lib/slick/slick.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
+</script>
+<script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/popper.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('lib/slick/slick.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/script.js')}}"></script>
 @endsection
