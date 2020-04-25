@@ -34,13 +34,17 @@ Route::get('auth/facebook', 'Auth\FacebookController@redirectToFacebook');
 Route::get('auth/facebook/callback', 'Auth\FacebookController@handleFacebookCallback');
 
 Route::get('details', function () {
-//    $url = 'https://whatismyipaddress.com/';
-//    $client = new GuzzleHttp\Client();
-//    $res = $client->get($url, ['verify' => false]);
-//    $content = (string) $res->getBody();
-//    $myip = Str::between( $content, 'Click for more details<br>about <b>','</b>\').openPopup()');
-//    $data = Location::get($myip);
-//     dd($data);
+
+    //in devloper mode we are going to use that coe below
+    /*
+    $url = 'https://whatismyipaddress.com/';
+    $client = new GuzzleHttp\Client();
+    $res = $client->get($url, ['verify' => false]);
+    $content = (string) $res->getBody();
+    $myip = Str::between( $content, 'Click for more details<br>about <b>','</b>\').openPopup()');
+*/
+
+    //in live serve we are going to use that code
 
     function get_client_ip()
     {
@@ -66,8 +70,10 @@ Route::get('details', function () {
         }
         return null;
     }
+    $myid = get_client_ip();
+    $data = Location::get($myid);
+     dd($data);
 
-    return get_client_ip();
 
 
 });
