@@ -34,10 +34,11 @@ Route::get('auth/facebook', 'Auth\FacebookController@redirectToFacebook');
 Route::get('auth/facebook/callback', 'Auth\FacebookController@handleFacebookCallback');
 
 Route::get('details', function () {
-
-//    $ip =  "41.141.217.80";
-   return   $_SERVER['REMOTE_ADDR'];
-//    $data = Location::get($ip);
-//    dd($data);
-
+    $url = 'https://whatismyipaddress.com/';
+    $client = new GuzzleHttp\Client();
+    $res = $client->get($url, ['verify' => false]);
+    $content = (string) $res->getBody();
+    $myip = Str::between( $content, 'Click for more details<br>about <b>','</b>\').openPopup()');
+    $data = Location::get($myip);
+     dd($data);
 });
