@@ -5369,3 +5369,125 @@ a:hover {
     transform: scale(1.0);
   }
 }
+.error{
+	display: block;
+	position: absolute;
+	font-size: 12px;
+	color: red;	
+	padding:2px 0 0 8px;
+}
+.show{
+	display: block;	
+}
+.hide{
+	display: none;
+}
+.error_input{
+	border-color: red !important;
+}
+.valid_input{
+	border-color: #808080 !important;
+}
+.pwd_pad{
+	margin-top: 10px;
+}
+.bootstrap-notify-container {
+    max-width: 320px;
+    text-align: center
+}
+.alert {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -ms-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    color: #fff !important
+}
+.alert .alert-link {
+	color: #fff;
+	text-decoration: underline;
+	font-weight: bold
+}
+
+.alert-success {
+background-color: #2b982b
+}
+
+.alert-info {
+background-color: #00b0e4
+}
+
+.alert-warning {
+background-color: #ff9600 !important
+}
+
+.alert-danger {
+background-color: #fb483a !important
+}
+.bootstrap-notify-container {
+    max-width: 320px;
+    text-align: center
+}
+
+.alert-dismissible .close {
+    color: #fff;
+    opacity: 1;
+    border: none;
+    text-shadow: none
+}
+.close {
+    font-size: inherit;
+    color: #fff;
+    opacity: .9;
+	text-shadow: none;
+	top:0 !important;
+	right:0 !important;	
+	bottom:0 !important;
+	margin:auto !important;		
+	outline: none !important;
+}
+.notify {
+    position: absolute;
+    top: 27px;
+    right: 14px
+}
+
+.notify .heartbit {
+	position: absolute;
+	top: -20px;
+	right: -16px;
+	height: 25px;
+	width: 25px;
+	z-index: 10;
+	border: 4px solid;
+	border-color: #30373e;
+	border-radius: 70px;
+	animation: heartbit 1s ease-out;
+	-moz-animation: heartbit 1s ease-out;
+	-moz-animation-iteration-count: infinite;
+	-o-animation: heartbit 1s ease-out;
+	-o-animation-iteration-count: infinite;
+	-webkit-animation: heartbit 1s ease-out;
+	-ms-animation: heartbit 1s ease-out;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite
+}
+
+.notify .point {
+	width: 6px;
+	height: 6px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+	background-color: #30373e;
+	position: absolute;
+	right: -6px;
+	top: -10px
+}
+.p-r-35 {
+    padding-right: 35px;
+}

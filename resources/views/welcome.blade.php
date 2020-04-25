@@ -19,23 +19,22 @@
     @if(Request::is('login') || Request::is('/') && !session()->has('good'))
         current
     @endif" id="tab-1">
-    @if(!session()->has('good'))
+    {{-- @if(!session()->has('good'))
     @include('includes.errors.all')
-    @endif
+    @endif --}}
     <h3>Sign In</h3>
     <form method="POST" action="{{ route('login') }}">
         @csrf
-
         <div class="row">
             <div class="col-lg-12 no-pdd">
                 <div class="sn-field">
-                    <input type="email" name="email" @if(!session()->has('good'))
+                    <input type="email" id="signin_email" name="email" @if(!session()->has('good'))
                     @error('email')
                     style="border: 1px solid red" @enderror @endif
                     placeholder="{{ __('E-Mail Address') }}"
                     value="{{ old('email') }}" required autocomplete="email"
                     autofocus>
-                    <i class="la la-user"></i>
+                    <i class="la la-user"></i>                    
                     @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }} </strong>
@@ -46,11 +45,11 @@
             </div>
             <div class="col-lg-12 no-pdd">
                 <div class="sn-field">
-                    <input type="password" @if(!session()->has('good'))
+                    <input type="password" id="signin_password" @if(!session()->has('good'))
                     @error('email') style="border: 1px solid red" @enderror
                     @endif name="password" placeholder="{{ __('Password') }}"
                     required autocomplete="current-password">
-                    <i class="la la-lock"></i>
+                    <i class="la la-lock"></i>                    
 
                 </div>
             </div>
@@ -73,7 +72,7 @@
                 </div>
             </div>
             <div class="col-lg-12 no-pdd">
-                <button type="submit"> {{ __('Login') }}</button>
+                <button type="submit" id="btn_signin"> {{ __('Login') }}</button>
             </div>
         </div>
     </form>
@@ -97,9 +96,9 @@
         @endif
     " id="tab-2">
     <h3>Sign Up</h3>
-    @if(session()->has('good'))
+    {{-- @if(session()->has('good'))
     @include('includes.errors.all')
-    @endif
+    @endif --}}
     <!--signup-tab end-->
     <div class="dff-tab current" id="tab-3">
         <form method="POST" action="{{ route('register') }}">
@@ -128,7 +127,7 @@
                 </div>
                 <div class="col-lg-12 no-pdd">
                     <div class="sn-field">
-                        <input id="password" type="password" @if(session()->has('good')) @error('password')
+                        <input id="pwd1" type="password" @if(session()->has('good')) @error('password')
                         style="border: 1px solid red" @enderror @endif
                         name="password" required autocomplete="password"
                         placeholder="{{ __('Password') }}">
@@ -136,8 +135,8 @@
                     </div>
                 </div>
                 <div class="col-lg-12 no-pdd">
-                    <div class="sn-field">
-                        <input id="password-confirm" type="password" name="password_confirmation" required
+                    <div class="sn-field" id="pwd_conf">
+                        <input id="pwd2" type="password" name="password_confirmation" required
                             autocomplete="new-password" placeholder="{{ __('Confirm Password') }}">
                         <i class="la la-lock"></i>
                     </div>
@@ -158,7 +157,7 @@
                     </div>
                 </div>
                 <div class="col-lg-12 no-pdd">
-                    <button type="submit" id="btn" value="submit">Get
+                    <button type="submit" id="btn_signup" value="submit">Get
                         Started</button>
                 </div>
             </div>
@@ -168,25 +167,13 @@
 </div>
 @endsection
 @section('script')
-<script>
-    var checkBox = document.getElementById("c2");
-    document.getElementById("btn").addEventListener("click",
-        function () {
-
-            if (checkBox.checked) {
-                console.log('good');
-            } else {
-                console.log('bad');
-                document.getElementById("checkcolor").style.color = 'red';
-                document.getElementById('c2').style
-                    .backgroundColor = 'red';
-            }
-        });
-
-</script>
 <script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/popper.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('lib/slick/slick.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/validation.js')}}"></script>
+<script type="text/javascript" src="{{asset('plugins/bootstrap-notify/bootstrap-notify.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/notifications.js')}}"></script>
+@include('includes.errors.all')
 @endsection

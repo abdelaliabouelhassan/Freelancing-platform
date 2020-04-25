@@ -13,13 +13,13 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Styles -->
-    <link rel="stylesheet" type="text/css" href="{{asset('css/animate.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/animate.css')}}">    
     <link rel="stylesheet" type="text/css" href="{{asset('css/line-awesome.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/line-awesome-font-awesome.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/font-awesome.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('lib/slick/slick.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('lib/slick/slick-theme.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/responsive.css')}}">
     @yield('style')
