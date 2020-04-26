@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use Stevebauman\Location\Facades\Location;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +15,7 @@ use Stevebauman\Location\Facades\Location;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('/', function () {
     if(auth()->check()){
@@ -33,6 +35,14 @@ Route::get('facebook', function () {
 Route::get('auth/facebook', 'Auth\FacebookController@redirectToFacebook');
 Route::get('auth/facebook/callback', 'Auth\FacebookController@handleFacebookCallback');
 
+
+
+
+
+
+
+
+//testing routes
 Route::get('details', function () {
 
     //in devloper mode we are going to use that coe below
@@ -71,7 +81,7 @@ Route::get('details', function () {
         return null;
     }
     $myid = get_client_ip();
-    $data = Location::get($myid);
+    $data = Location::get('41.214.182.10');
      dd($data);
 
 
