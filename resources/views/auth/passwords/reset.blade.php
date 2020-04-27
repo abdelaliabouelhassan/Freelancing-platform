@@ -5,15 +5,22 @@
 @section('content')
 @if(!Auth::check())
     <ul class="sign-control">
-        <li data-tab="tab-2"><a id="tab2" class="controle" href="{{url('login')}}">{{__('Already using Bricole? Sign in')}}</a></li> 
+        <li data-tab="tab-2"><a id="tab2" class="controle" href="{{url('login')}}">{{__('Already using Bricole? Sign in')}}</a></li>
     </ul>
 @endif
-<div class="sign_in_sec current">        
+<div class="sign_in_sec current">
     <h3>{{ __('Reset Password') }}</h3>
     <form method="POST" action="{{ route('password.update') }}">
         @csrf
         <input type="hidden" name="token" value="{{ $token }}">
-        <div class="row">           
+        <div class="row">
+            <div class="col-lg-12 no-pdd">
+                <div class="sn-field">
+                    <input type="email" id="email" value="{{ $email ?? old('email') }}" @error('email') style="border: 1px solid red" @enderror name="email"
+                           placeholder="{{ __('E-Mail Address') }}" required autocomplete=email" autofocus>
+                    <i class="la la-user"></i>
+                </div>
+            </div>
             <div class="col-lg-12 no-pdd">
                 <div class="sn-field">
                     <input type="password" id="pwd1" @error('password') style="border: 1px solid red" @enderror name="password"
@@ -46,6 +53,6 @@
     <script>
         showNotification("alert-success", "{{ session('status') }}", "top","center", "", "");
     </script>
-@endif  
+@endif
 @include('includes.errors.all')
 @endsection
