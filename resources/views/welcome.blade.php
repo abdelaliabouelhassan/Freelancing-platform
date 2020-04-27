@@ -18,10 +18,7 @@
 <div class="sign_in_sec 
     @if(Request::is('login') || Request::is('/') && !session()->has('good'))
         current
-    @endif" id="tab-1">
-    {{-- @if(!session()->has('good'))
-    @include('includes.errors.all')
-    @endif --}}
+    @endif" id="tab-1">    
     <h3>Sign In</h3>
     <form method="POST" action="{{ route('login') }}">
         @csrf
@@ -162,6 +159,12 @@
                 </div>
             </div>
         </form>
+        <div class="login-resources">            
+            <ul>
+                <li><a href="{{ url('auth/facebook') }}" title="" class="fb"><i class="fa fa-facebook"></i>Sign Up with
+                        Facebook</a></li>                
+            </ul>
+        </div>  
     </div>
     <!--dff-tab end-->
 </div>
@@ -172,6 +175,7 @@
 <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('lib/slick/slick.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/validation_form.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/validation.js')}}"></script>
 <script type="text/javascript" src="{{asset('plugins/bootstrap-notify/bootstrap-notify.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/notifications.js')}}"></script>

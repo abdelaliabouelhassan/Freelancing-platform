@@ -5491,3 +5491,7 @@ background-color: #fb483a !important
 .p-r-35 {
     padding-right: 35px;
 }
+.controle {
+	border-radius: 0 !important;	
+	padding: 10px 20px 10px 20px !important;
+}

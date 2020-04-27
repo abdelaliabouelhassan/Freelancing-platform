@@ -41,7 +41,9 @@ Route::get('auth/facebook/callback', 'Auth\FacebookController@handleFacebookCall
 
 
 
-
+// Route::get('save',function(){
+//     return view('auth/password/confirm');
+// });
 //testing routes
 Route::get('details', function () {
 
