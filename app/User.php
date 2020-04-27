@@ -52,4 +52,19 @@ class User extends Authenticatable
     }
 
 
+    public function post()
+    {
+        return $this->hasMany('App\Post');
+    }
+
+    public  function  city(){
+        return $this->belongsTo('App\City');
+    }
+    public  function getnameAttribute($value){
+        return ucfirst($value);
+    }
+    public function ip_address()
+    {
+        return $this->hasMany('App\Ip_Address');
+    }
 }
