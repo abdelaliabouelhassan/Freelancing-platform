@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('phone')->nullable();
             $table->integer('city_id')->nullable()->unsigned();
-            $table->string('cat_id')->nullable();
+            $table->string('category_id')->nullable();
             $table->boolean('is_active')->default(false);
             $table->string('gander')->nullable();
             $table->boolean('is_online')->default();
