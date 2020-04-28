@@ -13,7 +13,7 @@ class CreateIpAdressesTable extends Migration
      */
     public function up()
     {
-        Schema::create('ip_adresses', function (Blueprint $table) {
+        Schema::create('ip__addresses', function (Blueprint $table) {
             $table->id()->index();
             $table->integer('user_id')->unsigned();
             $table->string('ip_address','50');

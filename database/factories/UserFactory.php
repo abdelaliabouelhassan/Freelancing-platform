@@ -67,5 +67,12 @@ $factory->define(\App\Image::class, function (Faker $faker) {
     ];
 });
 
+$factory->define(\App\Ip_Address::class, function (Faker $faker) {
+
+    return [
+        'user_id' =>$faker->numberBetween(1,50),
+        'ip_address'=>$faker->numberBetween(1000000,1000000000000),
+    ];
+});
 
 
