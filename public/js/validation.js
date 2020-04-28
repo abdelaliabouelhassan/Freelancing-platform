@@ -43,7 +43,7 @@ $('#btn_signup').click(function(){
     pwd1 = $('#pwd1').val();
     pwd2 = $('#pwd2').val();
     c2 = $("#c2");
-    if(name == "" || email == "" || pwd1 == "" || pwd2 == "" || !c2.is(':checked')){
+    if(name == "" || email == "" || pwd1 == "" || pwd2 == "" || !c2.is(':checked') || pwd1 != pwd2){
         if(name == ""){
             $('#name').addClass("error_input");
             if($('#name').next().prop("tagName").toLowerCase()!="label")
