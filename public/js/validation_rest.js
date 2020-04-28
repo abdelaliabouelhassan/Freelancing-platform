@@ -24,7 +24,7 @@ $('#pwd_rest').click(function(){
     var pwd1,pwd2;    
     pwd1 = $('#pwd1').val();
     pwd2 = $('#pwd2').val();    
-    if(pwd1 == "" || pwd2 == ""){        
+    if(pwd1 == "" || pwd2 == "" || pwd1 != pwd2){        
         if(pwd1 == "" || !isValidPassword(pwd1)){
             $('#pwd1').addClass("error_input");            
             if(!isValidPassword(pwd1)){
