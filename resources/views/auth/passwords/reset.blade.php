@@ -13,14 +13,8 @@
     <form method="POST" action="{{ route('password.update') }}">
         @csrf
         <input type="hidden" name="token" value="{{ $token }}">
-        <div class="row">
-            <div class="col-lg-12 no-pdd">
-                <div class="sn-field">
-                    <input type="email" id="email" value="{{ $email ?? old('email') }}" @error('email') style="border: 1px solid red" @enderror name="email"
-                           placeholder="{{ __('E-Mail Address') }}" required autocomplete=email" autofocus>
-                    <i class="la la-user"></i>
-                </div>
-            </div>
+        <input type="hidden" value="{{ $email ?? old('email') }}" @error('email') style="border: 1px solid red" @enderror name="email">
+        <div class="row">            
             <div class="col-lg-12 no-pdd">
                 <div class="sn-field">
                     <input type="password" id="pwd1" @error('password') style="border: 1px solid red" @enderror name="password"
