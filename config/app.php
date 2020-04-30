@@ -230,6 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Location' => Stevebauman\Location\Facades\Location::class,
+        'AppHelper' => App\Helpers\AppHelper::class
     ],
 
 ];

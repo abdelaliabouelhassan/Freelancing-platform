@@ -14,6 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+
+/*   POSTS  api    */
+
+
+
+Route::resource('test','API\PostController')->middleware('auth');
+Route::apiResources(['post'=>'API\PostController']);
+/*  END POSTS api */
+
+
+

@@ -37,28 +37,18 @@ Route::get('facebook', function () {
 Route::get('auth/facebook', 'Auth\FacebookController@redirectToFacebook');
 Route::get('auth/facebook/callback', 'Auth\FacebookController@handleFacebookCallback');
 
+Route::get('Jobs', function () {
+    return view('home');
+});
+Route::get('Projects', function () {
+    return view('home');
+});
+Route::get('Home', function () {
+    return view('home');
+});
 
-
-
-
-
-
-// Route::get('save',function(){
-//     return view('auth/password/confirm');
-// });
 //testing routes
 Route::get('details', function () {
-
-    //in devloper mode we are going to use that coe below
-    /*
-    $url = 'https://whatismyipaddress.com/';
-    $client = new GuzzleHttp\Client();
-    $res = $client->get($url, ['verify' => false]);
-    $content = (string) $res->getBody();
-    $myip = Str::between( $content, 'Click for more details<br>about <b>','</b>\').openPopup()');
-*/
-
-    //in live serve we are going to use that code
 
     function get_client_ip()
     {
@@ -85,7 +75,7 @@ Route::get('details', function () {
         return null;
     }
     $myid = get_client_ip();
-    $data = Location::get('41.214.182.10');
+    $data = Location::get($myid);
      dd($data);
 
 

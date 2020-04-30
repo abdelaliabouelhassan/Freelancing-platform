@@ -6,25 +6,46 @@ use App\City;
 use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
-use function MongoDB\BSON\toJSON;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Stevebauman\Location\Facades\Location;
 
 class PostController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+//    public function __construct()
+//    {
+//
+//        $this->middleware('auth:api');
+//    }
+
     public function index()
     {
 
-       $city = City::where('city_name','South Wilmaport')->first();
-       $post =  Post::all()->where('city_id',$city->id);
+        //my ip 41.214.182.10
+//        $user_city = auth('api')->user();
+//        dd($user_city);
+//        return $user_city;
 
+//        $myid =  \App\Helpers\AppHelper::get_client_ip();
+//        $data = Location::get($myid);
+//        $mycity = $data->cityName;
+//
+//         return City::all();
+//
+//        $post = Post::all();
+//
+//       return $post;
 
+        dd(Auth::user('api'));
 
-       return  $post;
-
+//        return  view('test');
     }
 
     /**

@@ -5,7 +5,6 @@
  */
 
 require('./bootstrap');
-
 window.Vue = require('vue');
 
 
@@ -20,12 +19,40 @@ window.Vue = require('vue');
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+/*vue router */
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
+const routes = [
+    { path: '/Jobs', component: require('./components/Job').default },
+    { path: '/Projects', component: require('./components/Project').default },
+    { path: '/Home', component: require('./components/Home').default },
+]
+const router = new VueRouter({
+    mode:'history',
+    routes // short for `routes: routes`
+})
+
+/*end vue router */
+
+/** VueProgressBar */
+
+import VueProgressBar from 'vue-progressbar'
+Vue.use(VueProgressBar, {
+    color: 'rgb(143, 255, 199)',
+    failedColor: 'red',
+    height: '2px'
+})
+/*end VueProgressBar*/
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-import { Form, HasError, AlertError } from 'vform';
-window.Form = Form;
-Vue.component(HasError.name, HasError);
-Vue.component(AlertError.name, AlertError);
+
+// import { Form, HasError, AlertError } from 'vform';
+// window.Form = Form;
+// Vue.component(HasError.name, HasError);
+// Vue.component(AlertError.name, AlertError);
+
+
 
 
 
@@ -38,24 +65,5 @@ Vue.component(AlertError.name, AlertError);
 
 const app = new Vue({
     el: '#app',
-    data () {
-
-        return {
-            users:{},
-            // Create a new form instance
-            form: new Form({
-                email: '',
-                password: '',
-            })
-        }
-    },
-    methods:{
-        login(){
-            console.log('hello');
-        },
-    },
-
-    created(){
-        console.log("giiid")
-    }
+    router
 });
