@@ -27,6 +27,7 @@ const routes = [
     { path: '/Jobs', component: require('./components/Job').default },
     { path: '/Projects', component: require('./components/Project').default },
     { path: '/Home', component: require('./components/Home').default },
+    { path: '/', component: require('./components/Home').default },
 ]
 const router = new VueRouter({
     mode:'history',

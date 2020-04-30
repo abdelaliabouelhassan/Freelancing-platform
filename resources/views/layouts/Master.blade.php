@@ -226,8 +226,7 @@
         </div>
     </header><!--header end-->
 
-    <router-view></router-view>
-    <vue-progress-bar></vue-progress-bar>
+    @yield('content')
 
 </div><!--theme-bricole end-->
 

@@ -57111,6 +57111,9 @@ var routes = [{
 }, {
   path: '/Home',
   component: __webpack_require__(/*! ./components/Home */ "./resources/js/components/Home.vue")["default"]
+}, {
+  path: '/',
+  component: __webpack_require__(/*! ./components/Home */ "./resources/js/components/Home.vue")["default"]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
