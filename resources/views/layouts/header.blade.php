@@ -8,7 +8,7 @@
     <meta name="keywords" content="" />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-<link rel="icon" href="{{asset('images/logo.png')}}" />
+<link rel="icon" href="{{asset('images/logotesticon.png')}}" />
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -36,7 +36,7 @@
                             <div class="col-lg-6">
                                 <div class="cmp-info">
                                     <div class="cm-logo">
-                                        <img src="{{asset('images/cm-logo.png')}}" alt="">
+                                        <img src="{{asset('images/logotest.png')}}" alt="">
                                         <p>Workwise, is a global freelancing platform and social networking where
                                             businesses and independent professionals connect and collaborate
                                             remotely</p>
