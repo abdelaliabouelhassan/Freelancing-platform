@@ -2412,8 +2412,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  watch: {
+    $route: {
+      immediate: true,
+      handler: function handler(to, from) {
+        document.title = to.meta.title || 'Home | Brikole';
+      }
+    }
+  },
   mounted: function mounted() {
     this.$Progress.start();
     console.log('Component mounted.');
@@ -2795,9 +2802,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+/* harmony default export */ __webpack_exports__["default"] = ({
+  watch: {
+    $route: {
+      immediate: true,
+      handler: function handler(to, from) {
+        document.title = to.meta.title || 'Jobs | Brikole';
+      }
+    }
+  },
+  mounted: function mounted() {
+    this.$Progress.start();
+    console.log('Component mounted.');
+    this.$Progress.finish();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Profile.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Profile.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  watch: {
+    $route: {
+      immediate: true,
+      handler: function handler(to, from) {
+        document.title = to.meta.title || 'Profile | Bricole';
+      }
+    }
+  },
   mounted: function mounted() {
+    console.log(this.$gets.IsLogedIn());
+
+    if (this.$gets.IsLogedIn()) {
+      console.log('log');
+    } else {
+      console.log('not');
+    }
+
     this.$Progress.start();
     console.log('Component mounted.');
     this.$Progress.finish();
@@ -3241,8 +3294,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  watch: {
+    $route: {
+      immediate: true,
+      handler: function handler(to, from) {
+        document.title = to.meta.title || 'Projects | Brikole';
+      }
+    }
+  },
   mounted: function mounted() {
     this.$Progress.start();
     console.log('Component mounted.');
@@ -38943,1053 +39003,883 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("main", [
+      _c("div", { staticClass: "main-section" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "main-section-data" }, [
+            _c("div", { staticClass: "row" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-3 pd-right-none no-pd" }, [
+                _c("div", { staticClass: "right-sidebar" }, [
+                  !_vm.$gets.IsLogedIn()
+                    ? _c("div", { staticClass: "widget widget-about" }, [
+                        _c("img", {
+                          attrs: { src: "images/wd-logo.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("h3", [_vm._v("You are Not Signed In")]),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("Signed In Now ")]),
+                        _vm._v(" "),
+                        _vm._m(2)
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _vm._m(4)
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(5),
+    _vm._v(" "),
+    _vm._m(6)
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("main", [
-        _c("div", { staticClass: "main-section" }, [
-          _c("div", { staticClass: "container" }, [
-            _c("div", { staticClass: "main-section-data" }, [
-              _c("div", { staticClass: "row" }, [
-                _c(
-                  "div",
-                  { staticClass: "col-lg-3 col-md-4 pd-left-none no-pd" },
-                  [
-                    _c("div", { staticClass: "main-left-sidebar no-margin" }, [
-                      _c("div", { staticClass: "user-data full-width" }, [
-                        _c("div", { staticClass: "user-profile" }, [
-                          _c("div", { staticClass: "username-dt" }, [
-                            _c("div", { staticClass: "usr-pic" }, [
-                              _c("img", {
-                                attrs: {
-                                  src: "http://via.placeholder.com/100x100",
-                                  alt: ""
-                                }
-                              })
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "user-specs" }, [
-                            _c("h3", [_vm._v("John Doe")]),
-                            _vm._v(" "),
-                            _c("span", [
-                              _vm._v("Graphic Designer at Self Employed")
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("ul", { staticClass: "user-fw-status" }, [
-                          _c("li", [
-                            _c("h4", [_vm._v("Following")]),
-                            _vm._v(" "),
-                            _c("span", [_vm._v("34")])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("h4", [_vm._v("Followers")]),
-                            _vm._v(" "),
-                            _c("span", [_vm._v("155")])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("a", { attrs: { href: "#", title: "" } }, [
-                              _vm._v("View Profile")
-                            ])
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "suggestions full-width" }, [
-                        _c("div", { staticClass: "sd-title" }, [
-                          _c("h3", [_vm._v("Suggestions")]),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "la la-ellipsis-v" })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "suggestions-list" }, [
-                          _c("div", { staticClass: "suggestion-usd" }, [
-                            _c("img", {
-                              attrs: {
-                                src: "http://via.placeholder.com/35x35",
-                                alt: ""
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "sgt-text" }, [
-                              _c("h4", [_vm._v("Jessica William")]),
-                              _vm._v(" "),
-                              _c("span", [_vm._v("Graphic Designer")])
-                            ]),
-                            _vm._v(" "),
-                            _c("span", [_c("i", { staticClass: "la la-plus" })])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "suggestion-usd" }, [
-                            _c("img", {
-                              attrs: {
-                                src: "http://via.placeholder.com/35x35",
-                                alt: ""
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "sgt-text" }, [
-                              _c("h4", [_vm._v("John Doe")]),
-                              _vm._v(" "),
-                              _c("span", [_vm._v("PHP Developer")])
-                            ]),
-                            _vm._v(" "),
-                            _c("span", [_c("i", { staticClass: "la la-plus" })])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "suggestion-usd" }, [
-                            _c("img", {
-                              attrs: {
-                                src: "http://via.placeholder.com/35x35",
-                                alt: ""
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "sgt-text" }, [
-                              _c("h4", [_vm._v("Poonam")]),
-                              _vm._v(" "),
-                              _c("span", [_vm._v("Wordpress Developer")])
-                            ]),
-                            _vm._v(" "),
-                            _c("span", [_c("i", { staticClass: "la la-plus" })])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "suggestion-usd" }, [
-                            _c("img", {
-                              attrs: {
-                                src: "http://via.placeholder.com/35x35",
-                                alt: ""
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "sgt-text" }, [
-                              _c("h4", [_vm._v("Bill Gates")]),
-                              _vm._v(" "),
-                              _c("span", [_vm._v("C & C++ Developer")])
-                            ]),
-                            _vm._v(" "),
-                            _c("span", [_c("i", { staticClass: "la la-plus" })])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "suggestion-usd" }, [
-                            _c("img", {
-                              attrs: {
-                                src: "http://via.placeholder.com/35x35",
-                                alt: ""
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "sgt-text" }, [
-                              _c("h4", [_vm._v("Jessica William")]),
-                              _vm._v(" "),
-                              _c("span", [_vm._v("Graphic Designer")])
-                            ]),
-                            _vm._v(" "),
-                            _c("span", [_c("i", { staticClass: "la la-plus" })])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "suggestion-usd" }, [
-                            _c("img", {
-                              attrs: {
-                                src: "http://via.placeholder.com/35x35",
-                                alt: ""
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "sgt-text" }, [
-                              _c("h4", [_vm._v("John Doe")]),
-                              _vm._v(" "),
-                              _c("span", [_vm._v("PHP Developer")])
-                            ]),
-                            _vm._v(" "),
-                            _c("span", [_c("i", { staticClass: "la la-plus" })])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "view-more" }, [
-                            _c("a", { attrs: { href: "#", title: "" } }, [
-                              _vm._v("View More")
-                            ])
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "tags-sec full-width" }, [
-                        _c("ul", [
-                          _c("li", [
-                            _c("a", { attrs: { href: "#", title: "" } }, [
-                              _vm._v("Help Center")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("a", { attrs: { href: "#", title: "" } }, [
-                              _vm._v("About")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("a", { attrs: { href: "#", title: "" } }, [
-                              _vm._v("Privacy Policy")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("a", { attrs: { href: "#", title: "" } }, [
-                              _vm._v("Community Guidelines")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("a", { attrs: { href: "#", title: "" } }, [
-                              _vm._v("Cookies Policy")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("a", { attrs: { href: "#", title: "" } }, [
-                              _vm._v("Career")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("a", { attrs: { href: "#", title: "" } }, [
-                              _vm._v("Language")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("a", { attrs: { href: "#", title: "" } }, [
-                              _vm._v("Copyright Policy")
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "cp-sec" }, [
-                          _c("img", {
-                            attrs: { src: "images/logo2.png", alt: "" }
-                          }),
-                          _vm._v(" "),
-                          _c("p", [
-                            _c("img", {
-                              attrs: { src: "images/cp.png", alt: "" }
-                            }),
-                            _vm._v("Copyright 2018")
-                          ])
-                        ])
-                      ])
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-6 col-md-8 no-pd" }, [
-                  _c("div", { staticClass: "main-ws-sec" }, [
-                    _c("div", { staticClass: "post-topbar" }, [
-                      _c("div", { staticClass: "user-picy" }, [
-                        _c("img", {
-                          attrs: {
-                            src: "http://via.placeholder.com/100x100",
-                            alt: ""
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "post-st" }, [
-                        _c("ul", [
-                          _c("li", [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "post_project",
-                                attrs: { href: "#", title: "" }
-                              },
-                              [_vm._v("Post a Project")]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "post-jb active",
-                                attrs: { href: "#", title: "" }
-                              },
-                              [_vm._v("Post a Job")]
-                            )
-                          ])
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "posts-section" }, [
-                      _c("div", { staticClass: "post-bar" }, [
-                        _c("div", { staticClass: "post_topbar" }, [
-                          _c("div", { staticClass: "usy-dt" }, [
-                            _c("img", {
-                              attrs: {
-                                src: "http://via.placeholder.com/50x50",
-                                alt: ""
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "usy-name" }, [
-                              _c("h3", [_vm._v("John Doe")]),
-                              _vm._v(" "),
-                              _c("span", [
-                                _c("img", {
-                                  attrs: { src: "images/clock.png", alt: "" }
-                                }),
-                                _vm._v("3 min ago")
-                              ])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "ed-opts" }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "ed-opts-open",
-                                attrs: { href: "#", title: "" }
-                              },
-                              [_c("i", { staticClass: "la la-ellipsis-v" })]
-                            ),
-                            _vm._v(" "),
-                            _c("ul", { staticClass: "ed-options" }, [
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Edit Post")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Unsaved")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Unbid")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Close")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Hide")
-                                ])
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "epi-sec" }, [
-                          _c("ul", { staticClass: "descp" }, [
-                            _c("li", [
-                              _c("img", {
-                                attrs: { src: "images/icon8.png", alt: "" }
-                              }),
-                              _c("span", [_vm._v("Epic Coder")])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("img", {
-                                attrs: { src: "images/icon9.png", alt: "" }
-                              }),
-                              _c("span", [_vm._v("India")])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "bk-links" }, [
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _c("i", { staticClass: "la la-bookmark" })
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _c("i", { staticClass: "la la-envelope" })
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job_descp" }, [
-                          _c("h3", [_vm._v("Senior Wordpress Developer")]),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "job-dt" }, [
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Full Time")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [_c("span", [_vm._v("$30 / hr")])])
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... "
-                            ),
-                            _c("a", { attrs: { href: "#", title: "" } }, [
-                              _vm._v("view more")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "skill-tags" }, [
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("HTML")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("PHP")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("CSS")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Javascript")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Wordpress")
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job-status-bar" }, [
-                          _c("ul", { staticClass: "like-com" }, [
-                            _c("li", [
-                              _c("a", { attrs: { href: "#" } }, [
-                                _c("i", { staticClass: "la la-heart" }),
-                                _vm._v(" Like")
-                              ]),
-                              _vm._v(" "),
-                              _c("img", {
-                                attrs: { src: "images/liked-img.png", alt: "" }
-                              }),
-                              _vm._v(" "),
-                              _c("span", [_vm._v("25")])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "com",
-                                  attrs: { href: "#", title: "" }
-                                },
-                                [
-                                  _c("img", {
-                                    attrs: { src: "images/com.png", alt: "" }
-                                  }),
-                                  _vm._v(" Comment 15")
-                                ]
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("a", [
-                            _c("i", { staticClass: "la la-eye" }),
-                            _vm._v("Views 50")
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "post-bar" }, [
-                        _c("div", { staticClass: "post_topbar" }, [
-                          _c("div", { staticClass: "usy-dt" }, [
-                            _c("img", {
-                              attrs: {
-                                src: "http://via.placeholder.com/50x50",
-                                alt: ""
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "usy-name" }, [
-                              _c("h3", [_vm._v("John Doe")]),
-                              _vm._v(" "),
-                              _c("span", [
-                                _c("img", {
-                                  attrs: { src: "images/clock.png", alt: "" }
-                                }),
-                                _vm._v("3 min ago")
-                              ])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "ed-opts" }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "ed-opts-open",
-                                attrs: { href: "#", title: "" }
-                              },
-                              [_c("i", { staticClass: "la la-ellipsis-v" })]
-                            ),
-                            _vm._v(" "),
-                            _c("ul", { staticClass: "ed-options" }, [
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Edit Post")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Unsaved")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Unbid")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Close")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Hide")
-                                ])
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "epi-sec" }, [
-                          _c("ul", { staticClass: "descp" }, [
-                            _c("li", [
-                              _c("img", {
-                                attrs: { src: "images/icon8.png", alt: "" }
-                              }),
-                              _c("span", [_vm._v("Epic Coder")])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("img", {
-                                attrs: { src: "images/icon9.png", alt: "" }
-                              }),
-                              _c("span", [_vm._v("India")])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "bk-links" }, [
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _c("i", { staticClass: "la la-bookmark" })
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _c("i", { staticClass: "la la-envelope" })
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "bid_now",
-                                  attrs: { href: "#", title: "" }
-                                },
-                                [_vm._v("Bid Now")]
-                              )
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job_descp" }, [
-                          _c("h3", [_vm._v("Senior Wordpress Developer")]),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "job-dt" }, [
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Full Time")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [_c("span", [_vm._v("$30 / hr")])])
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... "
-                            ),
-                            _c("a", { attrs: { href: "#", title: "" } }, [
-                              _vm._v("view more")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "skill-tags" }, [
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("HTML")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("PHP")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("CSS")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Javascript")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Wordpress")
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job-status-bar" }, [
-                          _c("ul", { staticClass: "like-com" }, [
-                            _c("li", [
-                              _c("a", { attrs: { href: "#" } }, [
-                                _c("i", { staticClass: "la la-heart" }),
-                                _vm._v(" Like")
-                              ]),
-                              _vm._v(" "),
-                              _c("img", {
-                                attrs: { src: "images/liked-img.png", alt: "" }
-                              }),
-                              _vm._v(" "),
-                              _c("span", [_vm._v("25")])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "com",
-                                  attrs: { href: "#", title: "" }
-                                },
-                                [
-                                  _c("img", {
-                                    attrs: { src: "images/com.png", alt: "" }
-                                  }),
-                                  _vm._v(" Comment 15")
-                                ]
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("a", [
-                            _c("i", { staticClass: "la la-eye" }),
-                            _vm._v("Views 50")
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "process-comm" }, [
-                        _c("div", { staticClass: "spinner" }, [
-                          _c("div", { staticClass: "bounce1" }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "bounce2" }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "bounce3" })
-                        ])
-                      ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-3 pd-right-none no-pd" }, [
-                  _c("div", { staticClass: "right-sidebar" }, [
-                    _c("div", { staticClass: "widget widget-about" }, [
-                      _c("img", {
-                        attrs: { src: "images/wd-logo.png", alt: "" }
-                      }),
-                      _vm._v(" "),
-                      _c("h3", [_vm._v("Track Time on Workwise")]),
-                      _vm._v(" "),
-                      _c("span", [_vm._v("Pay only for the Hours worked")]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "sign_link" }, [
-                        _c("h3", [
-                          _c("a", { attrs: { href: "#", title: "" } }, [
-                            _vm._v("Sign up")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("a", { attrs: { href: "#", title: "" } }, [
-                          _vm._v("Learn More")
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "widget widget-jobs" }, [
-                      _c("div", { staticClass: "sd-title" }, [
-                        _c("h3", [_vm._v("Most Viewed This Week")]),
-                        _vm._v(" "),
-                        _c("i", { staticClass: "la la-ellipsis-v" })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "jobs-list" }, [
-                        _c("div", { staticClass: "job-info" }, [
-                          _c("div", { staticClass: "job-details" }, [
-                            _c("h3", [_vm._v("Senior Product Designer")]),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "hr-rate" }, [
-                            _c("span", [_vm._v("$25/hr")])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job-info" }, [
-                          _c("div", { staticClass: "job-details" }, [
-                            _c("h3", [_vm._v("Senior UI / UX Designer")]),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "hr-rate" }, [
-                            _c("span", [_vm._v("$25/hr")])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job-info" }, [
-                          _c("div", { staticClass: "job-details" }, [
-                            _c("h3", [_vm._v("Junior Seo Designer")]),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "hr-rate" }, [
-                            _c("span", [_vm._v("$25/hr")])
-                          ])
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "widget suggestions full-width" },
-                      [
-                        _c("div", { staticClass: "sd-title" }, [
-                          _c("h3", [_vm._v("Most Viewed People")]),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "la la-ellipsis-v" })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "suggestions-list" }, [
-                          _c("div", { staticClass: "suggestion-usd" }, [
-                            _c("img", {
-                              attrs: {
-                                src: "http://via.placeholder.com/35x35",
-                                alt: ""
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "sgt-text" }, [
-                              _c("h4", [_vm._v("Jessica William")]),
-                              _vm._v(" "),
-                              _c("span", [_vm._v("Graphic Designer")])
-                            ]),
-                            _vm._v(" "),
-                            _c("span", [_c("i", { staticClass: "la la-plus" })])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "suggestion-usd" }, [
-                            _c("img", {
-                              attrs: {
-                                src: "http://via.placeholder.com/35x35",
-                                alt: ""
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "sgt-text" }, [
-                              _c("h4", [_vm._v("John Doe")]),
-                              _vm._v(" "),
-                              _c("span", [_vm._v("PHP Developer")])
-                            ]),
-                            _vm._v(" "),
-                            _c("span", [_c("i", { staticClass: "la la-plus" })])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "suggestion-usd" }, [
-                            _c("img", {
-                              attrs: {
-                                src: "http://via.placeholder.com/35x35",
-                                alt: ""
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "sgt-text" }, [
-                              _c("h4", [_vm._v("Poonam")]),
-                              _vm._v(" "),
-                              _c("span", [_vm._v("Wordpress Developer")])
-                            ]),
-                            _vm._v(" "),
-                            _c("span", [_c("i", { staticClass: "la la-plus" })])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "suggestion-usd" }, [
-                            _c("img", {
-                              attrs: {
-                                src: "http://via.placeholder.com/35x35",
-                                alt: ""
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "sgt-text" }, [
-                              _c("h4", [_vm._v("Bill Gates")]),
-                              _vm._v(" "),
-                              _c("span", [_vm._v("C & C++ Developer")])
-                            ]),
-                            _vm._v(" "),
-                            _c("span", [_c("i", { staticClass: "la la-plus" })])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "suggestion-usd" }, [
-                            _c("img", {
-                              attrs: {
-                                src: "http://via.placeholder.com/35x35",
-                                alt: ""
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "sgt-text" }, [
-                              _c("h4", [_vm._v("Jessica William")]),
-                              _vm._v(" "),
-                              _c("span", [_vm._v("Graphic Designer")])
-                            ]),
-                            _vm._v(" "),
-                            _c("span", [_c("i", { staticClass: "la la-plus" })])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "suggestion-usd" }, [
-                            _c("img", {
-                              attrs: {
-                                src: "http://via.placeholder.com/35x35",
-                                alt: ""
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "sgt-text" }, [
-                              _c("h4", [_vm._v("John Doe")]),
-                              _vm._v(" "),
-                              _c("span", [_vm._v("PHP Developer")])
-                            ]),
-                            _vm._v(" "),
-                            _c("span", [_c("i", { staticClass: "la la-plus" })])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "view-more" }, [
-                            _c("a", { attrs: { href: "#", title: "" } }, [
-                              _vm._v("View More")
-                            ])
-                          ])
-                        ])
-                      ]
-                    )
-                  ])
-                ])
+    return _c("div", { staticClass: "col-lg-3 col-md-4 pd-left-none no-pd" }, [
+      _c("div", { staticClass: "main-left-sidebar no-margin" }, [
+        _c("div", { staticClass: "user-data full-width" }, [
+          _c("div", { staticClass: "user-profile" }, [
+            _c("div", { staticClass: "username-dt" }, [
+              _c("div", { staticClass: "usr-pic" }, [
+                _c("img", {
+                  attrs: { src: "http://via.placeholder.com/100x100", alt: "" }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "user-specs" }, [
+              _c("h3", [_vm._v("John Doe")]),
+              _vm._v(" "),
+              _c("span", [_vm._v("Graphic Designer at Self Employed")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("ul", { staticClass: "user-fw-status" }, [
+            _c("li", [
+              _c("h4", [_vm._v("Following")]),
+              _vm._v(" "),
+              _c("span", [_vm._v("34")])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("h4", [_vm._v("Followers")]),
+              _vm._v(" "),
+              _c("span", [_vm._v("155")])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { attrs: { href: "#", title: "" } }, [
+                _vm._v("View Profile")
               ])
             ])
           ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "post-popup pst-pj" }, [
-        _c("div", { staticClass: "post-project" }, [
-          _c("h3", [_vm._v("Post a project")]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "suggestions full-width" }, [
+          _c("div", { staticClass: "sd-title" }, [
+            _c("h3", [_vm._v("Suggestions")]),
+            _vm._v(" "),
+            _c("i", { staticClass: "la la-ellipsis-v" })
+          ]),
           _vm._v(" "),
-          _c("div", { staticClass: "post-project-fields" }, [
-            _c("form", [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-lg-12" }, [
-                  _c("input", {
-                    attrs: { type: "text", name: "title", placeholder: "Title" }
-                  })
-                ]),
+          _c("div", { staticClass: "suggestions-list" }, [
+            _c("div", { staticClass: "suggestion-usd" }, [
+              _c("img", {
+                attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "sgt-text" }, [
+                _c("h4", [_vm._v("Jessica William")]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-lg-12" }, [
-                  _c("div", { staticClass: "inp-field" }, [
-                    _c("select", [
-                      _c("option", [_vm._v("Category")]),
-                      _vm._v(" "),
-                      _c("option", [_vm._v("Category 1")]),
-                      _vm._v(" "),
-                      _c("option", [_vm._v("Category 2")]),
-                      _vm._v(" "),
-                      _c("option", [_vm._v("Category 3")])
-                    ])
-                  ])
-                ]),
+                _c("span", [_vm._v("Graphic Designer")])
+              ]),
+              _vm._v(" "),
+              _c("span", [_c("i", { staticClass: "la la-plus" })])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "suggestion-usd" }, [
+              _c("img", {
+                attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "sgt-text" }, [
+                _c("h4", [_vm._v("John Doe")]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-lg-12" }, [
-                  _c("input", {
-                    attrs: {
-                      type: "text",
-                      name: "skills",
-                      placeholder: "Skills"
-                    }
-                  })
-                ]),
+                _c("span", [_vm._v("PHP Developer")])
+              ]),
+              _vm._v(" "),
+              _c("span", [_c("i", { staticClass: "la la-plus" })])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "suggestion-usd" }, [
+              _c("img", {
+                attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "sgt-text" }, [
+                _c("h4", [_vm._v("Poonam")]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-lg-12" }, [
-                  _c("div", { staticClass: "price-sec" }, [
-                    _c("div", { staticClass: "price-br" }, [
-                      _c("input", {
-                        attrs: {
-                          type: "text",
-                          name: "price1",
-                          placeholder: "Price"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("i", { staticClass: "la la-dollar" })
-                    ]),
-                    _vm._v(" "),
-                    _c("span", [_vm._v("To")]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "price-br" }, [
-                      _c("input", {
-                        attrs: {
-                          type: "text",
-                          name: "price1",
-                          placeholder: "Price"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("i", { staticClass: "la la-dollar" })
-                    ])
-                  ])
-                ]),
+                _c("span", [_vm._v("Wordpress Developer")])
+              ]),
+              _vm._v(" "),
+              _c("span", [_c("i", { staticClass: "la la-plus" })])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "suggestion-usd" }, [
+              _c("img", {
+                attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "sgt-text" }, [
+                _c("h4", [_vm._v("Bill Gates")]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-lg-12" }, [
-                  _c("textarea", {
-                    attrs: { name: "description", placeholder: "Description" }
-                  })
-                ]),
+                _c("span", [_vm._v("C & C++ Developer")])
+              ]),
+              _vm._v(" "),
+              _c("span", [_c("i", { staticClass: "la la-plus" })])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "suggestion-usd" }, [
+              _c("img", {
+                attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "sgt-text" }, [
+                _c("h4", [_vm._v("Jessica William")]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-lg-12" }, [
-                  _c("ul", [
-                    _c("li", [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "active",
-                          attrs: { type: "submit", value: "post" }
-                        },
-                        [_vm._v("Post")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#", title: "" } }, [
-                        _vm._v("Cancel")
-                      ])
-                    ])
-                  ])
-                ])
+                _c("span", [_vm._v("Graphic Designer")])
+              ]),
+              _vm._v(" "),
+              _c("span", [_c("i", { staticClass: "la la-plus" })])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "suggestion-usd" }, [
+              _c("img", {
+                attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "sgt-text" }, [
+                _c("h4", [_vm._v("John Doe")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("PHP Developer")])
+              ]),
+              _vm._v(" "),
+              _c("span", [_c("i", { staticClass: "la la-plus" })])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "view-more" }, [
+              _c("a", { attrs: { href: "#", title: "" } }, [
+                _vm._v("View More")
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "tags-sec full-width" }, [
+          _c("ul", [
+            _c("li", [
+              _c("a", { attrs: { href: "#", title: "" } }, [
+                _vm._v("Help Center")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("About")])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { attrs: { href: "#", title: "" } }, [
+                _vm._v("Privacy Policy")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { attrs: { href: "#", title: "" } }, [
+                _vm._v("Community Guidelines")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { attrs: { href: "#", title: "" } }, [
+                _vm._v("Cookies Policy")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Career")])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Language")])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { attrs: { href: "#", title: "" } }, [
+                _vm._v("Copyright Policy")
               ])
             ])
           ]),
           _vm._v(" "),
-          _c("a", { attrs: { href: "#", title: "" } }, [
-            _c("i", { staticClass: "la la-times-circle-o" })
+          _c("div", { staticClass: "cp-sec" }, [
+            _c("img", { attrs: { src: "images/logo2.png", alt: "" } }),
+            _vm._v(" "),
+            _c("p", [
+              _c("img", { attrs: { src: "images/cp.png", alt: "" } }),
+              _vm._v("Copyright 2018")
+            ])
           ])
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "post-popup job_post" }, [
-        _c("div", { staticClass: "post-project" }, [
-          _c("h3", [_vm._v("Post a job")]),
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-6 col-md-8 no-pd" }, [
+      _c("div", { staticClass: "main-ws-sec" }, [
+        _c("div", { staticClass: "post-topbar" }, [
+          _c("div", { staticClass: "user-picy" }, [
+            _c("img", {
+              attrs: { src: "http://via.placeholder.com/100x100", alt: "" }
+            })
+          ]),
           _vm._v(" "),
-          _c("div", { staticClass: "post-project-fields" }, [
-            _c("form", [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-lg-12" }, [
-                  _c("input", {
-                    attrs: { type: "text", name: "title", placeholder: "Title" }
-                  })
+          _c("div", { staticClass: "post-st" }, [
+            _c("ul", [
+              _c("li", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "post_project",
+                    attrs: { href: "#", title: "" }
+                  },
+                  [_vm._v("Post a Project")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "post-jb active",
+                    attrs: { href: "#", title: "" }
+                  },
+                  [_vm._v("Post a Job")]
+                )
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "posts-section" }, [
+          _c("div", { staticClass: "post-bar" }, [
+            _c("div", { staticClass: "post_topbar" }, [
+              _c("div", { staticClass: "usy-dt" }, [
+                _c("img", {
+                  attrs: { src: "http://via.placeholder.com/50x50", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "usy-name" }, [
+                  _c("h3", [_vm._v("John Doe")]),
+                  _vm._v(" "),
+                  _c("span", [
+                    _c("img", { attrs: { src: "images/clock.png", alt: "" } }),
+                    _vm._v("3 min ago")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "ed-opts" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "ed-opts-open",
+                    attrs: { href: "#", title: "" }
+                  },
+                  [_c("i", { staticClass: "la la-ellipsis-v" })]
+                ),
+                _vm._v(" "),
+                _c("ul", { staticClass: "ed-options" }, [
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Edit Post")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Unsaved")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Unbid")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Close")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Hide")
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "epi-sec" }, [
+              _c("ul", { staticClass: "descp" }, [
+                _c("li", [
+                  _c("img", { attrs: { src: "images/icon8.png", alt: "" } }),
+                  _c("span", [_vm._v("Epic Coder")])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-lg-12" }, [
-                  _c("div", { staticClass: "inp-field" }, [
-                    _c("select", [
-                      _c("option", [_vm._v("Category")]),
-                      _vm._v(" "),
-                      _c("option", [_vm._v("Category 1")]),
-                      _vm._v(" "),
-                      _c("option", [_vm._v("Category 2")]),
-                      _vm._v(" "),
-                      _c("option", [_vm._v("Category 3")])
-                    ])
+                _c("li", [
+                  _c("img", { attrs: { src: "images/icon9.png", alt: "" } }),
+                  _c("span", [_vm._v("India")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "bk-links" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _c("i", { staticClass: "la la-bookmark" })
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-lg-12" }, [
-                  _c("input", {
-                    attrs: {
-                      type: "text",
-                      name: "skills",
-                      placeholder: "Skills"
-                    }
-                  })
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _c("i", { staticClass: "la la-envelope" })
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "job_descp" }, [
+              _c("h3", [_vm._v("Senior Wordpress Developer")]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "job-dt" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Full Time")
+                  ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-lg-6" }, [
+                _c("li", [_c("span", [_vm._v("$30 / hr")])])
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... "
+                ),
+                _c("a", { attrs: { href: "#", title: "" } }, [
+                  _vm._v("view more")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "skill-tags" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("HTML")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("PHP")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("CSS")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Javascript")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Wordpress")
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "job-status-bar" }, [
+              _c("ul", { staticClass: "like-com" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [
+                    _c("i", { staticClass: "la la-heart" }),
+                    _vm._v(" Like")
+                  ]),
+                  _vm._v(" "),
+                  _c("img", {
+                    attrs: { src: "images/liked-img.png", alt: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("25")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { staticClass: "com", attrs: { href: "#", title: "" } },
+                    [
+                      _c("img", { attrs: { src: "images/com.png", alt: "" } }),
+                      _vm._v(" Comment 15")
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("a", [
+                _c("i", { staticClass: "la la-eye" }),
+                _vm._v("Views 50")
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "post-bar" }, [
+            _c("div", { staticClass: "post_topbar" }, [
+              _c("div", { staticClass: "usy-dt" }, [
+                _c("img", {
+                  attrs: { src: "http://via.placeholder.com/50x50", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "usy-name" }, [
+                  _c("h3", [_vm._v("John Doe")]),
+                  _vm._v(" "),
+                  _c("span", [
+                    _c("img", { attrs: { src: "images/clock.png", alt: "" } }),
+                    _vm._v("3 min ago")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "ed-opts" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "ed-opts-open",
+                    attrs: { href: "#", title: "" }
+                  },
+                  [_c("i", { staticClass: "la la-ellipsis-v" })]
+                ),
+                _vm._v(" "),
+                _c("ul", { staticClass: "ed-options" }, [
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Edit Post")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Unsaved")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Unbid")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Close")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Hide")
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "epi-sec" }, [
+              _c("ul", { staticClass: "descp" }, [
+                _c("li", [
+                  _c("img", { attrs: { src: "images/icon8.png", alt: "" } }),
+                  _c("span", [_vm._v("Epic Coder")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("img", { attrs: { src: "images/icon9.png", alt: "" } }),
+                  _c("span", [_vm._v("India")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "bk-links" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _c("i", { staticClass: "la la-bookmark" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _c("i", { staticClass: "la la-envelope" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { staticClass: "bid_now", attrs: { href: "#", title: "" } },
+                    [_vm._v("Bid Now")]
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "job_descp" }, [
+              _c("h3", [_vm._v("Senior Wordpress Developer")]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "job-dt" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Full Time")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [_c("span", [_vm._v("$30 / hr")])])
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... "
+                ),
+                _c("a", { attrs: { href: "#", title: "" } }, [
+                  _vm._v("view more")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "skill-tags" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("HTML")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("PHP")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("CSS")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Javascript")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Wordpress")
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "job-status-bar" }, [
+              _c("ul", { staticClass: "like-com" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [
+                    _c("i", { staticClass: "la la-heart" }),
+                    _vm._v(" Like")
+                  ]),
+                  _vm._v(" "),
+                  _c("img", {
+                    attrs: { src: "images/liked-img.png", alt: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("25")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { staticClass: "com", attrs: { href: "#", title: "" } },
+                    [
+                      _c("img", { attrs: { src: "images/com.png", alt: "" } }),
+                      _vm._v(" Comment 15")
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("a", [
+                _c("i", { staticClass: "la la-eye" }),
+                _vm._v("Views 50")
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "process-comm" }, [
+            _c("div", { staticClass: "spinner" }, [
+              _c("div", { staticClass: "bounce1" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "bounce2" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "bounce3" })
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "sign_link" }, [
+      _c("h3", [
+        _c("a", { attrs: { href: "/", title: "" } }, [_vm._v("Sign up")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "widget widget-jobs" }, [
+      _c("div", { staticClass: "sd-title" }, [
+        _c("h3", [_vm._v("Most Viewed This Week")]),
+        _vm._v(" "),
+        _c("i", { staticClass: "la la-ellipsis-v" })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "jobs-list" }, [
+        _c("div", { staticClass: "job-info" }, [
+          _c("div", { staticClass: "job-details" }, [
+            _c("h3", [_vm._v("Senior Product Designer")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr-rate" }, [
+            _c("span", [_vm._v("$25/hr")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "job-info" }, [
+          _c("div", { staticClass: "job-details" }, [
+            _c("h3", [_vm._v("Senior UI / UX Designer")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr-rate" }, [
+            _c("span", [_vm._v("$25/hr")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "job-info" }, [
+          _c("div", { staticClass: "job-details" }, [
+            _c("h3", [_vm._v("Junior Seo Designer")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr-rate" }, [
+            _c("span", [_vm._v("$25/hr")])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "widget suggestions full-width" }, [
+      _c("div", { staticClass: "sd-title" }, [
+        _c("h3", [_vm._v("Most Viewed People")]),
+        _vm._v(" "),
+        _c("i", { staticClass: "la la-ellipsis-v" })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "suggestions-list" }, [
+        _c("div", { staticClass: "suggestion-usd" }, [
+          _c("img", {
+            attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "sgt-text" }, [
+            _c("h4", [_vm._v("Jessica William")]),
+            _vm._v(" "),
+            _c("span", [_vm._v("Graphic Designer")])
+          ]),
+          _vm._v(" "),
+          _c("span", [_c("i", { staticClass: "la la-plus" })])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "suggestion-usd" }, [
+          _c("img", {
+            attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "sgt-text" }, [
+            _c("h4", [_vm._v("John Doe")]),
+            _vm._v(" "),
+            _c("span", [_vm._v("PHP Developer")])
+          ]),
+          _vm._v(" "),
+          _c("span", [_c("i", { staticClass: "la la-plus" })])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "suggestion-usd" }, [
+          _c("img", {
+            attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "sgt-text" }, [
+            _c("h4", [_vm._v("Poonam")]),
+            _vm._v(" "),
+            _c("span", [_vm._v("Wordpress Developer")])
+          ]),
+          _vm._v(" "),
+          _c("span", [_c("i", { staticClass: "la la-plus" })])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "suggestion-usd" }, [
+          _c("img", {
+            attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "sgt-text" }, [
+            _c("h4", [_vm._v("Bill Gates")]),
+            _vm._v(" "),
+            _c("span", [_vm._v("C & C++ Developer")])
+          ]),
+          _vm._v(" "),
+          _c("span", [_c("i", { staticClass: "la la-plus" })])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "suggestion-usd" }, [
+          _c("img", {
+            attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "sgt-text" }, [
+            _c("h4", [_vm._v("Jessica William")]),
+            _vm._v(" "),
+            _c("span", [_vm._v("Graphic Designer")])
+          ]),
+          _vm._v(" "),
+          _c("span", [_c("i", { staticClass: "la la-plus" })])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "suggestion-usd" }, [
+          _c("img", {
+            attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "sgt-text" }, [
+            _c("h4", [_vm._v("John Doe")]),
+            _vm._v(" "),
+            _c("span", [_vm._v("PHP Developer")])
+          ]),
+          _vm._v(" "),
+          _c("span", [_c("i", { staticClass: "la la-plus" })])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "view-more" }, [
+          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("View More")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "post-popup pst-pj" }, [
+      _c("div", { staticClass: "post-project" }, [
+        _c("h3", [_vm._v("Post a project")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "post-project-fields" }, [
+          _c("form", [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-lg-12" }, [
+                _c("input", {
+                  attrs: { type: "text", name: "title", placeholder: "Title" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-12" }, [
+                _c("div", { staticClass: "inp-field" }, [
+                  _c("select", [
+                    _c("option", [_vm._v("Category")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Category 1")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Category 2")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Category 3")])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-12" }, [
+                _c("input", {
+                  attrs: { type: "text", name: "skills", placeholder: "Skills" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-12" }, [
+                _c("div", { staticClass: "price-sec" }, [
+                  _c("div", { staticClass: "price-br" }, [
+                    _c("input", {
+                      attrs: {
+                        type: "text",
+                        name: "price1",
+                        placeholder: "Price"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("i", { staticClass: "la la-dollar" })
+                  ]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("To")]),
+                  _vm._v(" "),
                   _c("div", { staticClass: "price-br" }, [
                     _c("input", {
                       attrs: {
@@ -40001,51 +39891,138 @@ var staticRenderFns = [
                     _vm._v(" "),
                     _c("i", { staticClass: "la la-dollar" })
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-6" }, [
-                  _c("div", { staticClass: "inp-field" }, [
-                    _c("select", [
-                      _c("option", [_vm._v("Full Time")]),
-                      _vm._v(" "),
-                      _c("option", [_vm._v("Half time")])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-12" }, [
-                  _c("textarea", {
-                    attrs: { name: "description", placeholder: "Description" }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-12" }, [
-                  _c("ul", [
-                    _c("li", [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "active",
-                          attrs: { type: "submit", value: "post" }
-                        },
-                        [_vm._v("Post")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#", title: "" } }, [
-                        _vm._v("Cancel")
-                      ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-12" }, [
+                _c("textarea", {
+                  attrs: { name: "description", placeholder: "Description" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-12" }, [
+                _c("ul", [
+                  _c("li", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "active",
+                        attrs: { type: "submit", value: "post" }
+                      },
+                      [_vm._v("Post")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Cancel")
                     ])
                   ])
                 ])
               ])
             ])
-          ]),
-          _vm._v(" "),
-          _c("a", { attrs: { href: "#", title: "" } }, [
-            _c("i", { staticClass: "la la-times-circle-o" })
           ])
+        ]),
+        _vm._v(" "),
+        _c("a", { attrs: { href: "#", title: "" } }, [
+          _c("i", { staticClass: "la la-times-circle-o" })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "post-popup job_post" }, [
+      _c("div", { staticClass: "post-project" }, [
+        _c("h3", [_vm._v("Post a job")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "post-project-fields" }, [
+          _c("form", [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-lg-12" }, [
+                _c("input", {
+                  attrs: { type: "text", name: "title", placeholder: "Title" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-12" }, [
+                _c("div", { staticClass: "inp-field" }, [
+                  _c("select", [
+                    _c("option", [_vm._v("Category")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Category 1")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Category 2")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Category 3")])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-12" }, [
+                _c("input", {
+                  attrs: { type: "text", name: "skills", placeholder: "Skills" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-6" }, [
+                _c("div", { staticClass: "price-br" }, [
+                  _c("input", {
+                    attrs: {
+                      type: "text",
+                      name: "price1",
+                      placeholder: "Price"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("i", { staticClass: "la la-dollar" })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-6" }, [
+                _c("div", { staticClass: "inp-field" }, [
+                  _c("select", [
+                    _c("option", [_vm._v("Full Time")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Half time")])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-12" }, [
+                _c("textarea", {
+                  attrs: { name: "description", placeholder: "Description" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-12" }, [
+                _c("ul", [
+                  _c("li", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "active",
+                        attrs: { type: "submit", value: "post" }
+                      },
+                      [_vm._v("Post")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Cancel")
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("a", { attrs: { href: "#", title: "" } }, [
+          _c("i", { staticClass: "la la-times-circle-o" })
         ])
       ])
     ])
@@ -40072,789 +40049,37 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "search-sec" }, [
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("main", [
+      _c("div", { staticClass: "main-section" }, [
         _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "search-box" }, [
-            _c("form", [
-              _c("input", {
-                attrs: {
-                  type: "text",
-                  name: "search",
-                  placeholder: "Search keywords"
-                }
-              }),
+          _c("div", { staticClass: "main-section-data" }, [
+            _c("div", { staticClass: "row" }, [
+              _vm._m(1),
               _vm._v(" "),
-              _c("button", { attrs: { type: "submit" } }, [_vm._v("Search")])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("main", [
-        _c("div", { staticClass: "main-section" }, [
-          _c("div", { staticClass: "container" }, [
-            _c("div", { staticClass: "main-section-data" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-lg-3" }, [
-                  _c("div", { staticClass: "filter-secs" }, [
-                    _c("div", { staticClass: "filter-heading" }, [
-                      _c("h3", [_vm._v("Filters")]),
-                      _vm._v(" "),
-                      _c("a", { attrs: { href: "#", title: "" } }, [
-                        _vm._v("Clear all filters")
+              _vm._m(2),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-3" }, [
+                _c("div", { staticClass: "right-sidebar" }, [
+                  !_vm.$gets.IsLogedIn()
+                    ? _c("div", { staticClass: "widget widget-about" }, [
+                        _c("img", {
+                          attrs: { src: "images/wd-logo.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("h3", [_vm._v("You are Not Signed In")]),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("Signed In Now ")]),
+                        _vm._v(" "),
+                        _vm._m(3)
                       ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "paddy" }, [
-                      _c("div", { staticClass: "filter-dd" }, [
-                        _c("div", { staticClass: "filter-ttl" }, [
-                          _c("h3", [_vm._v("Skills")]),
-                          _vm._v(" "),
-                          _c("a", { attrs: { href: "#", title: "" } }, [
-                            _vm._v("Clear")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("form", [
-                          _c("input", {
-                            attrs: {
-                              type: "text",
-                              name: "search-skills",
-                              placeholder: "Search skills"
-                            }
-                          })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "filter-dd" }, [
-                        _c("div", { staticClass: "filter-ttl" }, [
-                          _c("h3", [_vm._v("Availabilty")]),
-                          _vm._v(" "),
-                          _c("a", { attrs: { href: "#", title: "" } }, [
-                            _vm._v("Clear")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("ul", { staticClass: "avail-checks" }, [
-                          _c("li", [
-                            _c("input", {
-                              attrs: { type: "radio", name: "cc", id: "c1" }
-                            }),
-                            _vm._v(" "),
-                            _c("label", { attrs: { for: "c1" } }, [_c("span")]),
-                            _vm._v(" "),
-                            _c("small", [_vm._v("Hourly")])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("input", {
-                              attrs: { type: "radio", name: "cc", id: "c2" }
-                            }),
-                            _vm._v(" "),
-                            _c("label", { attrs: { for: "c2" } }, [_c("span")]),
-                            _vm._v(" "),
-                            _c("small", [_vm._v("Part Time")])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("input", {
-                              attrs: { type: "radio", name: "cc", id: "c3" }
-                            }),
-                            _vm._v(" "),
-                            _c("label", { attrs: { for: "c3" } }, [_c("span")]),
-                            _vm._v(" "),
-                            _c("small", [_vm._v("Full Time")])
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "filter-dd" }, [
-                        _c("div", { staticClass: "filter-ttl" }, [
-                          _c("h3", [_vm._v("Job Type")]),
-                          _vm._v(" "),
-                          _c("a", { attrs: { href: "#", title: "" } }, [
-                            _vm._v("Clear")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("form", { staticClass: "job-tp" }, [
-                          _c("select", [
-                            _c("option", [_vm._v("Select a job type")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("Select a job type")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("Select a job type")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("Select a job type")])
-                          ]),
-                          _vm._v(" "),
-                          _c("i", {
-                            staticClass: "fa fa-ellipsis-v",
-                            attrs: { "aria-hidden": "true" }
-                          })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "filter-dd" }, [
-                        _c("div", { staticClass: "filter-ttl" }, [
-                          _c("h3", [_vm._v("Pay Rate / Hr ($)")]),
-                          _vm._v(" "),
-                          _c("a", { attrs: { href: "#", title: "" } }, [
-                            _vm._v("Clear")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "rg-slider" }, [
-                          _c("input", {
-                            staticClass: "rn-slider slider-input",
-                            attrs: { type: "hidden", value: "5,50" }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "rg-limit" }, [
-                          _c("h4", [_vm._v("1")]),
-                          _vm._v(" "),
-                          _c("h4", [_vm._v("100+")])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "filter-dd" }, [
-                        _c("div", { staticClass: "filter-ttl" }, [
-                          _c("h3", [_vm._v("Experience Level")]),
-                          _vm._v(" "),
-                          _c("a", { attrs: { href: "#", title: "" } }, [
-                            _vm._v("Clear")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("form", { staticClass: "job-tp" }, [
-                          _c("select", [
-                            _c("option", [_vm._v("Select a experience level")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("3 years")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("4 years")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("5 years")])
-                          ]),
-                          _vm._v(" "),
-                          _c("i", {
-                            staticClass: "fa fa-ellipsis-v",
-                            attrs: { "aria-hidden": "true" }
-                          })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "filter-dd" }, [
-                        _c("div", { staticClass: "filter-ttl" }, [
-                          _c("h3", [_vm._v("Countries")]),
-                          _vm._v(" "),
-                          _c("a", { attrs: { href: "#", title: "" } }, [
-                            _vm._v("Clear")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("form", { staticClass: "job-tp" }, [
-                          _c("select", [
-                            _c("option", [_vm._v("Select a country")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("United Kingdom")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("United States")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("Russia")])
-                          ]),
-                          _vm._v(" "),
-                          _c("i", {
-                            staticClass: "fa fa-ellipsis-v",
-                            attrs: { "aria-hidden": "true" }
-                          })
-                        ])
-                      ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-6" }, [
-                  _c("div", { staticClass: "main-ws-sec" }, [
-                    _c("div", { staticClass: "posts-section" }, [
-                      _c("div", { staticClass: "post-bar" }, [
-                        _c("div", { staticClass: "post_topbar" }, [
-                          _c("div", { staticClass: "usy-dt" }, [
-                            _c("img", {
-                              attrs: {
-                                src: "http://via.placeholder.com/50x50",
-                                alt: ""
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "usy-name" }, [
-                              _c("h3", [_vm._v("John Doe")]),
-                              _vm._v(" "),
-                              _c("span", [
-                                _c("img", {
-                                  attrs: { src: "images/clock.png", alt: "" }
-                                }),
-                                _vm._v("3 min ago")
-                              ])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "ed-opts" }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "ed-opts-open",
-                                attrs: { href: "#", title: "" }
-                              },
-                              [_c("i", { staticClass: "la la-ellipsis-v" })]
-                            ),
-                            _vm._v(" "),
-                            _c("ul", { staticClass: "ed-options" }, [
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Edit Post")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Unsaved")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Unbid")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Close")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Hide")
-                                ])
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "epi-sec" }, [
-                          _c("ul", { staticClass: "descp" }, [
-                            _c("li", [
-                              _c("img", {
-                                attrs: { src: "images/icon8.png", alt: "" }
-                              }),
-                              _c("span", [_vm._v("Epic Coder")])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("img", {
-                                attrs: { src: "images/icon9.png", alt: "" }
-                              }),
-                              _c("span", [_vm._v("India")])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "bk-links" }, [
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _c("i", { staticClass: "la la-bookmark" })
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _c("i", { staticClass: "la la-envelope" })
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job_descp" }, [
-                          _c("h3", [_vm._v("Senior Wordpress Developer")]),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "job-dt" }, [
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Full Time")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [_c("span", [_vm._v("$30 / hr")])])
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... "
-                            ),
-                            _c("a", { attrs: { href: "#", title: "" } }, [
-                              _vm._v("view more")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "skill-tags" }, [
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("HTML")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("PHP")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("CSS")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Javascript")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Wordpress")
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job-status-bar" }, [
-                          _c("ul", { staticClass: "like-com" }, [
-                            _c("li", [
-                              _c("a", { attrs: { href: "#" } }, [
-                                _c("i", { staticClass: "la la-heart" }),
-                                _vm._v(" Like")
-                              ]),
-                              _vm._v(" "),
-                              _c("img", {
-                                attrs: { src: "images/liked-img.png", alt: "" }
-                              }),
-                              _vm._v(" "),
-                              _c("span", [_vm._v("25")])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "com",
-                                  attrs: { href: "#", title: "" }
-                                },
-                                [
-                                  _c("img", {
-                                    attrs: { src: "images/com.png", alt: "" }
-                                  }),
-                                  _vm._v(" Comment 15")
-                                ]
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("a", [
-                            _c("i", { staticClass: "la la-eye" }),
-                            _vm._v("Views 50")
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "post-bar" }, [
-                        _c("div", { staticClass: "post_topbar" }, [
-                          _c("div", { staticClass: "usy-dt" }, [
-                            _c("img", {
-                              attrs: {
-                                src: "http://via.placeholder.com/50x50",
-                                alt: ""
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "usy-name" }, [
-                              _c("h3", [_vm._v("John Doe")]),
-                              _vm._v(" "),
-                              _c("span", [
-                                _c("img", {
-                                  attrs: { src: "images/clock.png", alt: "" }
-                                }),
-                                _vm._v("3 min ago")
-                              ])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "ed-opts" }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "ed-opts-open",
-                                attrs: { href: "#", title: "" }
-                              },
-                              [_c("i", { staticClass: "la la-ellipsis-v" })]
-                            ),
-                            _vm._v(" "),
-                            _c("ul", { staticClass: "ed-options" }, [
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Edit Post")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Unsaved")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Unbid")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Close")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Hide")
-                                ])
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "epi-sec" }, [
-                          _c("ul", { staticClass: "descp" }, [
-                            _c("li", [
-                              _c("img", {
-                                attrs: { src: "images/icon8.png", alt: "" }
-                              }),
-                              _c("span", [_vm._v("Epic Coder")])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("img", {
-                                attrs: { src: "images/icon9.png", alt: "" }
-                              }),
-                              _c("span", [_vm._v("India")])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "bk-links" }, [
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _c("i", { staticClass: "la la-bookmark" })
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _c("i", { staticClass: "la la-envelope" })
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job_descp" }, [
-                          _c("h3", [_vm._v("Senior Wordpress Developer")]),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "job-dt" }, [
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Full Time")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [_c("span", [_vm._v("$30 / hr")])])
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... "
-                            ),
-                            _c("a", { attrs: { href: "#", title: "" } }, [
-                              _vm._v("view more")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "skill-tags" }, [
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("HTML")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("PHP")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("CSS")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Javascript")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Wordpress")
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job-status-bar" }, [
-                          _c("ul", { staticClass: "like-com" }, [
-                            _c("li", [
-                              _c("a", { attrs: { href: "#" } }, [
-                                _c("i", { staticClass: "la la-heart" }),
-                                _vm._v(" Like")
-                              ]),
-                              _vm._v(" "),
-                              _c("img", {
-                                attrs: { src: "images/liked-img.png", alt: "" }
-                              }),
-                              _vm._v(" "),
-                              _c("span", [_vm._v("25")])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "com",
-                                  attrs: { href: "#", title: "" }
-                                },
-                                [
-                                  _c("img", {
-                                    attrs: { src: "images/com.png", alt: "" }
-                                  }),
-                                  _vm._v(" Comment 15")
-                                ]
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("a", [
-                            _c("i", { staticClass: "la la-eye" }),
-                            _vm._v("Views 50")
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "process-comm" }, [
-                        _c("div", { staticClass: "spinner" }, [
-                          _c("div", { staticClass: "bounce1" }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "bounce2" }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "bounce3" })
-                        ])
-                      ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-3" }, [
-                  _c("div", { staticClass: "right-sidebar" }, [
-                    _c("div", { staticClass: "widget widget-about" }, [
-                      _c("img", {
-                        attrs: { src: "images/wd-logo.png", alt: "" }
-                      }),
-                      _vm._v(" "),
-                      _c("h3", [_vm._v("Track Time on Workwise")]),
-                      _vm._v(" "),
-                      _c("span", [_vm._v("Pay only for the Hours worked")]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "sign_link" }, [
-                        _c("h3", [
-                          _c("a", { attrs: { href: "#", title: "" } }, [
-                            _vm._v("Sign up")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("a", { attrs: { href: "#", title: "" } }, [
-                          _vm._v("Learn More")
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "widget widget-jobs" }, [
-                      _c("div", { staticClass: "sd-title" }, [
-                        _c("h3", [_vm._v("Top Jobs")]),
-                        _vm._v(" "),
-                        _c("i", { staticClass: "la la-ellipsis-v" })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "jobs-list" }, [
-                        _c("div", { staticClass: "job-info" }, [
-                          _c("div", { staticClass: "job-details" }, [
-                            _c("h3", [_vm._v("Senior Product Designer")]),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "hr-rate" }, [
-                            _c("span", [_vm._v("$25/hr")])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job-info" }, [
-                          _c("div", { staticClass: "job-details" }, [
-                            _c("h3", [_vm._v("Senior UI / UX Designer")]),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "hr-rate" }, [
-                            _c("span", [_vm._v("$25/hr")])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job-info" }, [
-                          _c("div", { staticClass: "job-details" }, [
-                            _c("h3", [_vm._v("Junior Seo Designer")]),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "hr-rate" }, [
-                            _c("span", [_vm._v("$25/hr")])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job-info" }, [
-                          _c("div", { staticClass: "job-details" }, [
-                            _c("h3", [_vm._v("Senior PHP Designer")]),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "hr-rate" }, [
-                            _c("span", [_vm._v("$25/hr")])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job-info" }, [
-                          _c("div", { staticClass: "job-details" }, [
-                            _c("h3", [_vm._v("Senior Developer Designer")]),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "hr-rate" }, [
-                            _c("span", [_vm._v("$25/hr")])
-                          ])
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "widget widget-jobs" }, [
-                      _c("div", { staticClass: "sd-title" }, [
-                        _c("h3", [_vm._v("Most Viewed This Week")]),
-                        _vm._v(" "),
-                        _c("i", { staticClass: "la la-ellipsis-v" })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "jobs-list" }, [
-                        _c("div", { staticClass: "job-info" }, [
-                          _c("div", { staticClass: "job-details" }, [
-                            _c("h3", [_vm._v("Senior Product Designer")]),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "hr-rate" }, [
-                            _c("span", [_vm._v("$25/hr")])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job-info" }, [
-                          _c("div", { staticClass: "job-details" }, [
-                            _c("h3", [_vm._v("Senior UI / UX Designer")]),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "hr-rate" }, [
-                            _c("span", [_vm._v("$25/hr")])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job-info" }, [
-                          _c("div", { staticClass: "job-details" }, [
-                            _c("h3", [_vm._v("Junior Seo Designer")]),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "hr-rate" }, [
-                            _c("span", [_vm._v("$25/hr")])
-                          ])
-                        ])
-                      ])
-                    ])
-                  ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _vm._m(5)
                 ])
               ])
             ])
@@ -40862,8 +40087,752 @@ var staticRenderFns = [
         ])
       ])
     ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "search-sec" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "search-box" }, [
+          _c("form", [
+            _c("input", {
+              attrs: {
+                type: "text",
+                name: "search",
+                placeholder: "Search keywords"
+              }
+            }),
+            _vm._v(" "),
+            _c("button", { attrs: { type: "submit" } }, [_vm._v("Search")])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-3" }, [
+      _c("div", { staticClass: "filter-secs" }, [
+        _c("div", { staticClass: "filter-heading" }, [
+          _c("h3", [_vm._v("Filters")]),
+          _vm._v(" "),
+          _c("a", { attrs: { href: "#", title: "" } }, [
+            _vm._v("Clear all filters")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "paddy" }, [
+          _c("div", { staticClass: "filter-dd" }, [
+            _c("div", { staticClass: "filter-ttl" }, [
+              _c("h3", [_vm._v("Skills")]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Clear")])
+            ]),
+            _vm._v(" "),
+            _c("form", [
+              _c("input", {
+                attrs: {
+                  type: "text",
+                  name: "search-skills",
+                  placeholder: "Search skills"
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "filter-dd" }, [
+            _c("div", { staticClass: "filter-ttl" }, [
+              _c("h3", [_vm._v("Availabilty")]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Clear")])
+            ]),
+            _vm._v(" "),
+            _c("ul", { staticClass: "avail-checks" }, [
+              _c("li", [
+                _c("input", { attrs: { type: "radio", name: "cc", id: "c1" } }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "c1" } }, [_c("span")]),
+                _vm._v(" "),
+                _c("small", [_vm._v("Hourly")])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("input", { attrs: { type: "radio", name: "cc", id: "c2" } }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "c2" } }, [_c("span")]),
+                _vm._v(" "),
+                _c("small", [_vm._v("Part Time")])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("input", { attrs: { type: "radio", name: "cc", id: "c3" } }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "c3" } }, [_c("span")]),
+                _vm._v(" "),
+                _c("small", [_vm._v("Full Time")])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "filter-dd" }, [
+            _c("div", { staticClass: "filter-ttl" }, [
+              _c("h3", [_vm._v("Job Type")]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Clear")])
+            ]),
+            _vm._v(" "),
+            _c("form", { staticClass: "job-tp" }, [
+              _c("select", [
+                _c("option", [_vm._v("Select a job type")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("Select a job type")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("Select a job type")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("Select a job type")])
+              ]),
+              _vm._v(" "),
+              _c("i", {
+                staticClass: "fa fa-ellipsis-v",
+                attrs: { "aria-hidden": "true" }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "filter-dd" }, [
+            _c("div", { staticClass: "filter-ttl" }, [
+              _c("h3", [_vm._v("Pay Rate / Hr ($)")]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Clear")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "rg-slider" }, [
+              _c("input", {
+                staticClass: "rn-slider slider-input",
+                attrs: { type: "hidden", value: "5,50" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "rg-limit" }, [
+              _c("h4", [_vm._v("1")]),
+              _vm._v(" "),
+              _c("h4", [_vm._v("100+")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "filter-dd" }, [
+            _c("div", { staticClass: "filter-ttl" }, [
+              _c("h3", [_vm._v("Experience Level")]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Clear")])
+            ]),
+            _vm._v(" "),
+            _c("form", { staticClass: "job-tp" }, [
+              _c("select", [
+                _c("option", [_vm._v("Select a experience level")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("3 years")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("4 years")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("5 years")])
+              ]),
+              _vm._v(" "),
+              _c("i", {
+                staticClass: "fa fa-ellipsis-v",
+                attrs: { "aria-hidden": "true" }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "filter-dd" }, [
+            _c("div", { staticClass: "filter-ttl" }, [
+              _c("h3", [_vm._v("Countries")]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Clear")])
+            ]),
+            _vm._v(" "),
+            _c("form", { staticClass: "job-tp" }, [
+              _c("select", [
+                _c("option", [_vm._v("Select a country")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("United Kingdom")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("United States")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("Russia")])
+              ]),
+              _vm._v(" "),
+              _c("i", {
+                staticClass: "fa fa-ellipsis-v",
+                attrs: { "aria-hidden": "true" }
+              })
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-6" }, [
+      _c("div", { staticClass: "main-ws-sec" }, [
+        _c("div", { staticClass: "posts-section" }, [
+          _c("div", { staticClass: "post-bar" }, [
+            _c("div", { staticClass: "post_topbar" }, [
+              _c("div", { staticClass: "usy-dt" }, [
+                _c("img", {
+                  attrs: { src: "http://via.placeholder.com/50x50", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "usy-name" }, [
+                  _c("h3", [_vm._v("John Doe")]),
+                  _vm._v(" "),
+                  _c("span", [
+                    _c("img", { attrs: { src: "images/clock.png", alt: "" } }),
+                    _vm._v("3 min ago")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "ed-opts" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "ed-opts-open",
+                    attrs: { href: "#", title: "" }
+                  },
+                  [_c("i", { staticClass: "la la-ellipsis-v" })]
+                ),
+                _vm._v(" "),
+                _c("ul", { staticClass: "ed-options" }, [
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Edit Post")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Unsaved")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Unbid")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Close")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Hide")
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "epi-sec" }, [
+              _c("ul", { staticClass: "descp" }, [
+                _c("li", [
+                  _c("img", { attrs: { src: "images/icon8.png", alt: "" } }),
+                  _c("span", [_vm._v("Epic Coder")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("img", { attrs: { src: "images/icon9.png", alt: "" } }),
+                  _c("span", [_vm._v("India")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "bk-links" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _c("i", { staticClass: "la la-bookmark" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _c("i", { staticClass: "la la-envelope" })
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "job_descp" }, [
+              _c("h3", [_vm._v("Senior Wordpress Developer")]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "job-dt" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Full Time")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [_c("span", [_vm._v("$30 / hr")])])
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... "
+                ),
+                _c("a", { attrs: { href: "#", title: "" } }, [
+                  _vm._v("view more")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "skill-tags" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("HTML")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("PHP")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("CSS")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Javascript")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Wordpress")
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "job-status-bar" }, [
+              _c("ul", { staticClass: "like-com" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [
+                    _c("i", { staticClass: "la la-heart" }),
+                    _vm._v(" Like")
+                  ]),
+                  _vm._v(" "),
+                  _c("img", {
+                    attrs: { src: "images/liked-img.png", alt: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("25")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { staticClass: "com", attrs: { href: "#", title: "" } },
+                    [
+                      _c("img", { attrs: { src: "images/com.png", alt: "" } }),
+                      _vm._v(" Comment 15")
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("a", [
+                _c("i", { staticClass: "la la-eye" }),
+                _vm._v("Views 50")
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "post-bar" }, [
+            _c("div", { staticClass: "post_topbar" }, [
+              _c("div", { staticClass: "usy-dt" }, [
+                _c("img", {
+                  attrs: { src: "http://via.placeholder.com/50x50", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "usy-name" }, [
+                  _c("h3", [_vm._v("John Doe")]),
+                  _vm._v(" "),
+                  _c("span", [
+                    _c("img", { attrs: { src: "images/clock.png", alt: "" } }),
+                    _vm._v("3 min ago")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "ed-opts" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "ed-opts-open",
+                    attrs: { href: "#", title: "" }
+                  },
+                  [_c("i", { staticClass: "la la-ellipsis-v" })]
+                ),
+                _vm._v(" "),
+                _c("ul", { staticClass: "ed-options" }, [
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Edit Post")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Unsaved")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Unbid")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Close")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Hide")
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "epi-sec" }, [
+              _c("ul", { staticClass: "descp" }, [
+                _c("li", [
+                  _c("img", { attrs: { src: "images/icon8.png", alt: "" } }),
+                  _c("span", [_vm._v("Epic Coder")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("img", { attrs: { src: "images/icon9.png", alt: "" } }),
+                  _c("span", [_vm._v("India")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "bk-links" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _c("i", { staticClass: "la la-bookmark" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _c("i", { staticClass: "la la-envelope" })
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "job_descp" }, [
+              _c("h3", [_vm._v("Senior Wordpress Developer")]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "job-dt" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Full Time")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [_c("span", [_vm._v("$30 / hr")])])
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... "
+                ),
+                _c("a", { attrs: { href: "#", title: "" } }, [
+                  _vm._v("view more")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "skill-tags" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("HTML")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("PHP")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("CSS")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Javascript")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Wordpress")
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "job-status-bar" }, [
+              _c("ul", { staticClass: "like-com" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [
+                    _c("i", { staticClass: "la la-heart" }),
+                    _vm._v(" Like")
+                  ]),
+                  _vm._v(" "),
+                  _c("img", {
+                    attrs: { src: "images/liked-img.png", alt: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("25")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { staticClass: "com", attrs: { href: "#", title: "" } },
+                    [
+                      _c("img", { attrs: { src: "images/com.png", alt: "" } }),
+                      _vm._v(" Comment 15")
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("a", [
+                _c("i", { staticClass: "la la-eye" }),
+                _vm._v("Views 50")
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "process-comm" }, [
+            _c("div", { staticClass: "spinner" }, [
+              _c("div", { staticClass: "bounce1" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "bounce2" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "bounce3" })
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "sign_link" }, [
+      _c("h3", [
+        _c("a", { attrs: { href: "/", title: "" } }, [_vm._v("Sign up")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "widget widget-jobs" }, [
+      _c("div", { staticClass: "sd-title" }, [
+        _c("h3", [_vm._v("Top Jobs")]),
+        _vm._v(" "),
+        _c("i", { staticClass: "la la-ellipsis-v" })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "jobs-list" }, [
+        _c("div", { staticClass: "job-info" }, [
+          _c("div", { staticClass: "job-details" }, [
+            _c("h3", [_vm._v("Senior Product Designer")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr-rate" }, [
+            _c("span", [_vm._v("$25/hr")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "job-info" }, [
+          _c("div", { staticClass: "job-details" }, [
+            _c("h3", [_vm._v("Senior UI / UX Designer")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr-rate" }, [
+            _c("span", [_vm._v("$25/hr")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "job-info" }, [
+          _c("div", { staticClass: "job-details" }, [
+            _c("h3", [_vm._v("Junior Seo Designer")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr-rate" }, [
+            _c("span", [_vm._v("$25/hr")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "job-info" }, [
+          _c("div", { staticClass: "job-details" }, [
+            _c("h3", [_vm._v("Senior PHP Designer")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr-rate" }, [
+            _c("span", [_vm._v("$25/hr")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "job-info" }, [
+          _c("div", { staticClass: "job-details" }, [
+            _c("h3", [_vm._v("Senior Developer Designer")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr-rate" }, [
+            _c("span", [_vm._v("$25/hr")])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "widget widget-jobs" }, [
+      _c("div", { staticClass: "sd-title" }, [
+        _c("h3", [_vm._v("Most Viewed This Week")]),
+        _vm._v(" "),
+        _c("i", { staticClass: "la la-ellipsis-v" })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "jobs-list" }, [
+        _c("div", { staticClass: "job-info" }, [
+          _c("div", { staticClass: "job-details" }, [
+            _c("h3", [_vm._v("Senior Product Designer")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr-rate" }, [
+            _c("span", [_vm._v("$25/hr")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "job-info" }, [
+          _c("div", { staticClass: "job-details" }, [
+            _c("h3", [_vm._v("Senior UI / UX Designer")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr-rate" }, [
+            _c("span", [_vm._v("$25/hr")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "job-info" }, [
+          _c("div", { staticClass: "job-details" }, [
+            _c("h3", [_vm._v("Junior Seo Designer")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr-rate" }, [
+            _c("span", [_vm._v("$25/hr")])
+          ])
+        ])
+      ])
+    ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Profile.vue?vue&type=template&id=3bd692e4&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Profile.vue?vue&type=template&id=3bd692e4& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("h1", [_vm._v("My Profile")])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -40885,1074 +40854,995 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("main", [
+      _c("div", { staticClass: "main-section" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "main-section-data" }, [
+            _c("div", { staticClass: "row" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-3" }, [
+                _c("div", { staticClass: "right-sidebar" }, [
+                  !_vm.$gets.IsLogedIn()
+                    ? _c("div", { staticClass: "widget widget-about" }, [
+                        _c("img", {
+                          attrs: { src: "images/wd-logo.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("h3", [_vm._v("You are Not Signed In")]),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("Signed In Now ")]),
+                        _vm._v(" "),
+                        _vm._m(3)
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _vm._m(5)
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "search-sec" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "search-box" }, [
+    return _c("div", { staticClass: "search-sec" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "search-box" }, [
+          _c("form", [
+            _c("input", {
+              attrs: {
+                type: "text",
+                name: "search",
+                placeholder: "Search keywords"
+              }
+            }),
+            _vm._v(" "),
+            _c("button", { attrs: { type: "submit" } }, [_vm._v("Search")])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-3" }, [
+      _c("div", { staticClass: "filter-secs" }, [
+        _c("div", { staticClass: "filter-heading" }, [
+          _c("h3", [_vm._v("Filters")]),
+          _vm._v(" "),
+          _c("a", { attrs: { href: "#", title: "" } }, [
+            _vm._v("Clear all filters")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "paddy" }, [
+          _c("div", { staticClass: "filter-dd" }, [
+            _c("div", { staticClass: "filter-ttl" }, [
+              _c("h3", [_vm._v("Skills")]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Clear")])
+            ]),
+            _vm._v(" "),
             _c("form", [
               _c("input", {
                 attrs: {
                   type: "text",
-                  name: "search",
-                  placeholder: "Search keywords"
+                  name: "search-skills",
+                  placeholder: "Search skills"
                 }
-              }),
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "filter-dd" }, [
+            _c("div", { staticClass: "filter-ttl" }, [
+              _c("h3", [_vm._v("Availabilty")]),
               _vm._v(" "),
-              _c("button", { attrs: { type: "submit" } }, [_vm._v("Search")])
+              _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Clear")])
+            ]),
+            _vm._v(" "),
+            _c("ul", { staticClass: "avail-checks" }, [
+              _c("li", [
+                _c("input", { attrs: { type: "radio", name: "cc", id: "c1" } }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "c1" } }, [_c("span")]),
+                _vm._v(" "),
+                _c("small", [_vm._v("Hourly")])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("input", { attrs: { type: "radio", name: "cc", id: "c2" } }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "c2" } }, [_c("span")]),
+                _vm._v(" "),
+                _c("small", [_vm._v("Part Time")])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("input", { attrs: { type: "radio", name: "cc", id: "c3" } }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "c3" } }, [_c("span")]),
+                _vm._v(" "),
+                _c("small", [_vm._v("Full Time")])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "filter-dd" }, [
+            _c("div", { staticClass: "filter-ttl" }, [
+              _c("h3", [_vm._v("Job Type")]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Clear")])
+            ]),
+            _vm._v(" "),
+            _c("form", { staticClass: "job-tp" }, [
+              _c("select", [
+                _c("option", [_vm._v("Select a job type")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("Select a job type")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("Select a job type")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("Select a job type")])
+              ]),
+              _vm._v(" "),
+              _c("i", {
+                staticClass: "fa fa-ellipsis-v",
+                attrs: { "aria-hidden": "true" }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "filter-dd" }, [
+            _c("div", { staticClass: "filter-ttl" }, [
+              _c("h3", [_vm._v("Pay Rate / Hr ($)")]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Clear")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "rg-slider" }, [
+              _c("input", {
+                staticClass: "rn-slider slider-input",
+                attrs: { type: "hidden", value: "5,50" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "rg-limit" }, [
+              _c("h4", [_vm._v("1")]),
+              _vm._v(" "),
+              _c("h4", [_vm._v("100+")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "filter-dd" }, [
+            _c("div", { staticClass: "filter-ttl" }, [
+              _c("h3", [_vm._v("Experience Level")]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Clear")])
+            ]),
+            _vm._v(" "),
+            _c("form", { staticClass: "job-tp" }, [
+              _c("select", [
+                _c("option", [_vm._v("Select a experience level")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("3 years")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("4 years")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("5 years")])
+              ]),
+              _vm._v(" "),
+              _c("i", {
+                staticClass: "fa fa-ellipsis-v",
+                attrs: { "aria-hidden": "true" }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "filter-dd" }, [
+            _c("div", { staticClass: "filter-ttl" }, [
+              _c("h3", [_vm._v("Countries")]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Clear")])
+            ]),
+            _vm._v(" "),
+            _c("form", { staticClass: "job-tp" }, [
+              _c("select", [
+                _c("option", [_vm._v("Select a country")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("United Kingdom")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("United States")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("Russia")])
+              ]),
+              _vm._v(" "),
+              _c("i", {
+                staticClass: "fa fa-ellipsis-v",
+                attrs: { "aria-hidden": "true" }
+              })
             ])
           ])
         ])
-      ]),
-      _vm._v(" "),
-      _c("main", [
-        _c("div", { staticClass: "main-section" }, [
-          _c("div", { staticClass: "container" }, [
-            _c("div", { staticClass: "main-section-data" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-lg-3" }, [
-                  _c("div", { staticClass: "filter-secs" }, [
-                    _c("div", { staticClass: "filter-heading" }, [
-                      _c("h3", [_vm._v("Filters")]),
-                      _vm._v(" "),
-                      _c("a", { attrs: { href: "#", title: "" } }, [
-                        _vm._v("Clear all filters")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "paddy" }, [
-                      _c("div", { staticClass: "filter-dd" }, [
-                        _c("div", { staticClass: "filter-ttl" }, [
-                          _c("h3", [_vm._v("Skills")]),
-                          _vm._v(" "),
-                          _c("a", { attrs: { href: "#", title: "" } }, [
-                            _vm._v("Clear")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("form", [
-                          _c("input", {
-                            attrs: {
-                              type: "text",
-                              name: "search-skills",
-                              placeholder: "Search skills"
-                            }
-                          })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "filter-dd" }, [
-                        _c("div", { staticClass: "filter-ttl" }, [
-                          _c("h3", [_vm._v("Availabilty")]),
-                          _vm._v(" "),
-                          _c("a", { attrs: { href: "#", title: "" } }, [
-                            _vm._v("Clear")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("ul", { staticClass: "avail-checks" }, [
-                          _c("li", [
-                            _c("input", {
-                              attrs: { type: "radio", name: "cc", id: "c1" }
-                            }),
-                            _vm._v(" "),
-                            _c("label", { attrs: { for: "c1" } }, [_c("span")]),
-                            _vm._v(" "),
-                            _c("small", [_vm._v("Hourly")])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("input", {
-                              attrs: { type: "radio", name: "cc", id: "c2" }
-                            }),
-                            _vm._v(" "),
-                            _c("label", { attrs: { for: "c2" } }, [_c("span")]),
-                            _vm._v(" "),
-                            _c("small", [_vm._v("Part Time")])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("input", {
-                              attrs: { type: "radio", name: "cc", id: "c3" }
-                            }),
-                            _vm._v(" "),
-                            _c("label", { attrs: { for: "c3" } }, [_c("span")]),
-                            _vm._v(" "),
-                            _c("small", [_vm._v("Full Time")])
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "filter-dd" }, [
-                        _c("div", { staticClass: "filter-ttl" }, [
-                          _c("h3", [_vm._v("Job Type")]),
-                          _vm._v(" "),
-                          _c("a", { attrs: { href: "#", title: "" } }, [
-                            _vm._v("Clear")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("form", { staticClass: "job-tp" }, [
-                          _c("select", [
-                            _c("option", [_vm._v("Select a job type")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("Select a job type")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("Select a job type")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("Select a job type")])
-                          ]),
-                          _vm._v(" "),
-                          _c("i", {
-                            staticClass: "fa fa-ellipsis-v",
-                            attrs: { "aria-hidden": "true" }
-                          })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "filter-dd" }, [
-                        _c("div", { staticClass: "filter-ttl" }, [
-                          _c("h3", [_vm._v("Pay Rate / Hr ($)")]),
-                          _vm._v(" "),
-                          _c("a", { attrs: { href: "#", title: "" } }, [
-                            _vm._v("Clear")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "rg-slider" }, [
-                          _c("input", {
-                            staticClass: "rn-slider slider-input",
-                            attrs: { type: "hidden", value: "5,50" }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "rg-limit" }, [
-                          _c("h4", [_vm._v("1")]),
-                          _vm._v(" "),
-                          _c("h4", [_vm._v("100+")])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "filter-dd" }, [
-                        _c("div", { staticClass: "filter-ttl" }, [
-                          _c("h3", [_vm._v("Experience Level")]),
-                          _vm._v(" "),
-                          _c("a", { attrs: { href: "#", title: "" } }, [
-                            _vm._v("Clear")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("form", { staticClass: "job-tp" }, [
-                          _c("select", [
-                            _c("option", [_vm._v("Select a experience level")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("3 years")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("4 years")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("5 years")])
-                          ]),
-                          _vm._v(" "),
-                          _c("i", {
-                            staticClass: "fa fa-ellipsis-v",
-                            attrs: { "aria-hidden": "true" }
-                          })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "filter-dd" }, [
-                        _c("div", { staticClass: "filter-ttl" }, [
-                          _c("h3", [_vm._v("Countries")]),
-                          _vm._v(" "),
-                          _c("a", { attrs: { href: "#", title: "" } }, [
-                            _vm._v("Clear")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("form", { staticClass: "job-tp" }, [
-                          _c("select", [
-                            _c("option", [_vm._v("Select a country")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("United Kingdom")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("United States")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("Russia")])
-                          ]),
-                          _vm._v(" "),
-                          _c("i", {
-                            staticClass: "fa fa-ellipsis-v",
-                            attrs: { "aria-hidden": "true" }
-                          })
-                        ])
-                      ])
-                    ])
-                  ])
-                ]),
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-6" }, [
+      _c("div", { staticClass: "main-ws-sec" }, [
+        _c("div", { staticClass: "posts-section" }, [
+          _c("div", { staticClass: "post-bar" }, [
+            _c("div", { staticClass: "post_topbar" }, [
+              _c("div", { staticClass: "usy-dt" }, [
+                _c("img", {
+                  attrs: { src: "http://via.placeholder.com/50x50", alt: "" }
+                }),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-lg-6" }, [
-                  _c("div", { staticClass: "main-ws-sec" }, [
-                    _c("div", { staticClass: "posts-section" }, [
-                      _c("div", { staticClass: "post-bar" }, [
-                        _c("div", { staticClass: "post_topbar" }, [
-                          _c("div", { staticClass: "usy-dt" }, [
-                            _c("img", {
-                              attrs: {
-                                src: "http://via.placeholder.com/50x50",
-                                alt: ""
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "usy-name" }, [
-                              _c("h3", [_vm._v("John Doe")]),
-                              _vm._v(" "),
-                              _c("span", [
-                                _c("img", {
-                                  attrs: { src: "images/clock.png", alt: "" }
-                                }),
-                                _vm._v("3 min ago")
-                              ])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "ed-opts" }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "ed-opts-open",
-                                attrs: { href: "#", title: "" }
-                              },
-                              [_c("i", { staticClass: "la la-ellipsis-v" })]
-                            ),
-                            _vm._v(" "),
-                            _c("ul", { staticClass: "ed-options" }, [
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Edit Post")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Unsaved")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Unbid")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Close")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Hide")
-                                ])
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "epi-sec" }, [
-                          _c("ul", { staticClass: "descp" }, [
-                            _c("li", [
-                              _c("img", {
-                                attrs: { src: "images/icon8.png", alt: "" }
-                              }),
-                              _c("span", [_vm._v("Front End Developer")])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("img", {
-                                attrs: { src: "images/icon9.png", alt: "" }
-                              }),
-                              _c("span", [_vm._v("India")])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "bk-links" }, [
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _c("i", { staticClass: "la la-bookmark" })
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _c("i", { staticClass: "la la-envelope" })
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "bid_now",
-                                  attrs: { href: "#", title: "" }
-                                },
-                                [_vm._v("Bid Now")]
-                              )
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job_descp" }, [
-                          _c("h3", [_vm._v("Simple Classified Site")]),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "job-dt" }, [
-                            _c("li", [_c("span", [_vm._v("$300 - $350")])])
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... "
-                            ),
-                            _c("a", { attrs: { href: "#", title: "" } }, [
-                              _vm._v("view more")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "skill-tags" }, [
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("HTML")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("PHP")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("CSS")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Javascript")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Wordpress")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Photoshop")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Illustrator")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Corel Draw")
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job-status-bar" }, [
-                          _c("ul", { staticClass: "like-com" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "active",
-                                  attrs: { href: "#", title: "" }
-                                },
-                                [
-                                  _c("i", { staticClass: "la la-heart" }),
-                                  _vm._v(" Like")
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("img", {
-                                attrs: { src: "images/liked-img.png", alt: "" }
-                              }),
-                              _vm._v(" "),
-                              _c("span", [_vm._v("25")])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "com",
-                                  attrs: { href: "#", title: "" }
-                                },
-                                [
-                                  _c("img", {
-                                    attrs: { src: "images/com.png", alt: "" }
-                                  }),
-                                  _vm._v(" Comment 15")
-                                ]
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("a", [
-                            _c("i", { staticClass: "la la-eye" }),
-                            _vm._v("Views 50")
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "post-bar" }, [
-                        _c("div", { staticClass: "post_topbar" }, [
-                          _c("div", { staticClass: "usy-dt" }, [
-                            _c("img", {
-                              attrs: {
-                                src: "http://via.placeholder.com/50x50",
-                                alt: ""
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "usy-name" }, [
-                              _c("h3", [_vm._v("John Doe")]),
-                              _vm._v(" "),
-                              _c("span", [
-                                _c("img", {
-                                  attrs: { src: "images/clock.png", alt: "" }
-                                }),
-                                _vm._v("3 min ago")
-                              ])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "ed-opts" }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "ed-opts-open",
-                                attrs: { href: "#", title: "" }
-                              },
-                              [_c("i", { staticClass: "la la-ellipsis-v" })]
-                            ),
-                            _vm._v(" "),
-                            _c("ul", { staticClass: "ed-options" }, [
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Edit Post")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Unsaved")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Unbid")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Close")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Hide")
-                                ])
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "epi-sec" }, [
-                          _c("ul", { staticClass: "descp" }, [
-                            _c("li", [
-                              _c("img", {
-                                attrs: { src: "images/icon8.png", alt: "" }
-                              }),
-                              _c("span", [_vm._v("Front End Developer")])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("img", {
-                                attrs: { src: "images/icon9.png", alt: "" }
-                              }),
-                              _c("span", [_vm._v("India")])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "bk-links" }, [
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _c("i", { staticClass: "la la-bookmark" })
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _c("i", { staticClass: "la la-envelope" })
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "bid_now",
-                                  attrs: { href: "#", title: "" }
-                                },
-                                [_vm._v("Bid Now")]
-                              )
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job_descp" }, [
-                          _c("h3", [_vm._v("Ios Shopping mobile app")]),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "job-dt" }, [
-                            _c("li", [_c("span", [_vm._v("$300 - $350")])])
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... "
-                            ),
-                            _c("a", { attrs: { href: "#", title: "" } }, [
-                              _vm._v("view more")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "skill-tags" }, [
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("HTML")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("PHP")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("CSS")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Javascript")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Wordpress")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Photoshop")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Illustrator")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Corel Draw")
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job-status-bar" }, [
-                          _c("ul", { staticClass: "like-com" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "active",
-                                  attrs: { href: "#", title: "" }
-                                },
-                                [
-                                  _c("i", { staticClass: "la la-heart" }),
-                                  _vm._v(" Like")
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("img", {
-                                attrs: { src: "images/liked-img.png", alt: "" }
-                              }),
-                              _vm._v(" "),
-                              _c("span", [_vm._v("25")])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "com",
-                                  attrs: { href: "#", title: "" }
-                                },
-                                [
-                                  _c("img", {
-                                    attrs: { src: "images/com.png", alt: "" }
-                                  }),
-                                  _vm._v(" Comment 15")
-                                ]
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("a", [
-                            _c("i", { staticClass: "la la-eye" }),
-                            _vm._v("Views 50")
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "post-bar" }, [
-                        _c("div", { staticClass: "post_topbar" }, [
-                          _c("div", { staticClass: "usy-dt" }, [
-                            _c("img", {
-                              attrs: {
-                                src: "http://via.placeholder.com/50x50",
-                                alt: ""
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "usy-name" }, [
-                              _c("h3", [_vm._v("John Doe")]),
-                              _vm._v(" "),
-                              _c("span", [
-                                _c("img", {
-                                  attrs: { src: "images/clock.png", alt: "" }
-                                }),
-                                _vm._v("3 min ago")
-                              ])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "ed-opts" }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "ed-opts-open",
-                                attrs: { href: "#", title: "" }
-                              },
-                              [_c("i", { staticClass: "la la-ellipsis-v" })]
-                            ),
-                            _vm._v(" "),
-                            _c("ul", { staticClass: "ed-options" }, [
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Edit Post")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Unsaved")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Unbid")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Close")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v("Hide")
-                                ])
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "epi-sec" }, [
-                          _c("ul", { staticClass: "descp" }, [
-                            _c("li", [
-                              _c("img", {
-                                attrs: { src: "images/icon8.png", alt: "" }
-                              }),
-                              _c("span", [_vm._v("Front End Developer")])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("img", {
-                                attrs: { src: "images/icon9.png", alt: "" }
-                              }),
-                              _c("span", [_vm._v("India")])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "bk-links" }, [
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _c("i", { staticClass: "la la-bookmark" })
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _c("i", { staticClass: "la la-envelope" })
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "bid_now",
-                                  attrs: { href: "#", title: "" }
-                                },
-                                [_vm._v("Bid Now")]
-                              )
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job_descp" }, [
-                          _c("h3", [_vm._v("Simple Classified Site")]),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "job-dt" }, [
-                            _c("li", [_c("span", [_vm._v("$300 - $350")])])
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... "
-                            ),
-                            _c("a", { attrs: { href: "#", title: "" } }, [
-                              _vm._v("view more")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("ul", { staticClass: "skill-tags" }, [
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("HTML")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("PHP")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("CSS")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Javascript")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Wordpress")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Photoshop")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Illustrator")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("Corel Draw")
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job-status-bar" }, [
-                          _c("ul", { staticClass: "like-com" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "active",
-                                  attrs: { href: "#", title: "" }
-                                },
-                                [
-                                  _c("i", { staticClass: "la la-heart" }),
-                                  _vm._v(" Like")
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("img", {
-                                attrs: { src: "images/liked-img.png", alt: "" }
-                              }),
-                              _vm._v(" "),
-                              _c("span", [_vm._v("25")])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "com",
-                                  attrs: { href: "#", title: "" }
-                                },
-                                [
-                                  _c("img", {
-                                    attrs: { src: "images/com.png", alt: "" }
-                                  }),
-                                  _vm._v(" Comment 15")
-                                ]
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("a", [
-                            _c("i", { staticClass: "la la-eye" }),
-                            _vm._v("Views 50")
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "process-comm" }, [
-                        _c("div", { staticClass: "spinner" }, [
-                          _c("div", { staticClass: "bounce1" }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "bounce2" }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "bounce3" })
-                        ])
-                      ])
-                    ])
+                _c("div", { staticClass: "usy-name" }, [
+                  _c("h3", [_vm._v("John Doe")]),
+                  _vm._v(" "),
+                  _c("span", [
+                    _c("img", { attrs: { src: "images/clock.png", alt: "" } }),
+                    _vm._v("3 min ago")
                   ])
-                ]),
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "ed-opts" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "ed-opts-open",
+                    attrs: { href: "#", title: "" }
+                  },
+                  [_c("i", { staticClass: "la la-ellipsis-v" })]
+                ),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-lg-3" }, [
-                  _c("div", { staticClass: "right-sidebar" }, [
-                    _c("div", { staticClass: "widget widget-about" }, [
-                      _c("img", {
-                        attrs: { src: "images/wd-logo.png", alt: "" }
-                      }),
-                      _vm._v(" "),
-                      _c("h3", [_vm._v("Track Time on Workwise")]),
-                      _vm._v(" "),
-                      _c("span", [_vm._v("Pay only for the Hours worked")]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "sign_link" }, [
-                        _c("h3", [
-                          _c("a", { attrs: { href: "#", title: "" } }, [
-                            _vm._v("Sign up")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("a", { attrs: { href: "#", title: "" } }, [
-                          _vm._v("Learn More")
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "widget widget-jobs" }, [
-                      _c("div", { staticClass: "sd-title" }, [
-                        _c("h3", [_vm._v("Top Jobs")]),
-                        _vm._v(" "),
-                        _c("i", { staticClass: "la la-ellipsis-v" })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "jobs-list" }, [
-                        _c("div", { staticClass: "job-info" }, [
-                          _c("div", { staticClass: "job-details" }, [
-                            _c("h3", [_vm._v("Senior Product Designer")]),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "hr-rate" }, [
-                            _c("span", [_vm._v("$25/hr")])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job-info" }, [
-                          _c("div", { staticClass: "job-details" }, [
-                            _c("h3", [_vm._v("Senior UI / UX Designer")]),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "hr-rate" }, [
-                            _c("span", [_vm._v("$25/hr")])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job-info" }, [
-                          _c("div", { staticClass: "job-details" }, [
-                            _c("h3", [_vm._v("Junior Seo Designer")]),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "hr-rate" }, [
-                            _c("span", [_vm._v("$25/hr")])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job-info" }, [
-                          _c("div", { staticClass: "job-details" }, [
-                            _c("h3", [_vm._v("Senior PHP Designer")]),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "hr-rate" }, [
-                            _c("span", [_vm._v("$25/hr")])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job-info" }, [
-                          _c("div", { staticClass: "job-details" }, [
-                            _c("h3", [_vm._v("Senior Developer Designer")]),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "hr-rate" }, [
-                            _c("span", [_vm._v("$25/hr")])
-                          ])
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "widget widget-jobs" }, [
-                      _c("div", { staticClass: "sd-title" }, [
-                        _c("h3", [_vm._v("Most Viewed This Week")]),
-                        _vm._v(" "),
-                        _c("i", { staticClass: "la la-ellipsis-v" })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "jobs-list" }, [
-                        _c("div", { staticClass: "job-info" }, [
-                          _c("div", { staticClass: "job-details" }, [
-                            _c("h3", [_vm._v("Senior Product Designer")]),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "hr-rate" }, [
-                            _c("span", [_vm._v("$25/hr")])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job-info" }, [
-                          _c("div", { staticClass: "job-details" }, [
-                            _c("h3", [_vm._v("Senior UI / UX Designer")]),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "hr-rate" }, [
-                            _c("span", [_vm._v("$25/hr")])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "job-info" }, [
-                          _c("div", { staticClass: "job-details" }, [
-                            _c("h3", [_vm._v("Junior Seo Designer")]),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "hr-rate" }, [
-                            _c("span", [_vm._v("$25/hr")])
-                          ])
-                        ])
-                      ])
+                _c("ul", { staticClass: "ed-options" }, [
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Edit Post")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Unsaved")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Unbid")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Close")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Hide")
                     ])
                   ])
                 ])
               ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "epi-sec" }, [
+              _c("ul", { staticClass: "descp" }, [
+                _c("li", [
+                  _c("img", { attrs: { src: "images/icon8.png", alt: "" } }),
+                  _c("span", [_vm._v("Front End Developer")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("img", { attrs: { src: "images/icon9.png", alt: "" } }),
+                  _c("span", [_vm._v("India")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "bk-links" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _c("i", { staticClass: "la la-bookmark" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _c("i", { staticClass: "la la-envelope" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { staticClass: "bid_now", attrs: { href: "#", title: "" } },
+                    [_vm._v("Bid Now")]
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "job_descp" }, [
+              _c("h3", [_vm._v("Simple Classified Site")]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "job-dt" }, [
+                _c("li", [_c("span", [_vm._v("$300 - $350")])])
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... "
+                ),
+                _c("a", { attrs: { href: "#", title: "" } }, [
+                  _vm._v("view more")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "skill-tags" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("HTML")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("PHP")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("CSS")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Javascript")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Wordpress")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Photoshop")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Illustrator")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Corel Draw")
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "job-status-bar" }, [
+              _c("ul", { staticClass: "like-com" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { staticClass: "active", attrs: { href: "#", title: "" } },
+                    [_c("i", { staticClass: "la la-heart" }), _vm._v(" Like")]
+                  ),
+                  _vm._v(" "),
+                  _c("img", {
+                    attrs: { src: "images/liked-img.png", alt: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("25")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { staticClass: "com", attrs: { href: "#", title: "" } },
+                    [
+                      _c("img", { attrs: { src: "images/com.png", alt: "" } }),
+                      _vm._v(" Comment 15")
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("a", [
+                _c("i", { staticClass: "la la-eye" }),
+                _vm._v("Views 50")
+              ])
             ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "post-bar" }, [
+            _c("div", { staticClass: "post_topbar" }, [
+              _c("div", { staticClass: "usy-dt" }, [
+                _c("img", {
+                  attrs: { src: "http://via.placeholder.com/50x50", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "usy-name" }, [
+                  _c("h3", [_vm._v("John Doe")]),
+                  _vm._v(" "),
+                  _c("span", [
+                    _c("img", { attrs: { src: "images/clock.png", alt: "" } }),
+                    _vm._v("3 min ago")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "ed-opts" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "ed-opts-open",
+                    attrs: { href: "#", title: "" }
+                  },
+                  [_c("i", { staticClass: "la la-ellipsis-v" })]
+                ),
+                _vm._v(" "),
+                _c("ul", { staticClass: "ed-options" }, [
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Edit Post")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Unsaved")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Unbid")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Close")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Hide")
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "epi-sec" }, [
+              _c("ul", { staticClass: "descp" }, [
+                _c("li", [
+                  _c("img", { attrs: { src: "images/icon8.png", alt: "" } }),
+                  _c("span", [_vm._v("Front End Developer")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("img", { attrs: { src: "images/icon9.png", alt: "" } }),
+                  _c("span", [_vm._v("India")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "bk-links" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _c("i", { staticClass: "la la-bookmark" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _c("i", { staticClass: "la la-envelope" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { staticClass: "bid_now", attrs: { href: "#", title: "" } },
+                    [_vm._v("Bid Now")]
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "job_descp" }, [
+              _c("h3", [_vm._v("Ios Shopping mobile app")]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "job-dt" }, [
+                _c("li", [_c("span", [_vm._v("$300 - $350")])])
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... "
+                ),
+                _c("a", { attrs: { href: "#", title: "" } }, [
+                  _vm._v("view more")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "skill-tags" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("HTML")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("PHP")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("CSS")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Javascript")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Wordpress")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Photoshop")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Illustrator")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Corel Draw")
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "job-status-bar" }, [
+              _c("ul", { staticClass: "like-com" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { staticClass: "active", attrs: { href: "#", title: "" } },
+                    [_c("i", { staticClass: "la la-heart" }), _vm._v(" Like")]
+                  ),
+                  _vm._v(" "),
+                  _c("img", {
+                    attrs: { src: "images/liked-img.png", alt: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("25")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { staticClass: "com", attrs: { href: "#", title: "" } },
+                    [
+                      _c("img", { attrs: { src: "images/com.png", alt: "" } }),
+                      _vm._v(" Comment 15")
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("a", [
+                _c("i", { staticClass: "la la-eye" }),
+                _vm._v("Views 50")
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "post-bar" }, [
+            _c("div", { staticClass: "post_topbar" }, [
+              _c("div", { staticClass: "usy-dt" }, [
+                _c("img", {
+                  attrs: { src: "http://via.placeholder.com/50x50", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "usy-name" }, [
+                  _c("h3", [_vm._v("John Doe")]),
+                  _vm._v(" "),
+                  _c("span", [
+                    _c("img", { attrs: { src: "images/clock.png", alt: "" } }),
+                    _vm._v("3 min ago")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "ed-opts" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "ed-opts-open",
+                    attrs: { href: "#", title: "" }
+                  },
+                  [_c("i", { staticClass: "la la-ellipsis-v" })]
+                ),
+                _vm._v(" "),
+                _c("ul", { staticClass: "ed-options" }, [
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Edit Post")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Unsaved")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Unbid")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Close")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#", title: "" } }, [
+                      _vm._v("Hide")
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "epi-sec" }, [
+              _c("ul", { staticClass: "descp" }, [
+                _c("li", [
+                  _c("img", { attrs: { src: "images/icon8.png", alt: "" } }),
+                  _c("span", [_vm._v("Front End Developer")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("img", { attrs: { src: "images/icon9.png", alt: "" } }),
+                  _c("span", [_vm._v("India")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "bk-links" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _c("i", { staticClass: "la la-bookmark" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _c("i", { staticClass: "la la-envelope" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { staticClass: "bid_now", attrs: { href: "#", title: "" } },
+                    [_vm._v("Bid Now")]
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "job_descp" }, [
+              _c("h3", [_vm._v("Simple Classified Site")]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "job-dt" }, [
+                _c("li", [_c("span", [_vm._v("$300 - $350")])])
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... "
+                ),
+                _c("a", { attrs: { href: "#", title: "" } }, [
+                  _vm._v("view more")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "skill-tags" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("HTML")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("PHP")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("CSS")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Javascript")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Wordpress")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Photoshop")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Illustrator")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#", title: "" } }, [
+                    _vm._v("Corel Draw")
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "job-status-bar" }, [
+              _c("ul", { staticClass: "like-com" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { staticClass: "active", attrs: { href: "#", title: "" } },
+                    [_c("i", { staticClass: "la la-heart" }), _vm._v(" Like")]
+                  ),
+                  _vm._v(" "),
+                  _c("img", {
+                    attrs: { src: "images/liked-img.png", alt: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("25")])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { staticClass: "com", attrs: { href: "#", title: "" } },
+                    [
+                      _c("img", { attrs: { src: "images/com.png", alt: "" } }),
+                      _vm._v(" Comment 15")
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("a", [
+                _c("i", { staticClass: "la la-eye" }),
+                _vm._v("Views 50")
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "process-comm" }, [
+            _c("div", { staticClass: "spinner" }, [
+              _c("div", { staticClass: "bounce1" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "bounce2" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "bounce3" })
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "sign_link" }, [
+      _c("h3", [
+        _c("a", { attrs: { href: "/", title: "" } }, [_vm._v("Sign up")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "widget widget-jobs" }, [
+      _c("div", { staticClass: "sd-title" }, [
+        _c("h3", [_vm._v("Top Jobs")]),
+        _vm._v(" "),
+        _c("i", { staticClass: "la la-ellipsis-v" })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "jobs-list" }, [
+        _c("div", { staticClass: "job-info" }, [
+          _c("div", { staticClass: "job-details" }, [
+            _c("h3", [_vm._v("Senior Product Designer")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr-rate" }, [
+            _c("span", [_vm._v("$25/hr")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "job-info" }, [
+          _c("div", { staticClass: "job-details" }, [
+            _c("h3", [_vm._v("Senior UI / UX Designer")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr-rate" }, [
+            _c("span", [_vm._v("$25/hr")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "job-info" }, [
+          _c("div", { staticClass: "job-details" }, [
+            _c("h3", [_vm._v("Junior Seo Designer")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr-rate" }, [
+            _c("span", [_vm._v("$25/hr")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "job-info" }, [
+          _c("div", { staticClass: "job-details" }, [
+            _c("h3", [_vm._v("Senior PHP Designer")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr-rate" }, [
+            _c("span", [_vm._v("$25/hr")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "job-info" }, [
+          _c("div", { staticClass: "job-details" }, [
+            _c("h3", [_vm._v("Senior Developer Designer")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr-rate" }, [
+            _c("span", [_vm._v("$25/hr")])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "widget widget-jobs" }, [
+      _c("div", { staticClass: "sd-title" }, [
+        _c("h3", [_vm._v("Most Viewed This Week")]),
+        _vm._v(" "),
+        _c("i", { staticClass: "la la-ellipsis-v" })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "jobs-list" }, [
+        _c("div", { staticClass: "job-info" }, [
+          _c("div", { staticClass: "job-details" }, [
+            _c("h3", [_vm._v("Senior Product Designer")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr-rate" }, [
+            _c("span", [_vm._v("$25/hr")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "job-info" }, [
+          _c("div", { staticClass: "job-details" }, [
+            _c("h3", [_vm._v("Senior UI / UX Designer")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr-rate" }, [
+            _c("span", [_vm._v("$25/hr")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "job-info" }, [
+          _c("div", { staticClass: "job-details" }, [
+            _c("h3", [_vm._v("Junior Seo Designer")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hr-rate" }, [
+            _c("span", [_vm._v("$25/hr")])
           ])
         ])
       ])
@@ -57065,6 +56955,43 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/Gets.js":
+/*!******************************!*\
+  !*** ./resources/js/Gets.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Gets; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Gets = /*#__PURE__*/function () {
+  function Gets(user) {
+    _classCallCheck(this, Gets);
+
+    this.user = user;
+  }
+
+  _createClass(Gets, [{
+    key: "IsLogedIn",
+    value: function IsLogedIn() {
+      if (this.user) return true;else false;
+    }
+  }]);
+
+  return Gets;
+}();
+
+
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -57074,11 +57001,12 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var vue_progressbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-progressbar */ "./node_modules/vue-progressbar/dist/vue-progressbar.js");
-/* harmony import */ var vue_progressbar__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_progressbar__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Gets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Gets */ "./resources/js/Gets.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_progressbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-progressbar */ "./node_modules/vue-progressbar/dist/vue-progressbar.js");
+/* harmony import */ var vue_progressbar__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_progressbar__WEBPACK_IMPORTED_MODULE_3__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -57086,7 +57014,10 @@ __webpack_require__.r(__webpack_exports__);
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"); //includes
+
+
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$gets = new _Gets__WEBPACK_IMPORTED_MODULE_0__["default"](window.user);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -57101,7 +57032,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
 var routes = [{
   path: '/Jobs',
   component: __webpack_require__(/*! ./components/Job */ "./resources/js/components/Job.vue")["default"]
@@ -57113,9 +57044,16 @@ var routes = [{
   component: __webpack_require__(/*! ./components/Home */ "./resources/js/components/Home.vue")["default"]
 }, {
   path: '/',
-  component: __webpack_require__(/*! ./components/Home */ "./resources/js/components/Home.vue")["default"]
+  component: __webpack_require__(/*! ./components/Home */ "./resources/js/components/Home.vue")["default"],
+  meta: {
+    auth: true,
+    title: 'Brikole'
+  }
+}, {
+  path: '/Profile',
+  component: __webpack_require__(/*! ./components/Profile */ "./resources/js/components/Profile.vue")["default"]
 }];
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   mode: 'history',
   routes: routes // short for `routes: routes`
 
@@ -57125,14 +57063,20 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /** VueProgressBar */
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_progressbar__WEBPACK_IMPORTED_MODULE_2___default.a, {
-  color: 'rgb(143, 255, 199)',
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_progressbar__WEBPACK_IMPORTED_MODULE_3___default.a, {
+  color: 'rgb(255, 162, 0)',
   failedColor: 'red',
-  height: '2px'
+  height: '2px',
+  thickness: '5px',
+  transition: {
+    speed: '1s',
+    opacity: '1s',
+    termination: 900
+  }
 });
 /*end VueProgressBar*/
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]); // import { Form, HasError, AlertError } from 'vform';
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]); // import { Form, HasError, AlertError } from 'vform';
 // window.Form = Form;
 // Vue.component(HasError.name, HasError);
 // Vue.component(AlertError.name, AlertError);
@@ -57143,9 +57087,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('example-component', __webp
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
+var app = new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
   el: '#app',
-  router: router
+  router: router,
+  routes: []
 });
 
 /***/ }),
@@ -57397,6 +57342,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Job_vue_vue_type_template_id_7ff3e5bc___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Job_vue_vue_type_template_id_7ff3e5bc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Profile.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Profile.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Profile_vue_vue_type_template_id_3bd692e4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Profile.vue?vue&type=template&id=3bd692e4& */ "./resources/js/components/Profile.vue?vue&type=template&id=3bd692e4&");
+/* harmony import */ var _Profile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Profile.vue?vue&type=script&lang=js& */ "./resources/js/components/Profile.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Profile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Profile_vue_vue_type_template_id_3bd692e4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Profile_vue_vue_type_template_id_3bd692e4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Profile.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Profile.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/Profile.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Profile.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Profile.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Profile.vue?vue&type=template&id=3bd692e4&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/Profile.vue?vue&type=template&id=3bd692e4& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_template_id_3bd692e4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Profile.vue?vue&type=template&id=3bd692e4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Profile.vue?vue&type=template&id=3bd692e4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_template_id_3bd692e4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_template_id_3bd692e4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

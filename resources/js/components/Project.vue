@@ -318,13 +318,12 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="right-sidebar">
-                                    <div class="widget widget-about">
+                                    <div class="widget widget-about" v-if="!$gets.IsLogedIn()">
                                         <img src="images/wd-logo.png" alt="">
-                                        <h3>Track Time on Workwise</h3>
-                                        <span>Pay only for the Hours worked</span>
+                                        <h3>You are Not Signed In</h3>
+                                        <span>Signed In Now </span>
                                         <div class="sign_link">
-                                            <h3><a href="#" title="">Sign up</a></h3>
-                                            <a href="#" title="">Learn More</a>
+                                            <h3><a href="/" title="">Sign up</a></h3>
                                         </div>
                                     </div><!--widget-about end-->
                                     <div class="widget widget-jobs">
@@ -427,6 +426,15 @@
 
 <script>
     export default {
+
+        watch: {
+            $route: {
+                immediate: true,
+                handler(to, from) {
+                    document.title = to.meta.title || 'Projects | Brikole';
+                }
+            },
+        },
         mounted() {
             this.$Progress.start()
             console.log('Component mounted.')

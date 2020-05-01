@@ -7,6 +7,9 @@
 require('./bootstrap');
 window.Vue = require('vue');
 
+//includes
+import Gets from './Gets'
+Vue.prototype.$gets = new Gets(window.user)
 
 
 /**
@@ -27,7 +30,11 @@ const routes = [
     { path: '/Jobs', component: require('./components/Job').default },
     { path: '/Projects', component: require('./components/Project').default },
     { path: '/Home', component: require('./components/Home').default },
-    { path: '/', component: require('./components/Home').default },
+    { path: '/', component: require('./components/Home').default, meta: {
+            auth: true,
+            title: 'Brikole'
+        } },
+    { path: '/Profile', component: require('./components/Profile').default },
 ]
 const router = new VueRouter({
     mode:'history',
@@ -40,9 +47,15 @@ const router = new VueRouter({
 
 import VueProgressBar from 'vue-progressbar'
 Vue.use(VueProgressBar, {
-    color: 'rgb(143, 255, 199)',
+    color: 'rgb(255, 162, 0)',
     failedColor: 'red',
-    height: '2px'
+    height: '2px',
+    thickness: '5px',
+    transition: {
+        speed: '1s',
+        opacity: '1s',
+        termination: 900
+    },
 })
 /*end VueProgressBar*/
 
@@ -66,5 +79,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    routes:[
+
+    ]
 });

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
-    <title>WorkWise Html Template</title>
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/animate.css')}}">
@@ -42,44 +44,29 @@
                             <router-link to="/Home">Home</router-link>
 
                         </li>
-                        <li>
-                            <a href="companies.html" title="">
-                                <span><img src="images/icon2.png" alt=""></span>
-                                Companies
-                            </a>
-                            <ul>
-                                <li><a href="" title="">Companies</a></li>
-                                <li><a href="" title="">Company Profile</a></li>
-                            </ul>
-                        </li>
+
                         <li>
                             <span><img src="images/icon3.png" alt=""></span>
                             <router-link to="/Projects">Projects</router-link>
 
                         </li>
                         <li>
-                            <a href="" title="">
-                                <span><img src="images/icon4.png" alt=""></span>
-                                Profiles
-                            </a>
-                            <ul>
-                                <li><a href="" title="">User Profile</a></li>
-                                <li><a href="" title="">my-profile-feed</a></li>
-                            </ul>
+                            <span><img src="images/icon4.png" alt=""></span>
+                            <router-link to="/Profile">Profiles</router-link>
                         </li>
                         <li>
                             <span><img src="images/icon5.png" alt=""></span>
                             <router-link to="/Jobs">Jobs</router-link>
                         </li>
                         <li>
-                            <a href="#" title="" class="not-box-open">
+                            <a href="javascript:void(0)" title="" class="not-box-open">
                                 <span><img src="images/icon6.png" alt=""></span>
                                 Messages
                             </a>
                             <div class="notification-box msg">
                                 <div class="nt-title">
                                     <h4>Setting</h4>
-                                    <a href="#" title="">Clear all</a>
+                                    <a href="javascript:void(0)" title="">Clear all</a>
                                 </div>
                                 <div class="nott-list">
                                     <div class="notfication-details">
@@ -119,7 +106,7 @@
                             </div><!--notification-box end-->
                         </li>
                         <li>
-                            <a href="#" title="" class="not-box-open">
+                            <a href="javascript:void(0)" title="" class="not-box-open">
                                 <span><img src="images/icon7.png" alt=""></span>
                                 Notification
                             </a>
@@ -174,13 +161,13 @@
                     </ul>
                 </nav><!--nav end-->
                 <div class="menu-btn">
-                    <a href="#" title=""><i class="fa fa-bars"></i></a>
+                    <a href="javascript:void(0)" title=""><i class="fa fa-bars"></i></a>
                 </div><!--menu-btn end-->
 
-                <div class="user-account">
+                <div class="user-account" v-if="$gets.IsLogedIn()">
                     <div class="user-info">
                         <img src="http://via.placeholder.com/30x30" alt="">
-                        <a href="#" title="">John</a>
+                        <a href="javascript:void(0)" title="" v-text="$gets.user.name"></a>
                         <i class="la la-sort-down"></i>
                     </div>
                     <div class="user-account-settingss">
@@ -219,7 +206,12 @@
                             <li><a href="#" title="">Faqs</a></li>
                             <li><a href="#" title="">Terms & Conditions</a></li>
                         </ul>
-                        <h3 class="tc"><a href="sign-in.html" title="">Logout</a></h3>
+                        <h3 class="tc"><a href="{{ route('logout') }}" title="{{ __('Logout') }}"
+                                          onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></h3>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </div><!--user-account-settingss end-->
                 </div>
             </div><!--header-data end-->
@@ -229,8 +221,9 @@
     @yield('content')
 
 </div><!--theme-bricole end-->
-
-
+<script>
+    window.user = @json(auth()->user())
+</script>
 <script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/popper.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
@@ -240,4 +233,5 @@
 <script type="text/javascript" src="js/scrollbar.js"></script>
 <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
 <script src="{{asset("js/app.js")}}"></script>
+
 </body>

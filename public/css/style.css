@@ -2247,11 +2247,11 @@ select {
 	-ms-border-radius: 100px;
 	-o-border-radius: 100px;
 	border-radius: 100px;
-	background-color: #fff;	
+	background-color: #fff;
 	transition: .3s ease-in;
 }
-.fgt-sec input[type="checkbox"]:checked + label span {		
-	background-color: #006CBF;			
+.fgt-sec input[type="checkbox"]:checked + label span {
+	background-color: #006CBF;
 }
 .fgt-sec small {
 	float: left;
@@ -2673,7 +2673,7 @@ footer {
 	font-size: 40px;
 	font-weight: 400;
 	text-transform: capitalize;
-	margin-bottom: 7px;	
+	margin-bottom: 7px;
 }
 .star-descp {
 	float: left;
@@ -5373,11 +5373,11 @@ a:hover {
 	display: block;
 	position: absolute;
 	font-size: 12px;
-	color: red;	
+	color: red;
 	padding:2px 0 0 8px;
 }
 .show{
-	display: block;	
+	display: block;
 }
 .hide{
 	display: none;
@@ -5445,9 +5445,9 @@ background-color: #fb483a !important
     opacity: .9;
 	text-shadow: none;
 	top:0 !important;
-	right:0 !important;	
+	right:0 !important;
 	bottom:0 !important;
-	margin:auto !important;		
+	margin:auto !important;
 	outline: none !important;
 }
 .notify {
@@ -5492,6 +5492,6 @@ background-color: #fb483a !important
     padding-right: 35px;
 }
 .controle {
-	border-radius: 0 !important;	
+	border-radius: 0 !important;
 	padding: 10px 20px 10px 20px !important;
 }

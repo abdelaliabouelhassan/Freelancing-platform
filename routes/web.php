@@ -15,9 +15,7 @@ use Stevebauman\Location\Facades\Location;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-include 'testingroutes/routes.php';
+include 'includes/vue_route.php';
 
 Route::get('/', function () {
     if(auth()->check()){
@@ -37,15 +35,7 @@ Route::get('facebook', function () {
 Route::get('auth/facebook', 'Auth\FacebookController@redirectToFacebook');
 Route::get('auth/facebook/callback', 'Auth\FacebookController@handleFacebookCallback');
 
-Route::get('Jobs', function () {
-    return view('home');
-});
-Route::get('Projects', function () {
-    return view('home');
-});
-Route::get('Home', function () {
-    return view('home');
-});
+
 
 //testing routes
 Route::get('details', function () {
