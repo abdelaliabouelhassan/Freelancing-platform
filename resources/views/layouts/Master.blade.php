@@ -50,7 +50,7 @@
                             <router-link to="/Projects">Projects</router-link>
 
                         </li>
-                        <li>
+                        <li v-if="$gets.IsLogedIn()">
                             <span><img src="images/icon4.png" alt=""></span>
                             <router-link to="/Profile">Profiles</router-link>
                         </li>
@@ -58,7 +58,7 @@
                             <span><img src="images/icon5.png" alt=""></span>
                             <router-link to="/Jobs">Jobs</router-link>
                         </li>
-                        <li>
+                        <li v-if="$gets.IsLogedIn()">
                             <a href="javascript:void(0)" title="" class="not-box-open">
                                 <span><img src="images/icon6.png" alt=""></span>
                                 Messages
@@ -105,7 +105,7 @@
                                 </div><!--nott-list end-->
                             </div><!--notification-box end-->
                         </li>
-                        <li>
+                        <li v-if="$gets.IsLogedIn()">
                             <a href="javascript:void(0)" title="" class="not-box-open">
                                 <span><img src="images/icon7.png" alt=""></span>
                                 Notification

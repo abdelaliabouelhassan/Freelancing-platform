@@ -2838,7 +2838,7 @@ __webpack_require__.r(__webpack_exports__);
     $route: {
       immediate: true,
       handler: function handler(to, from) {
-        document.title = to.meta.title || 'Profile | Bricole';
+        document.title = to.meta.title || 'Profile | Brikole';
       }
     }
   },

@@ -8,7 +8,7 @@
             $route: {
                 immediate: true,
                 handler(to, from) {
-                    document.title = to.meta.title || 'Profile | Bricole';
+                    document.title = to.meta.title || 'Profile | Brikole';
                 }
             },
         },
