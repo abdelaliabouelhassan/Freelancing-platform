@@ -43,6 +43,7 @@ $factory->define(\App\Post::class, function (Faker $faker) {
         'category_id'=>$faker->numberBetween(1,10),
         'city_id'=>$faker->numberBetween(1,50),
         'user_id'=>$faker->numberBetween(1,50),
+        'price'=>$faker->numberBetween('5','10000'),
         'type'=>$faker->randomElement(['job', 'servic']),
         'is_done'=>$faker->boolean,
     ];

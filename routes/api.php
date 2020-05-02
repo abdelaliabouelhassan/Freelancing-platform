@@ -23,8 +23,8 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::resource('test','API\PostController')->middleware('auth');
 Route::apiResources(['post'=>'API\PostController']);
+Route::get('profile','API\PostController@profile');
 /*  END POSTS api */
 
 

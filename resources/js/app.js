@@ -61,11 +61,13 @@ Vue.use(VueProgressBar, {
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-// import { Form, HasError, AlertError } from 'vform';
-// window.Form = Form;
-// Vue.component(HasError.name, HasError);
-// Vue.component(AlertError.name, AlertError);
 
+/*  vform */
+import { Form, HasError, AlertError } from 'vform';
+window.Form = Form;
+Vue.component(HasError.name, HasError);
+Vue.component(AlertError.name, AlertError);
+/* vform end */
 
 
 

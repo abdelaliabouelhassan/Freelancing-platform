@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->integer('category_id')->unsigned()->index();
             $table->integer('city_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
+            $table->float('price')->nullable();
             $table->string('type',50);
             $table->boolean('is_done')->default(false);
             $table->timestamps();

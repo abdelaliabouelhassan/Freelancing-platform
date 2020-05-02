@@ -28,6 +28,6 @@ class CreateIpAdressesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ip_adresses');
+        Schema::dropIfExists('ip__addresses');
     }
 }

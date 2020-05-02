@@ -4,6 +4,21 @@
 
 <script>
     export default {
+        data () {
+
+            return {
+
+                // Create a new form instance
+                form: new Form({
+                    id:'',
+                    name: '',
+                    password: '',
+                    email:'',
+                }),
+                post:{},
+            }
+
+        },
         watch: {
             $route: {
                 immediate: true,
@@ -22,6 +37,9 @@
             this.$Progress.start()
             console.log('Component mounted.')
             this.$Progress.finish()
+        },
+        created() {
+            axios.get('api/profile').then(({data})=>(this.form.fill(data)))
         }
     }
 </script>
