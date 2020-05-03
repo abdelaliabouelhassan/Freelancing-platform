@@ -50,6 +50,10 @@ const router = new VueRouter({
 
 
 
+/*moment */
+
+
+/*end vue moment */
 
 
 
@@ -57,7 +61,7 @@ const router = new VueRouter({
 
 import VueProgressBar from 'vue-progressbar'
 Vue.use(VueProgressBar, {
-    color: 'rgb(255, 162, 0)',
+    color: 'rgb(99, 215, 255)',
     failedColor: 'red',
     height: '2px',
     thickness: '5px',

@@ -26,6 +26,7 @@ class PostController extends Controller
 
     public function index()
     {
+//        if(\auth('api')->check())
         return Post::orderBy('id')->with('city','user','category')->paginate(5);
     }
     public  function  profile()

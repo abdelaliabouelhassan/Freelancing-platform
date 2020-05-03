@@ -2730,7 +2730,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -59461,11 +59460,15 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
 });
 /*end vue router */
 
+/*moment */
+
+/*end vue moment */
+
 /** VueProgressBar */
 
 
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_progressbar__WEBPACK_IMPORTED_MODULE_3___default.a, {
-  color: 'rgb(255, 162, 0)',
+  color: 'rgb(99, 215, 255)',
   failedColor: 'red',
   height: '2px',
   thickness: '5px',
@@ -59908,8 +59911,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\project\Altf4\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\project\Altf4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\wamp64\www\brikol.ma\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\brikol.ma\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

@@ -298,6 +298,7 @@
                 page: 1
             }
         },
+
         methods:{
         LoadJobs:function () {
             this.$Progress.start()
