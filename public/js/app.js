@@ -2397,21 +2397,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   watch: {
     $route: {
@@ -40207,61 +40192,6 @@ var staticRenderFns = [
               ])
             ])
           ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "tags-sec full-width" }, [
-          _c("ul", [
-            _c("li", [
-              _c("a", { attrs: { href: "#", title: "" } }, [
-                _vm._v("Help Center")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("About")])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#", title: "" } }, [
-                _vm._v("Privacy Policy")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#", title: "" } }, [
-                _vm._v("Community Guidelines")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#", title: "" } }, [
-                _vm._v("Cookies Policy")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Career")])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Language")])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#", title: "" } }, [
-                _vm._v("Copyright Policy")
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "cp-sec" }, [
-            _c("img", { attrs: { src: "images/logo2.png", alt: "" } }),
-            _vm._v(" "),
-            _c("p", [
-              _c("img", { attrs: { src: "images/cp.png", alt: "" } }),
-              _vm._v("Copyright 2018")
-            ])
-          ])
         ])
       ])
     ])
@@ -41069,9 +40999,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
-    _vm._v(" "),
     _c("main", [
+      _vm._m(0),
+      _vm._v(" "),
       _c("div", { staticClass: "main-section" }, [
         _c("div", { staticClass: "container" }, [
           _c("div", { staticClass: "main-section-data" }, [
@@ -59465,7 +59395,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
 
 
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_progressbar__WEBPACK_IMPORTED_MODULE_3___default.a, {
-  color: 'rgb(255, 162, 0)',
+  color: '#32C5BB',
   failedColor: 'red',
   height: '2px',
   thickness: '5px',

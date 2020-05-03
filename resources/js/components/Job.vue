@@ -1,6 +1,8 @@
 <template>
-<div>
-    <div class="search-sec">
+<div>    
+
+    <main>
+        <div class="search-sec">
         <div class="container">
             <div class="search-box">
                 <form>
@@ -10,8 +12,6 @@
             </div><!--search-box end-->
         </div>
     </div><!--search-sec end-->
-
-    <main>
         <div class="main-section">
             <div class="container">
                 <div class="main-section-data">

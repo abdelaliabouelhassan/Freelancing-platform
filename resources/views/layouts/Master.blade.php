@@ -166,11 +166,14 @@
 
                 <div class="user-account" v-if="$gets.IsLogedIn()">
                     <div class="user-info">
-                        <img src="http://via.placeholder.com/30x30" alt="">
-                        <a href="javascript:void(0)" title="" v-text="$gets.user.name"></a>
-                        <i class="la la-sort-down"></i>
+                    <img src="{{asset('images/user.jpg')}}" alt="">
+                        {{-- <a href="javascript:void(0)" title="" v-text="$gets.user.name"></a>
+                        <i class="la la-sort-down"></i> --}}
                     </div>
                     <div class="user-account-settingss">
+                        @if (auth()->check())
+                            <h3> {{auth()->user()->name}}</h3>                            
+                        @endif                  
                         <h3>Online Status</h3>
                         <ul class="on-off-status">
                             <li>
@@ -217,10 +220,24 @@
             </div><!--header-data end-->
         </div>
     </header><!--header end-->
-
-    @yield('content')
-
+    @yield('content')    
 </div><!--theme-bricole end-->
+<div class="tags-sec full-width">
+    <ul>
+        <li><a href="#" title="">Help Center</a></li>
+        <li><a href="#" title="">About</a></li>
+        <li><a href="#" title="">Privacy Policy</a></li>
+        <li><a href="#" title="">Community Guidelines</a></li>
+        <li><a href="#" title="">Cookies Policy</a></li>
+        <li><a href="#" title="">Career</a></li>
+        <li><a href="#" title="">Language</a></li>
+        <li><a href="#" title="">Copyright Policy</a></li>
+    </ul>
+    <div class="cp-sec">
+        <img src="{{asset('images/logotest.png')}}" alt="">
+        <p><img src="images/cp.png" alt="">Copyright &copy; 2020 Bricole</p>
+    </div>
+</div>
 <script>
     window.user = @json(auth()->user())
 </script>
@@ -232,6 +249,6 @@
 <script type="text/javascript" src="{{asset('lib/slick/slick.min.js')}}"></script>
 <script type="text/javascript" src="js/scrollbar.js"></script>
 <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
-<script src="{{asset("js/app.js")}}"></script>
+<script type="text/javascript" src="{{asset("js/app.js")}}"></script>
 @yield('script')
 </body>
