@@ -11,7 +11,6 @@
         </div>
     </div><!--search-sec end-->
 
-
     <main>
         <div class="main-section">
             <div class="container">
@@ -160,7 +159,7 @@
                                             <h3>{{posts.title}}</h3>
                                             <ul class="job-dt">
                                                 <li><a href="#" title="">Full Time</a></li>
-                                                <li><span>${{posts.price}} / hr price</span></li>
+                                                <li><span>DH{{posts.price}}</span></li>
                                             </ul>
                                             <p>{{posts.body}} ... <a href="#" title="">view more</a></p>
                                             <ul class="skill-tags">
@@ -169,16 +168,14 @@
                                         </div>
 
                                     </div><!--post-bar end-->
-
-
-
-                                    <div class="process-comm">
-                                        <div class="spinner">
-                                            <div class="bounce1"></div>
-                                            <div class="bounce2"></div>
-                                            <div class="bounce3"></div>
-                                        </div>
-                                    </div><!--process-comm end-->
+                                    <infinite-loading @distance="1" @infinite="infiniteHandler"></infinite-loading>
+                                    <!--                                    <div class="process-comm">-->
+<!--                                        <div class="spinner">-->
+<!--                                            <div class="bounce1"></div>-->
+<!--                                            <div class="bounce2"></div>-->
+<!--                                            <div class="bounce3"></div>-->
+<!--                                        </div>-->
+<!--                                    </div>&lt;!&ndash;process-comm end&ndash;&gt;-->
                                 </div><!--posts-section end-->
                             </div><!--main-ws-sec end-->
                         </div>
@@ -298,6 +295,7 @@
             return {
                 // Create a new form instance
                 post:{},
+                page: 1
             }
         },
         methods:{
@@ -306,6 +304,21 @@
                 axios.get('api/post').then(({data})=>(this.post = data.data))
             this.$Progress.finish()
         },
+            infiniteHandler:function ($state) {
+               let vm = this;
+
+               this.$http.get('api/post?page='+this.page)
+                   .then(response => {
+                       return response.json();
+                   }).then(data => {
+                   $.each(data.data, function(key, value) {
+                       vm.post.push(value);
+                   });
+                   $state.loaded();
+               });
+
+               this.page = this.page + 1;
+            }
         },
         watch: {
             $route: {

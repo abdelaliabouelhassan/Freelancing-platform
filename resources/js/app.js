@@ -7,10 +7,15 @@
 require('./bootstrap');
 window.Vue = require('vue');
 
-//includes
+/*includes */
 import Gets from './Gets'
 Vue.prototype.$gets = new Gets(window.user)
+/*end includes*/
+/*vue-infinite-loading  load more*/
+Vue.use(require('vue-resource'));
+Vue.component('InfiniteLoading', require('vue-infinite-loading'));
 
+/*end vue-infinite-loading load more*/
 
 /**
  * The following block of code may be used to automatically register your
@@ -42,6 +47,11 @@ const router = new VueRouter({
 })
 
 /*end vue router */
+
+
+
+
+
 
 /** VueProgressBar */
 

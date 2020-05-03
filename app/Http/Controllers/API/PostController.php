@@ -26,7 +26,8 @@ class PostController extends Controller
 
     public function index()
     {
-        return Post::latest()->with('city','user','category')->paginate(10);
+
+        return Post::orderBy('id')->with('city','user','category')->paginate(5);
 
     }
     public  function  profile()
