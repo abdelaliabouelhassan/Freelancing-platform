@@ -41103,10 +41103,7 @@ var render = function() {
                           _c("div", { staticClass: "post_topbar" }, [
                             _c("div", { staticClass: "usy-dt" }, [
                               _c("img", {
-                                attrs: {
-                                  src: "http://via.placeholder.com/50x50",
-                                  alt: ""
-                                }
+                                attrs: { src: posts.image.path, alt: "" }
                               }),
                               _vm._v(" "),
                               _c("div", { staticClass: "usy-name" }, [

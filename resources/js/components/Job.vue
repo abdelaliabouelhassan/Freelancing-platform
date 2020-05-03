@@ -128,7 +128,7 @@
                                     <div class="post-bar" v-for="posts in post">
                                         <div class="post_topbar">
                                             <div class="usy-dt">
-                                                <img src="http://via.placeholder.com/50x50" alt="">
+                                                <img :src="posts.image.path" alt="">
                                                 <div class="usy-name">
                                                     <h3>{{posts.user.name}} </h3>
                                                     <span><img src="images/clock.png" alt="">{{posts.created_at}} </span>
