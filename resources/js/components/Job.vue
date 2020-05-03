@@ -128,7 +128,7 @@
                                     <div class="post-bar" v-for="posts in post">
                                         <div class="post_topbar">
                                             <div class="usy-dt">
-                                                <img src="http://via.placeholder.com/50x50" alt="">
+                                                <img :src="posts.image.path" alt="">
                                                 <div class="usy-name">
                                                     <h3>{{posts.user.name}} </h3>
                                                     <span><img src="images/clock.png" alt="">{{posts.created_at}} </span>
@@ -286,7 +286,6 @@
         </div>
     </main>
 
-
 </div>
 </template>
 
@@ -296,18 +295,24 @@
             return {
                 // Create a new form instance
                 post:{},
-                page: 1
+                page: 1,
+                lastPage:0,
             }
         },
         methods:{
         LoadJobs:function () {
             this.$Progress.start()
-                axios.get('api/post').then(({data})=>(this.post = data.data))
+            let vm = this;
+                axios.get('api/post').then(({data})=>{this.post = data.data
+                    vm.lastPage = data.last_page
+                })
+
+
             this.$Progress.finish()
         },
             infiniteHandler:function ($state) {
+if(this.post.length != 0){
                let vm = this;
-
                this.$http.get('api/post?page='+this.page)
                    .then(response => {
                        return response.json();
@@ -315,10 +320,19 @@
                    $.each(data.data, function(key, value) {
                        vm.post.push(value);
                    });
-                   $state.loaded();
-               });
+                   if(this.page == this.lastPage){
+                       $state.complete();
+                   }else{
+                       $state.loaded();
+                   }
 
+
+               });
+               console.log(this.post.length)
                this.page = this.page + 1;
+        }else {
+    $state.complete();
+}
             }
         },
         watch: {

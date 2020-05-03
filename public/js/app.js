@@ -2715,13 +2715,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       // Create a new form instance
       post: {},
-      page: 1
+      page: 1,
+      lastPage: 0
     };
   },
   methods: {
@@ -2729,23 +2729,37 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.$Progress.start();
+      var vm = this;
       axios.get('api/post').then(function (_ref) {
         var data = _ref.data;
-        return _this.post = data.data;
+        _this.post = data.data;
+        vm.lastPage = data.last_page;
       });
       this.$Progress.finish();
     },
     infiniteHandler: function infiniteHandler($state) {
-      var vm = this;
-      this.$http.get('api/post?page=' + this.page).then(function (response) {
-        return response.json();
-      }).then(function (data) {
-        $.each(data.data, function (key, value) {
-          vm.post.push(value);
+      var _this2 = this;
+
+      if (this.post.length != 0) {
+        var vm = this;
+        this.$http.get('api/post?page=' + this.page).then(function (response) {
+          return response.json();
+        }).then(function (data) {
+          $.each(data.data, function (key, value) {
+            vm.post.push(value);
+          });
+
+          if (_this2.page == _this2.lastPage) {
+            $state.complete();
+          } else {
+            $state.loaded();
+          }
         });
-        $state.loaded();
-      });
-      this.page = this.page + 1;
+        console.log(this.post.length);
+        this.page = this.page + 1;
+      } else {
+        $state.complete();
+      }
     }
   },
   watch: {
@@ -41019,10 +41033,7 @@ var render = function() {
                           _c("div", { staticClass: "post_topbar" }, [
                             _c("div", { staticClass: "usy-dt" }, [
                               _c("img", {
-                                attrs: {
-                                  src: "http://via.placeholder.com/50x50",
-                                  alt: ""
-                                }
+                                attrs: { src: posts.image.path, alt: "" }
                               }),
                               _vm._v(" "),
                               _c("div", { staticClass: "usy-name" }, [
@@ -42677,7 +42688,12 @@ function normalizeComponent (
     options._ssrRegister = hook
   } else if (injectStyles) {
     hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      ? function () {
+        injectStyles.call(
+          this,
+          (options.functional ? this.parent : this).$root.$options.shadowRoot
+        )
+      }
       : injectStyles
   }
 
@@ -59838,8 +59854,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\project\Altf4\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\project\Altf4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /opt/lampp/htdocs/brikole/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /opt/lampp/htdocs/brikole/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),
