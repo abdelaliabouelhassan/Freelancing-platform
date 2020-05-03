@@ -167,7 +167,8 @@
                                             </ul>
                                         </div>
 
-                                    </div><!--post-bar end-->
+                                    </div>
+                                    <!--post-bar end-->
                                     <infinite-loading @distance="1" @infinite="infiniteHandler"></infinite-loading>
                                     <!--                                    <div class="process-comm">-->
 <!--                                        <div class="spinner">-->

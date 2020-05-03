@@ -92,11 +92,7 @@
     current
         @endif
     " id="tab-2">
-    <h3>Sign Up</h3>
-    {{-- @if(session()->has('good'))
-    @include('includes.errors.all')
-    @endif --}}
-    <!--signup-tab end-->
+    <h3>Sign Up</h3>    
     <div class="dff-tab current" id="tab-3">
         <form method="POST" action="{{ route('register') }}">
             @csrf

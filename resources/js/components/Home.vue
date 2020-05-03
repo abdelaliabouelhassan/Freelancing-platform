@@ -254,7 +254,7 @@
                            <div class="col-lg-3 pd-right-none no-pd">
                                <div class="right-sidebar">
                                    <div class="widget widget-about" v-if="!$gets.IsLogedIn()">
-                                       <img src="images/wd-logo.png" alt="">
+                                       <img src="images/logotesticon.png" alt="">
                                        <h3>You are Not Signed In</h3>
                                        <span>Signed In Now </span>
                                        <div class="sign_link">

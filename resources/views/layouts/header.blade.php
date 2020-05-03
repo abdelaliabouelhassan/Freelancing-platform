@@ -8,7 +8,7 @@
     <meta name="keywords" content="" />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-<link rel="icon" href="{{asset('images/logotesticon.png')}}" />
+    <link rel="icon" href="{{asset('images/logotesticon.png')}}" />
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

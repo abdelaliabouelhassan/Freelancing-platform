@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="UTF-8">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <meta charset="UTF-8">    
+    @yield('title')
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
+    <link rel="icon" href="{{asset('images/logotesticon.png')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/animate.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/jquery.range.css')}}">
@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('lib/slick/slick-theme.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/responsive.css')}}">
-
+    @yield('style')
 </head>
 
 <body>
@@ -27,6 +27,9 @@
     <header>
         <div class="container">
             <div class="header-data">
+                <div class="menu-btn">
+                    <a href="javascript:void(0)" title=""><i class="fa fa-bars"></i></a>
+                </div>
                 <div class="logo">
                     <a href="index.html" title=""><img src="images/logo.png" alt=""></a>
                 </div><!--logo end-->
@@ -38,7 +41,6 @@
                 </div><!--search-bar end-->
                 <nav>
                     <ul>
-
                         <li>
                             <span><img src="images/icon1.png" alt=""></span>
                             <router-link to="/Home">Home</router-link>
@@ -160,9 +162,7 @@
                         </li>
                     </ul>
                 </nav><!--nav end-->
-                <div class="menu-btn">
-                    <a href="javascript:void(0)" title=""><i class="fa fa-bars"></i></a>
-                </div><!--menu-btn end-->
+                <!--menu-btn end-->
 
                 <div class="user-account" v-if="$gets.IsLogedIn()">
                     <div class="user-info">
@@ -233,5 +233,5 @@
 <script type="text/javascript" src="js/scrollbar.js"></script>
 <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
 <script src="{{asset("js/app.js")}}"></script>
-
+@yield('script')
 </body>

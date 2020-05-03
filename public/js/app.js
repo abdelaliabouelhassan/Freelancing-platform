@@ -2730,6 +2730,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -40036,7 +40037,7 @@ var render = function() {
                   !_vm.$gets.IsLogedIn()
                     ? _c("div", { staticClass: "widget widget-about" }, [
                         _c("img", {
-                          attrs: { src: "images/wd-logo.png", alt: "" }
+                          attrs: { src: "images/logotesticon.png", alt: "" }
                         }),
                         _vm._v(" "),
                         _c("h3", [_vm._v("You are Not Signed In")]),
@@ -59907,8 +59908,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\wamp64\www\brikol.ma\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\wamp64\www\brikol.ma\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\project\Altf4\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\project\Altf4\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),
