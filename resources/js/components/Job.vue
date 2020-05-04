@@ -1,6 +1,8 @@
 <template>
 <div>
-    <div class="search-sec">
+
+    <main>
+        <div class="search-sec">
         <div class="container">
             <div class="search-box">
                 <form>
@@ -10,8 +12,6 @@
             </div><!--search-box end-->
         </div>
     </div><!--search-sec end-->
-
-    <main>
         <div class="main-section">
             <div class="container">
                 <div class="main-section-data">
@@ -128,7 +128,7 @@
                                     <div class="post-bar" v-for="posts in post">
                                         <div class="post_topbar">
                                             <div class="usy-dt">
-                                                <img src="http://via.placeholder.com/50x50" alt="">
+                                                <img :src="posts.image.path ? posts.image.path : 'https://via.placeholder.com/100'" alt="">
                                                 <div class="usy-name">
                                                     <h3>{{posts.user.name}} </h3>
                                                     <span><img src="images/clock.png" alt="">{{posts.created_at}} </span>
@@ -295,30 +295,51 @@
             return {
                 // Create a new form instance
                 post:{},
-                page: 1
+                page: 1,
+                lastPage:0,
             }
         },
 
         methods:{
         LoadJobs:function () {
             this.$Progress.start()
-                axios.get('api/post').then(({data})=>(this.post = data.data))
+            let vm = this;
+                axios.get('api/post').then(({data})=>{this.post = data.data
+                    vm.lastPage = data.last_page
+                })
+
+
             this.$Progress.finish()
         },
             infiniteHandler:function ($state) {
-               let vm = this;
 
-               this.$http.get('api/post?page='+this.page)
-                   .then(response => {
-                       return response.json();
-                   }).then(data => {
-                   $.each(data.data, function(key, value) {
-                       vm.post.push(value);
-                   });
-                   $state.loaded();
-               });
+                let vm = this;
+                if(this.post.length != 0){
+                axios.get('api/post?page='+this.page)
+                    .then(response => {
+                        return response.data;
+                    }).then(data => {
+                    //
+                    if(this.page == this.lastPage){
+                       $state.complete();
+                    } else {
+                        setTimeout(function() {
+                            $.each(data.data, function(key, value) {
+                                vm.post.push(value);
+                            });
+                            $state.loaded();
+                            Vue.nextTick(function () {
+                                $('[data-toggle="tooltip"]').tooltip();
+                            });
+                        }.bind(this), 1000);
+                    }
 
-               this.page = this.page + 1;
+                });
+                this.page = this.page + 1;
+                }else{
+                    $state.complete();
+                }
+
             }
         },
         watch: {

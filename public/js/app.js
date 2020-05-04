@@ -2397,21 +2397,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   watch: {
     $route: {
@@ -2735,7 +2720,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       // Create a new form instance
       post: {},
-      page: 1
+      page: 1,
+      lastPage: 0
     };
   },
   methods: {
@@ -2743,23 +2729,42 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.$Progress.start();
+      var vm = this;
       axios.get('api/post').then(function (_ref) {
         var data = _ref.data;
-        return _this.post = data.data;
+        _this.post = data.data;
+        vm.lastPage = data.last_page;
       });
       this.$Progress.finish();
     },
     infiniteHandler: function infiniteHandler($state) {
+      var _this2 = this;
+
       var vm = this;
-      this.$http.get('api/post?page=' + this.page).then(function (response) {
-        return response.json();
-      }).then(function (data) {
-        $.each(data.data, function (key, value) {
-          vm.post.push(value);
+
+      if (this.post.length != 0) {
+        axios.get('api/post?page=' + this.page).then(function (response) {
+          return response.data;
+        }).then(function (data) {
+          //
+          if (_this2.page == _this2.lastPage) {
+            $state.complete();
+          } else {
+            setTimeout(function () {
+              $.each(data.data, function (key, value) {
+                vm.post.push(value);
+              });
+              $state.loaded();
+              Vue.nextTick(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+              });
+            }.bind(_this2), 1000);
+          }
         });
-        $state.loaded();
-      });
-      this.page = this.page + 1;
+        this.page = this.page + 1;
+      } else {
+        $state.complete();
+      }
     }
   },
   watch: {
@@ -40206,61 +40211,6 @@ var staticRenderFns = [
               ])
             ])
           ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "tags-sec full-width" }, [
-          _c("ul", [
-            _c("li", [
-              _c("a", { attrs: { href: "#", title: "" } }, [
-                _vm._v("Help Center")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("About")])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#", title: "" } }, [
-                _vm._v("Privacy Policy")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#", title: "" } }, [
-                _vm._v("Community Guidelines")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#", title: "" } }, [
-                _vm._v("Cookies Policy")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Career")])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Language")])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#", title: "" } }, [
-                _vm._v("Copyright Policy")
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "cp-sec" }, [
-            _c("img", { attrs: { src: "images/logo2.png", alt: "" } }),
-            _vm._v(" "),
-            _c("p", [
-              _c("img", { attrs: { src: "images/cp.png", alt: "" } }),
-              _vm._v("Copyright 2018")
-            ])
-          ])
         ])
       ])
     ])
@@ -41068,9 +41018,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
-    _vm._v(" "),
     _c("main", [
+      _vm._m(0),
+      _vm._v(" "),
       _c("div", { staticClass: "main-section" }, [
         _c("div", { staticClass: "container" }, [
           _c("div", { staticClass: "main-section-data" }, [
@@ -41089,7 +41039,9 @@ var render = function() {
                             _c("div", { staticClass: "usy-dt" }, [
                               _c("img", {
                                 attrs: {
-                                  src: "http://via.placeholder.com/50x50",
+                                  src: posts.image.path
+                                    ? posts.image.path
+                                    : "https://via.placeholder.com/100",
                                   alt: ""
                                 }
                               }),

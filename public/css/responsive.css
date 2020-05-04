@@ -2,14 +2,16 @@
 
 @media (max-width: 1200px) {
 	header nav {position: relative;top: 0;left: 0;width: 200px;height: 100%;background-color: #e44d3a;padding: 25px 20px;opacity: 0;display: none;z-index: 0;transition: 0.7s ease-in !important;}
-	header nav.active {opacity: 1;display: contents;z-index: 9999; transition: 0.7s ease-in;}
+	header nav.active {opacity: 1;display: contents;z-index: 9999; transition: 0.7s ease-in; margin-top: 10px;}
 	header nav ul li {float: left;width: 100%;text-align: left;padding: 0 0 0 0;margin-bottom: 20px;}
-	.menu-btn {display: block; margin-right: 10px;}
+	.menu-btn {display: block; margin-right: 40px;}
 	header nav ul li span {display: inline-block;margin-right: 10px;}
+	.user-info {position: fixed ;top:0%;margin-left: 56px;}
 	.widget-about h3 {font-size: 16px;}
 	.widget-about span {font-size: 13px;}
 	.suggestion-usd {padding: 15px 5px;}
 	.cp-sec p {margin-top: 10px;float: none;}
+	.user-account-settingss.active{margin-top: 67px;}
 	.comment_box input {width: 281px;}
 	.job-details {width: 112px;}
 	.job-details h3 {line-height: 18px;}
@@ -18,6 +20,7 @@
 	.cp-sec {text-align: center;}
 	.flw-status li {margin-right: 10px;}
 	.flw-status li span {font-size: 16px;}
+	.search-bar{margin-bottom: 20px;}
 	.social_links li a {font-size: 10px;}
 	.footy-sec ul {width: 100%;text-align: center;}
 	.fl-rgt {float: none;margin-top: 0;padding-bottom: 20px;width: auto;padding-right: 0;}
@@ -45,7 +48,7 @@
 
 @media (max-width: 991px) {
 	.sgt-text span {font-size: 14px;}
-	main {padding: 20px 0 60px 0;}
+	main {padding: 100px 0 60px 0;}
 	.user-specs span {font-size: 13px;}
 	.comment_box input {width: 275px;}
 	.job-details {width: auto;}
@@ -118,10 +121,11 @@
 	.logo {width: 100%;text-align: center;}
 	.logo img {float: none;}
 	.search-bar {width: 100%;}
-	.user-account {float: left;}
+	.user-account {float: right;}	
 	.cm_img {width: 100%;text-align: center;margin-bottom: 10px;}
 	.cm_img img {float: none;}
 	.comment_box {width: 100%;}
+	.user-account-settingss.active{margin-top: 0; left:-100px;}
 	.comment_box input {width: 100%;margin-bottom: 10px;}
 	.comment_box form button {float: none;}
 	.post-comment {text-align: center;}
@@ -132,7 +136,7 @@
 	.star-descp > ul {width: 100%;margin-top: 10px;}
 	.like-com li {margin-right: 5px;}
 	.bk-links {width: 100%;margin-top: 15px;}
-	main {padding: 20px 0 40px 0}
+	main {padding: 180px 0 40px 0}
 	.bk-links {margin-bottom: 10px;}
 	.star-descp {margin-bottom: 25px;}
 	.like-com li {float: left;width: 100%;margin-bottom: 15px;}
@@ -166,7 +170,7 @@
 	.notification-info {width: 100%;padding: 0;margin-top: 15px;}
 	.notification-info h3 {line-height: 18px;}
 	.conversation-box {width: 100%;right: 0;}
-	.user-account-settingss {right: auto;left: 0;}
+	.user-account-settingss {right: auto;left: 0;}	
 	.login-resources {text-align: left;}
 	.forum-bar ul li:last-child {margin-bottom: 0;}
 	.conversation-box {left: -20px;width: 280px;}
