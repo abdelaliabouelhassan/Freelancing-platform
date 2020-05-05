@@ -24,7 +24,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::apiResources(['post'=>'API\PostController']);
-Route::get('profile','API\PostController@profile');
+Route::get('city','API\PostController@city');
+Route::get('category','API\PostController@category');
+Route::get('filter/{cat}/{city}/{price}/{isdone}','API\PostController@filter');
 /*  END POSTS api */
 
 

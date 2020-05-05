@@ -20,101 +20,67 @@
                             <div class="filter-secs">
                                 <div class="filter-heading">
                                     <h3>Filters</h3>
-                                    <a href="#" title="">Clear all filters</a>
+                                    <a href="javascript:void(0)" title="" @click="clearall">Clear all filters</a>
                                 </div><!--filter-heading end-->
                                 <div class="paddy">
-                                    <div class="filter-dd">
-                                        <div class="filter-ttl">
-                                            <h3>Skills</h3>
-                                            <a href="#" title="">Clear</a>
-                                        </div>
-                                        <form>
-                                            <input type="text" name="search-skills" placeholder="Search skills">
-                                        </form>
-                                    </div>
+
                                     <div class="filter-dd">
                                         <div class="filter-ttl">
                                             <h3>Availabilty</h3>
-                                            <a href="#" title="">Clear</a>
                                         </div>
                                         <ul class="avail-checks">
                                             <li>
-                                                <input type="radio" name="cc" id="c1">
-                                                <label for="c1">
-                                                    <span></span>
-                                                </label>
-                                                <small>Hourly</small>
-                                            </li>
-                                            <li>
-                                                <input type="radio" name="cc" id="c2">
+                                                <input type="radio" name="cc" id="c2" v-model="isdone" value="0" @change="filterpost">
                                                 <label for="c2">
                                                     <span></span>
                                                 </label>
-                                                <small>Part Time</small>
+                                                <small>Available</small>
                                             </li>
                                             <li>
-                                                <input type="radio" name="cc" id="c3">
+                                                <input type="radio" name="cc" id="c3" v-model="isdone" value="1" @change="filterpost">
                                                 <label for="c3">
                                                     <span></span>
                                                 </label>
-                                                <small>Full Time</small>
+                                                <small>Done</small>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="filter-dd">
                                         <div class="filter-ttl">
-                                            <h3>Job Type</h3>
-                                            <a href="#" title="">Clear</a>
+                                            <h3>Job Category</h3>
                                         </div>
                                         <form class="job-tp">
-                                            <select>
-                                                <option>Select a job type</option>
-                                                <option>Select a job type</option>
-                                                <option>Select a job type</option>
-                                                <option>Select a job type</option>
+                                            <select @change="filterpost"  v-model="cat">
+                                                <option value="0">Select a job Category</option>
+                                                <option v-for="categorys in category" :value="categorys.id">{{categorys.category_name}}</option>
                                             </select>
                                             <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                         </form>
                                     </div>
                                     <div class="filter-dd">
                                         <div class="filter-ttl">
-                                            <h3>Pay Rate / Hr ($)</h3>
-                                            <a href="#" title="">Clear</a>
-                                        </div>
-                                        <div class="rg-slider">
-                                            <input class="rn-slider slider-input" type="hidden" value="5,50" />
-                                        </div>
-                                        <div class="rg-limit">
-                                            <h4>1</h4>
-                                            <h4>100+</h4>
-                                        </div><!--rg-limit end-->
-                                    </div>
-                                    <div class="filter-dd">
-                                        <div class="filter-ttl">
-                                            <h3>Experience Level</h3>
-                                            <a href="#" title="">Clear</a>
+                                            <h3>Price</h3>
                                         </div>
                                         <form class="job-tp">
-                                            <select>
-                                                <option>Select a experience level</option>
-                                                <option>3 years</option>
-                                                <option>4 years</option>
-                                                <option>5 years</option>
+                                            <select v-model="price" @change="filterpost">
+                                                <option value="0">Select Price</option>
+                                                <option value="1">10-100DH</option>
+                                                <option value="2">100-500DH</option>
+                                                <option value="3">500-1000DH</option>
+                                                <option value="4">1000DH >>></option>
                                             </select>
                                             <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                         </form>
                                     </div>
                                     <div class="filter-dd">
                                         <div class="filter-ttl">
-                                            <h3>Countries</h3>
-                                            <a href="#" title="">Clear</a>
+                                            <h3>Cities</h3>
                                         </div>
                                         <form class="job-tp">
-                                            <select>
-                                                <option>Select a country</option>
-                                                <option>United Kingdom</option>
-                                                <option>United States</option>
-                                                <option>Russia</option>
+                                            <select v-model="cit" @change="filterpost">
+                                                <option value="0">Select  City</option>
+                                                <option v-for="citys in city" :value="citys.id">{{citys.city_name}}</option>
+
                                             </select>
                                             <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                         </form>
@@ -170,13 +136,6 @@
                                     </div>
                                     <!--post-bar end-->
                                     <infinite-loading @distance="1" @infinite="infiniteHandler"></infinite-loading>
-                                    <!--                                    <div class="process-comm">-->
-<!--                                        <div class="spinner">-->
-<!--                                            <div class="bounce1"></div>-->
-<!--                                            <div class="bounce2"></div>-->
-<!--                                            <div class="bounce3"></div>-->
-<!--                                        </div>-->
-<!--                                    </div>&lt;!&ndash;process-comm end&ndash;&gt;-->
                                 </div><!--posts-section end-->
                             </div><!--main-ws-sec end-->
                         </div>
@@ -295,21 +254,30 @@
             return {
                 // Create a new form instance
                 post:{},
+                city:{},
+                category:{},
                 page: 1,
                 lastPage:0,
+                cat:'0',
+                price:'0',
+                cit:'0',
+                isdone:'3'
             }
         },
 
         methods:{
+         LoadCategory:function(){
+             axios.get('api/category').then(({data})=>{this.category = data.data})
+        },
+        LoadCity:function(){
+            axios.get('api/city').then(({data})=>{this.city = data.data})
+       },
         LoadJobs:function () {
-            this.$Progress.start()
             let vm = this;
                 axios.get('api/post').then(({data})=>{this.post = data.data
                     vm.lastPage = data.last_page
                 })
 
-
-            this.$Progress.finish()
         },
             infiniteHandler:function ($state) {
 
@@ -320,7 +288,7 @@
                         return response.data;
                     }).then(data => {
                     //
-                    if(this.page == this.lastPage){
+                    if(this.page -1  == this.lastPage){
                        $state.complete();
                     } else {
                         setTimeout(function() {
@@ -331,7 +299,7 @@
                             Vue.nextTick(function () {
                                 $('[data-toggle="tooltip"]').tooltip();
                             });
-                        }.bind(this), 1000);
+                        }.bind(this), 0);
                     }
 
                 });
@@ -340,7 +308,18 @@
                     $state.complete();
                 }
 
-            }
+            },
+            filterpost:function () {
+                    console.log(this.isdone)
+                axios.get('api/filter/'+this.cat + '/' + this.cit + '/' + this.price + '/' + this.isdone).then(({data})=>{this.post = data.data})
+            },
+            clearall:function(){
+                     this.cat = '0',
+                    this.price='0',
+                    this.cit='0',
+                    this.isdone ='3'
+                this. LoadJobs()
+            },
         },
         watch: {
             $route: {
@@ -351,11 +330,14 @@
             },
         },
         created() {
+            this.$Progress.start()
             this. LoadJobs()
+            this.LoadCategory()
+            this.LoadCity()
+            this.$Progress.finish()
         },
         mounted() {
             console.log('Component mounted.')
-
         }
     }
 </script>

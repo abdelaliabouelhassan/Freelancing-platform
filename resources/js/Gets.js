@@ -4,6 +4,8 @@ export default  class Gets {
 
     }
 
+
+
     IsLogedIn(){
         if(this.user)
             return true
