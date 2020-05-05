@@ -135,7 +135,7 @@
 
                                     </div>
                                     <!--post-bar end-->
-                                    <infinite-loading @distance="1" @infinite="infiniteHandler"></infinite-loading>
+                                    <infinite-loading v-if="isnormalload" @distance="1" @infinite="infiniteHandler"></infinite-loading>
                                 </div><!--posts-section end-->
                             </div><!--main-ws-sec end-->
                         </div>
@@ -261,7 +261,8 @@
                 cat:'0',
                 price:'0',
                 cit:'0',
-                isdone:'3'
+                isdone:'3',
+                isnormalload:true
             }
         },
 
@@ -310,15 +311,21 @@
 
             },
             filterpost:function () {
-                    console.log(this.isdone)
+                this.isnormalload = false
+                    this.page= 1
+                    this.lastPage=0
                 axios.get('api/filter/'+this.cat + '/' + this.cit + '/' + this.price + '/' + this.isdone).then(({data})=>{this.post = data.data})
             },
             clearall:function(){
-                     this.cat = '0',
+                this.isnormalload = true
+                    this.cat = '0',
                     this.price='0',
                     this.cit='0',
                     this.isdone ='3'
-                this. LoadJobs()
+                    this.page= 1
+                    this.lastPage=0
+                this.LoadJobs()
+
             },
         },
         watch: {

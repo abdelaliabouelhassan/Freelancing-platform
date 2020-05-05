@@ -2686,7 +2686,8 @@ __webpack_require__.r(__webpack_exports__);
       cat: '0',
       price: '0',
       cit: '0',
-      isdone: '3'
+      isdone: '3',
+      isnormalload: true
     };
   },
   methods: {
@@ -2748,14 +2749,19 @@ __webpack_require__.r(__webpack_exports__);
     filterpost: function filterpost() {
       var _this5 = this;
 
-      console.log(this.isdone);
+      this.isnormalload = false;
+      this.page = 1;
+      this.lastPage = 0;
       axios.get('api/filter/' + this.cat + '/' + this.cit + '/' + this.price + '/' + this.isdone).then(function (_ref4) {
         var data = _ref4.data;
         _this5.post = data.data;
       });
     },
     clearall: function clearall() {
+      this.isnormalload = true;
       this.cat = '0', this.price = '0', this.cit = '0', this.isdone = '3';
+      this.page = 1;
+      this.lastPage = 0;
       this.LoadJobs();
     }
   },
@@ -41384,14 +41390,16 @@ var render = function() {
                         ])
                       }),
                       _vm._v(" "),
-                      _c("infinite-loading", {
-                        on: {
-                          distance: function($event) {
-                            1
-                          },
-                          infinite: _vm.infiniteHandler
-                        }
-                      })
+                      _vm.isnormalload
+                        ? _c("infinite-loading", {
+                            on: {
+                              distance: function($event) {
+                                1
+                              },
+                              infinite: _vm.infiniteHandler
+                            }
+                          })
+                        : _vm._e()
                     ],
                     2
                   )

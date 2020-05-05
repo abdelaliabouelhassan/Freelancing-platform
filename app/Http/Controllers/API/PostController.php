@@ -111,41 +111,90 @@ public  function filter($cat,$city,$price,$isdone){
             $max = 100000000;
         }
 
-if($city == 0 && $cat == 0 && $price == 0 && $isdone == 3)
-     return Post::latest()->orderBy('id')->where('type','job')->where('is_done','false')->with('city','user','category','image')->paginate(5);
-elseif($city != 0 && $cat != 0 && $price != 0 && $isdone != 3)
-    return Post::latest()->orderBy('id')->where('category_id',$cat)->where('is_done',$isdone)->whereBetween('price', [$min, $max])->where('city_id',$city)->where('type','job')->with('city','user','category','image')->paginate(5);
-elseif ($city == 0 && $cat != 0  && $price == 0 && $isdone == 3)
-    return Post::latest()->orderBy('id')->where('category_id',$cat)->where('is_done',0)->with('city','user','category','image')->where('type','job')->paginate(5);
-elseif ($city != 0 && $cat == 0 && $price == 0 && $isdone == 3)
-    return Post::latest()->orderBy('id')->where('city_id',$city)->where('is_done',0)->with('city','user','category','image')->where('type','job')->paginate(5);
-elseif ($city == 0 && $cat == 0 && $price != 0 && $isdone == 3)
-    return Post::latest()->orderBy('id')->where('is_done',0)->whereBetween('price', [$min, $max])->with('city','user','category','image')->where('type','job')->paginate(5);
-elseif ($city == 0 && $cat == 0 && $price == 0 && $isdone != 3)
-    return Post::latest()->orderBy('id')->where('is_done',$isdone)->with('city','user','category','image')->where('type','job')->paginate(5);
+if($city == 0 && $cat == 0 && $price == 0 && $isdone == 3){
+    $count =  Post::all()->where('type','job')->where('is_done','false');
+    $count = count($count);
+    return Post::latest()->orderBy('id')->where('type','job')->where('is_done','false')->with('city','user','category','image')->paginate($count);
+}
+elseif($city != 0 && $cat != 0 && $price != 0 && $isdone != 3){
+    $count = Post::all()->where('category_id',$cat)->where('is_done',$isdone)->whereBetween('price', [$min, $max])->where('city_id',$city)->where('type','job');
+    $count = count($count);
+    return Post::latest()->orderBy('id')->where('category_id',$cat)->where('is_done',$isdone)->whereBetween('price', [$min, $max])->where('city_id',$city)->where('type','job')->with('city','user','category','image')->paginate($count);
 
+}
+elseif ($city == 0 && $cat != 0  && $price == 0 && $isdone == 3) {
+    $count = Post::all()->where('category_id',$cat)->where('is_done',0)->where('type','job');
+    $count = count($count);
+    return Post::latest()->orderBy('id')->where('category_id',$cat)->where('is_done',0)->with('city','user','category','image')->where('type','job')->paginate($count);
 
+}
+elseif ($city != 0 && $cat == 0 && $price == 0 && $isdone == 3){
+    $count = Post::all()->where('city_id',$city)->where('is_done',0)->where('type','job');
+    $count = count($count);
+    return Post::latest()->orderBy('id')->where('city_id',$city)->where('is_done',0)->with('city','user','category','image')->where('type','job')->paginate($count);
+
+}
+elseif ($city == 0 && $cat == 0 && $price != 0 && $isdone == 3){
+    $count = Post::all()->where('is_done',0)->whereBetween('price', [$min, $max])->where('type','job');
+    $count = count($count);
+    return Post::latest()->orderBy('id')->where('is_done',0)->whereBetween('price', [$min, $max])->with('city','user','category','image')->where('type','job')->paginate($count);
+
+}
+elseif ($city == 0 && $cat == 0 && $price == 0 && $isdone != 3){
+    $count = Post::all()->where('is_done',$isdone)->where('type','job');
+    $count = count($count);
+    return Post::latest()->orderBy('id')->where('is_done',$isdone)->with('city','user','category','image')->where('type','job')->paginate($count);
+}
     if($cat != 0 && $city != 0 && $price == 0 && $isdone == 3){
-        return Post::latest()->orderBy('id')->where('category_id',$cat)->where('city_id',$city)->where('type','job')->with('city','user','category','image')->paginate(5);
+        $count = Post::all()->where('category_id',$cat)->where('city_id',$city)->where('type','job');
+        $count = count($count);
+        return Post::latest()->orderBy('id')->where('category_id',$cat)->where('city_id',$city)->where('type','job')->with('city','user','category','image')->paginate($count);
     }
-    elseif ($cat != 0 && $price != 0 && $city == 0 && $isdone == 3)
-        return Post::latest()->orderBy('id')->where('category_id',$cat)->whereBetween('price', [$min, $max])->where('type','job')->with('city','user','category','image')->paginate(5);
-    elseif ($cat == 0 && $price != 0 && $city != 0 && $isdone == 3)
-        return Post::latest()->orderBy('id')->whereBetween('price', [$min, $max])->where('city_id',$city)->where('type','job')->with('city','user','category','image')->paginate(5);
-    elseif ($cat != 0 && $price == 0 && $city == 0 && $isdone != 3)
-        return Post::latest()->orderBy('id')->where('category_id',$cat)->where('is_done',$isdone)->where('type','job')->with('city','user','category','image')->paginate(5);
-    elseif ($cat == 0 && $price != 0 && $city == 0 && $isdone != 3)
-        return Post::latest()->orderBy('id')->whereBetween('price', [$min, $max])->where('is_done',$isdone)->where('type','job')->with('city','user','category','image')->paginate(5);
-    elseif ($cat == 0 && $price == 0 && $city != 0 && $isdone != 3)
-        return Post::latest()->orderBy('id')->where('city_id',$city)->where('is_done',$isdone)->where('type','job')->with('city','user','category','image')->paginate(5);
-    elseif ($cat != 0 && $price != 0 && $city == 0 && $isdone != 3)
-        return Post::latest()->orderBy('id')->where('category_id',$cat)->where('is_done',$isdone)->whereBetween('price', [$min, $max])->where('type','job')->with('city','user','category','image')->paginate(5);
-    elseif ($cat == 0 && $price != 0 && $city != 0 && $isdone != 3)
-        return Post::latest()->orderBy('id')->where('city_id',$city)->where('is_done',$isdone)->whereBetween('price', [$min, $max])->where('type','job')->with('city','user','category','image')->paginate(5);
-    elseif ($cat != 0 && $price == 0 && $city != 0 && $isdone != 3)
-        return Post::latest()->orderBy('id')->where('city_id',$city)->where('is_done',$isdone)->where('category_id',$cat)->where('type','job')->with('city','user','category','image')->paginate(5);
-    elseif ($cat != 0 && $price != 0 && $city != 0 && $isdone == 3)
-        return Post::latest()->orderBy('id')->where('city_id',$city)->whereBetween('price', [$min, $max])->where('category_id',$cat)->where('type','job')->with('city','user','category','image')->paginate(5);
+    elseif ($cat != 0 && $price != 0 && $city == 0 && $isdone == 3){
+        $count = Post::all()->where('category_id',$cat)->whereBetween('price', [$min, $max])->where('type','job');
+        $count = count($count);
+        return Post::latest()->orderBy('id')->where('category_id',$cat)->whereBetween('price', [$min, $max])->where('type','job')->with('city','user','category','image')->paginate($count);
+    }
+    elseif ($cat == 0 && $price != 0 && $city != 0 && $isdone == 3){
+        $count = Post::all()->whereBetween('price', [$min, $max])->where('city_id',$city)->where('type','job');
+        $count = count($count);
+        return Post::latest()->orderBy('id')->whereBetween('price', [$min, $max])->where('city_id',$city)->where('type','job')->with('city','user','category','image')->paginate($count);
+    }
+    elseif ($cat != 0 && $price == 0 && $city == 0 && $isdone != 3){
+        $count = Post::all()->where('category_id',$cat)->where('is_done',$isdone)->where('type','job');
+        $count = count($count);
+        return Post::latest()->orderBy('id')->where('category_id',$cat)->where('is_done',$isdone)->where('type','job')->with('city','user','category','image')->paginate($count);
+    }
+    elseif ($cat == 0 && $price != 0 && $city == 0 && $isdone != 3){
+        $count = Post::all()->whereBetween('price', [$min, $max])->where('is_done',$isdone)->where('type','job');
+        $count = count($count);
+        return Post::latest()->orderBy('id')->whereBetween('price', [$min, $max])->where('is_done',$isdone)->where('type','job')->with('city','user','category','image')->paginate($count);
+    }
+    elseif ($cat == 0 && $price == 0 && $city != 0 && $isdone != 3){
+        $count = Post::all()->where('city_id',$city)->where('is_done',$isdone)->where('type','job');
+        $count = count($count);
+        return Post::latest()->orderBy('id')->where('city_id',$city)->where('is_done',$isdone)->where('type','job')->with('city','user','category','image')->paginate($count);
+    }
+    elseif ($cat != 0 && $price != 0 && $city == 0 && $isdone != 3){
+        $count = Post::all()->where('category_id',$cat)->where('is_done',$isdone)->whereBetween('price', [$min, $max])->where('type','job');
+        $count = count($count);
+        return Post::latest()->orderBy('id')->where('category_id',$cat)->where('is_done',$isdone)->whereBetween('price', [$min, $max])->where('type','job')->with('city','user','category','image')->paginate($count);
+    }
+    elseif ($cat == 0 && $price != 0 && $city != 0 && $isdone != 3){
+        $count = Post::all()->where('city_id',$city)->where('is_done',$isdone)->whereBetween('price', [$min, $max])->where('type','job');
+        $count = count($count);
+        return Post::latest()->orderBy('id')->where('city_id',$city)->where('is_done',$isdone)->whereBetween('price', [$min, $max])->where('type','job')->with('city','user','category','image')->paginate($count);
+    }
+    elseif ($cat != 0 && $price == 0 && $city != 0 && $isdone != 3){
+        $count =  Post::all()->where('city_id',$city)->where('is_done',$isdone)->where('category_id',$cat)->where('type','job');
+        $count = count($count);
+        return Post::latest()->orderBy('id')->where('city_id',$city)->where('is_done',$isdone)->where('category_id',$cat)->where('type','job')->with('city','user','category','image')->paginate($count);
+    }
+    elseif ($cat != 0 && $price != 0 && $city != 0 && $isdone == 3){
+        $count = Post::all()->where('city_id',$city)->whereBetween('price', [$min, $max])->where('category_id',$cat)->where('type','job');
+        $count = count($count);
+        return Post::latest()->orderBy('id')->where('city_id',$city)->whereBetween('price', [$min, $max])->where('category_id',$cat)->where('type','job')->with('city','user','category','image')->paginate($count);
+    }
 
 }
 
