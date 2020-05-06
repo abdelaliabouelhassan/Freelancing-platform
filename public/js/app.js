@@ -41324,7 +41324,7 @@ var render = function() {
                             _c("div", { staticClass: "usy-dt" }, [
                               _c("img", {
                                 attrs: {
-                                  src: posts.imagePath
+                                  src: posts.image_path
                                     ? posts.image_path
                                     : "https://via.placeholder.com/100",
                                   alt: ""
@@ -60028,8 +60028,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\project\Altf4\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\project\Altf4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\wamp64\www\brikol.ma\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\brikol.ma\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),
