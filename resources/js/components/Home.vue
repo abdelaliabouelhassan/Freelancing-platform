@@ -7,7 +7,7 @@
                        <div class="row">
                            <div class="col-lg-3 col-md-4 pd-left-none no-pd">
                                <div class="main-left-sidebar no-margin">
-                                   <div class="user-data full-width">
+                                   <div class="user-data full-width"  v-if="$gets.IsLogedIn()">
                                        <div class="user-profile">
                                            <div class="username-dt">
                                                <div class="usr-pic">

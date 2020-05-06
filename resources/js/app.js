@@ -51,7 +51,10 @@ const router = new VueRouter({
 
 
 /*moment */
-
+import moment from  'moment'
+Vue.filter('mydate',function (created) {
+    return moment(created).format('MMMM Do YYYY, h:mm:ss a');
+});
 
 /*end vue moment */
 

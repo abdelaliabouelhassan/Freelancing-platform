@@ -97,7 +97,7 @@
                                                 <img :src="posts.image_path ? posts.image_path : 'https://via.placeholder.com/100'" alt="">
                                                 <div class="usy-name">
                                                     <h3>{{posts.user_name}} </h3>
-                                                    <span><img src="images/clock.png" alt="">{{posts.created_at}} </span>
+                                                    <span><img src="images/clock.png" alt="">{{posts.created_at | mydate}}  </span>
                                                 </div>
                                             </div>
                                             <div class="ed-opts">
@@ -135,14 +135,14 @@
 
                                     </div>
                                     <!--post-bar end-->
-                                    <infinite-loading v-if="isnormalload" @distance="1" @infinite="infiniteHandler"></infinite-loading>
+                                    <infinite-loading  @distance="1" @infinite="infiniteHandler"></infinite-loading>
                                 </div><!--posts-section end-->
                             </div><!--main-ws-sec end-->
                         </div>
                         <div class="col-lg-3">
                             <div class="right-sidebar">
                                 <div class="widget widget-about" v-if="!$gets.IsLogedIn()">
-                                    <img src="images/wd-logo.png" alt="">
+                                    <img src="images/logotesticon.png" alt="">
                                     <h3>You are Not Signed In</h3>
                                     <span>Signed In Now </span>
                                     <div class="sign_link">
@@ -256,13 +256,13 @@
                 post:{},
                 city:{},
                 category:{},
-                page: 1,
                 lastPage:0,
+                page: 1,
+
                 cat:'0',
                 price:'0',
                 cit:'0',
                 isdone:'3',
-                isnormalload:true
             }
         },
 
@@ -276,12 +276,11 @@
         LoadJobs:function () {
             let vm = this;
                 axios.get('api/post').then(({data})=>{this.post = data.data
-                    vm.lastPage = data.last_page
+                    vm.lastPage = data.meta.last_page
                 })
 
         },
             infiniteHandler:function ($state) {
-
                 let vm = this;
                 if(this.post.length != 0){
                 axios.get('api/post?page='+this.page)
@@ -289,8 +288,9 @@
                         return response.data;
                     }).then(data => {
                     //
-                    if(this.page -1  == this.lastPage){
+                    if(this.page  -1  == this.lastPage){
                        $state.complete();
+                       console.log('end')
                     } else {
                         setTimeout(function() {
                             $.each(data.data, function(key, value) {
@@ -306,24 +306,24 @@
                 });
                 this.page = this.page + 1;
                 }else{
+                    console.log(end)
                     $state.complete();
                 }
 
             },
             filterpost:function () {
+                this.lastPage = 0
+                this.page = 1
                 this.isnormalload = false
-                    this.page= 1
-                    this.lastPage=0
                 axios.get('api/filter/'+this.cat + '/' + this.cit + '/' + this.price + '/' + this.isdone).then(({data})=>{this.post = data.data})
             },
             clearall:function(){
-                this.isnormalload = true
+                this.lastPage = 0
+                this.page = 1
                     this.cat = '0',
                     this.price='0',
                     this.cit='0',
                     this.isdone ='3'
-                    this.page= 1
-                    this.lastPage=0
                 this.LoadJobs()
 
             },

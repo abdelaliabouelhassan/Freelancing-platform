@@ -35,7 +35,7 @@ class PostController extends Controller
             if($user->city_id != ''){
                 $post = Post::latest()->orderBy('id')->where('type','job')->where('is_done','false')->where('city_id',$user->city_id)->paginate(5);
                 if(count($post) != 0){
-                    $post;
+                    return PostCollection::collection($post);
                 }else{
                     return PostCollection::collection(Post::latest()->orderBy('id')->where('type','job')->where('is_done','false')->paginate(5));
                 }

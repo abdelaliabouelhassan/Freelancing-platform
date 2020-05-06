@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="UTF-8">    
+    <meta charset="UTF-8">
     @yield('title')
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -31,7 +31,7 @@
                     <a href="javascript:void(0)" title=""><i class="fa fa-bars"></i></a>
                 </div>
                 <div class="logo">
-                    <a href="index.html" title=""><img src="images/logo.png" alt=""></a>
+                    <a href=""  title=""><img src="images/logotesticon.png" style="height: 38px; width: 60px;" alt=""></a>
                 </div><!--logo end-->
                 <div class="search-bar">
                     <form>
@@ -43,25 +43,25 @@
                     <ul>
                         <li>
                             <span><img src="images/icon1.png" alt=""></span>
-                            <router-link to="/Home">Home</router-link>
+                            <router-link to="/home" class="nav-link">Home</router-link>
 
                         </li>
 
                         <li>
                             <span><img src="images/icon3.png" alt=""></span>
-                            <router-link to="/Projects">Projects</router-link>
+                            <router-link to="/Projects" class="nav-link">Projects</router-link>
 
                         </li>
                         <li v-if="$gets.IsLogedIn()">
                             <span><img src="images/icon4.png" alt=""></span>
-                            <router-link to="/Profile">Profiles</router-link>
+                            <router-link to="/Profile" class="nav-link">Profiles</router-link>
                         </li>
                         <li>
                             <span><img src="images/icon5.png" alt=""></span>
-                            <router-link to="/Jobs">Jobs</router-link>
+                            <router-link to="/Jobs" class="nav-link">Jobs</router-link>
                         </li>
                         <li v-if="$gets.IsLogedIn()">
-                            <a href="javascript:void(0)" title="" class="not-box-open">
+                            <a href="javascript:void(0)" title="" class="not-box-open" class="nav-link">
                                 <span><img src="images/icon6.png" alt=""></span>
                                 Messages
                             </a>
@@ -172,8 +172,8 @@
                     </div>
                     <div class="user-account-settingss">
                         @if (auth()->check())
-                            <h3> {{auth()->user()->name}}</h3>                            
-                        @endif                  
+                            <h3> {{auth()->user()->name}}</h3>
+                        @endif
                         <h3>Online Status</h3>
                         <ul class="on-off-status">
                             <li>
@@ -220,7 +220,7 @@
             </div><!--header-data end-->
         </div>
     </header><!--header end-->
-    @yield('content')    
+    @yield('content')
 </div><!--theme-bricole end-->
 <div class="tags-sec full-width">
     <ul>
