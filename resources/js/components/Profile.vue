@@ -28,6 +28,7 @@
             },
         },
         mounted() {
+            // console.log(this.$gets.user.name);
             console.log(this.$gets.IsLogedIn())
             if(this.$gets.IsLogedIn()){
                 console.log('log')

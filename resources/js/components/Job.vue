@@ -94,9 +94,9 @@
                                     <div class="post-bar" v-for="posts in post">
                                         <div class="post_topbar">
                                             <div class="usy-dt">
-                                                <img :src="posts.image.path ? posts.image.path : 'https://via.placeholder.com/100'" alt="">
+                                                <img :src="posts.imagePath ? posts.image_path : 'https://via.placeholder.com/100'" alt="">
                                                 <div class="usy-name">
-                                                    <h3>{{posts.user.name}} </h3>
+                                                    <h3>{{posts.user_name}} </h3>
                                                     <span><img src="images/clock.png" alt="">{{posts.created_at}} </span>
                                                 </div>
                                             </div>
@@ -114,7 +114,7 @@
                                         <div class="epi-sec">
                                             <ul class="descp">
                                                 <li><img src="images/icon8.png" alt=""><span>{{posts.is_done ? 'done' : 'available'}} </span></li>
-                                                <li><img src="images/icon9.png" alt=""><span> {{posts.city.city_name}}</span></li>
+                                                <li><img src="images/icon9.png" alt=""><span> {{posts.city_name}}</span></li>
                                             </ul>
                                             <ul class="bk-links">
                                                 <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
@@ -129,7 +129,7 @@
                                             </ul>
                                             <p>{{posts.body}} ... <a href="#" title="">view more</a></p>
                                             <ul class="skill-tags">
-                                                <li><a href="#" title="">{{posts.category.category_name}}</a></li>
+                                                <li><a href="#" title="">{{posts.category_name}}</a></li>
                                             </ul>
                                         </div>
 

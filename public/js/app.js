@@ -2822,6 +2822,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
+    // console.log(this.$gets.user.name);
     console.log(this.$gets.IsLogedIn());
 
     if (this.$gets.IsLogedIn()) {
@@ -40034,9 +40035,33 @@ var render = function() {
         _c("div", { staticClass: "container" }, [
           _c("div", { staticClass: "main-section-data" }, [
             _c("div", { staticClass: "row" }, [
-              _vm._m(0),
+              _c(
+                "div",
+                { staticClass: "col-lg-3 col-md-4 pd-left-none no-pd" },
+                [
+                  _c("div", { staticClass: "main-left-sidebar no-margin" }, [
+                    _c("div", { staticClass: "user-data full-width" }, [
+                      _c("div", { staticClass: "user-profile" }, [
+                        _vm._m(0),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "user-specs" }, [
+                          _c("h3", [_vm._v(_vm._s(_vm.$gets.user.name))]),
+                          _vm._v(" "),
+                          _c("span", [
+                            _vm._v("Graphic Designer at Self Employed")
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(1)
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(2)
+                  ])
+                ]
+              ),
               _vm._v(" "),
-              _vm._m(1),
+              _vm._m(3),
               _vm._v(" "),
               _c("div", { staticClass: "col-lg-3 pd-right-none no-pd" }, [
                 _c("div", { staticClass: "right-sidebar" }, [
@@ -40050,13 +40075,13 @@ var render = function() {
                         _vm._v(" "),
                         _c("span", [_vm._v("Signed In Now ")]),
                         _vm._v(" "),
-                        _vm._m(2)
+                        _vm._m(4)
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm._m(3),
+                  _vm._m(5),
                   _vm._v(" "),
-                  _vm._m(4)
+                  _vm._m(6)
                 ])
               ])
             ])
@@ -40065,9 +40090,9 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(5),
+    _vm._m(7),
     _vm._v(" "),
-    _vm._m(6)
+    _vm._m(8)
   ])
 }
 var staticRenderFns = [
@@ -40075,144 +40100,134 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-3 col-md-4 pd-left-none no-pd" }, [
-      _c("div", { staticClass: "main-left-sidebar no-margin" }, [
-        _c("div", { staticClass: "user-data full-width" }, [
-          _c("div", { staticClass: "user-profile" }, [
-            _c("div", { staticClass: "username-dt" }, [
-              _c("div", { staticClass: "usr-pic" }, [
-                _c("img", {
-                  attrs: { src: "http://via.placeholder.com/100x100", alt: "" }
-                })
-              ])
-            ]),
+    return _c("div", { staticClass: "username-dt" }, [
+      _c("div", { staticClass: "usr-pic" }, [
+        _c("img", {
+          attrs: { src: "http://via.placeholder.com/100x100", alt: "" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "user-fw-status" }, [
+      _c("li", [
+        _c("h4", [_vm._v("Following")]),
+        _vm._v(" "),
+        _c("span", [_vm._v("34")])
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _c("h4", [_vm._v("Followers")]),
+        _vm._v(" "),
+        _c("span", [_vm._v("155")])
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("View Profile")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "suggestions full-width" }, [
+      _c("div", { staticClass: "sd-title" }, [
+        _c("h3", [_vm._v("Suggestions")]),
+        _vm._v(" "),
+        _c("i", { staticClass: "la la-ellipsis-v" })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "suggestions-list" }, [
+        _c("div", { staticClass: "suggestion-usd" }, [
+          _c("img", {
+            attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "sgt-text" }, [
+            _c("h4", [_vm._v("Jessica William")]),
             _vm._v(" "),
-            _c("div", { staticClass: "user-specs" }, [
-              _c("h3", [_vm._v("John Doe")]),
-              _vm._v(" "),
-              _c("span", [_vm._v("Graphic Designer at Self Employed")])
-            ])
+            _c("span", [_vm._v("Graphic Designer")])
           ]),
           _vm._v(" "),
-          _c("ul", { staticClass: "user-fw-status" }, [
-            _c("li", [
-              _c("h4", [_vm._v("Following")]),
-              _vm._v(" "),
-              _c("span", [_vm._v("34")])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("h4", [_vm._v("Followers")]),
-              _vm._v(" "),
-              _c("span", [_vm._v("155")])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#", title: "" } }, [
-                _vm._v("View Profile")
-              ])
-            ])
-          ])
+          _c("span", [_c("i", { staticClass: "la la-plus" })])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "suggestions full-width" }, [
-          _c("div", { staticClass: "sd-title" }, [
-            _c("h3", [_vm._v("Suggestions")]),
+        _c("div", { staticClass: "suggestion-usd" }, [
+          _c("img", {
+            attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "sgt-text" }, [
+            _c("h4", [_vm._v("John Doe")]),
             _vm._v(" "),
-            _c("i", { staticClass: "la la-ellipsis-v" })
+            _c("span", [_vm._v("PHP Developer")])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "suggestions-list" }, [
-            _c("div", { staticClass: "suggestion-usd" }, [
-              _c("img", {
-                attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "sgt-text" }, [
-                _c("h4", [_vm._v("Jessica William")]),
-                _vm._v(" "),
-                _c("span", [_vm._v("Graphic Designer")])
-              ]),
-              _vm._v(" "),
-              _c("span", [_c("i", { staticClass: "la la-plus" })])
-            ]),
+          _c("span", [_c("i", { staticClass: "la la-plus" })])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "suggestion-usd" }, [
+          _c("img", {
+            attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "sgt-text" }, [
+            _c("h4", [_vm._v("Poonam")]),
             _vm._v(" "),
-            _c("div", { staticClass: "suggestion-usd" }, [
-              _c("img", {
-                attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "sgt-text" }, [
-                _c("h4", [_vm._v("John Doe")]),
-                _vm._v(" "),
-                _c("span", [_vm._v("PHP Developer")])
-              ]),
-              _vm._v(" "),
-              _c("span", [_c("i", { staticClass: "la la-plus" })])
-            ]),
+            _c("span", [_vm._v("Wordpress Developer")])
+          ]),
+          _vm._v(" "),
+          _c("span", [_c("i", { staticClass: "la la-plus" })])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "suggestion-usd" }, [
+          _c("img", {
+            attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "sgt-text" }, [
+            _c("h4", [_vm._v("Bill Gates")]),
             _vm._v(" "),
-            _c("div", { staticClass: "suggestion-usd" }, [
-              _c("img", {
-                attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "sgt-text" }, [
-                _c("h4", [_vm._v("Poonam")]),
-                _vm._v(" "),
-                _c("span", [_vm._v("Wordpress Developer")])
-              ]),
-              _vm._v(" "),
-              _c("span", [_c("i", { staticClass: "la la-plus" })])
-            ]),
+            _c("span", [_vm._v("C & C++ Developer")])
+          ]),
+          _vm._v(" "),
+          _c("span", [_c("i", { staticClass: "la la-plus" })])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "suggestion-usd" }, [
+          _c("img", {
+            attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "sgt-text" }, [
+            _c("h4", [_vm._v("Jessica William")]),
             _vm._v(" "),
-            _c("div", { staticClass: "suggestion-usd" }, [
-              _c("img", {
-                attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "sgt-text" }, [
-                _c("h4", [_vm._v("Bill Gates")]),
-                _vm._v(" "),
-                _c("span", [_vm._v("C & C++ Developer")])
-              ]),
-              _vm._v(" "),
-              _c("span", [_c("i", { staticClass: "la la-plus" })])
-            ]),
+            _c("span", [_vm._v("Graphic Designer")])
+          ]),
+          _vm._v(" "),
+          _c("span", [_c("i", { staticClass: "la la-plus" })])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "suggestion-usd" }, [
+          _c("img", {
+            attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "sgt-text" }, [
+            _c("h4", [_vm._v("John Doe")]),
             _vm._v(" "),
-            _c("div", { staticClass: "suggestion-usd" }, [
-              _c("img", {
-                attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "sgt-text" }, [
-                _c("h4", [_vm._v("Jessica William")]),
-                _vm._v(" "),
-                _c("span", [_vm._v("Graphic Designer")])
-              ]),
-              _vm._v(" "),
-              _c("span", [_c("i", { staticClass: "la la-plus" })])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "suggestion-usd" }, [
-              _c("img", {
-                attrs: { src: "http://via.placeholder.com/35x35", alt: "" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "sgt-text" }, [
-                _c("h4", [_vm._v("John Doe")]),
-                _vm._v(" "),
-                _c("span", [_vm._v("PHP Developer")])
-              ]),
-              _vm._v(" "),
-              _c("span", [_c("i", { staticClass: "la la-plus" })])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "view-more" }, [
-              _c("a", { attrs: { href: "#", title: "" } }, [
-                _vm._v("View More")
-              ])
-            ])
-          ])
+            _c("span", [_vm._v("PHP Developer")])
+          ]),
+          _vm._v(" "),
+          _c("span", [_c("i", { staticClass: "la la-plus" })])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "view-more" }, [
+          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("View More")])
         ])
       ])
     ])
@@ -41309,8 +41324,8 @@ var render = function() {
                             _c("div", { staticClass: "usy-dt" }, [
                               _c("img", {
                                 attrs: {
-                                  src: posts.image.path
-                                    ? posts.image.path
+                                  src: posts.imagePath
+                                    ? posts.image_path
                                     : "https://via.placeholder.com/100",
                                   alt: ""
                                 }
@@ -41318,7 +41333,7 @@ var render = function() {
                               _vm._v(" "),
                               _c("div", { staticClass: "usy-name" }, [
                                 _c("h3", [
-                                  _vm._v(_vm._s(posts.user.name) + " ")
+                                  _vm._v(_vm._s(posts.user_name) + " ")
                                 ]),
                                 _vm._v(" "),
                                 _c("span", [
@@ -41353,7 +41368,7 @@ var render = function() {
                                   attrs: { src: "images/icon9.png", alt: "" }
                                 }),
                                 _c("span", [
-                                  _vm._v(" " + _vm._s(posts.city.city_name))
+                                  _vm._v(" " + _vm._s(posts.city_name))
                                 ])
                               ])
                             ]),
@@ -41382,7 +41397,7 @@ var render = function() {
                             _c("ul", { staticClass: "skill-tags" }, [
                               _c("li", [
                                 _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v(_vm._s(posts.category.category_name))
+                                  _vm._v(_vm._s(posts.category_name))
                                 ])
                               ])
                             ])
@@ -60013,8 +60028,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\wamp64\www\brikol.ma\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\wamp64\www\brikol.ma\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\project\Altf4\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\project\Altf4\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),
