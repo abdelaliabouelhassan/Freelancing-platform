@@ -2751,7 +2751,6 @@ __webpack_require__.r(__webpack_exports__);
         });
         this.page = this.page + 1;
       } else {
-        console.log(end);
         $state.complete();
       }
     },

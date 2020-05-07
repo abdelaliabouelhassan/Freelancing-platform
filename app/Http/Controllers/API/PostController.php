@@ -203,6 +203,7 @@ public function search(Request $request){
 }
     public function search1($input){
         $qry = trim($input);
+        if($qry)
         return  PostCollection::collection(Post::latest()->orderBy('id')->where('type','job')->where('title','like', '%' . $qry . '%')->paginate());
 
     }

@@ -8,7 +8,7 @@
             <div class="search-box">
                 <form autocomplete="off" @submit.prevent="bringpost">
                     <input type="text" name="search" @keyup="search" v-model="input" placeholder="Search keywords" >
-                    <button type="submit" class="panel-heading">Search</button>
+                    <button type="submit" class="panel-heading" >Search</button>
                 </form>
                 <div v-if="searchresult.length" >
                     <p v-for="searchresults in searchresult" @click="takevalue(searchresults.title)">
@@ -313,7 +313,6 @@
                 });
                 this.page = this.page + 1;
                 }else{
-                    console.log(end)
                     $state.complete();
                 }
 
