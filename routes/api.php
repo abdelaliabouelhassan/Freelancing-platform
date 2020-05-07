@@ -27,6 +27,9 @@ Route::apiResources(['post'=>'API\PostController']);
 Route::get('city','API\PostController@city');
 Route::get('category','API\PostController@category');
 Route::get('filter/{cat}/{city}/{price}/{isdone}','API\PostController@filter');
+Route::post('search','API\PostController@search');
+Route::get('search1/{input}','API\PostController@search1');
+
 /*  END POSTS api */
 
 

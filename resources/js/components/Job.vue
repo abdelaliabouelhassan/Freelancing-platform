@@ -4,11 +4,17 @@
     <main>
         <div class="search-sec">
         <div class="container">
+
             <div class="search-box">
-                <form>
-                    <input type="text" name="search" placeholder="Search keywords">
-                    <button type="submit">Search</button>
+                <form autocomplete="off" @submit.prevent="bringpost">
+                    <input type="text" name="search" @keyup="search" v-model="input" placeholder="Search keywords" >
+                    <button type="submit" class="panel-heading">Search</button>
                 </form>
+                <div v-if="searchresult.length" >
+                    <p v-for="searchresults in searchresult" @click="takevalue(searchresults.title)">
+                        <b class="panel-footer">{{searchresults.title}}</b>
+                    </p>
+                </div>
             </div><!--search-box end-->
         </div>
     </div><!--search-sec end-->
@@ -258,11 +264,12 @@
                 category:{},
                 lastPage:0,
                 page: 1,
-
+                input : '',
                 cat:'0',
                 price:'0',
                 cit:'0',
                 isdone:'3',
+                searchresult:''
             }
         },
 
@@ -314,7 +321,6 @@
             filterpost:function () {
                 this.lastPage = 0
                 this.page = 1
-                this.isnormalload = false
                 axios.get('api/filter/'+this.cat + '/' + this.cit + '/' + this.price + '/' + this.isdone).then(({data})=>{this.post = data.data})
             },
             clearall:function(){
@@ -326,6 +332,34 @@
                     this.isdone ='3'
                 this.LoadJobs()
 
+            },
+            search:function() {
+             if(this.input.trim() != ''){
+
+                 axios.post('api/search',{
+                     input:this.input
+                 }).then((response)=>{
+                     this.searchresult = response.data;
+                 })
+             }else{
+                 this.searchresult = ''
+             }
+
+            },
+            takevalue:function (input) {
+                this.input = input
+                this.searchresult = ''
+            },
+            bringpost:function () {
+                if(this.input.trim() != ''){
+                    axios.get('api/search1/' +this.input ).then(({data})=>{this.post = data.data
+                    })
+                    // axios.post('api/search1',{
+                    //     input:this.input
+                    // }).then((response)=>{
+                    //     this.post = response.data;
+                    // })
+                }
             },
         },
         watch: {

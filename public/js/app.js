@@ -2674,6 +2674,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2683,10 +2689,12 @@ __webpack_require__.r(__webpack_exports__);
       category: {},
       lastPage: 0,
       page: 1,
+      input: '',
       cat: '0',
       price: '0',
       cit: '0',
-      isdone: '3'
+      isdone: '3',
+      searchresult: ''
     };
   },
   methods: {
@@ -2752,7 +2760,6 @@ __webpack_require__.r(__webpack_exports__);
 
       this.lastPage = 0;
       this.page = 1;
-      this.isnormalload = false;
       axios.get('api/filter/' + this.cat + '/' + this.cit + '/' + this.price + '/' + this.isdone).then(function (_ref4) {
         var data = _ref4.data;
         _this5.post = data.data;
@@ -2763,6 +2770,37 @@ __webpack_require__.r(__webpack_exports__);
       this.page = 1;
       this.cat = '0', this.price = '0', this.cit = '0', this.isdone = '3';
       this.LoadJobs();
+    },
+    search: function search() {
+      var _this6 = this;
+
+      if (this.input.trim() != '') {
+        axios.post('api/search', {
+          input: this.input
+        }).then(function (response) {
+          _this6.searchresult = response.data;
+        });
+      } else {
+        this.searchresult = '';
+      }
+    },
+    takevalue: function takevalue(input) {
+      this.input = input;
+      this.searchresult = '';
+    },
+    bringpost: function bringpost() {
+      var _this7 = this;
+
+      if (this.input.trim() != '') {
+        axios.get('api/search1/' + this.input).then(function (_ref5) {
+          var data = _ref5.data;
+          _this7.post = data.data;
+        }); // axios.post('api/search1',{
+        //     input:this.input
+        // }).then((response)=>{
+        //     this.post = response.data;
+        // })
+      }
     }
   },
   watch: {
@@ -61897,7 +61935,81 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("main", [
-      _vm._m(0),
+      _c("div", { staticClass: "search-sec" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "search-box" }, [
+            _c(
+              "form",
+              {
+                attrs: { autocomplete: "off" },
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.bringpost($event)
+                  }
+                }
+              },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.input,
+                      expression: "input"
+                    }
+                  ],
+                  attrs: {
+                    type: "text",
+                    name: "search",
+                    placeholder: "Search keywords"
+                  },
+                  domProps: { value: _vm.input },
+                  on: {
+                    keyup: _vm.search,
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.input = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  { staticClass: "panel-heading", attrs: { type: "submit" } },
+                  [_vm._v("Search")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _vm.searchresult.length
+              ? _c(
+                  "div",
+                  _vm._l(_vm.searchresult, function(searchresults) {
+                    return _c(
+                      "p",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.takevalue(searchresults.title)
+                          }
+                        }
+                      },
+                      [
+                        _c("b", { staticClass: "panel-footer" }, [
+                          _vm._v(_vm._s(searchresults.title))
+                        ])
+                      ]
+                    )
+                  }),
+                  0
+                )
+              : _vm._e()
+          ])
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "main-section" }, [
         _c("div", { staticClass: "container" }, [
@@ -61920,7 +62032,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "paddy" }, [
                     _c("div", { staticClass: "filter-dd" }, [
-                      _vm._m(1),
+                      _vm._m(0),
                       _vm._v(" "),
                       _c("ul", { staticClass: "avail-checks" }, [
                         _c("li", [
@@ -61950,7 +62062,7 @@ var render = function() {
                             }
                           }),
                           _vm._v(" "),
-                          _vm._m(2),
+                          _vm._m(1),
                           _vm._v(" "),
                           _c("small", [_vm._v("Available")])
                         ]),
@@ -61982,7 +62094,7 @@ var render = function() {
                             }
                           }),
                           _vm._v(" "),
-                          _vm._m(3),
+                          _vm._m(2),
                           _vm._v(" "),
                           _c("small", [_vm._v("Done")])
                         ])
@@ -61990,7 +62102,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "filter-dd" }, [
-                      _vm._m(4),
+                      _vm._m(3),
                       _vm._v(" "),
                       _c("form", { staticClass: "job-tp" }, [
                         _c(
@@ -62048,7 +62160,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "filter-dd" }, [
-                      _vm._m(5),
+                      _vm._m(4),
                       _vm._v(" "),
                       _c("form", { staticClass: "job-tp" }, [
                         _c(
@@ -62113,7 +62225,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "filter-dd" }, [
-                      _vm._m(6),
+                      _vm._m(5),
                       _vm._v(" "),
                       _c("form", { staticClass: "job-tp" }, [
                         _c(
@@ -62209,7 +62321,7 @@ var render = function() {
                               ])
                             ]),
                             _vm._v(" "),
-                            _vm._m(7, true)
+                            _vm._m(6, true)
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "epi-sec" }, [
@@ -62237,14 +62349,14 @@ var render = function() {
                               ])
                             ]),
                             _vm._v(" "),
-                            _vm._m(8, true)
+                            _vm._m(7, true)
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "job_descp" }, [
                             _c("h3", [_vm._v(_vm._s(posts.title))]),
                             _vm._v(" "),
                             _c("ul", { staticClass: "job-dt" }, [
-                              _vm._m(9, true),
+                              _vm._m(8, true),
                               _vm._v(" "),
                               _c("li", [
                                 _c("span", [_vm._v("DH" + _vm._s(posts.price))])
@@ -62295,13 +62407,13 @@ var render = function() {
                         _vm._v(" "),
                         _c("span", [_vm._v("Signed In Now ")]),
                         _vm._v(" "),
-                        _vm._m(10)
+                        _vm._m(9)
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm._m(11),
+                  _vm._m(10),
                   _vm._v(" "),
-                  _vm._m(12)
+                  _vm._m(11)
                 ])
               ])
             ])
@@ -62312,28 +62424,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "search-sec" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "search-box" }, [
-          _c("form", [
-            _c("input", {
-              attrs: {
-                type: "text",
-                name: "search",
-                placeholder: "Search keywords"
-              }
-            }),
-            _vm._v(" "),
-            _c("button", { attrs: { type: "submit" } }, [_vm._v("Search")])
-          ])
-        ])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

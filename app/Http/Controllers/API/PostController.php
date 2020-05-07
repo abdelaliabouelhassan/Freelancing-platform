@@ -12,6 +12,7 @@ use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Stevebauman\Location\Facades\Location;
 class PostController extends Controller
@@ -55,7 +56,6 @@ class PostController extends Controller
                     return PostCollection::collection(Post::latest()->orderBy('id')->where('type','job')->where('is_done','false')->paginate(5));
                 }
             }
-
         }
         else
         {
@@ -196,7 +196,16 @@ elseif ($city == 0 && $cat == 0 && $price == 0 && $isdone != 3){
 
 }
 
+public function search(Request $request){
+    $qry = trim($request->input);
+     return DB::table('posts')->where('title','like','%' . $qry . '%')->where('type','job')->get('title');
 
+}
+    public function search1($input){
+        $qry = trim($input);
+        return  PostCollection::collection(Post::latest()->orderBy('id')->where('type','job')->where('title','like', '%' . $qry . '%')->paginate());
+
+    }
 
 
     /**

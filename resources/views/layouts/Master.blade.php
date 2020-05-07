@@ -43,22 +43,22 @@
                     <ul>
                         <li>
                             <span><img src="images/icon1.png" alt=""></span>
-                            <router-link to="/home" class="nav-link">Home</router-link>
+                            <router-link to="/home" >Home</router-link>
 
                         </li>
 
                         <li>
                             <span><img src="images/icon3.png" alt=""></span>
-                            <router-link to="/Projects" class="nav-link">Projects</router-link>
+                            <router-link to="/Projects" >Projects</router-link>
 
                         </li>
                         <li v-if="$gets.IsLogedIn()">
                             <span><img src="images/icon4.png" alt=""></span>
-                            <router-link to="/Profile" class="nav-link">Profiles</router-link>
+                            <router-link to="/Profile" >Profiles</router-link>
                         </li>
                         <li>
                             <span><img src="images/icon5.png" alt=""></span>
-                            <router-link to="/Jobs" class="nav-link">Jobs</router-link>
+                            <router-link to="/Jobs" >Jobs</router-link>
                         </li>
                         <li v-if="$gets.IsLogedIn()">
                             <a href="javascript:void(0)" title="" class="not-box-open" class="nav-link">
