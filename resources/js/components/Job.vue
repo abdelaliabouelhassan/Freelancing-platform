@@ -353,6 +353,7 @@
                 if(this.input.trim() != ''){
                     axios.get('api/search1/' +this.input ).then(({data})=>{this.post = data.data
                     })
+
                     // axios.post('api/search1',{
                     //     input:this.input
                     // }).then((response)=>{
