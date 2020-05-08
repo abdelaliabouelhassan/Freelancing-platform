@@ -297,7 +297,6 @@
                     //
                     if(this.page  -1  == this.lastPage){
                        $state.complete();
-                       console.log('end')
                     } else {
                         setTimeout(function() {
                             $.each(data.data, function(key, value) {
@@ -354,11 +353,6 @@
                     axios.get('api/search1/' +this.input ).then(({data})=>{this.post = data.data
                     })
 
-                    // axios.post('api/search1',{
-                    //     input:this.input
-                    // }).then((response)=>{
-                    //     this.post = response.data;
-                    // })
                 }
             },
         },

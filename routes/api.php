@@ -30,6 +30,10 @@ Route::get('filter/{cat}/{city}/{price}/{isdone}','API\PostController@filter');
 Route::post('search','API\PostController@search');
 Route::get('search1/{input}','API\PostController@search1');
 
+Route::get('indexProject','API\PostController@indexProject');
+Route::get('filterProject/{cat}/{city}/{price}/{isdone}','API\PostController@filterProject');
+Route::post('searchProject','API\PostController@searchProject');
+Route::get('search1Project/{input}','API\PostController@search1Project');
 /*  END POSTS api */
 
 
