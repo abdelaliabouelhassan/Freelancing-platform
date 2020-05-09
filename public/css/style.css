@@ -585,6 +585,11 @@ nav > ul > li > a:hover {
 	width: auto;
 	padding: 13px 10px;
 	position: relative;	
+	transform: translate(0%);
+}
+.notification{
+	left: 96%;
+	transform: translate(100%);
 }
 .user-account-settingss {
 	position: absolute;

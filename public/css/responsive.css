@@ -6,7 +6,7 @@
 	header nav ul li {float: left;width: 100%;text-align: left;padding: 0 0 0 0;margin-bottom: 20px;}
 	.menu-btn {display: block; margin-right: 40px;}
 	header nav ul li span {display: inline-block;margin-right: 10px;}
-	.user-info {position: fixed ;top:0%;transform: translate(60px, 0px);}
+	.user-info {position: fixed ;top:0%;transform: translate(28px, 0px);}
 	.widget-about h3 {font-size: 16px;}
 	.widget-about span {font-size: 13px;}
 	.suggestion-usd {padding: 15px 5px;}
@@ -174,9 +174,10 @@
 	.conversation-box {width: 100%;right: 0;}
 	.user-account-settingss {right: auto;left: 0;}	
 	.login-resources {text-align: left;}
+	.user-info{transform: translate(60px, 0px);}
 	.forum-bar ul li:last-child {margin-bottom: 0;}
 	.conversation-box {left: -20px;width: 280px;}
-	.notification{right:50%;transform: translate(50%, 0);}
+	.notification{left:auto;right:50%;transform: translate(50%, 0);}
 	.notification-box {left:50% !important; transform: translate(-50%, 0px);}
 	.show-filter{top: 158px;}
 	.filter{top: 189px;}
