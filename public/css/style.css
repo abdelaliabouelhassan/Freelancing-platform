@@ -585,7 +585,6 @@ nav > ul > li > a:hover {
 	width: auto;
 	padding: 13px 10px;
 	position: relative;	
-	transform: translate(60px, 0px);
 }
 .user-account-settingss {
 	position: absolute;
