@@ -2680,6 +2680,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -7826,7 +7859,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * jQuery JavaScript Library v3.5.0
+ * jQuery JavaScript Library v3.5.1
  * https://jquery.com/
  *
  * Includes Sizzle.js
@@ -7836,7 +7869,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
  * Released under the MIT license
  * https://jquery.org/license
  *
- * Date: 2020-04-10T15:07Z
+ * Date: 2020-05-04T22:49Z
  */
 ( function( global, factory ) {
 
@@ -7974,7 +8007,7 @@ function toType( obj ) {
 
 
 var
-	version = "3.5.0",
+	version = "3.5.1",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -12071,7 +12104,7 @@ Data.prototype = {
 
 		// If not, create one
 		if ( !value ) {
-			value = Object.create( null );
+			value = {};
 
 			// We can accept data for non-element nodes in modern browsers,
 			// but we should not, see #8335.
@@ -61884,357 +61917,360 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("main", [
-      _c("div", { staticClass: "search-sec" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "search-box" }, [
-            _c(
-              "form",
-              {
-                attrs: { autocomplete: "off" },
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.bringpost($event)
-                  }
-                }
-              },
-              [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.input,
-                      expression: "input"
-                    }
-                  ],
-                  attrs: {
-                    type: "text",
-                    name: "search",
-                    placeholder: "Search keywords"
-                  },
-                  domProps: { value: _vm.input },
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "filter" }, [
+        _c("div", { staticClass: " filter-file" }, [
+          _c("div", { staticClass: "filter-secs" }, [
+            _c("div", { staticClass: "search-box" }, [
+              _c(
+                "form",
+                {
+                  attrs: { autocomplete: "off" },
                   on: {
-                    keyup: _vm.search,
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.input = $event.target.value
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.bringpost($event)
                     }
                   }
-                }),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  { staticClass: "panel-heading", attrs: { type: "submit" } },
-                  [_vm._v("Search")]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _vm.searchresult.length
-              ? _c(
-                  "div",
-                  _vm._l(_vm.searchresult, function(searchresults) {
-                    return _c(
-                      "p",
+                },
+                [
+                  _c("input", {
+                    directives: [
                       {
-                        on: {
-                          click: function($event) {
-                            return _vm.takevalue(searchresults.title)
-                          }
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.input,
+                        expression: "input"
+                      }
+                    ],
+                    attrs: {
+                      type: "text",
+                      name: "search",
+                      placeholder: "Search keywords"
+                    },
+                    domProps: { value: _vm.input },
+                    on: {
+                      keyup: _vm.search,
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
                         }
-                      },
-                      [
-                        _c("b", { staticClass: "panel-footer" }, [
-                          _vm._v(_vm._s(searchresults.title))
-                        ])
-                      ]
-                    )
+                        _vm.input = $event.target.value
+                      }
+                    }
                   }),
-                  0
-                )
-              : _vm._e()
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    { staticClass: "panel-heading", attrs: { type: "submit" } },
+                    [_vm._v("Search")]
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "filter-heading" }, [
+              _c("h3", [_vm._v("Filters")]),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  attrs: { href: "javascript:void(0)", title: "" },
+                  on: { click: _vm.clearall }
+                },
+                [_vm._v("Clear all filters")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "paddy" }, [
+              _c("div", { staticClass: "filter-dd" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("ul", { staticClass: "avail-checks" }, [
+                  _c("li", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.isdone,
+                          expression: "isdone"
+                        }
+                      ],
+                      attrs: {
+                        type: "radio",
+                        name: "cc",
+                        id: "c2",
+                        value: "0"
+                      },
+                      domProps: { checked: _vm._q(_vm.isdone, "0") },
+                      on: {
+                        change: [
+                          function($event) {
+                            _vm.isdone = "0"
+                          },
+                          _vm.filterpost
+                        ]
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("small", [_vm._v("Available")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.isdone,
+                          expression: "isdone"
+                        }
+                      ],
+                      attrs: {
+                        type: "radio",
+                        name: "cc",
+                        id: "c3",
+                        value: "1"
+                      },
+                      domProps: { checked: _vm._q(_vm.isdone, "1") },
+                      on: {
+                        change: [
+                          function($event) {
+                            _vm.isdone = "1"
+                          },
+                          _vm.filterpost
+                        ]
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _c("small", [_vm._v("Done")])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "filter-dd" }, [
+                _vm._m(4),
+                _vm._v(" "),
+                _c("form", { staticClass: "job-tp" }, [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.cat,
+                          expression: "cat"
+                        }
+                      ],
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.cat = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                          _vm.filterpost
+                        ]
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "0" } }, [
+                        _vm._v("Select a job Category")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.category, function(categorys) {
+                        return _c(
+                          "option",
+                          { domProps: { value: categorys.id } },
+                          [
+                            _vm._v(
+                              "\n                                                    " +
+                                _vm._s(categorys.category_name)
+                            )
+                          ]
+                        )
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c("i", {
+                    staticClass: "fa fa-ellipsis-v",
+                    attrs: { "aria-hidden": "true" }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "filter-dd" }, [
+                _vm._m(5),
+                _vm._v(" "),
+                _c("form", { staticClass: "job-tp" }, [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.price,
+                          expression: "price"
+                        }
+                      ],
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.price = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                          _vm.filterpost
+                        ]
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "0" } }, [
+                        _vm._v("Select Price")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "1" } }, [
+                        _vm._v("10-100DH")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "2" } }, [
+                        _vm._v("100-500DH")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "3" } }, [
+                        _vm._v("500-1000DH")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "4" } }, [
+                        _vm._v("1000DH >>>")
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("i", {
+                    staticClass: "fa fa-ellipsis-v",
+                    attrs: { "aria-hidden": "true" }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "filter-dd" }, [
+                _vm._m(6),
+                _vm._v(" "),
+                _c("form", { staticClass: "job-tp" }, [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.cit,
+                          expression: "cit"
+                        }
+                      ],
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.cit = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                          _vm.filterpost
+                        ]
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "0" } }, [
+                        _vm._v("Select City")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.city, function(citys) {
+                        return _c("option", { domProps: { value: citys.id } }, [
+                          _vm._v(
+                            _vm._s(citys.city_name) +
+                              "\n                                                "
+                          )
+                        ])
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c("i", {
+                    staticClass: "fa fa-ellipsis-v",
+                    attrs: { "aria-hidden": "true" }
+                  })
+                ])
+              ])
+            ])
           ])
         ])
       ]),
+      _vm._v(" "),
+      _vm.searchresult.length
+        ? _c(
+            "div",
+            _vm._l(_vm.searchresult, function(searchresults) {
+              return _c(
+                "p",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.takevalue(searchresults.title)
+                    }
+                  }
+                },
+                [
+                  _c("b", { staticClass: "panel-footer" }, [
+                    _vm._v(_vm._s(searchresults.title))
+                  ])
+                ]
+              )
+            }),
+            0
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "main-section" }, [
         _c("div", { staticClass: "container" }, [
           _c("div", { staticClass: "main-section-data" }, [
             _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-lg-3" }, [
-                _c("div", { staticClass: "filter-secs" }, [
-                  _c("div", { staticClass: "filter-heading" }, [
-                    _c("h3", [_vm._v("Filters")]),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        attrs: { href: "javascript:void(0)", title: "" },
-                        on: { click: _vm.clearall }
-                      },
-                      [_vm._v("Clear all filters")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "paddy" }, [
-                    _c("div", { staticClass: "filter-dd" }, [
-                      _vm._m(0),
-                      _vm._v(" "),
-                      _c("ul", { staticClass: "avail-checks" }, [
-                        _c("li", [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.isdone,
-                                expression: "isdone"
-                              }
-                            ],
-                            attrs: {
-                              type: "radio",
-                              name: "cc",
-                              id: "c2",
-                              value: "0"
-                            },
-                            domProps: { checked: _vm._q(_vm.isdone, "0") },
-                            on: {
-                              change: [
-                                function($event) {
-                                  _vm.isdone = "0"
-                                },
-                                _vm.filterpost
-                              ]
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm._m(1),
-                          _vm._v(" "),
-                          _c("small", [_vm._v("Available")])
-                        ]),
-                        _vm._v(" "),
-                        _c("li", [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.isdone,
-                                expression: "isdone"
-                              }
-                            ],
-                            attrs: {
-                              type: "radio",
-                              name: "cc",
-                              id: "c3",
-                              value: "1"
-                            },
-                            domProps: { checked: _vm._q(_vm.isdone, "1") },
-                            on: {
-                              change: [
-                                function($event) {
-                                  _vm.isdone = "1"
-                                },
-                                _vm.filterpost
-                              ]
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm._m(2),
-                          _vm._v(" "),
-                          _c("small", [_vm._v("Done")])
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "filter-dd" }, [
-                      _vm._m(3),
-                      _vm._v(" "),
-                      _c("form", { staticClass: "job-tp" }, [
-                        _c(
-                          "select",
-                          {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.cat,
-                                expression: "cat"
-                              }
-                            ],
-                            on: {
-                              change: [
-                                function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.cat = $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                },
-                                _vm.filterpost
-                              ]
-                            }
-                          },
-                          [
-                            _c("option", { attrs: { value: "0" } }, [
-                              _vm._v("Select a job Category")
-                            ]),
-                            _vm._v(" "),
-                            _vm._l(_vm.category, function(categorys) {
-                              return _c(
-                                "option",
-                                { domProps: { value: categorys.id } },
-                                [_vm._v(_vm._s(categorys.category_name))]
-                              )
-                            })
-                          ],
-                          2
-                        ),
-                        _vm._v(" "),
-                        _c("i", {
-                          staticClass: "fa fa-ellipsis-v",
-                          attrs: { "aria-hidden": "true" }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "filter-dd" }, [
-                      _vm._m(4),
-                      _vm._v(" "),
-                      _c("form", { staticClass: "job-tp" }, [
-                        _c(
-                          "select",
-                          {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.price,
-                                expression: "price"
-                              }
-                            ],
-                            on: {
-                              change: [
-                                function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.price = $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                },
-                                _vm.filterpost
-                              ]
-                            }
-                          },
-                          [
-                            _c("option", { attrs: { value: "0" } }, [
-                              _vm._v("Select Price")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "1" } }, [
-                              _vm._v("10-100DH")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "2" } }, [
-                              _vm._v("100-500DH")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "3" } }, [
-                              _vm._v("500-1000DH")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "4" } }, [
-                              _vm._v("1000DH >>>")
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("i", {
-                          staticClass: "fa fa-ellipsis-v",
-                          attrs: { "aria-hidden": "true" }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "filter-dd" }, [
-                      _vm._m(5),
-                      _vm._v(" "),
-                      _c("form", { staticClass: "job-tp" }, [
-                        _c(
-                          "select",
-                          {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.cit,
-                                expression: "cit"
-                              }
-                            ],
-                            on: {
-                              change: [
-                                function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.cit = $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                },
-                                _vm.filterpost
-                              ]
-                            }
-                          },
-                          [
-                            _c("option", { attrs: { value: "0" } }, [
-                              _vm._v("Select  City")
-                            ]),
-                            _vm._v(" "),
-                            _vm._l(_vm.city, function(citys) {
-                              return _c(
-                                "option",
-                                { domProps: { value: citys.id } },
-                                [_vm._v(_vm._s(citys.city_name))]
-                              )
-                            })
-                          ],
-                          2
-                        ),
-                        _vm._v(" "),
-                        _c("i", {
-                          staticClass: "fa fa-ellipsis-v",
-                          attrs: { "aria-hidden": "true" }
-                        })
-                      ])
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-6" }, [
+              _c("div", { staticClass: "col-md" }, [
                 _c("div", { staticClass: "main-ws-sec" }, [
                   _c(
                     "div",
@@ -62264,13 +62300,13 @@ var render = function() {
                                   }),
                                   _vm._v(
                                     _vm._s(_vm._f("mydate")(posts.created_at)) +
-                                      "  "
+                                      " "
                                   )
                                 ])
                               ])
                             ]),
                             _vm._v(" "),
-                            _vm._m(6, true)
+                            _vm._m(7, true)
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "epi-sec" }, [
@@ -62283,7 +62319,8 @@ var render = function() {
                                   _vm._v(
                                     _vm._s(
                                       posts.is_done ? "done" : "available"
-                                    ) + " "
+                                    ) +
+                                      "\n                                                    "
                                   )
                                 ])
                               ]),
@@ -62293,19 +62330,22 @@ var render = function() {
                                   attrs: { src: "images/icon9.png", alt: "" }
                                 }),
                                 _c("span", [
-                                  _vm._v(" " + _vm._s(posts.city_name))
+                                  _vm._v(
+                                    "\n                                                        " +
+                                      _vm._s(posts.city_name)
+                                  )
                                 ])
                               ])
                             ]),
                             _vm._v(" "),
-                            _vm._m(7, true)
+                            _vm._m(8, true)
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "job_descp" }, [
                             _c("h3", [_vm._v(_vm._s(posts.title))]),
                             _vm._v(" "),
                             _c("ul", { staticClass: "job-dt" }, [
-                              _vm._m(8, true),
+                              _vm._m(9, true),
                               _vm._v(" "),
                               _c("li", [
                                 _c("span", [_vm._v("DH" + _vm._s(posts.price))])
@@ -62356,13 +62396,13 @@ var render = function() {
                         _vm._v(" "),
                         _c("span", [_vm._v("Signed In Now ")]),
                         _vm._v(" "),
-                        _vm._m(9)
+                        _vm._m(10)
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm._m(10),
+                  _vm._m(11),
                   _vm._v(" "),
-                  _vm._m(11)
+                  _vm._m(12)
                 ])
               ])
             ])
@@ -62373,6 +62413,15 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "show-filter" }, [
+      _vm._v("\n            Filter\n                            "),
+      _c("i", { staticClass: "fa fa-search" })
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -80698,8 +80747,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\wamp64\www\brikol.ma\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\wamp64\www\brikol.ma\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\project\Altf4\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\project\Altf4\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

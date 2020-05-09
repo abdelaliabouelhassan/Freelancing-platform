@@ -112,9 +112,9 @@ table {
 	border-spacing: 0;
 }
 .router-link-exact-active{
-    background-color: #70defa;
-    color: white !important;
+	color: #fff;
 }
+
 * {
 	margin:0;
 	padding: 0;
@@ -462,8 +462,9 @@ nav ul ul li a {
 }
 .notification-box {
 	position: absolute;
-	top: 100%;
-	right: 0;
+	top: auto !important;
+	left: auto !important;
+	right: 100%;
 	width: 300px;
 	background-color: #fff;
 	opacity: 0;
@@ -528,6 +529,21 @@ nav ul ul li a {
 	background-color: #1B9DE2;
 	padding: 18px 0;
 }
+.filter-file{
+	top: 150px !important;
+    right: auto !important;
+    /* position: fixed !important; */
+}
+.show-filter{
+	padding: 8px 20px;
+	background-color: #1B9DE2;
+	color: #fff;
+	cursor: pointer;
+	margin-left: auto;		
+}
+.show-filter{
+	position: fixed;
+}
 nav ul li span {
 	display: block;
 	height: 14px;
@@ -536,8 +552,10 @@ nav ul li span img {
 	float: none;
 }
 nav ul li a {
-	color: #ffffff;
+	color:rgba(255, 255, 255, 0.7);
 	font-size: 14px;
+	font-size: 15px;
+	font-weight: bold;
 }
 nav > ul > li > a:hover {
 	color: #fff;
@@ -550,12 +568,23 @@ nav > ul > li > a:hover {
 	border-right: 1px solid #1B9DE2;
 	box-sizing: border-box;
 	position: relative;
+	display: inline;
+}
+.notification{
+	position: fixed;
+    margin: 20px 0;
+    top: 0;
+	right: 50px;
+	color:#fff;
+	font-size: 20px;
+	z-index: 1;
+	cursor: pointer;
 }
 .user-info {
 	float: left;
-	width: 100%;
+	width: auto;
 	padding: 13px 10px;
-	position: relative;
+	position: relative;	
 }
 .user-account-settingss {
 	position: absolute;
@@ -580,6 +609,11 @@ nav > ul > li > a:hover {
 	visibility: hidden;
 }
 .user-account-settingss.active {
+	opacity: 1;
+	visibility: visible;
+	z-index: 9999;
+}
+.filter.active {
 	opacity: 1;
 	visibility: visible;
 	z-index: 9999;
@@ -687,7 +721,7 @@ nav > ul > li > a:hover {
 	-ms-border-radius: 100px;
 	-o-border-radius: 100px;
 	border-radius: 100px;
-	height: 40px;
+	height: 40px;	
 }
 .user-info a {
 	color: #fff;
@@ -3558,14 +3592,14 @@ a:hover {
 	width: 100%;
 	margin: 0 0 18px 0;
 }
+filter
 .fixed_bar
 {
 	position: fixed;
 }
 .search-box {
 	float: left;
-	width: 100%;
-	padding: 0 15px;
+	width: 100%;	
 }
 .search-box form {
 	float: left;
@@ -3595,7 +3629,7 @@ a:hover {
 	font-size: 16px;
 	font-weight: 500;
 	height: 100%;
-	padding: 0 28px;
+	padding: 0 18px;
 	border: 0;
 	cursor: pointer;
 	-webkit-border-radius: 0 4px 4px 0;
@@ -3608,6 +3642,29 @@ a:hover {
 
 
 /* =============== filter-secs ============== */
+.filter{
+	position: absolute;		
+	width: 240px;
+	background-color: #fff;
+	border-left: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+	border-right: 1px solid #e5e5e5;
+	-webkit-border-radius: 0 0 5px 5px;
+	-moz-border-radius: 0 0 5px 5px;
+	-ms-border-radius: 0 0 5px 5px;
+	-o-border-radius: 0 0 5px 5px;
+	border-radius: 0 0 5px 5px;
+	-webkit-box-shadow: 1px 1px 6px -2px rgba(0,0,0,0.24);
+	-moz-box-shadow: 1px 1px 6px -2px rgba(0,0,0,0.24);
+	-ms-box-shadow: 1px 1px 6px -2px rgba(0,0,0,0.24);
+	-o-box-shadow: 1px 1px 6px -2px rgba(0,0,0,0.24);
+	box-shadow: 1px 1px 6px -2px rgba(0,0,0,0.24);
+	opacity: 0;
+	visibility: hidden;
+	position: fixed;
+    right: auto;
+    top: 135px;
+}
 
 .filter-secs {
 	float: left;

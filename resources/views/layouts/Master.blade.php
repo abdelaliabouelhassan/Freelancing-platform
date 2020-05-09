@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('lib/slick/slick-theme.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/responsive.css')}}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     @yield('style')
 </head>
 
@@ -42,27 +43,28 @@
                 <nav>
                     <ul>
                         <li>
-                            <span><img src="images/icon1.png" alt=""></span>
-                            <router-link to="/home" >Home</router-link>
+                            <router-link to="/home" ><span><i class="fa fa-home"></i></span>
+                            Home</router-link>
 
                         </li>
 
                         <li>
-                            <span><img src="images/icon3.png" alt=""></span>
-                            <router-link to="/Projects" >Projects</router-link>
+                            <router-link to="/Projects" ><span><i class="fa fa-bullhorn"></i></span>
+                            Projects</router-link>
 
                         </li>
                         <li v-if="$gets.IsLogedIn()">
-                            <span><img src="images/icon4.png" alt=""></span>
-                            <router-link to="/Profile" >Profiles</router-link>
+                            <router-link to="/Profile" ><span><i class="fa fa-user"></i></span>
+                            Profiles</router-link>
                         </li>
                         <li>
-                            <span><img src="images/icon5.png" alt=""></span>
-                            <router-link to="/Jobs" >Jobs</router-link>
+                            <router-link to="/Jobs" >
+                            <span><i class="fa fa-briefcase"></i></span>
+                            Jobs</router-link>  
                         </li>
                         <li v-if="$gets.IsLogedIn()">
                             <a href="javascript:void(0)" title="" class="not-box-open" class="nav-link">
-                                <span><img src="images/icon6.png" alt=""></span>
+                                <span><i class="fa fa-envelope"></i></span>
                                 Messages
                             </a>
                             <div class="notification-box msg">
@@ -109,7 +111,7 @@
                         </li>
                         <li v-if="$gets.IsLogedIn()">
                             <a href="javascript:void(0)" title="" class="not-box-open">
-                                <span><img src="images/icon7.png" alt=""></span>
+                                <span><i class="fa fa-bell"></i></span>
                                 Notification
                             </a>
                             <div class="notification-box">
@@ -165,6 +167,56 @@
                 <!--menu-btn end-->
 
                 <div class="user-account" v-if="$gets.IsLogedIn()">
+                    <div class="notification not-box-open">
+                        <i class="fa fa-bell not-box-open"></i>
+                        <div class="notification-box">
+                            <div class="nt-title">
+                                <h4>Setting</h4>
+                                <a href="#" title="">Clear all</a>
+                            </div>
+                            <div class="nott-list">
+                                <div class="notfication-details">
+                                    <div class="noty-user-img">
+                                        <img src="" alt="">
+                                    </div>
+                                    <div class="notification-info">
+                                        <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+                                        <span>2 min ago</span>
+                                    </div><!--notification-info -->
+                                </div>
+                                <div class="notfication-details">
+                                    <div class="noty-user-img">
+                                        <img src="" alt="">
+                                    </div>
+                                    <div class="notification-info">
+                                        <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+                                        <span>2 min ago</span>
+                                    </div><!--notification-info -->
+                                </div>
+                                <div class="notfication-details">
+                                    <div class="noty-user-img">
+                                        <img src="" alt="">
+                                    </div>
+                                    <div class="notification-info">
+                                        <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+                                        <span>2 min ago</span>
+                                    </div><!--notification-info -->
+                                </div>
+                                <div class="notfication-details">
+                                    <div class="noty-user-img">
+                                        <img src="" alt="">
+                                    </div>
+                                    <div class="notification-info">
+                                        <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+                                        <span>2 min ago</span>
+                                    </div><!--notification-info -->
+                                </div>
+                                <div class="view-all-nots">
+                                    <a href="#" title="">View All Notification</a>
+                                </div>
+                            </div><!--nott-list end-->
+                        </div><!--notification-box end-->
+                    </div>
                     <div class="user-info">
                     <img src="{{asset('images/user.jpg')}}" alt="">
                         {{-- <a href="javascript:void(0)" title="" v-text="$gets.user.name"></a>
