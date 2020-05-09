@@ -8,6 +8,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link rel="icon" href="{{asset('images/logotesticon.png')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/animate.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/jquery.range.css')}}">
@@ -111,7 +112,7 @@
                         </li>
                         <li v-if="$gets.IsLogedIn()">
                             <a href="javascript:void(0)" title="" class="not-box-open">
-                                <span><i class="fa fa-bell"></i></span>
+                                <span><i class="fas fa-bell"></i></span>
                                 Notification
                             </a>
                             <div class="notification-box">

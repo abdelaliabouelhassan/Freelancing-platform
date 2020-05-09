@@ -384,6 +384,59 @@ public function search(Request $request){
 
     /*End Project */
 
+
+
+    /* all Posts */
+
+        public  function AllPosts(){
+            if(auth('api')->check())
+            {
+                $user = auth('api')->user();
+                if($user->city_id != ''){
+                    $post = Post::latest()->orderBy('id')->where('is_done','false')->where('city_id',$user->city_id)->paginate(5);
+                    if(count($post) != 0){
+                        return PostCollection::collection($post);
+                    }else{
+                        return PostCollection::collection(Post::latest()->orderBy('id')->where('is_done','false')->paginate(5));
+                    }
+                }else{
+                    $myid =\App\Helpers\AppHelper::get_client_ip();
+                    $data = Location::get($myid);
+                    $city =   City::where('city_name',$data->cityName)->first();
+                    if($city){
+                        $city_id = $city->id;
+                    }else{
+                        $city_id = 0;
+                    }
+                    $post =   Post::latest()->orderBy('id')->where('is_done','false')->where('city_id',$city_id)->paginate(5);
+                    if(count($post) != 0){
+                        return PostCollection::collection($post);
+                    }else{
+                        return PostCollection::collection(Post::latest()->orderBy('id')->where('is_done','false')->paginate(5));
+                    }
+                }
+            }
+            else
+            {
+                $myid =\App\Helpers\AppHelper::get_client_ip();
+                $data = Location::get($myid);
+                $city =   City::where('city_name',$data->cityName)->first();
+                if($city){
+                    $city_id = $city->id;
+                }else{
+                    $city_id = 0;
+                }
+                $post =   Post::latest()->orderBy('id')->where('is_done','false')->where('city_id',$city_id)->paginate(5);
+                if(count($post) != 0){
+                    return PostCollection::collection($post);
+                }else{
+                    return PostCollection::collection(Post::latest()->orderBy('id')->where('is_done','false')->paginate(5));
+                }
+
+            }
+        }
+
+    /*   End all Posts   */
     /**
      * Store a newly created resource in storage.
      *
