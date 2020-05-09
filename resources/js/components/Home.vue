@@ -109,13 +109,13 @@
                                        </div><!--post-st end-->
                                    </div><!--post-topbar end-->
                                    <div class="posts-section">
-                                       <div class="post-bar">
+                                       <div class="post-bar" v-for="posts in post">
                                            <div class="post_topbar">
                                                <div class="usy-dt">
-                                                   <img src="http://via.placeholder.com/50x50" alt="">
+                                                   <img :src="posts.image_path ? posts.image_path : 'https://via.placeholder.com/100'" alt="">
                                                    <div class="usy-name">
-                                                       <h3>John Doe</h3>
-                                                       <span><img src="images/clock.png" alt="">3 min ago</span>
+                                                       <h3>{{posts.user_name}} </h3>
+                                                       <span><img src="images/clock.png" alt="">{{posts.created_at | mydate}}  </span>
                                                    </div>
                                                </div>
                                                <div class="ed-opts">
@@ -131,108 +131,34 @@
                                            </div>
                                            <div class="epi-sec">
                                                <ul class="descp">
-                                                   <li><img src="images/icon8.png" alt=""><span>Epic Coder</span></li>
-                                                   <li><img src="images/icon9.png" alt=""><span>India</span></li>
+                                                   <li><img src="images/icon8.png" alt=""><span>{{posts.is_done ? 'done' : 'available'}} </span></li>
+                                                   <li><img src="images/icon9.png" alt=""><span> {{posts.city_name}}</span></li>
                                                </ul>
                                                <ul class="bk-links">
                                                    <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
                                                    <li><a href="#" title=""><i class="la la-envelope"></i></a></li>
+                                                   <li v-if="posts.type == 'servic'"><a href="#" title="" class="bid_now">Bid Now</a></li>
                                                </ul>
                                            </div>
                                            <div class="job_descp">
-                                               <h3>Senior Wordpress Developer</h3>
+                                               <h3>{{posts.title}}</h3>
                                                <ul class="job-dt">
                                                    <li><a href="#" title="">Full Time</a></li>
-                                                   <li><span>$30 / hr</span></li>
+                                                   <li><span>DH{{posts.price}}</span></li>
                                                </ul>
-                                               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... <a href="#" title="">view more</a></p>
+                                               <p>{{posts.body}} ... <a href="#" title="">view more</a></p>
                                                <ul class="skill-tags">
-                                                   <li><a href="#" title="">HTML</a></li>
-                                                   <li><a href="#" title="">PHP</a></li>
-                                                   <li><a href="#" title="">CSS</a></li>
-                                                   <li><a href="#" title="">Javascript</a></li>
-                                                   <li><a href="#" title="">Wordpress</a></li>
+                                                   <li><a href="#" title="">{{posts.category_name}}</a></li>
                                                </ul>
                                            </div>
-                                           <div class="job-status-bar">
-                                               <ul class="like-com">
-                                                   <li>
-                                                       <a href="#"><i class="la la-heart"></i> Like</a>
-                                                       <img src="images/liked-img.png" alt="">
-                                                       <span>25</span>
-                                                   </li>
-                                                   <li><a href="#" title="" class="com"><img src="images/com.png" alt=""> Comment 15</a></li>
-                                               </ul>
-                                               <a><i class="la la-eye"></i>Views 50</a>
-                                           </div>
-                                       </div><!--post-bar end-->
 
-                                       <div class="post-bar">
-                                           <div class="post_topbar">
-                                               <div class="usy-dt">
-                                                   <img src="http://via.placeholder.com/50x50" alt="">
-                                                   <div class="usy-name">
-                                                       <h3>John Doe</h3>
-                                                       <span><img src="images/clock.png" alt="">3 min ago</span>
-                                                   </div>
-                                               </div>
-                                               <div class="ed-opts">
-                                                   <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-                                                   <ul class="ed-options">
-                                                       <li><a href="#" title="">Edit Post</a></li>
-                                                       <li><a href="#" title="">Unsaved</a></li>
-                                                       <li><a href="#" title="">Unbid</a></li>
-                                                       <li><a href="#" title="">Close</a></li>
-                                                       <li><a href="#" title="">Hide</a></li>
-                                                   </ul>
-                                               </div>
-                                           </div>
-                                           <div class="epi-sec">
-                                               <ul class="descp">
-                                                   <li><img src="images/icon8.png" alt=""><span>Epic Coder</span></li>
-                                                   <li><img src="images/icon9.png" alt=""><span>India</span></li>
-                                               </ul>
-                                               <ul class="bk-links">
-                                                   <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
-                                                   <li><a href="#" title=""><i class="la la-envelope"></i></a></li>
-                                                   <li><a href="#" title="" class="bid_now">Bid Now</a></li>
-                                               </ul>
-                                           </div>
-                                           <div class="job_descp">
-                                               <h3>Senior Wordpress Developer</h3>
-                                               <ul class="job-dt">
-                                                   <li><a href="#" title="">Full Time</a></li>
-                                                   <li><span>$30 / hr</span></li>
-                                               </ul>
-                                               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... <a href="#" title="">view more</a></p>
-                                               <ul class="skill-tags">
-                                                   <li><a href="#" title="">HTML</a></li>
-                                                   <li><a href="#" title="">PHP</a></li>
-                                                   <li><a href="#" title="">CSS</a></li>
-                                                   <li><a href="#" title="">Javascript</a></li>
-                                                   <li><a href="#" title="">Wordpress</a></li>
-                                               </ul>
-                                           </div>
-                                           <div class="job-status-bar">
-                                               <ul class="like-com">
-                                                   <li>
-                                                       <a href="#"><i class="la la-heart"></i> Like</a>
-                                                       <img src="images/liked-img.png" alt="">
-                                                       <span>25</span>
-                                                   </li>
-                                                   <li><a href="#" title="" class="com"><img src="images/com.png" alt=""> Comment 15</a></li>
-                                               </ul>
-                                               <a><i class="la la-eye"></i>Views 50</a>
-                                           </div>
-                                       </div><!--post-bar end-->
+                                       </div>
+                                   <!--post-bar end-->
+                                       <infinite-loading  @distance="1" @infinite="infiniteHandler"></infinite-loading>
 
-                                       <div class="process-comm">
-                                           <div class="spinner">
-                                               <div class="bounce1"></div>
-                                               <div class="bounce2"></div>
-                                               <div class="bounce3"></div>
-                                           </div>
-                                       </div><!--process-comm end-->
+
+
+
                                    </div><!--posts-section end-->
                                </div><!--main-ws-sec end-->
                            </div>
@@ -456,6 +382,52 @@
 
 <script>
     export default {
+        data () {
+            return {
+                // Create a new form instance
+                post:{},
+                lastPage:0,
+                page: 1,
+
+            }
+        },
+        methods:{
+            LoadPost:function () {
+                let vm = this;
+                axios.get('api/AllPosts').then(({data})=>{this.post = data.data
+                    vm.lastPage = data.meta.last_page
+                })
+            },
+            infiniteHandler:function ($state) {
+                let vm = this;
+                if(this.post.length != 0){
+                    axios.get('api/AllPosts?page='+this.page)
+                        .then(response => {
+                            return response.data;
+                        }).then(data => {
+                        //
+                        if(this.page  -1  == this.lastPage){
+                            $state.complete();
+                        } else {
+                            setTimeout(function() {
+                                $.each(data.data, function(key, value) {
+                                    vm.post.push(value);
+                                });
+                                $state.loaded();
+                                Vue.nextTick(function () {
+                                    $('[data-toggle="tooltip"]').tooltip();
+                                });
+                            }.bind(this), 0);
+                        }
+
+                    });
+                    this.page = this.page + 1;
+                }else{
+                    $state.complete();
+                }
+
+            },
+        },
         watch: {
             $route: {
                 immediate: true,
@@ -463,6 +435,9 @@
                     document.title = to.meta.title || 'Home | Brikole';
                 }
             },
+        },
+        created(){
+            this.LoadPost()
         },
         mounted() {
             this.$Progress.start()

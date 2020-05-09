@@ -112,8 +112,7 @@ table {
 	border-spacing: 0;
 }
 .router-link-exact-active{
-    background-color: #70defa;
-    color: white !important;
+    color: #70defa !important;
 }
 * {
 	margin:0;

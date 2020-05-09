@@ -2323,81 +2323,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      // Create a new form instance
+      post: {},
+      lastPage: 0,
+      page: 1
+    };
+  },
+  methods: {
+    LoadPost: function LoadPost() {
+      var _this = this;
+
+      var vm = this;
+      axios.get('api/AllPosts').then(function (_ref) {
+        var data = _ref.data;
+        _this.post = data.data;
+        vm.lastPage = data.meta.last_page;
+      });
+    },
+    infiniteHandler: function infiniteHandler($state) {
+      var _this2 = this;
+
+      var vm = this;
+
+      if (this.post.length != 0) {
+        axios.get('api/AllPosts?page=' + this.page).then(function (response) {
+          return response.data;
+        }).then(function (data) {
+          //
+          if (_this2.page - 1 == _this2.lastPage) {
+            $state.complete();
+          } else {
+            setTimeout(function () {
+              $.each(data.data, function (key, value) {
+                vm.post.push(value);
+              });
+              $state.loaded();
+              Vue.nextTick(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+              });
+            }.bind(_this2), 0);
+          }
+        });
+        this.page = this.page + 1;
+      } else {
+        $state.complete();
+      }
+    }
+  },
   watch: {
     $route: {
       immediate: true,
@@ -2405,6 +2380,9 @@ __webpack_require__.r(__webpack_exports__);
         document.title = to.meta.title || 'Home | Brikole';
       }
     }
+  },
+  created: function created() {
+    this.LoadPost();
   },
   mounted: function mounted() {
     this.$Progress.start();
@@ -60909,7 +60887,134 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _vm._m(3),
+              _c("div", { staticClass: "col-lg-6 col-md-8 no-pd" }, [
+                _c("div", { staticClass: "main-ws-sec" }, [
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "posts-section" },
+                    [
+                      _vm._l(_vm.post, function(posts) {
+                        return _c("div", { staticClass: "post-bar" }, [
+                          _c("div", { staticClass: "post_topbar" }, [
+                            _c("div", { staticClass: "usy-dt" }, [
+                              _c("img", {
+                                attrs: {
+                                  src: posts.image_path
+                                    ? posts.image_path
+                                    : "https://via.placeholder.com/100",
+                                  alt: ""
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "usy-name" }, [
+                                _c("h3", [
+                                  _vm._v(_vm._s(posts.user_name) + " ")
+                                ]),
+                                _vm._v(" "),
+                                _c("span", [
+                                  _c("img", {
+                                    attrs: { src: "images/clock.png", alt: "" }
+                                  }),
+                                  _vm._v(
+                                    _vm._s(_vm._f("mydate")(posts.created_at)) +
+                                      "  "
+                                  )
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _vm._m(4, true)
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "epi-sec" }, [
+                            _c("ul", { staticClass: "descp" }, [
+                              _c("li", [
+                                _c("img", {
+                                  attrs: { src: "images/icon8.png", alt: "" }
+                                }),
+                                _c("span", [
+                                  _vm._v(
+                                    _vm._s(
+                                      posts.is_done ? "done" : "available"
+                                    ) + " "
+                                  )
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("li", [
+                                _c("img", {
+                                  attrs: { src: "images/icon9.png", alt: "" }
+                                }),
+                                _c("span", [
+                                  _vm._v(" " + _vm._s(posts.city_name))
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("ul", { staticClass: "bk-links" }, [
+                              _vm._m(5, true),
+                              _vm._v(" "),
+                              _vm._m(6, true),
+                              _vm._v(" "),
+                              posts.type == "servic"
+                                ? _c("li", [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "bid_now",
+                                        attrs: { href: "#", title: "" }
+                                      },
+                                      [_vm._v("Bid Now")]
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "job_descp" }, [
+                            _c("h3", [_vm._v(_vm._s(posts.title))]),
+                            _vm._v(" "),
+                            _c("ul", { staticClass: "job-dt" }, [
+                              _vm._m(7, true),
+                              _vm._v(" "),
+                              _c("li", [
+                                _c("span", [_vm._v("DH" + _vm._s(posts.price))])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(_vm._s(posts.body) + " ... "),
+                              _c("a", { attrs: { href: "#", title: "" } }, [
+                                _vm._v("view more")
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("ul", { staticClass: "skill-tags" }, [
+                              _c("li", [
+                                _c("a", { attrs: { href: "#", title: "" } }, [
+                                  _vm._v(_vm._s(posts.category_name))
+                                ])
+                              ])
+                            ])
+                          ])
+                        ])
+                      }),
+                      _vm._v(" "),
+                      _c("infinite-loading", {
+                        on: {
+                          distance: function($event) {
+                            1
+                          },
+                          infinite: _vm.infiniteHandler
+                        }
+                      })
+                    ],
+                    2
+                  )
+                ])
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-lg-3 pd-right-none no-pd" }, [
                 _c("div", { staticClass: "right-sidebar" }, [
@@ -60923,13 +61028,13 @@ var render = function() {
                         _vm._v(" "),
                         _c("span", [_vm._v("Signed In Now ")]),
                         _vm._v(" "),
-                        _vm._m(4)
+                        _vm._m(8)
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm._m(5),
+                  _vm._m(9),
                   _vm._v(" "),
-                  _vm._m(6)
+                  _vm._m(10)
                 ])
               ])
             ])
@@ -60938,9 +61043,9 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(7),
+    _vm._m(11),
     _vm._v(" "),
-    _vm._m(8)
+    _vm._m(12)
   ])
 }
 var staticRenderFns = [
@@ -61084,406 +61189,97 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-6 col-md-8 no-pd" }, [
-      _c("div", { staticClass: "main-ws-sec" }, [
-        _c("div", { staticClass: "post-topbar" }, [
-          _c("div", { staticClass: "user-picy" }, [
-            _c("img", {
-              attrs: { src: "http://via.placeholder.com/100x100", alt: "" }
-            })
+    return _c("div", { staticClass: "post-topbar" }, [
+      _c("div", { staticClass: "user-picy" }, [
+        _c("img", {
+          attrs: { src: "http://via.placeholder.com/100x100", alt: "" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "post-st" }, [
+        _c("ul", [
+          _c("li", [
+            _c(
+              "a",
+              { staticClass: "post_project", attrs: { href: "#", title: "" } },
+              [_vm._v("Post a Project")]
+            )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "post-st" }, [
-            _c("ul", [
-              _c("li", [
-                _c(
-                  "a",
-                  {
-                    staticClass: "post_project",
-                    attrs: { href: "#", title: "" }
-                  },
-                  [_vm._v("Post a Project")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c(
-                  "a",
-                  {
-                    staticClass: "post-jb active",
-                    attrs: { href: "#", title: "" }
-                  },
-                  [_vm._v("Post a Job")]
-                )
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "posts-section" }, [
-          _c("div", { staticClass: "post-bar" }, [
-            _c("div", { staticClass: "post_topbar" }, [
-              _c("div", { staticClass: "usy-dt" }, [
-                _c("img", {
-                  attrs: { src: "http://via.placeholder.com/50x50", alt: "" }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "usy-name" }, [
-                  _c("h3", [_vm._v("John Doe")]),
-                  _vm._v(" "),
-                  _c("span", [
-                    _c("img", { attrs: { src: "images/clock.png", alt: "" } }),
-                    _vm._v("3 min ago")
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "ed-opts" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "ed-opts-open",
-                    attrs: { href: "#", title: "" }
-                  },
-                  [_c("i", { staticClass: "la la-ellipsis-v" })]
-                ),
-                _vm._v(" "),
-                _c("ul", { staticClass: "ed-options" }, [
-                  _c("li", [
-                    _c("a", { attrs: { href: "#", title: "" } }, [
-                      _vm._v("Edit Post")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#", title: "" } }, [
-                      _vm._v("Unsaved")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#", title: "" } }, [
-                      _vm._v("Unbid")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#", title: "" } }, [
-                      _vm._v("Close")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#", title: "" } }, [
-                      _vm._v("Hide")
-                    ])
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "epi-sec" }, [
-              _c("ul", { staticClass: "descp" }, [
-                _c("li", [
-                  _c("img", { attrs: { src: "images/icon8.png", alt: "" } }),
-                  _c("span", [_vm._v("Epic Coder")])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("img", { attrs: { src: "images/icon9.png", alt: "" } }),
-                  _c("span", [_vm._v("India")])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("ul", { staticClass: "bk-links" }, [
-                _c("li", [
-                  _c("a", { attrs: { href: "#", title: "" } }, [
-                    _c("i", { staticClass: "la la-bookmark" })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "#", title: "" } }, [
-                    _c("i", { staticClass: "la la-envelope" })
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "job_descp" }, [
-              _c("h3", [_vm._v("Senior Wordpress Developer")]),
-              _vm._v(" "),
-              _c("ul", { staticClass: "job-dt" }, [
-                _c("li", [
-                  _c("a", { attrs: { href: "#", title: "" } }, [
-                    _vm._v("Full Time")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [_c("span", [_vm._v("$30 / hr")])])
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... "
-                ),
-                _c("a", { attrs: { href: "#", title: "" } }, [
-                  _vm._v("view more")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("ul", { staticClass: "skill-tags" }, [
-                _c("li", [
-                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("HTML")])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("PHP")])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("CSS")])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "#", title: "" } }, [
-                    _vm._v("Javascript")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "#", title: "" } }, [
-                    _vm._v("Wordpress")
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "job-status-bar" }, [
-              _c("ul", { staticClass: "like-com" }, [
-                _c("li", [
-                  _c("a", { attrs: { href: "#" } }, [
-                    _c("i", { staticClass: "la la-heart" }),
-                    _vm._v(" Like")
-                  ]),
-                  _vm._v(" "),
-                  _c("img", {
-                    attrs: { src: "images/liked-img.png", alt: "" }
-                  }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("25")])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "a",
-                    { staticClass: "com", attrs: { href: "#", title: "" } },
-                    [
-                      _c("img", { attrs: { src: "images/com.png", alt: "" } }),
-                      _vm._v(" Comment 15")
-                    ]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("a", [
-                _c("i", { staticClass: "la la-eye" }),
-                _vm._v("Views 50")
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "post-bar" }, [
-            _c("div", { staticClass: "post_topbar" }, [
-              _c("div", { staticClass: "usy-dt" }, [
-                _c("img", {
-                  attrs: { src: "http://via.placeholder.com/50x50", alt: "" }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "usy-name" }, [
-                  _c("h3", [_vm._v("John Doe")]),
-                  _vm._v(" "),
-                  _c("span", [
-                    _c("img", { attrs: { src: "images/clock.png", alt: "" } }),
-                    _vm._v("3 min ago")
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "ed-opts" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "ed-opts-open",
-                    attrs: { href: "#", title: "" }
-                  },
-                  [_c("i", { staticClass: "la la-ellipsis-v" })]
-                ),
-                _vm._v(" "),
-                _c("ul", { staticClass: "ed-options" }, [
-                  _c("li", [
-                    _c("a", { attrs: { href: "#", title: "" } }, [
-                      _vm._v("Edit Post")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#", title: "" } }, [
-                      _vm._v("Unsaved")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#", title: "" } }, [
-                      _vm._v("Unbid")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#", title: "" } }, [
-                      _vm._v("Close")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#", title: "" } }, [
-                      _vm._v("Hide")
-                    ])
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "epi-sec" }, [
-              _c("ul", { staticClass: "descp" }, [
-                _c("li", [
-                  _c("img", { attrs: { src: "images/icon8.png", alt: "" } }),
-                  _c("span", [_vm._v("Epic Coder")])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("img", { attrs: { src: "images/icon9.png", alt: "" } }),
-                  _c("span", [_vm._v("India")])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("ul", { staticClass: "bk-links" }, [
-                _c("li", [
-                  _c("a", { attrs: { href: "#", title: "" } }, [
-                    _c("i", { staticClass: "la la-bookmark" })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "#", title: "" } }, [
-                    _c("i", { staticClass: "la la-envelope" })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "a",
-                    { staticClass: "bid_now", attrs: { href: "#", title: "" } },
-                    [_vm._v("Bid Now")]
-                  )
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "job_descp" }, [
-              _c("h3", [_vm._v("Senior Wordpress Developer")]),
-              _vm._v(" "),
-              _c("ul", { staticClass: "job-dt" }, [
-                _c("li", [
-                  _c("a", { attrs: { href: "#", title: "" } }, [
-                    _vm._v("Full Time")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [_c("span", [_vm._v("$30 / hr")])])
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... "
-                ),
-                _c("a", { attrs: { href: "#", title: "" } }, [
-                  _vm._v("view more")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("ul", { staticClass: "skill-tags" }, [
-                _c("li", [
-                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("HTML")])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("PHP")])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("CSS")])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "#", title: "" } }, [
-                    _vm._v("Javascript")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "#", title: "" } }, [
-                    _vm._v("Wordpress")
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "job-status-bar" }, [
-              _c("ul", { staticClass: "like-com" }, [
-                _c("li", [
-                  _c("a", { attrs: { href: "#" } }, [
-                    _c("i", { staticClass: "la la-heart" }),
-                    _vm._v(" Like")
-                  ]),
-                  _vm._v(" "),
-                  _c("img", {
-                    attrs: { src: "images/liked-img.png", alt: "" }
-                  }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("25")])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "a",
-                    { staticClass: "com", attrs: { href: "#", title: "" } },
-                    [
-                      _c("img", { attrs: { src: "images/com.png", alt: "" } }),
-                      _vm._v(" Comment 15")
-                    ]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("a", [
-                _c("i", { staticClass: "la la-eye" }),
-                _vm._v("Views 50")
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "process-comm" }, [
-            _c("div", { staticClass: "spinner" }, [
-              _c("div", { staticClass: "bounce1" }),
-              _vm._v(" "),
-              _c("div", { staticClass: "bounce2" }),
-              _vm._v(" "),
-              _c("div", { staticClass: "bounce3" })
-            ])
+          _c("li", [
+            _c(
+              "a",
+              {
+                staticClass: "post-jb active",
+                attrs: { href: "#", title: "" }
+              },
+              [_vm._v("Post a Job")]
+            )
           ])
         ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "ed-opts" }, [
+      _c(
+        "a",
+        { staticClass: "ed-opts-open", attrs: { href: "#", title: "" } },
+        [_c("i", { staticClass: "la la-ellipsis-v" })]
+      ),
+      _vm._v(" "),
+      _c("ul", { staticClass: "ed-options" }, [
+        _c("li", [
+          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Edit Post")])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Unsaved")])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Unbid")])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Close")])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Hide")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "#", title: "" } }, [
+        _c("i", { staticClass: "la la-bookmark" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "#", title: "" } }, [
+        _c("i", { staticClass: "la la-envelope" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Full Time")])
     ])
   },
   function() {

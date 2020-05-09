@@ -8,6 +8,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link rel="icon" href="{{asset('images/logotesticon.png')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/animate.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/jquery.range.css')}}">
@@ -19,6 +20,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('lib/slick/slick-theme.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/responsive.css')}}">
+
     @yield('style')
 </head>
 
@@ -42,27 +44,24 @@
                 <nav>
                     <ul>
                         <li>
-                            <span><img src="images/icon1.png" alt=""></span>
-                            <router-link to="/home" >Home</router-link>
+
+                            <router-link to="/home" ><span><i class="fas fa-home"></i></span>Home</router-link>
 
                         </li>
 
                         <li>
-                            <span><img src="images/icon3.png" alt=""></span>
-                            <router-link to="/Projects" >Projects</router-link>
+                            <router-link to="/Projects" ><span><i class="fas fa-project-diagram"></i></span>Projects</router-link>
 
                         </li>
                         <li v-if="$gets.IsLogedIn()">
-                            <span><img src="images/icon4.png" alt=""></span>
-                            <router-link to="/Profile" >Profiles</router-link>
+                            <router-link to="/Profile" ><span><i class="fas fa-user-circle"></i></span> Profiles</router-link>
                         </li>
                         <li>
-                            <span><img src="images/icon5.png" alt=""></span>
-                            <router-link to="/Jobs" >Jobs</router-link>
+                            <router-link to="/Jobs" ><span><i class="fas fa-briefcase"></i></span>Jobs</router-link>
                         </li>
                         <li v-if="$gets.IsLogedIn()">
                             <a href="javascript:void(0)" title="" class="not-box-open" class="nav-link">
-                                <span><img src="images/icon6.png" alt=""></span>
+                                <span><i class="fas fa-envelope"></i></span>
                                 Messages
                             </a>
                             <div class="notification-box msg">
@@ -109,7 +108,7 @@
                         </li>
                         <li v-if="$gets.IsLogedIn()">
                             <a href="javascript:void(0)" title="" class="not-box-open">
-                                <span><img src="images/icon7.png" alt=""></span>
+                                <span><i class="fas fa-bell"></i></span>
                                 Notification
                             </a>
                             <div class="notification-box">
