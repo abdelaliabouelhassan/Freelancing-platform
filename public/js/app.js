@@ -7837,7 +7837,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * jQuery JavaScript Library v3.5.1
+ * jQuery JavaScript Library v3.5.0
  * https://jquery.com/
  *
  * Includes Sizzle.js
@@ -7847,7 +7847,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
  * Released under the MIT license
  * https://jquery.org/license
  *
- * Date: 2020-05-04T22:49Z
+ * Date: 2020-04-10T15:07Z
  */
 ( function( global, factory ) {
 
@@ -7985,7 +7985,7 @@ function toType( obj ) {
 
 
 var
-	version = "3.5.1",
+	version = "3.5.0",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -12082,7 +12082,7 @@ Data.prototype = {
 
 		// If not, create one
 		if ( !value ) {
-			value = {};
+			value = Object.create( null );
 
 			// We can accept data for non-element nodes in modern browsers,
 			// but we should not, see #8335.
@@ -80532,7 +80532,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: Can't find stylesheet to import.\n  ╷\n9 │ @import \"~@fortawesome/fontawesome-free/scss/fontawesome.scss\";\r\n  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  ╵\n  D:\\project\\Altf4\\resources\\sass\\app.scss 9:9  root stylesheet\n    at D:\\project\\Altf4\\node_modules\\webpack\\lib\\NormalModule.js:316:20\n    at D:\\project\\Altf4\\node_modules\\loader-runner\\lib\\LoaderRunner.js:367:11\n    at D:\\project\\Altf4\\node_modules\\loader-runner\\lib\\LoaderRunner.js:233:18\n    at context.callback (D:\\project\\Altf4\\node_modules\\loader-runner\\lib\\LoaderRunner.js:111:13)\n    at D:\\project\\Altf4\\node_modules\\sass-loader\\dist\\index.js:73:7\n    at Function.call$2 (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:87584:16)\n    at _render_closure1.call$2 (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:77359:12)\n    at _RootZone.runBinary$3$3 (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:25587:18)\n    at _RootZone.runBinary$3 (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:25591:19)\n    at _FutureListener.handleError$1 (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:24041:19)\n    at _Future__propagateToListeners_handleError.call$0 (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:24337:40)\n    at Object._Future__propagateToListeners (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:3497:88)\n    at _Future._completeError$2 (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:24165:9)\n    at _AsyncAwaitCompleter.completeError$2 (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:23557:12)\n    at Object._asyncRethrow (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:3253:17)\n    at D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:13333:20\n    at _wrapJsFunctionForAsync_closure.$protected (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:3276:15)\n    at _wrapJsFunctionForAsync_closure.call$2 (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:23578:12)\n    at _awaitOnObject_closure0.call$2 (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:23570:25)\n    at _RootZone.runBinary$3$3 (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:25587:18)\n    at _RootZone.runBinary$3 (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:25591:19)\n    at _FutureListener.handleError$1 (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:24041:19)\n    at _Future__propagateToListeners_handleError.call$0 (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:24337:40)\n    at Object._Future__propagateToListeners (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:3497:88)\n    at _Future._completeError$2 (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:24165:9)\n    at _AsyncAwaitCompleter.completeError$2 (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:23557:12)\n    at Object._asyncRethrow (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:3253:17)\n    at D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:15991:20\n    at _wrapJsFunctionForAsync_closure.$protected (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:3276:15)\n    at _wrapJsFunctionForAsync_closure.call$2 (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:23578:12)\n    at _awaitOnObject_closure0.call$2 (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:23570:25)\n    at _RootZone.runBinary$3$3 (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:25587:18)\n    at _RootZone.runBinary$3 (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:25591:19)\n    at _FutureListener.handleError$1 (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:24041:19)\n    at _Future__propagateToListeners_handleError.call$0 (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:24337:40)\n    at Object._Future__propagateToListeners (D:\\project\\Altf4\\node_modules\\sass\\sass.dart.js:3497:88)");
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -80543,8 +80543,8 @@ throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\project\Altf4\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\project\Altf4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\wamp64\www\brikol.ma\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\brikol.ma\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

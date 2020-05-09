@@ -539,7 +539,7 @@ nav ul ul li a {
 	background-color: #1B9DE2;
 	color: #fff;
 	cursor: pointer;
-	margin-left: auto;		
+	margin-left: auto;
 }
 .show-filter{
 	position: fixed;
@@ -584,7 +584,7 @@ nav > ul > li > a:hover {
 	float: left;
 	width: auto;
 	padding: 13px 10px;
-	position: relative;	
+	position: relative;
 	transform: translate(60px, 0px);
 }
 .user-account-settingss {
@@ -722,7 +722,7 @@ nav > ul > li > a:hover {
 	-ms-border-radius: 100px;
 	-o-border-radius: 100px;
 	border-radius: 100px;
-	height: 40px;	
+	height: 40px;
 }
 .user-info a {
 	color: #fff;
@@ -3600,7 +3600,7 @@ filter
 }
 .search-box {
 	float: left;
-	width: 100%;	
+	width: 100%;
 }
 .search-box form {
 	float: left;
@@ -3644,7 +3644,7 @@ filter
 
 /* =============== filter-secs ============== */
 .filter{
-	position: absolute;		
+	position: absolute;
 	width: 240px;
 	background-color: #fff;
 	border-left: 1px solid #e5e5e5;

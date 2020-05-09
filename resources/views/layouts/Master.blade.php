@@ -61,7 +61,7 @@
                         <li>
                             <router-link to="/Jobs" >
                             <span><i class="fa fa-briefcase"></i></span>
-                            Jobs</router-link>  
+                            Jobs</router-link>
                         </li>
                         <li v-if="$gets.IsLogedIn()">
                             <a href="javascript:void(0)" title="" class="not-box-open" class="nav-link">

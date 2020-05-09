@@ -1,11 +1,11 @@
 
-
 @media (max-width: 1200px) {
 	header nav {position: relative;top: 0;left: 0;width: 200px;height: 100%;background-color: #e44d3a;padding: 25px 20px;opacity: 0;display: none;z-index: 0;transition: 0.7s ease-in !important;}
 	header nav.active {opacity: 1;display: contents;z-index: 9999; transition: 0.7s ease-in; margin-top: 10px;}
 	header nav ul li {float: left;width: 100%;text-align: left;padding: 0 0 0 0;margin-bottom: 20px;}
 	.menu-btn {display: block; margin-right: 40px;}
-	header nav ul li span {display: inline-block;margin-right: 10px;}
+    header nav   {max-width: 52% !important}
+    header nav ul li span {display: inline-block;margin-right: 10px;}
 	.user-info {position: fixed ;top:0%;transform: translate(60px, 0px);}
 	.widget-about h3 {font-size: 16px;}
 	.widget-about span {font-size: 13px;}
@@ -113,7 +113,7 @@
 	.forum-post-view .usr_quest {width: 100%;padding: 0;margin-top: 20px;}
 	.mf-field input {width: 100%;margin-bottom: 20px;}
 	.mf-field button {margin-left: 0;margin-bottom: 10px;}
-	.message-inner-dt > img {margin-bottom: 10px;}	
+	.message-inner-dt > img {margin-bottom: 10px;}
 }
 
 
@@ -123,7 +123,7 @@
 	.logo {width: 100%;text-align: center;}
 	.logo img {float: none;}
 	.search-bar {width: 100%;}
-	.user-account {float: right;}	
+	.user-account {float: right;}
 	.cm_img {width: 100%;text-align: center;margin-bottom: 10px;}
 	.cm_img img {float: none;}
 	.comment_box {width: 100%;}
@@ -172,7 +172,7 @@
 	.notification-info {width: 100%;padding: 0;margin-top: 15px;}
 	.notification-info h3 {line-height: 18px;}
 	.conversation-box {width: 100%;right: 0;}
-	.user-account-settingss {right: auto;left: 0;}	
+	.user-account-settingss {right: auto;left: 0;}
 	.login-resources {text-align: left;}
 	.forum-bar ul li:last-child {margin-bottom: 0;}
 	.conversation-box {left: -20px;width: 280px;}
