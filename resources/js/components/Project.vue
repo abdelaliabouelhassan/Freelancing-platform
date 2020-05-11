@@ -58,7 +58,7 @@
                                             </div>
                                             <form class="job-tp">
                                                 <select @change="filterpost"  v-model="cat">
-                                                    <option value="0">Select a job Category</option>
+                                                    <option value="0">Select a Project Category</option>
                                                     <option v-for="categorys in category" :value="categorys.id">{{categorys.category_name}}</option>
                                                 </select>
                                                 <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
@@ -103,7 +103,7 @@
                                         <div class="post-bar" v-for="posts in post">
                                             <div class="post_topbar">
                                                 <div class="usy-dt">
-                                                    <img :src="posts.image_path ? posts.image_path : 'https://via.placeholder.com/100'" alt="">
+                                                    <img :src="posts.image_path ? posts.image_path : 'https://via.placeholder.com/100'" alt="User Image">
                                                     <div class="usy-name">
                                                         <h3>{{posts.user_name}} </h3>
                                                         <span><img src="images/clock.png" alt="">{{posts.created_at | mydate}}  </span>

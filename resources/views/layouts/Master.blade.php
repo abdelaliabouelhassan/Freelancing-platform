@@ -109,60 +109,7 @@
                                     </div>
                                 </div><!--nott-list end-->
                             </div><!--notification-box end-->
-                        </li>
-                        <li v-if="$gets.IsLogedIn()">
-                            <a href="javascript:void(0)" title="" class="not-box-open">
-                                <span><i class="fas fa-bell"></i></span>
-                                Notification
-                            </a>
-                            <div class="notification-box">
-                                <div class="nt-title">
-                                    <h4>Setting</h4>
-                                    <a href="#" title="">Clear all</a>
-                                </div>
-                                <div class="nott-list">
-                                    <div class="notfication-details">
-                                        <div class="noty-user-img">
-                                            <img src="" alt="">
-                                        </div>
-                                        <div class="notification-info">
-                                            <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                                            <span>2 min ago</span>
-                                        </div><!--notification-info -->
-                                    </div>
-                                    <div class="notfication-details">
-                                        <div class="noty-user-img">
-                                            <img src="" alt="">
-                                        </div>
-                                        <div class="notification-info">
-                                            <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                                            <span>2 min ago</span>
-                                        </div><!--notification-info -->
-                                    </div>
-                                    <div class="notfication-details">
-                                        <div class="noty-user-img">
-                                            <img src="" alt="">
-                                        </div>
-                                        <div class="notification-info">
-                                            <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                                            <span>2 min ago</span>
-                                        </div><!--notification-info -->
-                                    </div>
-                                    <div class="notfication-details">
-                                        <div class="noty-user-img">
-                                            <img src="" alt="">
-                                        </div>
-                                        <div class="notification-info">
-                                            <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                                            <span>2 min ago</span>
-                                        </div><!--notification-info -->
-                                    </div>
-                                    <div class="view-all-nots">
-                                        <a href="#" title="">View All Notification</a>
-                                    </div>
-                                </div><!--nott-list end-->
-                            </div><!--notification-box end-->
-                        </li>
+                        </li>                        
                     </ul>
                 </nav><!--nav end-->
                 <!--menu-btn end-->

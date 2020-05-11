@@ -4,11 +4,11 @@
         <main>
             <div class="show-filter">
                 Filter
-                                <i class="fa fa-search"></i> 
+                                <i class="fa fa-search"></i>
                             </div>
-                                    
+
                         <div class="filter">
-                            
+
                             <div class=" filter-file">
                                 <div class="filter-secs">
                                     <div class="search-box">
@@ -99,20 +99,19 @@
                             <p v-for="searchresults in searchresult" @click="takevalue(searchresults.title)">
                                 <b class="panel-footer">{{searchresults.title}}</b>
                             </p>
-                        </div>                    
+                        </div>
             <!--search-sec end-->
             <div class="main-section">
                 <div class="container">
                     <div class="main-section-data">
-                        <div class="row">                            
+                        <div class="row">
                             <div class="col-md">
                                 <div class="main-ws-sec">
                                     <div class="posts-section">
                                         <div class="post-bar" v-for="posts in post">
                                             <div class="post_topbar">
                                                 <div class="usy-dt">
-                                                    <img :src="posts.image_path ? posts.image_path : 'https://via.placeholder.com/100'"
-                                                        alt="">
+                                                    <img :src="posts.image_path ? posts.image_path : 'https://via.placeholder.com/100'" alt="User Image">
                                                     <div class="usy-name">
                                                         <h3>{{posts.user_name}} </h3>
                                                         <span><img src="images/clock.png"

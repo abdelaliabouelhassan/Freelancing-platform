@@ -38,5 +38,11 @@ Route::get('AllPosts','API\PostController@AllPosts');
 
 /*  END POSTS api */
 
+/* Project*/
+Route::apiResources(['CreateProject'=>'API\ProjectController']);
 
+/*End Project*/
+
+/*Jobs*/
+/*End Jobs*/
 

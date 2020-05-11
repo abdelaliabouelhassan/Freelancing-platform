@@ -26,6 +26,7 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.13.0",
         "moment": "^2.25.3",
+        "sweetalert2": "^9.10.12",
         "vform": "^1.0.1",
         "vue-infinite-loading": "^2.4.5",
         "vue-progressbar": "^0.7.5",

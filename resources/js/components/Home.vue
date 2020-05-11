@@ -103,8 +103,8 @@
                                        </div>
                                        <div class="post-st">
                                            <ul>
-                                               <li><a class="post_project" href="#" title="">Post a Project</a></li>
-                                               <li><a class="post-jb active" href="#" title="">Post a Job</a></li>
+                                               <li><a class="post_project" href="javascript:void(0)" title="">Post a Project</a></li>
+                                               <li><a class="post-jb active" href="javascript:void(0)" title="">Post a Job</a></li>
                                            </ul>
                                        </div><!--post-st end-->
                                    </div><!--post-topbar end-->
@@ -279,39 +279,57 @@
            <div class="post-project">
                <h3>Post a project</h3>
                <div class="post-project-fields">
-                   <form>
+                   <form @submit.prevent="CreateProject()">
                        <div class="row">
                            <div class="col-lg-12">
-                               <input type="text" name="title" placeholder="Title">
+                               <input type="text" name="title" placeholder="Title"  class="form-control" v-model="form.title" :class="{ 'is-invalid': form.errors.has('title') }">
+                               <has-error :form="form" field="title"></has-error>
+                               <br>
                            </div>
                            <div class="col-lg-12">
                                <div class="inp-field">
-                                   <select>
-                                       <option>Category</option>
-                                       <option>Category 1</option>
-                                       <option>Category 2</option>
-                                       <option>Category 3</option>
+                                   <select name="category" v-model="form.category" :class="{ 'is-invalid': form.errors.has('category') }">
+                                       <option value="0">Select a Project Category</option>
+                                       <option v-for="categorys in category" :value="categorys.id">
+                                           {{categorys.category_name}}</option>
                                    </select>
+                                   <has-error :form="form" field="category"></has-error>
+                                   <br>
                                </div>
                            </div>
                            <div class="col-lg-12">
-                               <input type="text" name="skills" placeholder="Skills">
+                               <div class="inp-field">
+                                       <select name="city"  v-model="form.city" :class="{ 'is-invalid': form.errors.has('city') }">
+                                           <option value="0">Select City</option>
+                                           <option v-for="citys in city" :value="citys.id">{{citys.city_name}}
+                                           </option>
+                                       </select>
+                                   <has-error :form="form" field="city"></has-error>
+                                   <br>
+                               </div>
+                           </div>
+                           <div class="col-lg-12">
+                           <div class="price-br">
+                               <input type="file" name="image" placeholder="Upload Image" class="form-control" @change="UploadImg"  :class="{ 'is-invalid': form.errors.has('image') }">
+                               <i class="fas fa-images"></i>
+                               <has-error :form="form" field="image"></has-error>
+                               <br>
+                           </div>
                            </div>
                            <div class="col-lg-12">
                                <div class="price-sec">
                                    <div class="price-br">
-                                       <input type="text" name="price1" placeholder="Price">
+                                       <input type="text" name="price" placeholder="Price" class="form-control" v-model="form.price" :class="{ 'is-invalid': form.errors.has('price') }">
                                        <i class="la la-dollar"></i>
-                                   </div>
-                                   <span>To</span>
-                                   <div class="price-br">
-                                       <input type="text" name="price1" placeholder="Price">
-                                       <i class="la la-dollar"></i>
+                                       <has-error :form="form" field="price"></has-error>
+                                       <br>
                                    </div>
                                </div>
                            </div>
                            <div class="col-lg-12">
-                               <textarea name="description" placeholder="Description"></textarea>
+                               <textarea name="body" placeholder="Description"  class="form-control" v-model="form.body" :class="{ 'is-invalid': form.errors.has('body') }"></textarea>
+                               <has-error :form="form" field="body"></has-error>
+                               <br>
                            </div>
                            <div class="col-lg-12">
                                <ul>
@@ -330,7 +348,7 @@
            <div class="post-project">
                <h3>Post a job</h3>
                <div class="post-project-fields">
-                   <form>
+                   <form @submit.prevent="CreateJob()">
                        <div class="row">
                            <div class="col-lg-12">
                                <input type="text" name="title" placeholder="Title">
@@ -338,28 +356,34 @@
                            <div class="col-lg-12">
                                <div class="inp-field">
                                    <select>
-                                       <option>Category</option>
-                                       <option>Category 1</option>
-                                       <option>Category 2</option>
-                                       <option>Category 3</option>
+                                       <option value="0">Select a job Category</option>
+                                       <option v-for="categorys in category" :value="categorys.id">
+                                           {{categorys.category_name}}</option>
                                    </select>
                                </div>
                            </div>
                            <div class="col-lg-12">
-                               <input type="text" name="skills" placeholder="Skills">
-                           </div>
-                           <div class="col-lg-6">
-                               <div class="price-br">
-                                   <input type="text" name="price1" placeholder="Price">
-                                   <i class="la la-dollar"></i>
-                               </div>
-                           </div>
-                           <div class="col-lg-6">
                                <div class="inp-field">
                                    <select>
-                                       <option>Full Time</option>
-                                       <option>Half time</option>
+                                       <option value="0">Select City</option>
+                                       <option v-for="citys in city" :value="citys.id">{{citys.city_name}}
+                                       </option>
                                    </select>
+                               </div>
+                           </div>
+
+                           <div class="col-lg-12">
+                               <div class="price-br">
+                                   <input type="file" name="img" placeholder="Upload Image">
+                                   <i class="fas fa-images"></i>
+                               </div>
+                           </div>
+                           <div class="col-lg-12">
+                               <div class="price-sec">
+                                   <div class="price-br">
+                                       <input type="text" name="price1" placeholder="Price">
+                                       <i class="la la-dollar"></i>
+                                   </div>
                                </div>
                            </div>
                            <div class="col-lg-12">
@@ -388,6 +412,16 @@
                 post:{},
                 lastPage:0,
                 page: 1,
+                city: {},
+                category: {},
+                form: new Form({
+                    title: '',
+                    body: '',
+                    image: '',
+                    price:'',
+                    category:'0',
+                    city:'0',
+                })
 
             }
         },
@@ -427,6 +461,49 @@
                 }
 
             },
+            LoadCategory: function () {
+                axios.get('api/category').then(({
+                                                    data
+                                                }) => {
+                    this.category = data.data
+                })
+            },
+            LoadCity: function () {
+                axios.get('api/city').then(({
+                                                data
+                                            }) => {
+                    this.city = data.data
+                })
+            },
+            CreateProject:function () {
+                this.$Progress.start()
+                this.form.post('api/CreateProject')
+                    .then(()=>{
+                        $(".post-popup.pst-pj").removeClass("active");
+                        $(".wrapper").removeClass("overlay");
+
+                        this.$Progress.finish()
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Project Created Successfully'
+                        })
+                    })
+                    .catch(()=>{
+                        this.$Progress.decrease(20)
+                        this.$Progress.fail()
+                    })
+
+            },
+            CreateJob:function(){
+                this.$Progress.start()
+                console.log('job')
+                $(".post-popup.job_post").addClass("active");
+                $(".wrapper").addClass("overlay");
+                this.$Progress.finish()
+            },
+            UploadImg:function(){
+                console.log('image')
+            },
         },
         watch: {
             $route: {
@@ -437,12 +514,14 @@
             },
         },
         created(){
+            this.$Progress.start()
             this.LoadPost()
+            this.LoadCategory()
+            this.LoadCity()
+            this.$Progress.finish()
         },
         mounted() {
-            this.$Progress.start()
             console.log('Component mounted.')
-            this.$Progress.finish()
         }
     }
 </script>
