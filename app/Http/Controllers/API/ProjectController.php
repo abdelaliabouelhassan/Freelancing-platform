@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Category;
+use App\City;
 use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class ProjectController extends Controller
 {
@@ -41,16 +44,14 @@ class ProjectController extends Controller
             'category'=>'required|not_in:0',
         ]);
 
+        Category::findOrFail($request->category);
+        City::findOrFail($request->city);
         if($request->image){
-            $name = time() . '.'  . explode('/',explode(':',substr($request->img,0,strpos($request->img,';')))[1])[1];
-            \Image::make($request->img)->save(public_path('images/').$name);
-            $request['image'] = $name;
-
-        }else{
-            $request['image'] = '1';
+            $name = time() . '.'  . explode('/',explode(':',substr($request->image,0,strpos($request->image,';')))[1])[1];
+            Image::make($request->image)->save(public_path('images/').$name);
+            $imageid = \App\Image::create(['path'=>'images/' . $name]);
+            $request['image'] = $imageid->id;
         }
-
-
         Post::create([
             'title'=>$request->title,
             'body'=>$request->body,
@@ -62,7 +63,6 @@ class ProjectController extends Controller
             'image_id'=>$request->image,
         ]);
 
-        return $request->all();
     }
 
     /**

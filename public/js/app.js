@@ -2347,6 +2347,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2356,6 +2357,7 @@ __webpack_require__.r(__webpack_exports__);
       page: 1,
       city: {},
       category: {},
+      isready: true,
       form: new Form({
         title: '',
         body: '',
@@ -2426,31 +2428,68 @@ __webpack_require__.r(__webpack_exports__);
       var _this5 = this;
 
       this.$Progress.start();
-      this.form.post('api/CreateProject').then(function () {
-        $(".post-popup.pst-pj").removeClass("active");
-        $(".wrapper").removeClass("overlay");
 
-        _this5.$Progress.finish();
+      if (this.isready) {
+        this.$Progress.start();
+        this.form.post('api/CreateProject').then(function () {
+          $(".post-popup.pst-pj").removeClass("active");
+          $(".wrapper").removeClass("overlay");
 
-        Toast.fire({
-          icon: 'success',
-          title: 'Project Created Successfully'
+          _this5.$Progress.finish();
+
+          Toast.fire({
+            icon: 'success',
+            title: 'Project Created Successfully'
+          });
+          something.$emit('wherecreateuserloaddate');
+        })["catch"](function () {
+          _this5.$Progress.decrease(20);
+
+          _this5.$Progress.fail();
         });
-      })["catch"](function () {
-        _this5.$Progress.decrease(20);
-
-        _this5.$Progress.fail();
-      });
+      } else {
+        swalWithBootstrapButtons.fire('Cancelled', 'Pleas Check You Upload File', 'error');
+        this.$Progress.decrease(20);
+        this.$Progress.fail();
+      }
     },
     CreateJob: function CreateJob() {
       this.$Progress.start();
-      console.log('job');
       $(".post-popup.job_post").addClass("active");
       $(".wrapper").addClass("overlay");
       this.$Progress.finish();
     },
-    UploadImg: function UploadImg() {
-      console.log('image');
+    UploadImg: function UploadImg(e) {
+      var _this6 = this;
+
+      this.$Progress.start();
+      var file = e.target.files[0];
+      var reader = new FileReader();
+
+      if (file['type'] === 'image/jpeg' || file['type'] === 'image/png') {
+        if (file['size'] < 2111775) {
+          reader.onloadend = function (file) {
+            console.log(reader.result);
+            _this6.form.image = reader.result;
+
+            _this6.$Progress.finish();
+
+            _this6.isready = true;
+          };
+
+          reader.readAsDataURL(file);
+        } else {
+          swalWithBootstrapButtons.fire('Cancelled', 'Image Size Is Big Then 2MB', 'error');
+          this.$Progress.decrease(20);
+          this.$Progress.fail();
+          this.isready = false;
+        }
+      } else {
+        swalWithBootstrapButtons.fire('Cancelled', 'This File Is Not Image', 'error');
+        this.$Progress.decrease(20);
+        this.$Progress.fail();
+        this.isready = false;
+      }
     }
   },
   watch: {
@@ -2462,10 +2501,15 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
+    var _this7 = this;
+
     this.$Progress.start();
-    this.LoadPost();
     this.LoadCategory();
     this.LoadCity();
+    this.LoadPost();
+    something.$on('wherecreateuserloaddate', function () {
+      _this7.LoadPost();
+    });
     this.$Progress.finish();
   },
   mounted: function mounted() {
@@ -2484,6 +2528,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -2980,6 +3025,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -64127,8 +64173,8 @@ var render = function() {
                             _c("div", { staticClass: "usy-dt" }, [
                               _c("img", {
                                 attrs: {
-                                  src: posts.image_path
-                                    ? posts.image_path
+                                  src: posts.user_image
+                                    ? posts.user_image.path
                                     : "https://via.placeholder.com/100",
                                   alt: ""
                                 }
@@ -64143,10 +64189,7 @@ var render = function() {
                                   _c("img", {
                                     attrs: { src: "images/clock.png", alt: "" }
                                   }),
-                                  _vm._v(
-                                    _vm._s(_vm._f("mydate")(posts.created_at)) +
-                                      "  "
-                                  )
+                                  _vm._v(_vm._s(posts.created_at) + "  ")
                                 ])
                               ])
                             ]),
@@ -64209,6 +64252,12 @@ var render = function() {
                                 _c("span", [_vm._v("DH" + _vm._s(posts.price))])
                               ])
                             ]),
+                            _vm._v(" "),
+                            posts.post_image
+                              ? _c("img", {
+                                  attrs: { src: posts.post_image, alt: "" }
+                                })
+                              : _vm._e(),
                             _vm._v(" "),
                             _c("p", [
                               _vm._v(_vm._s(posts.body) + " ... "),
@@ -65582,10 +65631,10 @@ var render = function() {
                             _c("div", { staticClass: "usy-dt" }, [
                               _c("img", {
                                 attrs: {
-                                  src: posts.image_path
-                                    ? posts.image_path
+                                  src: posts.user_image
+                                    ? posts.user_image.path
                                     : "https://via.placeholder.com/100",
-                                  alt: "User Image"
+                                  alt: ""
                                 }
                               }),
                               _vm._v(" "),
@@ -65598,10 +65647,7 @@ var render = function() {
                                   _c("img", {
                                     attrs: { src: "images/clock.png", alt: "" }
                                   }),
-                                  _vm._v(
-                                    _vm._s(_vm._f("mydate")(posts.created_at)) +
-                                      " "
-                                  )
+                                  _vm._v(_vm._s(posts.created_at) + " ")
                                 ])
                               ])
                             ]),
@@ -65651,6 +65697,12 @@ var render = function() {
                                 _c("span", [_vm._v("DH" + _vm._s(posts.price))])
                               ])
                             ]),
+                            _vm._v(" "),
+                            posts.post_image
+                              ? _c("img", {
+                                  attrs: { src: posts.post_image, alt: "" }
+                                })
+                              : _vm._e(),
                             _vm._v(" "),
                             _c("p", [
                               _vm._v(_vm._s(posts.body) + " ... "),
@@ -66402,10 +66454,10 @@ var render = function() {
                             _c("div", { staticClass: "usy-dt" }, [
                               _c("img", {
                                 attrs: {
-                                  src: posts.image_path
-                                    ? posts.image_path
+                                  src: posts.user_image
+                                    ? posts.user_image.path
                                     : "https://via.placeholder.com/100",
-                                  alt: "User Image"
+                                  alt: ""
                                 }
                               }),
                               _vm._v(" "),
@@ -66418,10 +66470,7 @@ var render = function() {
                                   _c("img", {
                                     attrs: { src: "images/clock.png", alt: "" }
                                   }),
-                                  _vm._v(
-                                    _vm._s(_vm._f("mydate")(posts.created_at)) +
-                                      "  "
-                                  )
+                                  _vm._v(_vm._s(posts.created_at) + "  ")
                                 ])
                               ])
                             ]),
@@ -66465,6 +66514,12 @@ var render = function() {
                                 _c("span", [_vm._v("DH" + _vm._s(posts.price))])
                               ])
                             ]),
+                            _vm._v(" "),
+                            posts.post_image
+                              ? _c("img", {
+                                  attrs: { src: posts.post_image, alt: "" }
+                                })
+                              : _vm._e(),
                             _vm._v(" "),
                             _c("p", [
                               _vm._v(_vm._s(posts.body) + " ... "),
@@ -83653,6 +83708,7 @@ var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_6___default.a.mixin({
 window.Toast = Toast;
 /*End sweetalert2*/
 
+window.something = new vue__WEBPACK_IMPORTED_MODULE_1___default.a();
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

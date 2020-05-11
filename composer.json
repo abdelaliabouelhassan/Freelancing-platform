@@ -11,14 +11,15 @@
         "php": "^7.2.5",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
+        "fzaninotto/faker": "^1.9.1",
         "guzzlehttp/guzzle": "^6.5",
+        "intervention/image": "^2.5",
         "laravel/framework": "^7.0",
         "laravel/passport": "^8.4",
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "stevebauman/location": "^5.0",
-        "fzaninotto/faker": "^1.9.1"
+        "stevebauman/location": "^5.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

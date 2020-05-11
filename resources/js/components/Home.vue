@@ -112,10 +112,10 @@
                                        <div class="post-bar" v-for="posts in post">
                                            <div class="post_topbar">
                                                <div class="usy-dt">
-                                                   <img :src="posts.image_path ? posts.image_path : 'https://via.placeholder.com/100'" alt="">
+                                                   <img :src="posts.user_image ? posts.user_image.path : 'https://via.placeholder.com/100'" alt="">
                                                    <div class="usy-name">
                                                        <h3>{{posts.user_name}} </h3>
-                                                       <span><img src="images/clock.png" alt="">{{posts.created_at | mydate}}  </span>
+                                                       <span><img src="images/clock.png" alt="">{{posts.created_at}}  </span>
                                                    </div>
                                                </div>
                                                <div class="ed-opts">
@@ -146,6 +146,7 @@
                                                    <li><a href="#" title="">Full Time</a></li>
                                                    <li><span>DH{{posts.price}}</span></li>
                                                </ul>
+                                               <img v-if="posts.post_image" :src="posts.post_image" alt="">
                                                <p>{{posts.body}} ... <a href="#" title="">view more</a></p>
                                                <ul class="skill-tags">
                                                    <li><a href="#" title="">{{posts.category_name}}</a></li>
@@ -414,6 +415,7 @@
                 page: 1,
                 city: {},
                 category: {},
+                isready:true,
                 form: new Form({
                     title: '',
                     body: '',
@@ -477,32 +479,80 @@
             },
             CreateProject:function () {
                 this.$Progress.start()
-                this.form.post('api/CreateProject')
-                    .then(()=>{
-                        $(".post-popup.pst-pj").removeClass("active");
-                        $(".wrapper").removeClass("overlay");
+                if(this.isready){
+                    this.$Progress.start()
+                    this.form.post('api/CreateProject')
+                        .then(()=>{
+                            $(".post-popup.pst-pj").removeClass("active");
+                            $(".wrapper").removeClass("overlay");
 
-                        this.$Progress.finish()
-                        Toast.fire({
-                            icon: 'success',
-                            title: 'Project Created Successfully'
+                            this.$Progress.finish()
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'Project Created Successfully'
+                            })
+                            something.$emit('wherecreateuserloaddate');
                         })
-                    })
-                    .catch(()=>{
-                        this.$Progress.decrease(20)
-                        this.$Progress.fail()
-                    })
+                        .catch(()=>{
+                            this.$Progress.decrease(20)
+                            this.$Progress.fail()
+                        })
+                }else {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        'Pleas Check You Upload File',
+                        'error'
+
+                    )
+                    this.$Progress.decrease(20)
+                    this.$Progress.fail()
+                }
+
 
             },
             CreateJob:function(){
                 this.$Progress.start()
-                console.log('job')
                 $(".post-popup.job_post").addClass("active");
                 $(".wrapper").addClass("overlay");
                 this.$Progress.finish()
             },
-            UploadImg:function(){
-                console.log('image')
+            UploadImg:function(e){
+                this.$Progress.start()
+                let file = e.target.files[0];
+                let reader = new FileReader();
+              if(file['type']==='image/jpeg' || file['type']==='image/png'){
+                  if(file['size'] < 2111775){
+                      reader.onloadend = (file) =>{
+                          console.log(reader.result)
+                          this.form.image = reader.result
+                          this.$Progress.finish()
+                          this.isready = true
+                      }
+                      reader.readAsDataURL(file)
+                  }else{
+                      swalWithBootstrapButtons.fire(
+                          'Cancelled',
+                          'Image Size Is Big Then 2MB',
+                          'error'
+
+                      )
+                      this.$Progress.decrease(20)
+                      this.$Progress.fail()
+                      this.isready = false
+                  }
+              }else{
+                  swalWithBootstrapButtons.fire(
+                      'Cancelled',
+                      'This File Is Not Image',
+                      'error'
+
+                  )
+                  this.$Progress.decrease(20)
+                  this.$Progress.fail()
+                  this.isready = false
+              }
+
+
             },
         },
         watch: {
@@ -515,9 +565,12 @@
         },
         created(){
             this.$Progress.start()
-            this.LoadPost()
             this.LoadCategory()
             this.LoadCity()
+            this.LoadPost()
+            something.$on('wherecreateuserloaddate',()=>{
+                this.LoadPost();
+            });
             this.$Progress.finish()
         },
         mounted() {

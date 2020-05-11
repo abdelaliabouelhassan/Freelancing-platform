@@ -57,7 +57,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Post');
     }
     public  function  image(){
-        return $this->belongsTo('App\Image');
+        return $this->belongsTo('App\Image','user_image');
     }
     public  function  city(){
         return $this->belongsTo('App\City');

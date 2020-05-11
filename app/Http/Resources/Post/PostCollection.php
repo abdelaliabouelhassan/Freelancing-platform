@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Post;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Carbon;
 
 class PostCollection extends JsonResource
 {
@@ -20,10 +21,11 @@ class PostCollection extends JsonResource
             'body' => $this->body,
             'price' => $this->price,
             'type' => $this->type,
-            'created_at' => $this->created_at,
+            'created_at' =>Carbon::createFromFormat('Y-m-d H:i:s',$this->created_at)->diffForHumans() ,
             'user_name' => $this->user->name,
             'city_name' => $this->city->city_name,
-            'image_path' => $this->image->path,
+            'post_image' => $this->image_id ? $this->image->path : '',
+            'user_image'=>$this->user->image,
             'is_done' => $this->is_done,
             'category_name' => $this->category->category_name,
         ];

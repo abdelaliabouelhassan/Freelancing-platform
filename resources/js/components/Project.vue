@@ -103,10 +103,10 @@
                                         <div class="post-bar" v-for="posts in post">
                                             <div class="post_topbar">
                                                 <div class="usy-dt">
-                                                    <img :src="posts.image_path ? posts.image_path : 'https://via.placeholder.com/100'" alt="User Image">
+                                                    <img :src="posts.user_image ? posts.user_image.path : 'https://via.placeholder.com/100'" alt="">
                                                     <div class="usy-name">
                                                         <h3>{{posts.user_name}} </h3>
-                                                        <span><img src="images/clock.png" alt="">{{posts.created_at | mydate}}  </span>
+                                                        <span><img src="images/clock.png" alt="">{{posts.created_at}}  </span>
                                                     </div>
                                                 </div>
                                                 <div class="ed-opts">
@@ -136,6 +136,7 @@
                                                 <ul class="job-dt">
                                                     <li><span>DH{{posts.price}}</span></li>
                                                 </ul>
+                                                <img v-if="posts.post_image" :src="posts.post_image" alt="">
                                                 <p>{{posts.body}} ... <a href="#" title="">view more</a></p>
                                                 <ul class="skill-tags">
                                                     <li><a href="#" title="">{{posts.category_name}}</a></li>

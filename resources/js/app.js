@@ -115,6 +115,7 @@ window.Toast = Toast
 
 /*End sweetalert2*/
 
+window.something = new Vue();
 
 
 
