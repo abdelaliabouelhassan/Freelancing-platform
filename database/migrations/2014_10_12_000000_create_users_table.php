@@ -18,8 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->nullable();
-            $table->integer('city_id')->nullable()->unsigned()->unsigned()->index();
-            $table->string('category_id')->nullable()->unsigned()->index();
+            $table->integer('city_id')->nullable()->unsigned()->index();
+            $table->integer('category_id')->nullable()->unsigned()->index();
             $table->integer('user_image')->nullable()->unsigned()->index();
             $table->boolean('is_active')->default(false);
             $table->string('gander')->nullable();

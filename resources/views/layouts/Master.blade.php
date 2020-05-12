@@ -2,7 +2,6 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
-    @yield('title')
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="" />
@@ -20,8 +19,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('lib/slick/slick-theme.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/responsive.css')}}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    @yield('style')
+
+
 </head>
 
 <body>
@@ -109,7 +108,7 @@
                                     </div>
                                 </div><!--nott-list end-->
                             </div><!--notification-box end-->
-                        </li>                        
+                        </li>
                     </ul>
                 </nav><!--nav end-->
                 <!--menu-btn end-->
@@ -250,5 +249,6 @@
 <script type="text/javascript" src="js/scrollbar.js"></script>
 <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
 <script type="text/javascript" src="{{asset("js/app.js")}}"></script>
-@yield('script')
+
+
 </body>

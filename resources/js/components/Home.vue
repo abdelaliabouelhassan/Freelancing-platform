@@ -29,7 +29,7 @@
                                                <span>155</span>
                                            </li>
                                            <li>
-                                               <a href="#" title="">View Profile</a>
+                                               <a href="javascript:void(0)" title="">View Profile</a>
                                            </li>
                                        </ul>
                                    </div><!--user-data end-->
@@ -88,7 +88,7 @@
                                                <span><i class="la la-plus"></i></span>
                                            </div>
                                            <div class="view-more">
-                                               <a href="#" title="">View More</a>
+                                               <a href="javascript:void(0)" title="">View More</a>
                                            </div>
                                        </div><!--suggestions-list end-->
                                    </div><!--suggestions end-->
@@ -119,13 +119,13 @@
                                                    </div>
                                                </div>
                                                <div class="ed-opts">
-                                                   <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+                                                   <a href="javascript:void(0)" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
                                                    <ul class="ed-options">
-                                                       <li><a href="#" title="">Edit Post</a></li>
-                                                       <li><a href="#" title="">Unsaved</a></li>
-                                                       <li><a href="#" title="">Unbid</a></li>
-                                                       <li><a href="#" title="">Close</a></li>
-                                                       <li><a href="#" title="">Hide</a></li>
+                                                       <li><a href="javascript:void(0)" title="">Edit Post</a></li>
+                                                       <li><a href="javascript:void(0)" title="">Unsaved</a></li>
+                                                       <li><a href="javascript:void(0)" title="">Unbid</a></li>
+                                                       <li><a href="javascript:void(0)" title="">Close</a></li>
+                                                       <li><a href="javascript:void(0)" title="">Hide</a></li>
                                                    </ul>
                                                </div>
                                            </div>
@@ -135,21 +135,21 @@
                                                    <li><img src="images/icon9.png" alt=""><span> {{posts.city_name}}</span></li>
                                                </ul>
                                                <ul class="bk-links">
-                                                   <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
-                                                   <li><a href="#" title=""><i class="la la-envelope"></i></a></li>
-                                                   <li v-if="posts.type == 'servic'"><a href="#" title="" class="bid_now">Bid Now</a></li>
+                                                   <li><a href="javascript:void(0)" title=""><i class="la la-bookmark"></i></a></li>
+                                                   <li><a href="javascript:void(0)" title=""><i class="la la-envelope"></i></a></li>
+                                                   <li v-if="posts.type == 'servic'"><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
                                                </ul>
                                            </div>
                                            <div class="job_descp">
                                                <h3>{{posts.title}}</h3>
                                                <ul class="job-dt">
-                                                   <li><a href="#" title="">Full Time</a></li>
+                                                   <li><a href="javascript:void(0)" title="">Full Time</a></li>
                                                    <li><span>DH{{posts.price}}</span></li>
                                                </ul>
                                                <img v-if="posts.post_image" :src="posts.post_image" alt="">
-                                               <p>{{posts.body}} ... <a href="#" title="">view more</a></p>
+                                               <p>{{posts.body}} ... <a href="javascript:void(0)" title="">view more</a></p>
                                                <ul class="skill-tags">
-                                                   <li><a href="#" title="">{{posts.category_name}}</a></li>
+                                                   <li><a href="javascript:void(0)" title="">{{posts.category_name}}</a></li>
                                                </ul>
                                            </div>
 
@@ -264,7 +264,7 @@
                                                <span><i class="la la-plus"></i></span>
                                            </div>
                                            <div class="view-more">
-                                               <a href="#" title="">View More</a>
+                                               <a href="javascript:void(0)" title="">View More</a>
                                            </div>
                                        </div><!--suggestions-list end-->
                                    </div>
@@ -274,6 +274,7 @@
                    </div><!-- main-section-data end-->
                </div>
            </div>
+
        </main>
 
        <div class="post-popup pst-pj">
@@ -335,13 +336,13 @@
                            <div class="col-lg-12">
                                <ul>
                                    <li><button class="active" type="submit" value="post">Post</button></li>
-                                   <li><a href="#" title="">Cancel</a></li>
+                                   <li><a href="javascript:void(0)" title="">Cancel</a></li>
                                </ul>
                            </div>
                        </div>
                    </form>
                </div><!--post-project-fields end-->
-               <a href="#" title=""><i class="la la-times-circle-o"></i></a>
+               <a href="javascript:void(0)" title=""><i class="la la-times-circle-o"></i></a>
            </div><!--post-project end-->
        </div><!--post-project-popup end-->
 
@@ -393,13 +394,13 @@
                            <div class="col-lg-12">
                                <ul>
                                    <li><button class="active" type="submit" value="post">Post</button></li>
-                                   <li><a href="#" title="">Cancel</a></li>
+                                   <li><a href="javascript:void(0)" title="">Cancel</a></li>
                                </ul>
                            </div>
                        </div>
                    </form>
                </div><!--post-project-fields end-->
-               <a href="#" title=""><i class="la la-times-circle-o"></i></a>
+               <a href="javascript:void(0)" title=""><i class="la la-times-circle-o"></i></a>
            </div><!--post-project end-->
        </div><!--post-project-popup end-->
    </div>

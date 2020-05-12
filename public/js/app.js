@@ -2348,6 +2348,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -64233,7 +64234,10 @@ var render = function() {
                                       "a",
                                       {
                                         staticClass: "bid_now",
-                                        attrs: { href: "#", title: "" }
+                                        attrs: {
+                                          href: "javascript:void(0)",
+                                          title: ""
+                                        }
                                       },
                                       [_vm._v("Bid Now")]
                                     )
@@ -64261,16 +64265,30 @@ var render = function() {
                             _vm._v(" "),
                             _c("p", [
                               _vm._v(_vm._s(posts.body) + " ... "),
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("view more")
-                              ])
+                              _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    href: "javascript:void(0)",
+                                    title: ""
+                                  }
+                                },
+                                [_vm._v("view more")]
+                              )
                             ]),
                             _vm._v(" "),
                             _c("ul", { staticClass: "skill-tags" }, [
                               _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v(_vm._s(posts.category_name))
-                                ])
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href: "javascript:void(0)",
+                                      title: ""
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(posts.category_name))]
+                                )
                               ])
                             ])
                           ])
@@ -64756,7 +64774,9 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("li", [
-        _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("View Profile")])
+        _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+          _vm._v("View Profile")
+        ])
       ])
     ])
   },
@@ -64857,7 +64877,9 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "view-more" }, [
-          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("View More")])
+          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+            _vm._v("View More")
+          ])
         ])
       ])
     ])
@@ -64907,29 +64929,42 @@ var staticRenderFns = [
     return _c("div", { staticClass: "ed-opts" }, [
       _c(
         "a",
-        { staticClass: "ed-opts-open", attrs: { href: "#", title: "" } },
+        {
+          staticClass: "ed-opts-open",
+          attrs: { href: "javascript:void(0)", title: "" }
+        },
         [_c("i", { staticClass: "la la-ellipsis-v" })]
       ),
       _vm._v(" "),
       _c("ul", { staticClass: "ed-options" }, [
         _c("li", [
-          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Edit Post")])
+          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+            _vm._v("Edit Post")
+          ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Unsaved")])
+          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+            _vm._v("Unsaved")
+          ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Unbid")])
+          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+            _vm._v("Unbid")
+          ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Close")])
+          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+            _vm._v("Close")
+          ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Hide")])
+          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+            _vm._v("Hide")
+          ])
         ])
       ])
     ])
@@ -64939,7 +64974,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
-      _c("a", { attrs: { href: "#", title: "" } }, [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
         _c("i", { staticClass: "la la-bookmark" })
       ])
     ])
@@ -64949,7 +64984,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
-      _c("a", { attrs: { href: "#", title: "" } }, [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
         _c("i", { staticClass: "la la-envelope" })
       ])
     ])
@@ -64959,7 +64994,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
-      _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Full Time")])
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Full Time")
+      ])
     ])
   },
   function() {
@@ -65131,7 +65168,9 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "view-more" }, [
-          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("View More")])
+          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+            _vm._v("View More")
+          ])
         ])
       ])
     ])
@@ -65151,7 +65190,9 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Cancel")])
+          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+            _vm._v("Cancel")
+          ])
         ])
       ])
     ])
@@ -65160,7 +65201,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "#", title: "" } }, [
+    return _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
       _c("i", { staticClass: "la la-times-circle-o" })
     ])
   },
@@ -65229,7 +65270,9 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Cancel")])
+          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+            _vm._v("Cancel")
+          ])
         ])
       ])
     ])
@@ -65238,7 +65281,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "#", title: "" } }, [
+    return _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
       _c("i", { staticClass: "la la-times-circle-o" })
     ])
   }
@@ -65706,16 +65749,30 @@ var render = function() {
                             _vm._v(" "),
                             _c("p", [
                               _vm._v(_vm._s(posts.body) + " ... "),
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("view more")
-                              ])
+                              _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    href: "javascript:void(0)",
+                                    title: ""
+                                  }
+                                },
+                                [_vm._v("view more")]
+                              )
                             ]),
                             _vm._v(" "),
                             _c("ul", { staticClass: "skill-tags" }, [
                               _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v(_vm._s(posts.category_name))
-                                ])
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href: "javascript:void(0)",
+                                      title: ""
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(posts.category_name))]
+                                )
                               ])
                             ])
                           ])
@@ -65825,29 +65882,42 @@ var staticRenderFns = [
     return _c("div", { staticClass: "ed-opts" }, [
       _c(
         "a",
-        { staticClass: "ed-opts-open", attrs: { href: "#", title: "" } },
+        {
+          staticClass: "ed-opts-open",
+          attrs: { href: "javascript:void(0)", title: "" }
+        },
         [_c("i", { staticClass: "la la-ellipsis-v" })]
       ),
       _vm._v(" "),
       _c("ul", { staticClass: "ed-options" }, [
         _c("li", [
-          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Edit Post")])
+          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+            _vm._v("Edit Post")
+          ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Unsaved")])
+          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+            _vm._v("Unsaved")
+          ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Unbid")])
+          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+            _vm._v("Unbid")
+          ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Close")])
+          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+            _vm._v("Close")
+          ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Hide")])
+          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+            _vm._v("Hide")
+          ])
         ])
       ])
     ])
@@ -65858,13 +65928,13 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("ul", { staticClass: "bk-links" }, [
       _c("li", [
-        _c("a", { attrs: { href: "#", title: "" } }, [
+        _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
           _c("i", { staticClass: "la la-bookmark" })
         ])
       ]),
       _vm._v(" "),
       _c("li", [
-        _c("a", { attrs: { href: "#", title: "" } }, [
+        _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
           _c("i", { staticClass: "la la-envelope" })
         ])
       ])
@@ -65875,7 +65945,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
-      _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Full Time")])
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Full Time")
+      ])
     ])
   },
   function() {
@@ -66523,16 +66595,30 @@ var render = function() {
                             _vm._v(" "),
                             _c("p", [
                               _vm._v(_vm._s(posts.body) + " ... "),
-                              _c("a", { attrs: { href: "#", title: "" } }, [
-                                _vm._v("view more")
-                              ])
+                              _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    href: "javascript:void(0)",
+                                    title: ""
+                                  }
+                                },
+                                [_vm._v("view more")]
+                              )
                             ]),
                             _vm._v(" "),
                             _c("ul", { staticClass: "skill-tags" }, [
                               _c("li", [
-                                _c("a", { attrs: { href: "#", title: "" } }, [
-                                  _vm._v(_vm._s(posts.category_name))
-                                ])
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href: "javascript:void(0)",
+                                      title: ""
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(posts.category_name))]
+                                )
                               ])
                             ])
                           ])
@@ -66633,29 +66719,42 @@ var staticRenderFns = [
     return _c("div", { staticClass: "ed-opts" }, [
       _c(
         "a",
-        { staticClass: "ed-opts-open", attrs: { href: "#", title: "" } },
+        {
+          staticClass: "ed-opts-open",
+          attrs: { href: "javascript:void(0)", title: "" }
+        },
         [_c("i", { staticClass: "la la-ellipsis-v" })]
       ),
       _vm._v(" "),
       _c("ul", { staticClass: "ed-options" }, [
         _c("li", [
-          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Edit Post")])
+          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+            _vm._v("Edit Post")
+          ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Unsaved")])
+          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+            _vm._v("Unsaved")
+          ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Unbid")])
+          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+            _vm._v("Unbid")
+          ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Close")])
+          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+            _vm._v("Close")
+          ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Hide")])
+          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+            _vm._v("Hide")
+          ])
         ])
       ])
     ])
@@ -66666,21 +66765,26 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("ul", { staticClass: "bk-links" }, [
       _c("li", [
-        _c("a", { attrs: { href: "#", title: "" } }, [
+        _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
           _c("i", { staticClass: "la la-bookmark" })
         ])
       ]),
       _vm._v(" "),
       _c("li", [
-        _c("a", { attrs: { href: "#", title: "" } }, [
+        _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
           _c("i", { staticClass: "la la-envelope" })
         ])
       ]),
       _vm._v(" "),
       _c("li", [
-        _c("a", { staticClass: "bid_now", attrs: { href: "#", title: "" } }, [
-          _vm._v("Bid Now")
-        ])
+        _c(
+          "a",
+          {
+            staticClass: "bid_now",
+            attrs: { href: "javascript:void(0)", title: "" }
+          },
+          [_vm._v("Bid Now")]
+        )
       ])
     ])
   },

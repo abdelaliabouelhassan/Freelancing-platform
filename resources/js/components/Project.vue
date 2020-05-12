@@ -110,13 +110,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="ed-opts">
-                                                    <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+                                                    <a href="javascript:void(0)" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
                                                     <ul class="ed-options">
-                                                        <li><a href="#" title="">Edit Post</a></li>
-                                                        <li><a href="#" title="">Unsaved</a></li>
-                                                        <li><a href="#" title="">Unbid</a></li>
-                                                        <li><a href="#" title="">Close</a></li>
-                                                        <li><a href="#" title="">Hide</a></li>
+                                                        <li><a href="javascript:void(0)" title="">Edit Post</a></li>
+                                                        <li><a href="javascript:void(0)" title="">Unsaved</a></li>
+                                                        <li><a href="javascript:void(0)" title="">Unbid</a></li>
+                                                        <li><a href="javascript:void(0)" title="">Close</a></li>
+                                                        <li><a href="javascript:void(0)" title="">Hide</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -126,9 +126,9 @@
                                                     <li><img src="images/icon9.png" alt=""><span> {{posts.city_name}}</span></li>
                                                 </ul>
                                                 <ul class="bk-links">
-                                                    <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
-                                                    <li><a href="#" title=""><i class="la la-envelope"></i></a></li>
-                                                    <li><a href="#" title="" class="bid_now">Bid Now</a></li>
+                                                    <li><a href="javascript:void(0)" title=""><i class="la la-bookmark"></i></a></li>
+                                                    <li><a href="javascript:void(0)" title=""><i class="la la-envelope"></i></a></li>
+                                                    <li><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
                                                 </ul>
                                             </div>
                                             <div class="job_descp">
@@ -137,9 +137,9 @@
                                                     <li><span>DH{{posts.price}}</span></li>
                                                 </ul>
                                                 <img v-if="posts.post_image" :src="posts.post_image" alt="">
-                                                <p>{{posts.body}} ... <a href="#" title="">view more</a></p>
+                                                <p>{{posts.body}} ... <a href="javascript:void(0)" title="">view more</a></p>
                                                 <ul class="skill-tags">
-                                                    <li><a href="#" title="">{{posts.category_name}}</a></li>
+                                                    <li><a href="javascript:void(0)" title="">{{posts.category_name}}</a></li>
                                                 </ul>
                                             </div>
                                         </div><!--post-bar end-->
