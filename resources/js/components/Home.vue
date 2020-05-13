@@ -1,6 +1,6 @@
 <template>
-   <div>
-       <main>
+   <div class="" v-bind:class="{ overlay: showJob}" >
+       <main class="" v-bind:class="{ overlay: showProject}">
            <div class="main-section">
                <div class="container">
                    <div class="main-section-data">
@@ -103,8 +103,8 @@
                                        </div>
                                        <div class="post-st">
                                            <ul>
-                                               <li><a class="post_project" href="javascript:void(0)" title="">Post a Project</a></li>
-                                               <li><a class="post-jb active" href="javascript:void(0)" title="">Post a Job</a></li>
+                                               <li><a class="post_project" href="javascript:void(0)" title="" @click="showProject = true">Post a Project</a></li>
+                                               <li><a class="post-jb active" href="javascript:void(0)" title="" @click="showJob = true">Post a Job</a></li>
                                            </ul>
                                        </div><!--post-st end-->
                                    </div><!--post-topbar end-->
@@ -277,7 +277,7 @@
 
        </main>
 
-       <div class="post-popup pst-pj">
+       <div class="post-popup pst-pj" v-bind:class='{ active: showProject}'>
            <div class="post-project">
                <h3>Post a project</h3>
                <div class="post-project-fields">
@@ -336,17 +336,17 @@
                            <div class="col-lg-12">
                                <ul>
                                    <li><button class="active" type="submit" value="post">Post</button></li>
-                                   <li><a href="javascript:void(0)" title="">Cancel</a></li>
+                                   <li><a href="javascript:void(0)" title="" @click="showProject = false">Cancel</a></li>
                                </ul>
                            </div>
                        </div>
                    </form>
                </div><!--post-project-fields end-->
-               <a href="javascript:void(0)" title=""><i class="la la-times-circle-o"></i></a>
+               <a href="javascript:void(0)" title="" @click="showProject = false"><i class="la la-times-circle-o"></i></a>
            </div><!--post-project end-->
        </div><!--post-project-popup end-->
 
-       <div class="post-popup job_post">
+       <div class="post-popup job_post" v-bind:class='{ active: showJob}'>
            <div class="post-project">
                <h3>Post a job</h3>
                <div class="post-project-fields">
@@ -394,13 +394,13 @@
                            <div class="col-lg-12">
                                <ul>
                                    <li><button class="active" type="submit" value="post">Post</button></li>
-                                   <li><a href="javascript:void(0)" title="">Cancel</a></li>
+                                   <li><a href="javascript:void(0)" title="" @click="showJob = false">Cancel</a></li>
                                </ul>
                            </div>
                        </div>
                    </form>
                </div><!--post-project-fields end-->
-               <a href="javascript:void(0)" title=""><i class="la la-times-circle-o"></i></a>
+               <a href="javascript:void(0)" title="" @click="showJob = false"><i class="la la-times-circle-o"></i></a>
            </div><!--post-project end-->
        </div><!--post-project-popup end-->
    </div>
@@ -417,6 +417,8 @@
                 city: {},
                 category: {},
                 isready:true,
+                showProject:false,
+                showJob:false,
                 form: new Form({
                     title: '',
                     body: '',
@@ -484,9 +486,7 @@
                     this.$Progress.start()
                     this.form.post('api/CreateProject')
                         .then(()=>{
-                            $(".post-popup.pst-pj").removeClass("active");
-                            $(".wrapper").removeClass("overlay");
-
+                           this.showProject = false
                             this.$Progress.finish()
                             Toast.fire({
                                 icon: 'success',
@@ -513,8 +513,7 @@
             },
             CreateJob:function(){
                 this.$Progress.start()
-                $(".post-popup.job_post").addClass("active");
-                $(".wrapper").addClass("overlay");
+               this.showJob = false
                 this.$Progress.finish()
             },
             UploadImg:function(e){
@@ -555,6 +554,7 @@
 
 
             },
+
         },
         watch: {
             $route: {

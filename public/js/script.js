@@ -1,33 +1,33 @@
 $(window).on("load", function() {
     "use strict";
 
-    
+
 
     //  ============= POST PROJECT POPUP FUNCTION =========
 
-    $(".post_project").on("click", function(){
-        $(".post-popup.pst-pj").addClass("active");
-        $(".wrapper").addClass("overlay");
-        return false;
-    });
-    $(".post-project > a").on("click", function(){
-        $(".post-popup.pst-pj").removeClass("active");
-        $(".wrapper").removeClass("overlay");
-        return false;
-    });
+    // $(".post_project").on("click", function(){
+    //     $(".post-popup.pst-pj").addClass("active");
+    //     $(".wrapper").addClass("overlay");
+    //     return false;
+    // });
+    // $(".post-project > a").on("click", function(){
+    //     $(".post-popup.pst-pj").removeClass("active");
+    //     $(".wrapper").removeClass("overlay");
+    //     return false;
+    // });
 
     //  ============= POST JOB POPUP FUNCTION =========
 
-    $(".post-jb").on("click", function(){
-        $(".post-popup.job_post").addClass("active");
-        $(".wrapper").addClass("overlay");
-        return false;
-    });
-    $(".post-project > a").on("click", function(){
-        $(".post-popup.job_post").removeClass("active");
-        $(".wrapper").removeClass("overlay");
-        return false;
-    });
+    // $(".post-jb").on("click", function(){
+    //     $(".post-popup.job_post").addClass("active");
+    //     $(".wrapper").addClass("overlay");
+    //     return false;
+    // });
+    // $(".post-project > a").on("click", function(){
+    //     $(".post-popup.job_post").removeClass("active");
+    //     $(".wrapper").removeClass("overlay");
+    //     return false;
+    // });
 
     //  ============= SIGNIN CONTROL FUNCTION =========
 
@@ -187,7 +187,7 @@ $(window).on("load", function() {
     });
 
 
-    //  ============== ChatBox ============== 
+    //  ============== ChatBox ==============
 
 
     $(".chat-mg").on("click", function(){
@@ -233,16 +233,16 @@ $(window).on("load", function() {
 
     //  ============= FORUM LINKS MOBILE MENU FUNCTION =========
 
-    $(".forum-links-btn > a").on("click", function(){
-        $(".forum-links").toggleClass("active");
-        return false;
-    });
-    $("html").on("click", function(){
-        $(".forum-links").removeClass("active");
-    });
-    $(".forum-links-btn > a, .forum-links").on("click", function(){
-        e.stopPropagation();
-    });
+    // $(".forum-links-btn > a").on("click", function(){
+    //     $(".forum-links").toggleClass("active");
+    //     return false;
+    // });
+    // $("html").on("click", function(){
+    //     $(".forum-links").removeClass("active");
+    // });
+    // $(".forum-links-btn > a, .forum-links").on("click", function(){
+    //     e.stopPropagation();
+    // });
 
     //  ============= PORTFOLIO SLIDER FUNCTION =========
 
