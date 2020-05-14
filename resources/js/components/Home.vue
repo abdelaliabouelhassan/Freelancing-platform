@@ -103,8 +103,8 @@
                                        </div>
                                        <div class="post-st">
                                            <ul>
-                                               <li><a class="post_project" href="javascript:void(0)" title="" @click="showProject = true">Post a Project</a></li>
-                                               <li><a class="post-jb active" href="javascript:void(0)" title="" @click="showJob = true">Post a Job</a></li>
+                                               <li><a class="post_project" href="javascript:void(0)" title="" @click="islog('project')">Post a Project</a></li>
+                                               <li><a class="post-jb active" href="javascript:void(0)" title="" @click="islog('job')">Post a Job</a></li>
                                            </ul>
                                        </div><!--post-st end-->
                                    </div><!--post-topbar end-->
@@ -118,9 +118,9 @@
                                                        <span><img src="images/clock.png" alt="">{{posts.created_at}}  </span>
                                                    </div>
                                                </div>
-                                               <div class="ed-opts">
+                                               <div class="ed-opts" @click="showOption(posts)">
                                                    <a href="javascript:void(0)" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-                                                   <ul class="ed-options">
+                                                   <ul class="ed-options" v-bind:class="{active:posts == showOp}">
                                                        <li><a href="javascript:void(0)" title="">Edit Post</a></li>
                                                        <li><a href="javascript:void(0)" title="">Unsaved</a></li>
                                                        <li><a href="javascript:void(0)" title="">Unbid</a></li>
@@ -419,6 +419,7 @@
                 isready:true,
                 showProject:false,
                 showJob:false,
+                showOp:null,
                 form: new Form({
                     title: '',
                     body: '',
@@ -554,6 +555,40 @@
 
 
             },
+            islog:function (type) {
+                if(type == 'project'){
+                    if(this.$gets.IsLogedIn()){
+                        this.showProject = true
+                    }else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'You Are Not Logged In !!!',
+                            text: 'Please Logged In first Or Create New Account',
+                            footer: '<a href="/">Logged In here Or Create Account</a>'
+                        })
+                    }
+                }else{
+                    if(this.$gets.IsLogedIn()){
+                        this.showJob = true
+                    }else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'You Are Not Logged In !!!',
+                            text: 'Please Logged In first Or Create New Account',
+                            footer: '<a href="/">Logged In here Or Create Account</a>'
+                        })
+                    }
+                }
+
+            },
+            showOption:function (posts) {
+                if(this.showOp == posts){
+                    this.showOp = null
+                }else{
+                    this.showOp = posts
+                }
+
+            }
 
         },
         watch: {

@@ -724,6 +724,11 @@ nav > ul > li > a:hover {
 .tc a {
 	color: #000;
 }
+.user-info img:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+
 .user-info img {
 	margin-right: 10px;
 	-webkit-border-radius: 100px;

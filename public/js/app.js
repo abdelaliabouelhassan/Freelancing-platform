@@ -2361,6 +2361,7 @@ __webpack_require__.r(__webpack_exports__);
       isready: true,
       showProject: false,
       showJob: false,
+      showOp: null,
       form: new Form({
         title: '',
         body: '',
@@ -2490,6 +2491,38 @@ __webpack_require__.r(__webpack_exports__);
         this.$Progress.decrease(20);
         this.$Progress.fail();
         this.isready = false;
+      }
+    },
+    islog: function islog(type) {
+      if (type == 'project') {
+        if (this.$gets.IsLogedIn()) {
+          this.showProject = true;
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'You Are Not Logged In !!!',
+            text: 'Please Logged In first Or Create New Account',
+            footer: '<a href="/">Logged In here Or Create Account</a>'
+          });
+        }
+      } else {
+        if (this.$gets.IsLogedIn()) {
+          this.showJob = true;
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'You Are Not Logged In !!!',
+            text: 'Please Logged In first Or Create New Account',
+            footer: '<a href="/">Logged In here Or Create Account</a>'
+          });
+        }
+      }
+    },
+    showOption: function showOption(posts) {
+      if (this.showOp == posts) {
+        this.showOp = null;
+      } else {
+        this.showOp = posts;
       }
     }
   },
@@ -2832,7 +2865,9 @@ __webpack_require__.r(__webpack_exports__);
       price: '0',
       cit: '0',
       isdone: '3',
-      searchresult: ''
+      searchresult: '',
+      showOp: null,
+      showFilter: false
     };
   },
   methods: {
@@ -2932,6 +2967,13 @@ __webpack_require__.r(__webpack_exports__);
           var data = _ref5.data;
           _this7.post = data.data;
         });
+      }
+    },
+    showOption: function showOption(posts) {
+      if (this.showOp == posts) {
+        this.showOp = null;
+      } else {
+        this.showOp = posts;
       }
     }
   },
@@ -3299,7 +3341,8 @@ __webpack_require__.r(__webpack_exports__);
       price: '0',
       cit: '0',
       isdone: '3',
-      searchresult: ''
+      searchresult: '',
+      showOp: null
     };
   },
   methods: {
@@ -3399,6 +3442,13 @@ __webpack_require__.r(__webpack_exports__);
           var data = _ref5.data;
           _this7.post = data.data;
         });
+      }
+    },
+    showOption: function showOption(posts) {
+      if (this.showOp == posts) {
+        this.showOp = null;
+      } else {
+        this.showOp = posts;
       }
     }
   },
@@ -64175,7 +64225,7 @@ var render = function() {
                               attrs: { href: "javascript:void(0)", title: "" },
                               on: {
                                 click: function($event) {
-                                  _vm.showProject = true
+                                  return _vm.islog("project")
                                 }
                               }
                             },
@@ -64191,7 +64241,7 @@ var render = function() {
                               attrs: { href: "javascript:void(0)", title: "" },
                               on: {
                                 click: function($event) {
-                                  _vm.showJob = true
+                                  return _vm.islog("job")
                                 }
                               }
                             },
@@ -64233,7 +64283,39 @@ var render = function() {
                               ])
                             ]),
                             _vm._v(" "),
-                            _vm._m(4, true)
+                            _c(
+                              "div",
+                              {
+                                staticClass: "ed-opts",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.showOption(posts)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._m(4, true),
+                                _vm._v(" "),
+                                _c(
+                                  "ul",
+                                  {
+                                    staticClass: "ed-options",
+                                    class: { active: posts == _vm.showOp }
+                                  },
+                                  [
+                                    _vm._m(5, true),
+                                    _vm._v(" "),
+                                    _vm._m(6, true),
+                                    _vm._v(" "),
+                                    _vm._m(7, true),
+                                    _vm._v(" "),
+                                    _vm._m(8, true),
+                                    _vm._v(" "),
+                                    _vm._m(9, true)
+                                  ]
+                                )
+                              ]
+                            )
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "epi-sec" }, [
@@ -64262,9 +64344,9 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("ul", { staticClass: "bk-links" }, [
-                              _vm._m(5, true),
+                              _vm._m(10, true),
                               _vm._v(" "),
-                              _vm._m(6, true),
+                              _vm._m(11, true),
                               _vm._v(" "),
                               posts.type == "servic"
                                 ? _c("li", [
@@ -64288,7 +64370,7 @@ var render = function() {
                             _c("h3", [_vm._v(_vm._s(posts.title))]),
                             _vm._v(" "),
                             _c("ul", { staticClass: "job-dt" }, [
-                              _vm._m(7, true),
+                              _vm._m(12, true),
                               _vm._v(" "),
                               _c("li", [
                                 _c("span", [_vm._v("DH" + _vm._s(posts.price))])
@@ -64359,13 +64441,13 @@ var render = function() {
                         _vm._v(" "),
                         _c("span", [_vm._v("Signed In Now ")]),
                         _vm._v(" "),
-                        _vm._m(8)
+                        _vm._m(13)
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm._m(9),
+                  _vm._m(14),
                   _vm._v(" "),
-                  _vm._m(10)
+                  _vm._m(15)
                 ])
               ])
             ])
@@ -64690,7 +64772,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "col-lg-12" }, [
                     _c("ul", [
-                      _vm._m(11),
+                      _vm._m(16),
                       _vm._v(" "),
                       _c("li", [
                         _c(
@@ -64749,7 +64831,7 @@ var render = function() {
               },
               [
                 _c("div", { staticClass: "row" }, [
-                  _vm._m(12),
+                  _vm._m(17),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-lg-12" }, [
                     _c("div", { staticClass: "inp-field" }, [
@@ -64805,15 +64887,15 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(13),
+                  _vm._m(18),
                   _vm._v(" "),
-                  _vm._m(14),
+                  _vm._m(19),
                   _vm._v(" "),
-                  _vm._m(15),
+                  _vm._m(20),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-lg-12" }, [
                     _c("ul", [
-                      _vm._m(16),
+                      _vm._m(21),
                       _vm._v(" "),
                       _c("li", [
                         _c(
@@ -65008,46 +65090,62 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ed-opts" }, [
-      _c(
-        "a",
-        {
-          staticClass: "ed-opts-open",
-          attrs: { href: "javascript:void(0)", title: "" }
-        },
-        [_c("i", { staticClass: "la la-ellipsis-v" })]
-      ),
-      _vm._v(" "),
-      _c("ul", { staticClass: "ed-options" }, [
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-            _vm._v("Edit Post")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-            _vm._v("Unsaved")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-            _vm._v("Unbid")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-            _vm._v("Close")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-            _vm._v("Hide")
-          ])
-        ])
+    return _c(
+      "a",
+      {
+        staticClass: "ed-opts-open",
+        attrs: { href: "javascript:void(0)", title: "" }
+      },
+      [_c("i", { staticClass: "la la-ellipsis-v" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Edit Post")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Unsaved")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Unbid")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Close")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Hide")
       ])
     ])
   },
@@ -65355,9 +65453,23 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("main", [
-      _vm._m(0),
+      _c(
+        "div",
+        {
+          staticClass: "show-filter",
+          on: {
+            click: function($event) {
+              _vm.showFilter = !_vm.showFilter
+            }
+          }
+        },
+        [
+          _vm._v("\n            Filter\n            "),
+          _c("i", { staticClass: "fa fa-search" })
+        ]
+      ),
       _vm._v(" "),
-      _c("div", { staticClass: "filter" }, [
+      _c("div", { staticClass: "filter", class: { active: _vm.showFilter } }, [
         _c("div", { staticClass: " filter-file" }, [
           _c("div", { staticClass: "filter-secs" }, [
             _c("div", { staticClass: "search-box" }, [
@@ -65423,7 +65535,7 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "paddy" }, [
               _c("div", { staticClass: "filter-dd" }, [
-                _vm._m(1),
+                _vm._m(0),
                 _vm._v(" "),
                 _c("ul", { staticClass: "avail-checks" }, [
                   _c("li", [
@@ -65453,7 +65565,7 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _vm._m(2),
+                    _vm._m(1),
                     _vm._v(" "),
                     _c("small", [_vm._v("Available")])
                   ]),
@@ -65485,7 +65597,7 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _vm._m(3),
+                    _vm._m(2),
                     _vm._v(" "),
                     _c("small", [_vm._v("Done")])
                   ])
@@ -65493,7 +65605,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "filter-dd" }, [
-                _vm._m(4),
+                _vm._m(3),
                 _vm._v(" "),
                 _c("form", { staticClass: "job-tp" }, [
                   _c(
@@ -65555,7 +65667,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "filter-dd" }, [
-                _vm._m(5),
+                _vm._m(4),
                 _vm._v(" "),
                 _c("form", { staticClass: "job-tp" }, [
                   _c(
@@ -65619,7 +65731,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "filter-dd" }, [
-                _vm._m(6),
+                _vm._m(5),
                 _vm._v(" "),
                 _c("form", { staticClass: "job-tp" }, [
                   _c(
@@ -65741,7 +65853,39 @@ var render = function() {
                               ])
                             ]),
                             _vm._v(" "),
-                            _vm._m(7, true)
+                            _c(
+                              "div",
+                              {
+                                staticClass: "ed-opts",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.showOption(posts)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._m(6, true),
+                                _vm._v(" "),
+                                _c(
+                                  "ul",
+                                  {
+                                    staticClass: "ed-options",
+                                    class: { active: posts == _vm.showOp }
+                                  },
+                                  [
+                                    _vm._m(7, true),
+                                    _vm._v(" "),
+                                    _vm._m(8, true),
+                                    _vm._v(" "),
+                                    _vm._m(9, true),
+                                    _vm._v(" "),
+                                    _vm._m(10, true),
+                                    _vm._v(" "),
+                                    _vm._m(11, true)
+                                  ]
+                                )
+                              ]
+                            )
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "epi-sec" }, [
@@ -65773,14 +65917,14 @@ var render = function() {
                               ])
                             ]),
                             _vm._v(" "),
-                            _vm._m(8, true)
+                            _vm._m(12, true)
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "job_descp" }, [
                             _c("h3", [_vm._v(_vm._s(posts.title))]),
                             _vm._v(" "),
                             _c("ul", { staticClass: "job-dt" }, [
-                              _vm._m(9, true),
+                              _vm._m(13, true),
                               _vm._v(" "),
                               _c("li", [
                                 _c("span", [_vm._v("DH" + _vm._s(posts.price))])
@@ -65851,13 +65995,13 @@ var render = function() {
                         _vm._v(" "),
                         _c("span", [_vm._v("Signed In Now ")]),
                         _vm._v(" "),
-                        _vm._m(10)
+                        _vm._m(14)
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm._m(11),
+                  _vm._m(15),
                   _vm._v(" "),
-                  _vm._m(12)
+                  _vm._m(16)
                 ])
               ])
             ])
@@ -65868,15 +66012,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "show-filter" }, [
-      _vm._v("\n            Filter\n                            "),
-      _c("i", { staticClass: "fa fa-search" })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -65925,46 +66060,62 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ed-opts" }, [
-      _c(
-        "a",
-        {
-          staticClass: "ed-opts-open",
-          attrs: { href: "javascript:void(0)", title: "" }
-        },
-        [_c("i", { staticClass: "la la-ellipsis-v" })]
-      ),
-      _vm._v(" "),
-      _c("ul", { staticClass: "ed-options" }, [
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-            _vm._v("Edit Post")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-            _vm._v("Unsaved")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-            _vm._v("Unbid")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-            _vm._v("Close")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-            _vm._v("Hide")
-          ])
-        ])
+    return _c(
+      "a",
+      {
+        staticClass: "ed-opts-open",
+        attrs: { href: "javascript:void(0)", title: "" }
+      },
+      [_c("i", { staticClass: "la la-ellipsis-v" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Edit Post")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Unsaved")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Unbid")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Close")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Hide")
       ])
     ])
   },
@@ -66593,7 +66744,39 @@ var render = function() {
                               ])
                             ]),
                             _vm._v(" "),
-                            _vm._m(6, true)
+                            _c(
+                              "div",
+                              {
+                                staticClass: "ed-opts",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.showOption(posts)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._m(6, true),
+                                _vm._v(" "),
+                                _c(
+                                  "ul",
+                                  {
+                                    staticClass: "ed-options",
+                                    class: { active: posts == _vm.showOp }
+                                  },
+                                  [
+                                    _vm._m(7, true),
+                                    _vm._v(" "),
+                                    _vm._m(8, true),
+                                    _vm._v(" "),
+                                    _vm._m(9, true),
+                                    _vm._v(" "),
+                                    _vm._m(10, true),
+                                    _vm._v(" "),
+                                    _vm._m(11, true)
+                                  ]
+                                )
+                              ]
+                            )
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "epi-sec" }, [
@@ -66621,7 +66804,7 @@ var render = function() {
                               ])
                             ]),
                             _vm._v(" "),
-                            _vm._m(7, true)
+                            _vm._m(12, true)
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "job_descp" }, [
@@ -66697,13 +66880,13 @@ var render = function() {
                         _vm._v(" "),
                         _c("span", [_vm._v("Signed In Now ")]),
                         _vm._v(" "),
-                        _vm._m(8)
+                        _vm._m(13)
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm._m(9),
+                  _vm._m(14),
                   _vm._v(" "),
-                  _vm._m(10)
+                  _vm._m(15)
                 ])
               ])
             ])
@@ -66762,46 +66945,62 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ed-opts" }, [
-      _c(
-        "a",
-        {
-          staticClass: "ed-opts-open",
-          attrs: { href: "javascript:void(0)", title: "" }
-        },
-        [_c("i", { staticClass: "la la-ellipsis-v" })]
-      ),
-      _vm._v(" "),
-      _c("ul", { staticClass: "ed-options" }, [
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-            _vm._v("Edit Post")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-            _vm._v("Unsaved")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-            _vm._v("Unbid")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-            _vm._v("Close")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-            _vm._v("Hide")
-          ])
-        ])
+    return _c(
+      "a",
+      {
+        staticClass: "ed-opts-open",
+        attrs: { href: "javascript:void(0)", title: "" }
+      },
+      [_c("i", { staticClass: "la la-ellipsis-v" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Edit Post")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Unsaved")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Unbid")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Close")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Hide")
       ])
     ])
   },

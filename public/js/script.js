@@ -227,9 +227,9 @@ $(window).on("load", function() {
     $(".user-info").children('img').on("click", function(){
         $(".user-info").next(".user-account-settingss").toggleClass("active");
     });
-    $(".show-filter").on("click", function(){
-        $(this).next(".filter").toggleClass("active");
-    });
+    // $(".show-filter").on("click", function(){
+    //     $(this).next(".filter").toggleClass("active");
+    // });
 
     //  ============= FORUM LINKS MOBILE MENU FUNCTION =========
 

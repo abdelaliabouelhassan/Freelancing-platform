@@ -109,9 +109,9 @@
                                                         <span><img src="images/clock.png" alt="">{{posts.created_at}}  </span>
                                                     </div>
                                                 </div>
-                                                <div class="ed-opts">
+                                                <div class="ed-opts" @click="showOption(posts)">
                                                     <a href="javascript:void(0)" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-                                                    <ul class="ed-options">
+                                                    <ul class="ed-options" v-bind:class="{active:posts == showOp}">
                                                         <li><a href="javascript:void(0)" title="">Edit Post</a></li>
                                                         <li><a href="javascript:void(0)" title="">Unsaved</a></li>
                                                         <li><a href="javascript:void(0)" title="">Unbid</a></li>
@@ -272,7 +272,8 @@
                 price:'0',
                 cit:'0',
                 isdone:'3',
-                searchresult:''
+                searchresult:'',
+                showOp:null,
             }
         },
         methods:{
@@ -357,6 +358,13 @@
 
                 }
             },
+            showOption:function (posts) {
+                if(this.showOp == posts){
+                    this.showOp = null
+                }else{
+                    this.showOp = posts
+                }
+            }
         },
         watch: {
             $route: {
