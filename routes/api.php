@@ -46,3 +46,7 @@ Route::apiResources(['CreateProject'=>'API\ProjectController']);
 /*Jobs*/
 /*End Jobs*/
 
+/*Profile*/
+Route::apiResources(['Profile'=>'API\ProfileController']);
+Route::patch('UpdateImage','API\ProfileController@updateProfileImage');
+/*End Profile*/

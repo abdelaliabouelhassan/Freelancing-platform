@@ -6,14 +6,10 @@ use App\Category;
 use App\City;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Post\PostCollection;
-use App\Http\Resources\Post\PostResource as PostPostResource;
 use App\Http\Resources\PostResource;
 use App\Post;
-use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Stevebauman\Location\Facades\Location;
 class PostController extends Controller
 {
@@ -456,7 +452,6 @@ public function search(Request $request){
      */
     public function show(Post $post)
     {
-        return new PostPostResource($post);
     }
 
     /**

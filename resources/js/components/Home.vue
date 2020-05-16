@@ -112,7 +112,7 @@
                                        <div class="post-bar" v-for="posts in post">
                                            <div class="post_topbar">
                                                <div class="usy-dt">
-                                                   <img :src="posts.user_image ? posts.user_image.path : 'https://via.placeholder.com/100'" alt="">
+                                                   <img :src="posts.user_image ? posts.user_image.path : 'https://via.placeholder.com/100'" alt="" style="height: 100px; width: 100px;">
                                                    <div class="usy-name">
                                                        <h3>{{posts.user_name}} </h3>
                                                        <span><img src="images/clock.png" alt="">{{posts.created_at}}  </span>

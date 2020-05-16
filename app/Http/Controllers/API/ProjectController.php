@@ -48,8 +48,8 @@ class ProjectController extends Controller
         City::findOrFail($request->city);
         if($request->image){
             $name = time() . '.'  . explode('/',explode(':',substr($request->image,0,strpos($request->image,';')))[1])[1];
-            Image::make($request->image)->save(public_path('images/').$name);
-            $imageid = \App\Image::create(['path'=>'images/' . $name]);
+            Image::make($request->image)->save(public_path('store/images/').$name);
+            $imageid = \App\Image::create(['path'=>'store/images/' . $name]);
             $request['image'] = $imageid->id;
         }
         Post::create([

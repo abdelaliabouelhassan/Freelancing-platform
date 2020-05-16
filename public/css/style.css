@@ -744,6 +744,7 @@ nav > ul > li > a:hover {
 	float: left;
 	margin-top: 8px;
 }
+
 .user-info a:hover {
 	color: #fff;
 }
@@ -2566,7 +2567,7 @@ footer {
 	background-color: #fff;
 	border: 1px solid #1B9DE2;
 	position: absolute;
-	top: 30px;
+	top: 85px;
 	right: 0;
 	padding: 10px 15px;
 	font-weight: 600;
