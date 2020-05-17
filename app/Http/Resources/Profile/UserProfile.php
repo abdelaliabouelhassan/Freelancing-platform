@@ -17,6 +17,7 @@ class UserProfile extends JsonResource
         return [
             'id' => $this->id,
             'user_image' =>$this->user_image ? $this->image->path : '',
+            'background_image' =>$this->user_backgroundImage ? $this->backimage->path : '',
             'name' => $this->name,
             'email' => $this->email,
             'phone' => $this->phone,

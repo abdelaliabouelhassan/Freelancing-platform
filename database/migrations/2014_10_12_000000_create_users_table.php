@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->integer('city_id')->nullable()->unsigned()->index();
             $table->integer('category_id')->nullable()->unsigned()->index();
             $table->integer('user_image')->nullable()->unsigned()->index();
+            $table->integer('user_backgroundImage')->nullable()->unsigned()->index();
             $table->boolean('is_active')->default(false);
             $table->string('gander')->nullable();
             $table->boolean('is_online')->default();

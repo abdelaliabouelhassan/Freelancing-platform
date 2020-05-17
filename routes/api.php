@@ -49,4 +49,5 @@ Route::apiResources(['CreateProject'=>'API\ProjectController']);
 /*Profile*/
 Route::apiResources(['Profile'=>'API\ProfileController']);
 Route::patch('UpdateImage','API\ProfileController@updateProfileImage');
+Route::patch('UpdateBackGround','API\ProfileController@UpdateBackGroundImage');
 /*End Profile*/

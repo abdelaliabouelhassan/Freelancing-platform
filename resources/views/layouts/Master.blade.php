@@ -166,7 +166,7 @@
                         </div><!--notification-box end-->
                     </div>
                     <div class="user-info">
-                    <img src="{{asset('images/user.jpg')}}" alt="">
+                    <img src="{{asset(auth()->user()->image ? auth()->user()->image->path  : 'http://via.placeholder.com/40x40')}}" style="height: 40px; width: 40px;" alt="">
                         {{-- <a href="javascript:void(0)" title="" v-text="$gets.user.name"></a>
                         <i class="la la-sort-down"></i> --}}
                     </div>

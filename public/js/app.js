@@ -3795,12 +3795,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       user: [],
       image: '',
-      //we use v-model to get image value from user array
+      backimg: '',
+      showbackimg: true,
       showimg: true
     };
   },
@@ -3862,18 +3865,68 @@ __webpack_require__.r(__webpack_exports__);
         this.$Progress.decrease(20);
         this.$Progress.fail();
       }
+    },
+    getbackgroundimage: function getbackgroundimage() {
+      if (this.backimg != '' && this.backimg != null) {
+        return this.backimg;
+      } else {
+        return 'http://via.placeholder.com/170x170';
+      }
+    },
+    UpdateBackGroundImage: function UpdateBackGroundImage(e) {
+      var _this2 = this;
+
+      this.$Progress.start();
+      var file = e.target.files[0];
+      var reader = new FileReader();
+
+      if (file['type'] === 'image/jpeg' || file['type'] === 'image/png') {
+        if (file['size'] < 2111775) {
+          reader.onloadend = function (file) {
+            console.log(reader.result);
+            _this2.backimg = reader.result;
+            axios.post('api/UpdateBackGround', {
+              data: _this2.backimg,
+              _method: 'patch'
+            }).then(function (response) {
+              Toast.fire({
+                icon: 'success',
+                title: 'BackGround Image Updated Successfully'
+              });
+            })["catch"](function (error) {
+              Toast.fire({
+                icon: 'error',
+                title: 'Something Went Wrong !!!'
+              });
+            });
+            _this2.showbackimg = false;
+
+            _this2.$Progress.finish();
+          };
+
+          reader.readAsDataURL(file);
+        } else {
+          swalWithBootstrapButtons.fire('Cancelled', 'Image Size Is Big Then 2MB', 'error');
+          this.$Progress.decrease(20);
+          this.$Progress.fail();
+        }
+      } else {
+        swalWithBootstrapButtons.fire('Cancelled', 'This File Is Not Image', 'error');
+        this.$Progress.decrease(20);
+        this.$Progress.fail();
+      }
     }
   },
   mounted: function mounted() {
     console.log('Component mounted.');
   },
   created: function created() {
-    var _this2 = this;
+    var _this3 = this;
 
     this.$Progress.start();
     axios.get('api/Profile').then(function (_ref) {
       var data = _ref.data;
-      _this2.user = data.data;
+      _this3.user = data.data;
     });
     this.$Progress.finish();
   }
@@ -67168,30 +67221,53 @@ var render = function() {
   return _c("div", [
     _c("br"),
     _vm._v(" "),
-    _c("section", { staticClass: "cover-sec" }, [
-      _c("img", {
-        attrs: { src: "http://via.placeholder.com/1600x400", alt: "" }
-      }),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          attrs: { href: "javascript:void(0)", title: "" },
-          on: {
-            click: function($event) {
-              return _vm.$refs.backgroundUserImafe.click()
+    _c(
+      "section",
+      { staticClass: "cover-sec" },
+      [
+        _vm._l(_vm.user, function(users) {
+          return _vm.showbackimg
+            ? _c("img", {
+                staticStyle: { height: "500px" },
+                attrs: {
+                  src: users.background_image
+                    ? users.background_image
+                    : "http://via.placeholder.com/1600x400",
+                  alt: "BackGround Image"
+                }
+              })
+            : _vm._e()
+        }),
+        _vm._v(" "),
+        !_vm.showbackimg
+          ? _c("img", {
+              staticStyle: { height: "500px" },
+              attrs: { src: _vm.getbackgroundimage(), alt: "BackGround Image" }
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            attrs: { href: "javascript:void(0)", title: "" },
+            on: {
+              click: function($event) {
+                return _vm.$refs.backgroundUserImafe.click()
+              }
             }
-          }
-        },
-        [_c("i", { staticClass: "fa fa-camera" }), _vm._v(" Change Image")]
-      ),
-      _vm._v(" "),
-      _c("input", {
-        ref: "backgroundUserImafe",
-        staticStyle: { display: "none" },
-        attrs: { type: "file" }
-      })
-    ]),
+          },
+          [_c("i", { staticClass: "fa fa-camera" }), _vm._v(" Change Image")]
+        ),
+        _vm._v(" "),
+        _c("input", {
+          ref: "backgroundUserImafe",
+          staticStyle: { display: "none" },
+          attrs: { type: "file" },
+          on: { change: _vm.UpdateBackGroundImage }
+        })
+      ],
+      2
+    ),
     _vm._v(" "),
     _c("main", [
       _c("div", { staticClass: "main-section" }, [

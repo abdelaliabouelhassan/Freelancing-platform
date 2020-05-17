@@ -2,9 +2,11 @@
     <div>
         <br>
     <section class="cover-sec">
-        <img src="http://via.placeholder.com/1600x400" alt="">
+        <img  v-if="showbackimg" v-for="users in user" :src="users.background_image ? users.background_image : 'http://via.placeholder.com/1600x400'" alt="BackGround Image" style="height: 500px;">
+        <img  v-if="!showbackimg"  :src="getbackgroundimage()" alt="BackGround Image" style="height: 500px;">
+
         <a href="javascript:void(0)" title="" @click="$refs.backgroundUserImafe.click()"><i class="fa fa-camera"></i> Change Image</a>
-        <input type="file"  style="display: none" ref="backgroundUserImafe">
+        <input type="file"  style="display: none" @change="UpdateBackGroundImage" ref="backgroundUserImafe">
     </section>
 
     <main>
@@ -791,7 +793,9 @@
 
             return {
                 user:[],
-                image:'',//we use v-model to get image value from user array
+                image:'',
+                backimg:'',
+                showbackimg:true,
                 showimg:true,
             }
         },
@@ -864,6 +868,63 @@
 
 
             },
+            getbackgroundimage:function () {
+                if(this.backimg != '' && this.backimg != null){
+                    return this.backimg;
+                }else{
+                    return  'http://via.placeholder.com/170x170'
+                }
+            },
+            UpdateBackGroundImage:function (e) {
+                this.$Progress.start()
+                let file = e.target.files[0];
+                let reader = new FileReader();
+                if(file['type']==='image/jpeg' || file['type']==='image/png'){
+                    if(file['size'] < 2111775){
+                        reader.onloadend = (file) =>{
+                            console.log(reader.result)
+                            this.backimg = reader.result
+                            axios.post('api/UpdateBackGround' , {
+                                data: this.backimg,
+                                _method: 'patch'
+                            })
+                                .then(function (response) {
+                                    Toast.fire({
+                                        icon: 'success',
+                                        title: 'BackGround Image Updated Successfully'
+                                    })
+                                })
+                                .catch(function (error) {
+                                    Toast.fire({
+                                        icon: 'error',
+                                        title: 'Something Went Wrong !!!'
+                                    })
+                                });
+                            this.showbackimg = false
+                            this.$Progress.finish()
+                        }
+                        reader.readAsDataURL(file)
+                    }else{
+                        swalWithBootstrapButtons.fire(
+                            'Cancelled',
+                            'Image Size Is Big Then 2MB',
+                            'error'
+
+                        )
+                        this.$Progress.decrease(20)
+                        this.$Progress.fail()
+                    }
+                }else{
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        'This File Is Not Image',
+                        'error'
+
+                    )
+                    this.$Progress.decrease(20)
+                    this.$Progress.fail()
+                }
+            }
         },
         mounted() {
             console.log('Component mounted.')

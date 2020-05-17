@@ -59,6 +59,9 @@ class User extends Authenticatable
     public  function  image(){
         return $this->belongsTo('App\Image','user_image');
     }
+    public  function  backimage(){
+        return $this->belongsTo('App\Image','user_backgroundImage');
+    }
     public  function  city(){
         return $this->belongsTo('App\City');
     }
