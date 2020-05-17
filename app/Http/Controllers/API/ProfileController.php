@@ -14,10 +14,15 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
     public function index()
     {
         $id = auth('api')->id();
-        return   User::findOrFail($id)->with('image','city','category','backimage')->paginate(1);
+        return   User::where('id',$id)->with('image','city','category','backimage')->paginate(1);
     }
 
 
