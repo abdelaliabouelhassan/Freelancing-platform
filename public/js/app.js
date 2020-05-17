@@ -67230,8 +67230,8 @@ var render = function() {
             ? _c("img", {
                 staticStyle: { height: "500px" },
                 attrs: {
-                  src: users.background_image
-                    ? users.background_image
+                  src: users.backimage
+                    ? users.backimage.path
                     : "http://via.placeholder.com/1600x400",
                   alt: "BackGround Image"
                 }
@@ -67289,8 +67289,8 @@ var render = function() {
                                   width: "170px"
                                 },
                                 attrs: {
-                                  src: users.user_image
-                                    ? users.user_image
+                                  src: users.image
+                                    ? users.image.path
                                     : "http://via.placeholder.com/170x170",
                                   alt: "User Image"
                                 }

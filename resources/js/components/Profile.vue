@@ -2,7 +2,7 @@
     <div>
         <br>
     <section class="cover-sec">
-        <img  v-if="showbackimg" v-for="users in user" :src="users.background_image ? users.background_image : 'http://via.placeholder.com/1600x400'" alt="BackGround Image" style="height: 500px;">
+        <img  v-if="showbackimg" v-for="users in user" :src="users.backimage ? users.backimage.path : 'http://via.placeholder.com/1600x400'" alt="BackGround Image" style="height: 500px;">
         <img  v-if="!showbackimg"  :src="getbackgroundimage()" alt="BackGround Image" style="height: 500px;">
 
         <a href="javascript:void(0)" title="" @click="$refs.backgroundUserImafe.click()"><i class="fa fa-camera"></i> Change Image</a>
@@ -18,7 +18,7 @@
                             <div class="main-left-sidebar">
                                 <div class="user_profile">
                                     <div class="user-pro-img">
-                                        <img v-if="showimg" v-for="users in user" :src="users.user_image ? users.user_image :'http://via.placeholder.com/170x170'"  style="height: 170px;width: 170px;" alt="User Image" >
+                                        <img v-if="showimg" v-for="users in user" :src="users.image ? users.image.path :'http://via.placeholder.com/170x170'"  style="height: 170px;width: 170px;" alt="User Image" >
                                         <img v-if="!showimg" :src="getProfilePhoto()"  alt="User Image" style="height: 170px;width: 170px;">
                                         <a href="javascript:void(0)" title="" @click="$refs.profile_image.click()"><i class="fa fa-camera"></i></a>
                                         <input type="file" @change="UploadImg" style="display:none" ref="profile_image">

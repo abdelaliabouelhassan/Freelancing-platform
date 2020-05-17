@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Profile\UserProfile;
 use App\User;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -18,7 +17,7 @@ class ProfileController extends Controller
     public function index()
     {
         $id = auth('api')->id();
-        return  UserProfile::collection(User::findOrFail($id)->get());
+        return   User::findOrFail($id)->with('image','city','category','backimage')->paginate(1);
     }
 
 
