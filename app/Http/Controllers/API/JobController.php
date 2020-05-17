@@ -9,7 +9,7 @@ use App\Post;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
-class ProjectController extends Controller
+class JobController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +20,6 @@ class ProjectController extends Controller
     {
         $this->middleware('auth:api');
     }
-
 
     public function index()
     {
@@ -35,7 +34,6 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-
         $this->validate($request,[
             'title'=>'required|max:100',
             'body'=>'required|min:20',
@@ -59,10 +57,9 @@ class ProjectController extends Controller
             'city_id'=>$request->city,
             'user_id'=>auth('api')->id(),
             'price'=>$request->price,
-            'type'=>'servic',
+            'type'=>'job',
             'image_id'=>$request->image,
         ]);
-
     }
 
     /**

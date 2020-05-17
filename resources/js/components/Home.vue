@@ -336,13 +336,13 @@
                            <div class="col-lg-12">
                                <ul>
                                    <li><button class="active" type="submit" value="post">Post</button></li>
-                                   <li><a href="javascript:void(0)" title="" @click="showProject = false">Cancel</a></li>
+                                   <li><a href="javascript:void(0)" title="" @click="showProject = false; form.errors.clear()">Cancel</a></li>
                                </ul>
                            </div>
                        </div>
                    </form>
                </div><!--post-project-fields end-->
-               <a href="javascript:void(0)" title="" @click="showProject = false"><i class="la la-times-circle-o"></i></a>
+               <a href="javascript:void(0)" title="" @click="showProject = false; form.errors.clear()"><i class="la la-times-circle-o"></i></a>
            </div><!--post-project end-->
        </div><!--post-project-popup end-->
 
@@ -353,54 +353,66 @@
                    <form @submit.prevent="CreateJob()">
                        <div class="row">
                            <div class="col-lg-12">
-                               <input type="text" name="title" placeholder="Title">
+                               <input type="text" name="title" placeholder="Title" class="form-control" v-model="form.title" :class="{ 'is-invalid': form.errors.has('title') }">
+                               <has-error :form="form" field="title"></has-error>
+                               <br>
                            </div>
                            <div class="col-lg-12">
                                <div class="inp-field">
-                                   <select>
+                                   <select v-model="form.category" :class="{ 'is-invalid': form.errors.has('category') }">
                                        <option value="0">Select a job Category</option>
                                        <option v-for="categorys in category" :value="categorys.id">
                                            {{categorys.category_name}}</option>
                                    </select>
+                                   <has-error :form="form" field="category"></has-error>
+                                   <br>
                                </div>
                            </div>
                            <div class="col-lg-12">
                                <div class="inp-field">
-                                   <select>
+                                   <select v-model="form.city" :class="{ 'is-invalid': form.errors.has('city') }">
                                        <option value="0">Select City</option>
                                        <option v-for="citys in city" :value="citys.id">{{citys.city_name}}
                                        </option>
                                    </select>
+                                   <has-error :form="form" field="city"></has-error>
+                                   <br>
                                </div>
                            </div>
 
                            <div class="col-lg-12">
                                <div class="price-br">
-                                   <input type="file" name="img" placeholder="Upload Image">
+                                   <input type="file" name="img" placeholder="Upload Image" class="form-control" @change="UploadImg"  :class="{ 'is-invalid': form.errors.has('image') }">
                                    <i class="fas fa-images"></i>
+                                   <has-error :form="form" field="image"></has-error>
+                                   <br>
                                </div>
                            </div>
                            <div class="col-lg-12">
                                <div class="price-sec">
                                    <div class="price-br">
-                                       <input type="text" name="price1" placeholder="Price">
+                                       <input type="text" name="price1" placeholder="Price" class="form-control" v-model="form.price" :class="{ 'is-invalid': form.errors.has('price') }">
                                        <i class="la la-dollar"></i>
+                                       <has-error :form="form" field="price"></has-error>
+                                       <br>
                                    </div>
                                </div>
                            </div>
                            <div class="col-lg-12">
-                               <textarea name="description" placeholder="Description"></textarea>
+                               <textarea name="description" placeholder="Description" class="form-control" v-model="form.body" :class="{ 'is-invalid': form.errors.has('body') }"></textarea>
+                               <has-error :form="form" field="body"></has-error>
+                               <br>
                            </div>
                            <div class="col-lg-12">
                                <ul>
                                    <li><button class="active" type="submit" value="post">Post</button></li>
-                                   <li><a href="javascript:void(0)" title="" @click="showJob = false">Cancel</a></li>
+                                   <li><a href="javascript:void(0)" title="" @click="showJob = false;form.errors.clear()">Cancel</a></li>
                                </ul>
                            </div>
                        </div>
                    </form>
                </div><!--post-project-fields end-->
-               <a href="javascript:void(0)" title="" @click="showJob = false"><i class="la la-times-circle-o"></i></a>
+               <a href="javascript:void(0)" title="" @click="showJob = false;form.errors.clear()"><i class="la la-times-circle-o"></i></a>
            </div><!--post-project end-->
        </div><!--post-project-popup end-->
    </div>
@@ -510,12 +522,34 @@
                     this.$Progress.fail()
                 }
 
-
             },
             CreateJob:function(){
                 this.$Progress.start()
-               this.showJob = false
-                this.$Progress.finish()
+                if(this.isready){
+                    this.form.post('api/CreateJob')
+                        .then(()=>{
+                            this.showJob = false
+                            this.$Progress.finish()
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'Job Created Successfully'
+                            })
+                            something.$emit('wherecreateuserloaddate');
+                        })
+                        .catch(()=>{
+                            this.$Progress.decrease(20)
+                            this.$Progress.fail()
+                        })
+                }else {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        'Pleas Check You Upload File',
+                        'error'
+
+                    )
+                    this.$Progress.decrease(20)
+                    this.$Progress.fail()
+                }
             },
             UploadImg:function(e){
                 this.$Progress.start()

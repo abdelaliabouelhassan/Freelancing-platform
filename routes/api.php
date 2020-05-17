@@ -44,6 +44,7 @@ Route::apiResources(['CreateProject'=>'API\ProjectController']);
 /*End Project*/
 
 /*Jobs*/
+Route::apiResources(['CreateJob'=>'API\JobController']);
 /*End Jobs*/
 
 /*Profile*/
