@@ -128,37 +128,37 @@
                                     </div><!--star-descp end-->
                                     <div class="tab-feed st2">
                                         <ul>
-                                            <li data-tab="feed-dd" class="active">
+                                            <li data-tab="feed-dd"   v-bind:class="{active:feed,'animated fadeIn':feed}" @click="feed=true;Info=false;Saved=false;Portfolio=false;Bids=false;Payment=false">
                                                 <a href="javascript:void(0)" title="">
                                                     <img src="images/ic1.png" alt="">
                                                     <span>Feed</span>
                                                 </a>
                                             </li>
-                                            <li data-tab="info-dd">
+                                            <li data-tab="info-dd"  v-bind:class="{active:Info,'animated fadeIn':Info}" @click="Info=true;feed=false;Saved=false;Bids=false;Portfolio=false;Payment=false">
                                                 <a href="javascript:void(0)" title="">
                                                     <img src="images/ic2.png" alt="">
                                                     <span>Info</span>
                                                 </a>
                                             </li>
-                                            <li data-tab="saved-jobs">
+                                            <li data-tab="saved-jobs" v-bind:class="{active:Saved,'animated fadeIn':Saved}" @click="Info=false;feed=false;Saved=true;Bids=false;Portfolio=false;Payment=false;loadsaves()">
                                                 <a href="javascript:void(0)" title="">
                                                     <img src="images/ic4.png" alt="">
                                                     <span>Saved Jobs</span>
                                                 </a>
                                             </li>
-                                            <li data-tab="my-bids">
+                                            <li data-tab="my-bids" v-bind:class="{active:Bids,'animated fadeIn':Bids}" @click="Info=false;feed=false;Saved=false;Bids=true;Portfolio=false;Payment=false">
                                                 <a href="javascript:void(0)" title="">
                                                     <img src="images/ic5.png" alt="">
                                                     <span>My Bids</span>
                                                 </a>
                                             </li>
-                                            <li data-tab="portfolio-dd">
+                                            <li data-tab="portfolio-dd" v-bind:class="{active:Portfolio,'animated fadeIn':Portfolio}" @click="Info=false;feed=false;Saved=false;Bids=false;Portfolio=true;Payment=false">
                                                 <a href="javascript:void(0)" title="">
                                                     <img src="images/ic3.png" alt="">
                                                     <span>Portfolio</span>
                                                 </a>
                                             </li>
-                                            <li data-tab="payment-dd">
+                                            <li data-tab="payment-dd" v-bind:class="{active:Payment,'animated fadeIn':Payment}" @click="Info=false;feed=false;Saved=false;Bids=false;Portfolio=false;Payment=true">
                                                 <a href="javascript:void(0)" title="">
                                                     <img src="images/ic6.png" alt="">
                                                     <span>Payment</span>
@@ -167,23 +167,20 @@
                                         </ul>
                                     </div><!-- tab-feed end-->
                                 </div><!--user-tab-sec end-->
-                                <div class="product-feed-tab current" id="feed-dd">
+                                <div class="product-feed-tab " v-bind:class="{current:feed}" id="feed-dd">
                                     <div class="posts-section">
-
-
-
-                                        <div class="post-bar">
+                                        <div class="post-bar" v-for="feedss in feeds">
                                             <div class="post_topbar">
                                                 <div class="usy-dt">
-                                                    <img src="http://via.placeholder.com/50x50" alt="">
+                                                    <img :src="feedss.user_image ? feedss.user_image.path : 'https://via.placeholder.com/100'" alt="" style="height: 100px; width: 100px;">
                                                     <div class="usy-name">
-                                                        <h3>John Doe</h3>
-                                                        <span><img src="images/clock.png" alt="">3 min ago</span>
+                                                        <h3>{{feedss.user_name}} </h3>
+                                                        <span><img src="images/clock.png" alt="">{{feedss.created_at}}  </span>
                                                     </div>
                                                 </div>
-                                                <div class="ed-opts">
+                                                <div class="ed-opts" @click="showOption(feedss)">
                                                     <a href="javascript:void(0)" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-                                                    <ul class="ed-options">
+                                                    <ul class="ed-options" v-bind:class="{active:feedss == showOp}">
                                                         <li><a href="javascript:void(0)" title="">Edit Post</a></li>
                                                         <li><a href="javascript:void(0)" title="">Unsaved</a></li>
                                                         <li><a href="javascript:void(0)" title="">Unbid</a></li>
@@ -194,45 +191,34 @@
                                             </div>
                                             <div class="epi-sec">
                                                 <ul class="descp">
-                                                    <li><img src="images/icon8.png" alt=""><span>Epic Coder</span></li>
-                                                    <li><img src="images/icon9.png" alt=""><span>India</span></li>
+                                                    <li><img src="images/icon8.png" alt=""><span>{{feedss.is_done ? 'done' : 'available'}} </span></li>
+                                                    <li><img src="images/icon9.png" alt=""><span> {{feedss.city_name}}</span></li>
                                                 </ul>
                                                 <ul class="bk-links">
                                                     <li><a href="javascript:void(0)" title=""><i class="la la-bookmark"></i></a></li>
                                                     <li><a href="javascript:void(0)" title=""><i class="la la-envelope"></i></a></li>
-                                                    <li><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
+                                                    <li v-if="feedss.type == 'servic'"><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
                                                 </ul>
                                             </div>
                                             <div class="job_descp">
-                                                <h3>Ios Shopping mobile app</h3>
+                                                <h3>{{feedss.title}}</h3>
                                                 <ul class="job-dt">
-                                                    <li><span>$300 - $350</span></li>
+                                                    <li><a href="javascript:void(0)" title="">Full Time</a></li>
+                                                    <li><span>DH{{feedss.price}}</span></li>
                                                 </ul>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... <a href="javascript:void(0)" title="">view more</a></p>
+                                                <img v-if="feedss.post_image" :src="feedss.post_image" alt="">
+                                                <p>{{feedss.body}} ... <a href="javascript:void(0)" title="">view more</a></p>
                                                 <ul class="skill-tags">
-                                                    <li><a href="javascript:void(0)" title="">HTML</a></li>
-                                                    <li><a href="javascript:void(0)" title="">PHP</a></li>
-                                                    <li><a href="javascript:void(0)" title="">CSS</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Javascript</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Wordpress</a></li>
+                                                    <li><a href="javascript:void(0)" title="">{{feedss.category_name}}</a></li>
                                                 </ul>
                                             </div>
-                                            <div class="job-status-bar">
-                                                <ul class="like-com">
-                                                    <li>
-                                                        <a href="javascript:void(0)"><i class="la la-heart"></i> Like</a>
-                                                        <img src="images/liked-img.png" alt="">
-                                                        <span>25</span>
-                                                    </li>
-                                                    <li><a href="javascript:void(0)" title="" class="com"><img src="images/com.png" alt=""> Comment 15</a></li>
-                                                </ul>
-                                                <a><i class="la la-eye"></i>Views 50</a>
-                                            </div>
-                                        </div><!--post-bar end-->
 
-                                    </div><!--posts-section end-->
+                                        </div>
+                                        <!--post-bar end-->
+                                    </div>
+                                    <infinite-loading @distance="1" @infinite="loadfeed"></infinite-loading>
                                 </div><!--product-feed-tab end-->
-                                <div class="product-feed-tab" id="info-dd">
+                                <div class="product-feed-tab"  v-bind:class="{current:Info}" id="info-dd">
                                     <div class="user-profile-ov">
                                         <h3><a href="javascript:void(0)" title="" class="overview-open">Overview</a> <a href="javascript:void(0)" title="" class="overview-open"><i class="fa fa-pencil"></i></a></h3>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus consectetur aliquam lectus commodo viverra. Nunc eu augue nec arcu efficitur faucibus. Aliquam accumsan ac magna convallis bibendum. Quisque laoreet augue eget augue fermentum scelerisque. Vivamus dignissim mollis est dictum blandit. Nam porta auctor neque sed congue. Nullam rutrum eget ex at maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget vestibulum lorem.</p>
@@ -271,10 +257,8 @@
                                         </ul>
                                     </div><!--user-profile-ov end-->
                                 </div><!--product-feed-tab end-->
-                                <div class="product-feed-tab" id="saved-jobs">
+                                <div class="product-feed-tab" id="saved-jobs" v-bind:class="{current:Saved}">
                                     <div class="posts-section">
-
-
 
                                         <div class="post-bar">
                                             <div class="post_topbar">
@@ -333,10 +317,11 @@
                                                 <a><i class="la la-eye"></i>Views 50</a>
                                             </div>
                                         </div><!--post-bar end-->
+                                        <infinite-loading @distance="1" @infinite="loadsave"></infinite-loading>
 
                                     </div><!--posts-section end-->
                                 </div><!--product-feed-tab end-->
-                                <div class="product-feed-tab" id="my-bids">
+                                <div class="product-feed-tab" id="my-bids" v-bind:class="{current:Bids}">
                                     <div class="posts-section">
                                         <div class="post-bar">
                                             <div class="post_topbar">
@@ -583,7 +568,7 @@
                                         </div><!--process-comm end-->
                                     </div><!--posts-section end-->
                                 </div><!--product-feed-tab end-->
-                                <div class="product-feed-tab" id="portfolio-dd">
+                                <div class="product-feed-tab" id="portfolio-dd" v-bind:class="{current:Portfolio}">
                                     <div class="portfolio-gallery-sec">
                                         <h3>Portfolio</h3>
                                         <div class="gallery_pf">
@@ -652,7 +637,7 @@
                                         </div><!--gallery_pf end-->
                                     </div><!--portfolio-gallery-sec end-->
                                 </div><!--product-feed-tab end-->
-                                <div class="product-feed-tab" id="payment-dd">
+                                <div class="product-feed-tab" id="payment-dd" v-bind:class="{current:Payment}">
                                     <div class="billing-method">
                                         <ul>
                                             <li>
@@ -795,8 +780,27 @@
                 user:[],
                 image:'',
                 backimg:'',
+                /*v-bind:class variable*/
                 showbackimg:true,
                 showimg:true,
+                feed:true,
+                Info:false,
+                Saved:false,
+                Bids:false,
+                Payment:false,
+                Portfolio:false,
+                /*End v-bind:class variable*/
+                /*feed*/
+                showOp:null,
+                lastPage: 0,
+                page: 1,
+                feeds:{},
+                /*feed End*/
+                /*save job*/
+                lastPagesave: 0,
+                pagesave: 1,
+                saves:{},
+                /*save job end*/
             }
         },
         watch: {
@@ -808,7 +812,77 @@
             },
         },
         methods:{
+            loadsaves(){
+                let vm = this;
+                axios.get('api/save').then(({data}) => {
+                    this.saves = data.data
+                    vm.lastPagesave = data.meta.last_page
+                })
+            },
+            loadsave($state){
+                let vm = this;
+                if (this.saves.length != 0) {
+                    axios.get('api/save?page=' + this.pagesave)
+                        .then(response => {
+                            return response.data;
+                        }).then(data => {
+                        //
+                        if (this.pagesave - 1 == this.lastPagesave) {
+                            $state.complete();
+                        } else {
+                            setTimeout(function () {
+                                $.each(data.data, function (key, value) {
+                                    vm.saves.push(value);
+                                });
+                                $state.loaded();
+                                Vue.nextTick(function () {
+                                    $('[data-toggle="tooltip"]').tooltip();
+                                });
+                            }.bind(this), 0);
+                        }
 
+                    });
+                    this.pagesave = this.pagesave + 1;
+                } else {
+                    $state.complete();
+                }
+            },
+            loadfeeds(){
+                let vm = this;
+                axios.get('api/feeds').then(({data}) => {
+                    this.feeds = data.data
+                    vm.lastPage = data.meta.last_page
+                })
+            },
+            loadfeed($state){
+                let vm = this;
+                if (this.feeds.length != 0) {
+                    axios.get('api/feeds?page=' + this.page)
+                        .then(response => {
+                            return response.data;
+                        }).then(data => {
+                        //
+                        if (this.page - 1 == this.lastPage) {
+                            $state.complete();
+                        } else {
+                            setTimeout(function () {
+                                $.each(data.data, function (key, value) {
+                                    vm.feeds.push(value);
+                                });
+                                $state.loaded();
+                                Vue.nextTick(function () {
+                                    $('[data-toggle="tooltip"]').tooltip();
+                                });
+                            }.bind(this), 0);
+                        }
+
+                    });
+                    this.page = this.page + 1;
+                } else {
+                    $state.complete();
+                }
+
+            },
             getProfilePhoto() {
                 if(this.image != '' && this.image != null){
                     return this.image;
@@ -924,7 +998,15 @@
                     this.$Progress.decrease(20)
                     this.$Progress.fail()
                 }
-            }
+            },
+            showOption:function (feeds) {
+                if(this.showOp == feeds){
+                    this.showOp = null
+                }else{
+                    this.showOp = feeds
+                }
+
+            },
         },
         mounted() {
             console.log('Component mounted.')
@@ -932,6 +1014,7 @@
         created() {
             this.$Progress.start()
             axios.get('api/Profile').then(({data}) => {this.user = data.data})
+            this.loadfeeds();
             this.$Progress.finish()
         }
     }

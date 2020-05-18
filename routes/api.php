@@ -51,4 +51,7 @@ Route::apiResources(['CreateJob'=>'API\JobController']);
 Route::apiResources(['Profile'=>'API\ProfileController']);
 Route::patch('UpdateImage','API\ProfileController@updateProfileImage');
 Route::patch('UpdateBackGround','API\ProfileController@UpdateBackGroundImage');
+Route::get('feeds','API\ProfileController@feed');
+Route::get('save','API\ProfileController@savejob');
+
 /*End Profile*/

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Post\PostCollection;
+use App\Post;
+use App\Saved_Job;
 use App\User;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -73,6 +76,17 @@ class ProfileController extends Controller
                 $user->update(['user_backgroundImage'=>$request['data']]);
             }
         }
+    }
+
+    public  function  feed(){
+        $post =  Post::latest()->orderBy('id')->where('user_id',auth('api')->id())->paginate(5);
+        return PostCollection::collection($post);
+    }
+
+    public  function  savejob(){
+   $save =   Saved_Job::where('user_id',auth('api')->id());
+
+return $save['post_id'];
     }
     /**
      * Store a newly created resource in storage.
