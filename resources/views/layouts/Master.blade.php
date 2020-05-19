@@ -241,7 +241,7 @@
 <script>
     window.user = @json(auth()->user());
     var style = 'color: tomato; background:#eee; -webkit-text-stroke: 1px black; font-size:30px;';
-    console.log('%cHi, We are Happy 😆 to have you Here But This is a browser feature intended for developers. If someone told you to copy-paste something here to enable a Brikol feature or "hack" someone\'s account, it is a scam and will give them access to your Brikol account.', style );
+    console.log('%cHi, We are Happy 😆 to have you Here, But This is a browser feature intended for developers. If someone told you to copy-paste something here to enable a Brikol feature or "hack" 🛑 someone\'s account, it is a scam and will give them access to your Brikol account.', style );
 </script>
 <script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/popper.js')}}"></script>
