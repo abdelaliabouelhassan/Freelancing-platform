@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Post\PostCollection;
 use App\Http\Resources\Profile\SavedPostCollection;
+use App\Mybid;
 use App\Post;
 use App\Saved_Job;
 use App\User;
@@ -88,6 +89,11 @@ class ProfileController extends Controller
     {
          $save = Saved_Job::where('user_id',auth('api')->id())->with('post')->paginate(5);
         return SavedPostCollection::collection($save);
+    }
+
+    public function myBids(){
+        $bids = Mybid::where('user_id',auth('api')->id())->with('post')->paginate(5);
+        return SavedPostCollection::collection($bids);
     }
     /**
      * Store a newly created resource in storage.

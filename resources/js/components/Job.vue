@@ -2,27 +2,32 @@
     <div>
 
         <main>
-            <div class="show-filter" @click="showFilter = !showFilter ">
-                Filter
-                <i class="fa fa-search"></i>
-            </div>
+            <div class="search-sec">
+                <div class="container">
 
-                        <div class="filter" v-bind:class="{active:showFilter}">
-
-                            <div class=" filter-file">
-                                <div class="filter-secs">
-                                    <div class="search-box">
-                                    <form autocomplete="off" @submit.prevent="bringpost">
-                            <input type="text" name="search" @keyup="search" v-model="input"
-                                placeholder="Search keywords">
-                            <button type="submit" class="panel-heading">Search</button>
+                    <div class="search-box">
+                        <form autocomplete="off" @submit.prevent="bringpost">
+                            <input type="text" name="search" @keyup="search" v-model="input" placeholder="Search keywords" >
+                            <button type="submit" class="panel-heading" >Search</button>
                         </form>
+                        <div v-if="searchresult.length" >
+                            <p v-for="searchresults in searchresult" @click="takevalue(searchresults.title)">
+                                <b class="panel-footer">{{searchresults.title}}</b>
+                            </p>
                         </div>
+                    </div><!--search-box end-->
+                </div>
+            </div><!--search-sec end-->
+            <div class="main-section">
+                <div class="container">
+                    <div class="main-section-data">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="filter-secs">
                                     <div class="filter-heading">
                                         <h3>Filters</h3>
                                         <a href="javascript:void(0)" title="" @click="clearall">Clear all filters</a>
-                                    </div>
-                                    <!--filter-heading end-->
+                                    </div><!--filter-heading end-->
                                     <div class="paddy">
 
                                         <div class="filter-dd">
@@ -31,16 +36,14 @@
                                             </div>
                                             <ul class="avail-checks">
                                                 <li>
-                                                    <input type="radio" name="cc" id="c2" v-model="isdone" value="0"
-                                                        @change="filterpost">
+                                                    <input type="radio" name="cc" id="c2" v-model="isdone" value="0" @change="filterpost">
                                                     <label for="c2">
                                                         <span></span>
                                                     </label>
                                                     <small>Available</small>
                                                 </li>
                                                 <li>
-                                                    <input type="radio" name="cc" id="c3" v-model="isdone" value="1"
-                                                        @change="filterpost">
+                                                    <input type="radio" name="cc" id="c3" v-model="isdone" value="1" @change="filterpost">
                                                     <label for="c3">
                                                         <span></span>
                                                     </label>
@@ -53,10 +56,9 @@
                                                 <h3>Job Category</h3>
                                             </div>
                                             <form class="job-tp">
-                                                <select @change="filterpost" v-model="cat">
+                                                <select @change="filterpost"  v-model="cat">
                                                     <option value="0">Select a job Category</option>
-                                                    <option v-for="categorys in category" :value="categorys.id">
-                                                        {{categorys.category_name}}</option>
+                                                    <option v-for="categorys in category" :value="categorys.id">{{categorys.category_name}}</option>
                                                 </select>
                                                 <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                             </form>
@@ -82,45 +84,31 @@
                                             </div>
                                             <form class="job-tp">
                                                 <select v-model="cit" @change="filterpost">
-                                                    <option value="0">Select City</option>
-                                                    <option v-for="citys in city" :value="citys.id">{{citys.city_name}}
-                                                    </option>
+                                                    <option value="0">Select  City</option>
+                                                    <option v-for="citys in city" :value="citys.id">{{citys.city_name}}</option>
 
                                                 </select>
                                                 <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                             </form>
                                         </div>
                                     </div>
-                                </div>
-                                <!--filter-secs end-->
+                                </div><!--filter-secs end-->
                             </div>
-                        </div>
-                        <div v-if="searchresult.length">
-                            <p v-for="searchresults in searchresult" @click="takevalue(searchresults.title)">
-                                <b class="panel-footer">{{searchresults.title}}</b>
-                            </p>
-                        </div>
-            <!--search-sec end-->
-            <div class="main-section">
-                <div class="container">
-                    <div class="main-section-data">
-                        <div class="row">
-                            <div class="col-md">
+                            <div class="col-lg-6">
                                 <div class="main-ws-sec">
                                     <div class="posts-section">
                                         <div class="post-bar" v-for="posts in post">
                                             <div class="post_topbar">
                                                 <div class="usy-dt">
-                                                    <img :src="posts.user_image ? posts.user_image.path : 'https://via.placeholder.com/100'" alt="User Image" style="height: 100px; width: 100px;">
+                                                    <img :src="posts.image_path ? posts.image_path : 'https://via.placeholder.com/100'" alt="">
                                                     <div class="usy-name">
                                                         <h3>{{posts.user_name}} </h3>
-                                                        <span><img src="images/clock.png"
-                                                                alt="">{{posts.created_at}} </span>
+                                                        <span><img src="images/clock.png" alt="">{{posts.created_at | mydate}}  </span>
                                                     </div>
                                                 </div>
                                                 <div class="ed-opts" @click="showOption(posts)">
                                                     <a href="javascript:void(0)" title="" class="ed-opts-open"><i
-                                                            class="la la-ellipsis-v"></i></a>
+                                                        class="la la-ellipsis-v"></i></a>
                                                     <ul class="ed-options" v-bind:class="{active:posts == showOp}">
                                                         <li><a href="javascript:void(0)" title="">Edit Post</a></li>
                                                         <li><a href="javascript:void(0)" title="">Unsaved</a></li>
@@ -132,11 +120,8 @@
                                             </div>
                                             <div class="epi-sec">
                                                 <ul class="descp">
-                                                    <li><img src="images/icon8.png"
-                                                            alt=""><span>{{posts.is_done ? 'done' : 'available'}}
-                                                        </span></li>
-                                                    <li><img src="images/icon9.png" alt=""><span>
-                                                            {{posts.city_name}}</span></li>
+                                                    <li><img src="images/icon8.png" alt=""><span>{{posts.is_done ? 'done' : 'available'}} </span></li>
+                                                    <li><img src="images/icon9.png" alt=""><span> {{posts.city_name}}</span></li>
                                                 </ul>
                                                 <ul class="bk-links">
                                                     <li><a href="javascript:void(0)" title=""><i class="la la-bookmark"></i></a></li>
@@ -149,8 +134,8 @@
                                                     <li><a href="javascript:void(0)" title="">Full Time</a></li>
                                                     <li><span>DH{{posts.price}}</span></li>
                                                 </ul>
-                                                <img v-if="posts.post_image" :src="posts.post_image" alt="">
-                                                <p>{{posts.body}} ... <a href="javascript:void(0)" title="">view more</a></p>
+                                                <img v-if="posts.post_image" :src="posts.post_image" alt=""  class="img-fluid">
+                                                <p><read-more more-str="read more" :text="posts.body" link="#" less-str="read less" :max-chars="500"></read-more></p>
                                                 <ul class="skill-tags">
                                                     <li><a href="javascript:void(0)" title="">{{posts.category_name}}</a></li>
                                                 </ul>
@@ -158,11 +143,9 @@
 
                                         </div>
                                         <!--post-bar end-->
-                                        <infinite-loading @distance="1" @infinite="infiniteHandler"></infinite-loading>
-                                    </div>
-                                    <!--posts-section end-->
-                                </div>
-                                <!--main-ws-sec end-->
+                                        <infinite-loading  @distance="1" @infinite="infiniteHandler"></infinite-loading>
+                                    </div><!--posts-section end-->
+                                </div><!--main-ws-sec end-->
                             </div>
                             <div class="col-lg-3">
                                 <div class="right-sidebar">
@@ -173,8 +156,7 @@
                                         <div class="sign_link">
                                             <h3><a href="/" title="">Sign up</a></h3>
                                         </div>
-                                    </div>
-                                    <!--widget-about end-->
+                                    </div><!--widget-about end-->
                                     <div class="widget widget-jobs">
                                         <div class="sd-title">
                                             <h3>Top Jobs</h3>
@@ -189,8 +171,7 @@
                                                 <div class="hr-rate">
                                                     <span>$25/hr</span>
                                                 </div>
-                                            </div>
-                                            <!--job-info end-->
+                                            </div><!--job-info end-->
                                             <div class="job-info">
                                                 <div class="job-details">
                                                     <h3>Senior UI / UX Designer</h3>
@@ -199,8 +180,7 @@
                                                 <div class="hr-rate">
                                                     <span>$25/hr</span>
                                                 </div>
-                                            </div>
-                                            <!--job-info end-->
+                                            </div><!--job-info end-->
                                             <div class="job-info">
                                                 <div class="job-details">
                                                     <h3>Junior Seo Designer</h3>
@@ -209,8 +189,7 @@
                                                 <div class="hr-rate">
                                                     <span>$25/hr</span>
                                                 </div>
-                                            </div>
-                                            <!--job-info end-->
+                                            </div><!--job-info end-->
                                             <div class="job-info">
                                                 <div class="job-details">
                                                     <h3>Senior PHP Designer</h3>
@@ -219,8 +198,7 @@
                                                 <div class="hr-rate">
                                                     <span>$25/hr</span>
                                                 </div>
-                                            </div>
-                                            <!--job-info end-->
+                                            </div><!--job-info end-->
                                             <div class="job-info">
                                                 <div class="job-details">
                                                     <h3>Senior Developer Designer</h3>
@@ -229,12 +207,9 @@
                                                 <div class="hr-rate">
                                                     <span>$25/hr</span>
                                                 </div>
-                                            </div>
-                                            <!--job-info end-->
-                                        </div>
-                                        <!--jobs-list end-->
-                                    </div>
-                                    <!--widget-jobs end-->
+                                            </div><!--job-info end-->
+                                        </div><!--jobs-list end-->
+                                    </div><!--widget-jobs end-->
                                     <div class="widget widget-jobs">
                                         <div class="sd-title">
                                             <h3>Most Viewed This Week</h3>
@@ -249,8 +224,7 @@
                                                 <div class="hr-rate">
                                                     <span>$25/hr</span>
                                                 </div>
-                                            </div>
-                                            <!--job-info end-->
+                                            </div><!--job-info end-->
                                             <div class="job-info">
                                                 <div class="job-details">
                                                     <h3>Senior UI / UX Designer</h3>
@@ -259,8 +233,7 @@
                                                 <div class="hr-rate">
                                                     <span>$25/hr</span>
                                                 </div>
-                                            </div>
-                                            <!--job-info end-->
+                                            </div><!--job-info end-->
                                             <div class="job-info">
                                                 <div class="job-details">
                                                     <h3>Junior Seo Designer</h3>
@@ -269,21 +242,16 @@
                                                 <div class="hr-rate">
                                                     <span>$25/hr</span>
                                                 </div>
-                                            </div>
-                                            <!--job-info end-->
-                                        </div>
-                                        <!--jobs-list end-->
-                                    </div>
-                                    <!--widget-jobs end-->
-                                </div>
-                                <!--right-sidebar end-->
+                                            </div><!--job-info end-->
+                                        </div><!--jobs-list end-->
+                                    </div><!--widget-jobs end-->
+                                </div><!--right-sidebar end-->
                             </div>
                         </div>
                     </div><!-- main-section-data end-->
                 </div>
             </div>
         </main>
-
     </div>
 </template>
 

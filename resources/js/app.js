@@ -119,6 +119,11 @@ window.something = new Vue();
 
 
 
+/*Read More*/
+import ReadMore from 'vue-read-more';
+Vue.use(ReadMore);
+/*End Read More*/
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

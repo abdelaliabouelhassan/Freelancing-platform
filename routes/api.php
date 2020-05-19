@@ -53,5 +53,6 @@ Route::patch('UpdateImage','API\ProfileController@updateProfileImage');
 Route::patch('UpdateBackGround','API\ProfileController@UpdateBackGroundImage');
 Route::get('feeds','API\ProfileController@feed');
 Route::get('save','API\ProfileController@savejob');
+Route::get('bids','API\ProfileController@myBids');
 
 /*End Profile*/

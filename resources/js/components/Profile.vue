@@ -2,8 +2,8 @@
     <div>
         <br>
     <section class="cover-sec">
-        <img  v-if="showbackimg" v-for="users in user" :src="users.backimage ? users.backimage.path : 'http://via.placeholder.com/1600x400'" alt="BackGround Image" style="height: 500px;">
-        <img  v-if="!showbackimg"  :src="getbackgroundimage()" alt="BackGround Image" style="height: 500px;">
+        <img  v-if="showbackimg" v-for="users in user" :src="users.backimage ? users.backimage.path : 'http://via.placeholder.com/1600x400'" alt="BackGround Image" style="height: 500px;"  class="img-fluid">
+        <img  v-if="!showbackimg"  :src="getbackgroundimage()" alt="BackGround Image" style="height: 500px;"  class="img-fluid">
 
         <a href="javascript:void(0)" title="" @click="$refs.backgroundUserImafe.click()"><i class="fa fa-camera"></i> Change Image</a>
         <input type="file"  style="display: none" @change="UpdateBackGroundImage" ref="backgroundUserImafe">
@@ -140,7 +140,7 @@
                                                     <span>Info</span>
                                                 </a>
                                             </li>
-                                            <li data-tab="saved-jobs" v-bind:class="{active:Saved,'animated fadeIn':Saved}" @click="Info=false;feed=false;Saved=true;Bids=false;Portfolio=false;Payment=false;loadsaves()">
+                                            <li data-tab="saved-jobs" v-bind:class="{active:Saved,'animated fadeIn':Saved}" @click="Info=false;feed=false;Saved=true;Bids=false;Portfolio=false;Payment=false;">
                                                 <a href="javascript:void(0)" title="">
                                                     <img src="images/ic4.png" alt="">
                                                     <span>Saved Jobs</span>
@@ -206,8 +206,8 @@
                                                     <li><a href="javascript:void(0)" title="">Full Time</a></li>
                                                     <li><span>DH{{feedss.price}}</span></li>
                                                 </ul>
-                                                <img v-if="feedss.post_image" :src="feedss.post_image" alt="">
-                                                <p>{{feedss.body}} ... <a href="javascript:void(0)" title="">view more</a></p>
+                                                <img v-if="feedss.post_image" :src="feedss.post_image" alt="" style="height: 500px;width: 500px"  class="img-fluid">
+                                                <p>  <read-more more-str="read more" :text="feedss.body" link="#" less-str="read less" :max-chars="500"></read-more></p>
                                                 <ul class="skill-tags">
                                                     <li><a href="javascript:void(0)" title="">{{feedss.category_name}}</a></li>
                                                 </ul>
@@ -296,8 +296,8 @@
                                                     <li><a href="javascript:void(0)" title="">Full Time</a></li>
                                                     <li><span>DH{{save.price}}</span></li>
                                                 </ul>
-                                                <img v-if="save.post_image" :src="save.post_image" alt="">
-                                                <p>{{save.body}} ... <a href="javascript:void(0)" title="">view more</a></p>
+                                                <img v-if="save.post_image" :src="save.post_image" alt="" style="height: 500px;width: 500px"  class="img-fluid">
+                                                <p>  <read-more more-str="read more" :text="save.body" link="#" less-str="read less" :max-chars="500"></read-more></p>
                                                 <ul class="skill-tags">
                                                     <li><a href="javascript:void(0)" title="">{{save.category}}</a></li>
                                                 </ul>
@@ -311,18 +311,18 @@
                                 </div><!--product-feed-tab end-->
                                 <div class="product-feed-tab" id="my-bids" v-bind:class="{current:Bids}">
                                     <div class="posts-section">
-                                        <div class="post-bar">
+                                        <div class="post-bar" v-for="mybid in mybids">
                                             <div class="post_topbar">
                                                 <div class="usy-dt">
-                                                    <img src="http://via.placeholder.com/50x50" alt="">
+                                                    <img :src="mybid.user_image ? mybid.user_image.path : 'https://via.placeholder.com/100'" alt="" style="height: 100px; width: 100px;">
                                                     <div class="usy-name">
-                                                        <h3>John Doe</h3>
-                                                        <span><img src="images/clock.png" alt="">3 min ago</span>
+                                                        <h3>{{mybid.username}} </h3>
+                                                        <span><img src="images/clock.png" alt="">{{mybid.time}}  </span>
                                                     </div>
                                                 </div>
-                                                <div class="ed-opts">
+                                                <div class="ed-opts" @click="showOption(mybid)">
                                                     <a href="javascript:void(0)" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-                                                    <ul class="ed-options">
+                                                    <ul class="ed-options" v-bind:class="{active:mybid == showOp}">
                                                         <li><a href="javascript:void(0)" title="">Edit Post</a></li>
                                                         <li><a href="javascript:void(0)" title="">Unsaved</a></li>
                                                         <li><a href="javascript:void(0)" title="">Unbid</a></li>
@@ -333,228 +333,33 @@
                                             </div>
                                             <div class="epi-sec">
                                                 <ul class="descp">
-                                                    <li><img src="images/icon8.png" alt=""><span>Frontend Developer</span></li>
-                                                    <li><img src="images/icon9.png" alt=""><span>India</span></li>
+                                                    <li><img src="images/icon8.png" alt=""><span>{{mybid.is_done ? 'done' : 'available'}} </span></li>
+                                                    <li><img src="images/icon9.png" alt=""><span> {{mybid.city}}</span></li>
                                                 </ul>
                                                 <ul class="bk-links">
                                                     <li><a href="javascript:void(0)" title=""><i class="la la-bookmark"></i></a></li>
                                                     <li><a href="javascript:void(0)" title=""><i class="la la-envelope"></i></a></li>
-                                                    <li><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
+                                                    <li v-if="mybid.type == 'servic'"><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
                                                 </ul>
                                             </div>
                                             <div class="job_descp">
-                                                <h3>Simple Classified Site</h3>
+                                                <h3>{{mybid.title}}</h3>
                                                 <ul class="job-dt">
-                                                    <li><span>$300 - $350</span></li>
+                                                    <li><a href="javascript:void(0)" title="">Full Time</a></li>
+                                                    <li><span>DH{{mybid.price}}</span></li>
                                                 </ul>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... <a href="javascript:void(0)" title="">view more</a></p>
+                                                <img v-if="mybid.post_image" :src="mybid.post_image" alt="" style="height: 500px;width: 500px"  class="img-fluid">
+                                                <p>  <read-more more-str="read more" :text="mybid.body" link="#" less-str="read less" :max-chars="500"></read-more></p>
                                                 <ul class="skill-tags">
-                                                    <li><a href="javascript:void(0)" title="">HTML</a></li>
-                                                    <li><a href="javascript:void(0)" title="">PHP</a></li>
-                                                    <li><a href="javascript:void(0)" title="">CSS</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Javascript</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Wordpress</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Photoshop</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Illustrator</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Corel Draw</a></li>
+                                                    <li><a href="javascript:void(0)" title="">{{mybid.category}}</a></li>
                                                 </ul>
                                             </div>
-                                            <div class="job-status-bar">
-                                                <ul class="like-com">
-                                                    <li>
-                                                        <a href="javascript:void(0)"><i class="la la-heart"></i> Like</a>
-                                                        <img src="images/liked-img.png" alt="">
-                                                        <span>25</span>
-                                                    </li>
-                                                    <li><a href="javascript:void(0)" title="" class="com"><img src="images/com.png" alt=""> Comment 15</a></li>
-                                                </ul>
-                                                <a><i class="la la-eye"></i>Views 50</a>
-                                            </div>
-                                        </div><!--post-bar end-->
-                                        <div class="post-bar">
-                                            <div class="post_topbar">
-                                                <div class="usy-dt">
-                                                    <img src="http://via.placeholder.com/50x50" alt="">
-                                                    <div class="usy-name">
-                                                        <h3>John Doe</h3>
-                                                        <span><img src="images/clock.png" alt="">3 min ago</span>
-                                                    </div>
-                                                </div>
-                                                <div class="ed-opts">
-                                                    <a href="javascript:void(0)" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-                                                    <ul class="ed-options">
-                                                        <li><a href="javascript:void(0)" title="">Edit Post</a></li>
-                                                        <li><a href="javascript:void(0)" title="">Unsaved</a></li>
-                                                        <li><a href="javascript:void(0)" title="">Unbid</a></li>
-                                                        <li><a href="javascript:void(0)" title="">Close</a></li>
-                                                        <li><a href="javascript:void(0)" title="">Hide</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="epi-sec">
-                                                <ul class="descp">
-                                                    <li><img src="images/icon8.png" alt=""><span>Frontend Developer</span></li>
-                                                    <li><img src="images/icon9.png" alt=""><span>India</span></li>
-                                                </ul>
-                                                <ul class="bk-links">
-                                                    <li><a href="javascript:void(0)" title=""><i class="la la-bookmark"></i></a></li>
-                                                    <li><a href="javascript:void(0)" title=""><i class="la la-envelope"></i></a></li>
-                                                    <li><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="job_descp">
-                                                <h3>Ios Shopping mobile app</h3>
-                                                <ul class="job-dt">
-                                                    <li><span>$300 - $350</span></li>
-                                                </ul>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... <a href="javascript:void(0)" title="">view more</a></p>
-                                                <ul class="skill-tags">
-                                                    <li><a href="javascript:void(0)" title="">HTML</a></li>
-                                                    <li><a href="javascript:void(0)" title="">PHP</a></li>
-                                                    <li><a href="javascript:void(0)" title="">CSS</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Javascript</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Wordpress</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Photoshop</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Illustrator</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Corel Draw</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="job-status-bar">
-                                                <ul class="like-com">
-                                                    <li>
-                                                        <a href="javascript:void(0)"><i class="la la-heart"></i> Like</a>
-                                                        <img src="images/liked-img.png" alt="">
-                                                        <span>25</span>
-                                                    </li>
-                                                    <li><a href="javascript:void(0)" title="" class="com"><img src="images/com.png" alt=""> Comment 15</a></li>
-                                                </ul>
-                                                <a><i class="la la-eye"></i>Views 50</a>
-                                            </div>
-                                        </div><!--post-bar end-->
-                                        <div class="post-bar">
-                                            <div class="post_topbar">
-                                                <div class="usy-dt">
-                                                    <img src="http://via.placeholder.com/50x50" alt="">
-                                                    <div class="usy-name">
-                                                        <h3>John Doe</h3>
-                                                        <span><img src="images/clock.png" alt="">3 min ago</span>
-                                                    </div>
-                                                </div>
-                                                <div class="ed-opts">
-                                                    <a href="javascript:void(0)" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-                                                    <ul class="ed-options">
-                                                        <li><a href="javascript:void(0)" title="">Edit Post</a></li>
-                                                        <li><a href="javascript:void(0)" title="">Unsaved</a></li>
-                                                        <li><a href="javascript:void(0)" title="">Unbid</a></li>
-                                                        <li><a href="javascript:void(0)" title="">Close</a></li>
-                                                        <li><a href="javascript:void(0)" title="">Hide</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="epi-sec">
-                                                <ul class="descp">
-                                                    <li><img src="images/icon8.png" alt=""><span>Frontend Developer</span></li>
-                                                    <li><img src="images/icon9.png" alt=""><span>India</span></li>
-                                                </ul>
-                                                <ul class="bk-links">
-                                                    <li><a href="javascript:void(0)" title=""><i class="la la-bookmark"></i></a></li>
-                                                    <li><a href="javascript:void(0)" title=""><i class="la la-envelope"></i></a></li>
-                                                    <li><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="job_descp">
-                                                <h3>Simple Classified Site</h3>
-                                                <ul class="job-dt">
-                                                    <li><span>$300 - $350</span></li>
-                                                </ul>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... <a href="javascript:void(0)" title="">view more</a></p>
-                                                <ul class="skill-tags">
-                                                    <li><a href="javascript:void(0)" title="">HTML</a></li>
-                                                    <li><a href="javascript:void(0)" title="">PHP</a></li>
-                                                    <li><a href="javascript:void(0)" title="">CSS</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Javascript</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Wordpress</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Photoshop</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Illustrator</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Corel Draw</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="job-status-bar">
-                                                <ul class="like-com">
-                                                    <li>
-                                                        <a href="javascript:void(0)"><i class="la la-heart"></i> Like</a>
-                                                        <img src="images/liked-img.png" alt="">
-                                                        <span>25</span>
-                                                    </li>
-                                                    <li><a href="javascript:void(0)" title="" class="com"><img src="images/com.png" alt=""> Comment 15</a></li>
-                                                </ul>
-                                                <a><i class="la la-eye"></i>Views 50</a>
-                                            </div>
-                                        </div><!--post-bar end-->
-                                        <div class="post-bar">
-                                            <div class="post_topbar">
-                                                <div class="usy-dt">
-                                                    <img src="http://via.placeholder.com/50x50" alt="">
-                                                    <div class="usy-name">
-                                                        <h3>John Doe</h3>
-                                                        <span><img src="images/clock.png" alt="">3 min ago</span>
-                                                    </div>
-                                                </div>
-                                                <div class="ed-opts">
-                                                    <a href="javascript:void(0)" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-                                                    <ul class="ed-options">
-                                                        <li><a href="javascript:void(0)" title="">Edit Post</a></li>
-                                                        <li><a href="javascript:void(0)" title="">Unsaved</a></li>
-                                                        <li><a href="javascript:void(0)" title="">Unbid</a></li>
-                                                        <li><a href="javascript:void(0)" title="">Close</a></li>
-                                                        <li><a href="javascript:void(0)" title="">Hide</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="epi-sec">
-                                                <ul class="descp">
-                                                    <li><img src="images/icon8.png" alt=""><span>Frontend Developer</span></li>
-                                                    <li><img src="images/icon9.png" alt=""><span>India</span></li>
-                                                </ul>
-                                                <ul class="bk-links">
-                                                    <li><a href="javascript:void(0)" title=""><i class="la la-bookmark"></i></a></li>
-                                                    <li><a href="javascript:void(0)" title=""><i class="la la-envelope"></i></a></li>
-                                                    <li><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="job_descp">
-                                                <h3>Ios Shopping mobile app</h3>
-                                                <ul class="job-dt">
-                                                    <li><span>$300 - $350</span></li>
-                                                </ul>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... <a href="javascript:void(0)" title="">view more</a></p>
-                                                <ul class="skill-tags">
-                                                    <li><a href="javascript:void(0)" title="">HTML</a></li>
-                                                    <li><a href="javascript:void(0)" title="">PHP</a></li>
-                                                    <li><a href="javascript:void(0)" title="">CSS</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Javascript</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Wordpress</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Photoshop</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Illustrator</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Corel Draw</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="job-status-bar">
-                                                <ul class="like-com">
-                                                    <li>
-                                                        <a href="javascript:void(0)"><i class="la la-heart"></i> Like</a>
-                                                        <img src="images/liked-img.png" alt="">
-                                                        <span>25</span>
-                                                    </li>
-                                                    <li><a href="javascript:void(0)" title="" class="com"><img src="images/com.png" alt=""> Comment 15</a></li>
-                                                </ul>
-                                                <a><i class="la la-eye"></i>Views 50</a>
-                                            </div>
-                                        </div><!--post-bar end-->
-                                        <div class="process-comm">
-                                            <a href="javascript:void(0)" title=""><img src="images/process-icon.png" alt=""></a>
-                                        </div><!--process-comm end-->
-                                    </div><!--posts-section end-->
+
+                                        </div>
+                                        <!--post-bar end-->
+                                    </div>
+                                    <infinite-loading @distance="1" @infinite="loadbid"></infinite-loading>
+
                                 </div><!--product-feed-tab end-->
                                 <div class="product-feed-tab" id="portfolio-dd" v-bind:class="{current:Portfolio}">
                                     <div class="portfolio-gallery-sec">
@@ -789,6 +594,11 @@
                 pagesave: 1,
                 saves:{},
                 /*save job end*/
+                /*My Bids*/
+                lastPagebids: 0,
+                pagebids: 1,
+                mybids:{}
+                /*End My Bids*/
             }
         },
         watch: {
@@ -800,6 +610,41 @@
             },
         },
         methods:{
+            loadbids(){
+                let vm = this;
+                axios.get('api/bids').then(({data}) => {
+                    this.mybids = data.data
+                    vm.lastPagebids = data.meta.last_page
+                })
+            },
+            loadbid($state){
+                let vm = this;
+                if (this.mybids.length != 0) {
+                    axios.get('api/save?bids=' + this.pagebids)
+                        .then(response => {
+                            return response.data;
+                        }).then(data => {
+                        //
+                        if (this.pagesave - 1 == this.lastPagebids) {
+                            $state.complete();
+                        } else {
+                            setTimeout(function () {
+                                $.each(data.data, function (key, value) {
+                                    vm.mybids.push(value);
+                                });
+                                $state.loaded();
+                                Vue.nextTick(function () {
+                                    $('[data-toggle="tooltip"]').tooltip();
+                                });
+                            }.bind(this), 0);
+                        }
+
+                    });
+                    this.pagebids = this.pagebids + 1;
+                } else {
+                    $state.complete();
+                }
+            },
             loadsaves(){
                 let vm = this;
                 axios.get('api/save').then(({data}) => {
@@ -997,12 +842,14 @@
             },
         },
         mounted() {
-            console.log('Component mounted.')
+            console.log('This is a browser feature intended for developers. If someone told you to copy-paste something here to enable a Brikol feature or "hack" someone\'s account, it is a scam and will give them access to your Brikol account.')
         },
         created() {
             this.$Progress.start()
             axios.get('api/Profile').then(({data}) => {this.user = data.data})
             this.loadfeeds();
+            this.loadbids()
+            this.loadsaves()
             this.$Progress.finish()
         }
     }

@@ -146,8 +146,8 @@
                                                    <li><a href="javascript:void(0)" title="">Full Time</a></li>
                                                    <li><span>DH{{posts.price}}</span></li>
                                                </ul>
-                                               <img v-if="posts.post_image" :src="posts.post_image" alt="">
-                                               <p>{{posts.body}} ... <a href="javascript:void(0)" title="">view more</a></p>
+                                               <img v-if="posts.post_image" :src="posts.post_image" alt="" style="height: 500px;width: 500px"  class="img-fluid">
+                                               <p>  <read-more more-str="read more" :text="posts.body" link="#" less-str="read less" :max-chars="500"></read-more></p>
                                                <ul class="skill-tags">
                                                    <li><a href="javascript:void(0)" title="">{{posts.category_name}}</a></li>
                                                </ul>
