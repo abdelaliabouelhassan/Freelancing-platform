@@ -259,19 +259,18 @@
                                 </div><!--product-feed-tab end-->
                                 <div class="product-feed-tab" id="saved-jobs" v-bind:class="{current:Saved}">
                                     <div class="posts-section">
-
-                                        <div class="post-bar">
+                                        <div class="post-bar" v-for="save in saves">
                                             <div class="post_topbar">
                                                 <div class="usy-dt">
-                                                    <img src="http://via.placeholder.com/50x50" alt="">
+                                                    <img :src="save.user_image ? save.user_image.path : 'https://via.placeholder.com/100'" alt="" style="height: 100px; width: 100px;">
                                                     <div class="usy-name">
-                                                        <h3>John Doe</h3>
-                                                        <span><img src="images/clock.png" alt="">3 min ago</span>
+                                                        <h3>{{save.username}} </h3>
+                                                        <span><img src="images/clock.png" alt="">{{save.time}}  </span>
                                                     </div>
                                                 </div>
-                                                <div class="ed-opts">
+                                                <div class="ed-opts" @click="showOption(save)">
                                                     <a href="javascript:void(0)" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-                                                    <ul class="ed-options">
+                                                    <ul class="ed-options" v-bind:class="{active:save == showOp}">
                                                         <li><a href="javascript:void(0)" title="">Edit Post</a></li>
                                                         <li><a href="javascript:void(0)" title="">Unsaved</a></li>
                                                         <li><a href="javascript:void(0)" title="">Unbid</a></li>
@@ -282,44 +281,33 @@
                                             </div>
                                             <div class="epi-sec">
                                                 <ul class="descp">
-                                                    <li><img src="images/icon8.png" alt=""><span>Epic Coder</span></li>
-                                                    <li><img src="images/icon9.png" alt=""><span>India</span></li>
+                                                    <li><img src="images/icon8.png" alt=""><span>{{save.is_done ? 'done' : 'available'}} </span></li>
+                                                    <li><img src="images/icon9.png" alt=""><span> {{save.city}}</span></li>
                                                 </ul>
                                                 <ul class="bk-links">
                                                     <li><a href="javascript:void(0)" title=""><i class="la la-bookmark"></i></a></li>
                                                     <li><a href="javascript:void(0)" title=""><i class="la la-envelope"></i></a></li>
+                                                    <li v-if="save.type == 'servic'"><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
                                                 </ul>
                                             </div>
                                             <div class="job_descp">
-                                                <h3>Senior Wordpress Developer</h3>
+                                                <h3>{{save.title}}</h3>
                                                 <ul class="job-dt">
                                                     <li><a href="javascript:void(0)" title="">Full Time</a></li>
-                                                    <li><span>$30 / hr</span></li>
+                                                    <li><span>DH{{save.price}}</span></li>
                                                 </ul>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... <a href="javascript:void(0)" title="">view more</a></p>
+                                                <img v-if="save.post_image" :src="save.post_image" alt="">
+                                                <p>{{save.body}} ... <a href="javascript:void(0)" title="">view more</a></p>
                                                 <ul class="skill-tags">
-                                                    <li><a href="javascript:void(0)" title="">HTML</a></li>
-                                                    <li><a href="javascript:void(0)" title="">PHP</a></li>
-                                                    <li><a href="javascript:void(0)" title="">CSS</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Javascript</a></li>
-                                                    <li><a href="javascript:void(0)" title="">Wordpress</a></li>
+                                                    <li><a href="javascript:void(0)" title="">{{save.category}}</a></li>
                                                 </ul>
                                             </div>
-                                            <div class="job-status-bar">
-                                                <ul class="like-com">
-                                                    <li>
-                                                        <a href="javascript:void(0)"><i class="la la-heart"></i> Like</a>
-                                                        <img src="images/liked-img.png" alt="">
-                                                        <span>25</span>
-                                                    </li>
-                                                    <li><a href="javascript:void(0)" title="" class="com"><img src="images/com.png" alt=""> Comment 15</a></li>
-                                                </ul>
-                                                <a><i class="la la-eye"></i>Views 50</a>
-                                            </div>
-                                        </div><!--post-bar end-->
-                                        <infinite-loading @distance="1" @infinite="loadsave"></infinite-loading>
 
-                                    </div><!--posts-section end-->
+                                        </div>
+                                        <!--post-bar end-->
+                                    </div>
+                                    <infinite-loading @distance="1" @infinite="loadsave"></infinite-loading>
+
                                 </div><!--product-feed-tab end-->
                                 <div class="product-feed-tab" id="my-bids" v-bind:class="{current:Bids}">
                                     <div class="posts-section">

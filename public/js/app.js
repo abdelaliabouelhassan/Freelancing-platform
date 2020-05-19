@@ -3804,18 +3804,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -68033,21 +68021,184 @@ var render = function() {
                       _c(
                         "div",
                         { staticClass: "posts-section" },
-                        [
-                          _vm._m(24),
-                          _vm._v(" "),
-                          _c("infinite-loading", {
-                            on: {
-                              distance: function($event) {
-                                1
-                              },
-                              infinite: _vm.loadsave
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ]
+                        _vm._l(_vm.saves, function(save) {
+                          return _c("div", { staticClass: "post-bar" }, [
+                            _c("div", { staticClass: "post_topbar" }, [
+                              _c("div", { staticClass: "usy-dt" }, [
+                                _c("img", {
+                                  staticStyle: {
+                                    height: "100px",
+                                    width: "100px"
+                                  },
+                                  attrs: {
+                                    src: save.user_image
+                                      ? save.user_image.path
+                                      : "https://via.placeholder.com/100",
+                                    alt: ""
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "usy-name" }, [
+                                  _c("h3", [
+                                    _vm._v(_vm._s(save.username) + " ")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("span", [
+                                    _c("img", {
+                                      attrs: {
+                                        src: "images/clock.png",
+                                        alt: ""
+                                      }
+                                    }),
+                                    _vm._v(_vm._s(save.time) + "  ")
+                                  ])
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "ed-opts",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.showOption(save)
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._m(24, true),
+                                  _vm._v(" "),
+                                  _c(
+                                    "ul",
+                                    {
+                                      staticClass: "ed-options",
+                                      class: { active: save == _vm.showOp }
+                                    },
+                                    [
+                                      _vm._m(25, true),
+                                      _vm._v(" "),
+                                      _vm._m(26, true),
+                                      _vm._v(" "),
+                                      _vm._m(27, true),
+                                      _vm._v(" "),
+                                      _vm._m(28, true),
+                                      _vm._v(" "),
+                                      _vm._m(29, true)
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "epi-sec" }, [
+                              _c("ul", { staticClass: "descp" }, [
+                                _c("li", [
+                                  _c("img", {
+                                    attrs: { src: "images/icon8.png", alt: "" }
+                                  }),
+                                  _c("span", [
+                                    _vm._v(
+                                      _vm._s(
+                                        save.is_done ? "done" : "available"
+                                      ) + " "
+                                    )
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("li", [
+                                  _c("img", {
+                                    attrs: { src: "images/icon9.png", alt: "" }
+                                  }),
+                                  _c("span", [_vm._v(" " + _vm._s(save.city))])
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("ul", { staticClass: "bk-links" }, [
+                                _vm._m(30, true),
+                                _vm._v(" "),
+                                _vm._m(31, true),
+                                _vm._v(" "),
+                                save.type == "servic"
+                                  ? _c("li", [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "bid_now",
+                                          attrs: {
+                                            href: "javascript:void(0)",
+                                            title: ""
+                                          }
+                                        },
+                                        [_vm._v("Bid Now")]
+                                      )
+                                    ])
+                                  : _vm._e()
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "job_descp" }, [
+                              _c("h3", [_vm._v(_vm._s(save.title))]),
+                              _vm._v(" "),
+                              _c("ul", { staticClass: "job-dt" }, [
+                                _vm._m(32, true),
+                                _vm._v(" "),
+                                _c("li", [
+                                  _c("span", [
+                                    _vm._v("DH" + _vm._s(save.price))
+                                  ])
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              save.post_image
+                                ? _c("img", {
+                                    attrs: { src: save.post_image, alt: "" }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c("p", [
+                                _vm._v(_vm._s(save.body) + " ... "),
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href: "javascript:void(0)",
+                                      title: ""
+                                    }
+                                  },
+                                  [_vm._v("view more")]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("ul", { staticClass: "skill-tags" }, [
+                                _c("li", [
+                                  _c(
+                                    "a",
+                                    {
+                                      attrs: {
+                                        href: "javascript:void(0)",
+                                        title: ""
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(save.category))]
+                                  )
+                                ])
+                              ])
+                            ])
+                          ])
+                        }),
+                        0
+                      ),
+                      _vm._v(" "),
+                      _c("infinite-loading", {
+                        on: {
+                          distance: function($event) {
+                            1
+                          },
+                          infinite: _vm.loadsave
+                        }
+                      })
+                    ],
+                    1
                   ),
                   _vm._v(" "),
                   _c(
@@ -68057,7 +68208,7 @@ var render = function() {
                       class: { current: _vm.Bids },
                       attrs: { id: "my-bids" }
                     },
-                    [_vm._m(25)]
+                    [_vm._m(33)]
                   ),
                   _vm._v(" "),
                   _c(
@@ -68067,7 +68218,7 @@ var render = function() {
                       class: { current: _vm.Portfolio },
                       attrs: { id: "portfolio-dd" }
                     },
-                    [_vm._m(26)]
+                    [_vm._m(34)]
                   ),
                   _vm._v(" "),
                   _c(
@@ -68077,12 +68228,12 @@ var render = function() {
                       class: { current: _vm.Payment },
                       attrs: { id: "payment-dd" }
                     },
-                    [_vm._m(27), _vm._v(" "), _vm._m(28)]
+                    [_vm._m(35), _vm._v(" "), _vm._m(36)]
                   )
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(29)
+              _vm._m(37)
             ])
           ])
         ])
@@ -68741,179 +68892,92 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "post-bar" }, [
-      _c("div", { staticClass: "post_topbar" }, [
-        _c("div", { staticClass: "usy-dt" }, [
-          _c("img", {
-            attrs: { src: "http://via.placeholder.com/50x50", alt: "" }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "usy-name" }, [
-            _c("h3", [_vm._v("John Doe")]),
-            _vm._v(" "),
-            _c("span", [
-              _c("img", { attrs: { src: "images/clock.png", alt: "" } }),
-              _vm._v("3 min ago")
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "ed-opts" }, [
-          _c(
-            "a",
-            {
-              staticClass: "ed-opts-open",
-              attrs: { href: "javascript:void(0)", title: "" }
-            },
-            [_c("i", { staticClass: "la la-ellipsis-v" })]
-          ),
-          _vm._v(" "),
-          _c("ul", { staticClass: "ed-options" }, [
-            _c("li", [
-              _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-                _vm._v("Edit Post")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-                _vm._v("Unsaved")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-                _vm._v("Unbid")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-                _vm._v("Close")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-                _vm._v("Hide")
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "epi-sec" }, [
-        _c("ul", { staticClass: "descp" }, [
-          _c("li", [
-            _c("img", { attrs: { src: "images/icon8.png", alt: "" } }),
-            _c("span", [_vm._v("Epic Coder")])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("img", { attrs: { src: "images/icon9.png", alt: "" } }),
-            _c("span", [_vm._v("India")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("ul", { staticClass: "bk-links" }, [
-          _c("li", [
-            _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-              _c("i", { staticClass: "la la-bookmark" })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-              _c("i", { staticClass: "la la-envelope" })
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "job_descp" }, [
-        _c("h3", [_vm._v("Senior Wordpress Developer")]),
-        _vm._v(" "),
-        _c("ul", { staticClass: "job-dt" }, [
-          _c("li", [
-            _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-              _vm._v("Full Time")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", [_c("span", [_vm._v("$30 / hr")])])
-        ]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... "
-          ),
-          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-            _vm._v("view more")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("ul", { staticClass: "skill-tags" }, [
-          _c("li", [
-            _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-              _vm._v("HTML")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-              _vm._v("PHP")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-              _vm._v("CSS")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-              _vm._v("Javascript")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-              _vm._v("Wordpress")
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "job-status-bar" }, [
-        _c("ul", { staticClass: "like-com" }, [
-          _c("li", [
-            _c("a", { attrs: { href: "javascript:void(0)" } }, [
-              _c("i", { staticClass: "la la-heart" }),
-              _vm._v(" Like")
-            ]),
-            _vm._v(" "),
-            _c("img", { attrs: { src: "images/liked-img.png", alt: "" } }),
-            _vm._v(" "),
-            _c("span", [_vm._v("25")])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c(
-              "a",
-              {
-                staticClass: "com",
-                attrs: { href: "javascript:void(0)", title: "" }
-              },
-              [
-                _c("img", { attrs: { src: "images/com.png", alt: "" } }),
-                _vm._v(" Comment 15")
-              ]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("a", [_c("i", { staticClass: "la la-eye" }), _vm._v("Views 50")])
+    return _c(
+      "a",
+      {
+        staticClass: "ed-opts-open",
+        attrs: { href: "javascript:void(0)", title: "" }
+      },
+      [_c("i", { staticClass: "la la-ellipsis-v" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Edit Post")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Unsaved")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Unbid")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Close")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Hide")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _c("i", { staticClass: "la la-bookmark" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _c("i", { staticClass: "la la-envelope" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Full Time")
       ])
     ])
   },

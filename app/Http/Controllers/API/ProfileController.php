@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Post\PostCollection;
+use App\Http\Resources\Profile\SavedPostCollection;
 use App\Post;
 use App\Saved_Job;
 use App\User;
@@ -83,10 +84,10 @@ class ProfileController extends Controller
         return PostCollection::collection($post);
     }
 
-    public  function  savejob(){
-   $save =   Saved_Job::where('user_id',auth('api')->id());
-
-return $save['post_id'];
+    public  function  savejob()
+    {
+         $save = Saved_Job::where('user_id',auth('api')->id())->with('post')->paginate(5);
+        return SavedPostCollection::collection($save);
     }
     /**
      * Store a newly created resource in storage.
