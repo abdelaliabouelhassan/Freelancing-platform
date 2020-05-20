@@ -433,6 +433,11 @@ public function search(Request $request){
         }
 
     /*   End all Posts   */
+
+
+
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -476,6 +481,5 @@ public function search(Request $request){
     {
         //
     }
-
 
 }

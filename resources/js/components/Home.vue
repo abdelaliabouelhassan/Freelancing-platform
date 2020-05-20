@@ -11,7 +11,7 @@
                                        <div class="user-profile">
                                            <div class="username-dt">
                                                <div class="usr-pic">
-                                                   <img src="http://via.placeholder.com/100x100" alt="">
+                                                   <img :src="$gets.user.image ? $gets.user.image.path : 'http://via.placeholder.com/100x100'"  alt="">
                                                </div>
                                            </div><!--username-dt end-->
                                            <div class="user-specs">

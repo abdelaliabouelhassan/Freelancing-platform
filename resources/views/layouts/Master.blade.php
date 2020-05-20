@@ -20,8 +20,6 @@
     <link rel="stylesheet" type="text/css" href="{{asset('lib/slick/slick-theme.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/responsive.css')}}">
-
-
 </head>
 
 <body>
@@ -166,7 +164,8 @@
                         </div><!--notification-box end-->
                     </div>
                     <div class="user-info">
-                    <img src="{{asset(auth()->user()->image ? auth()->user()->image->path  : 'http://via.placeholder.com/40x40')}}" style="height: 40px; width: 40px;" alt="">
+
+                    <img @if(auth()->check()) src="{{asset(auth()->user()->image ? auth()->user()->image->path  : 'http://via.placeholder.com/40x40')}}" @else src="http://via.placeholder.com/40x40" @endif style="height: 40px; width: 40px;" alt="">
                         {{-- <a href="javascript:void(0)" title="" v-text="$gets.user.name"></a>
                         <i class="la la-sort-down"></i> --}}
                     </div>

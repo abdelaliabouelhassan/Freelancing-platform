@@ -3576,7 +3576,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -65161,7 +65160,18 @@ var render = function() {
                     _vm.$gets.IsLogedIn()
                       ? _c("div", { staticClass: "user-data full-width" }, [
                           _c("div", { staticClass: "user-profile" }, [
-                            _vm._m(0),
+                            _c("div", { staticClass: "username-dt" }, [
+                              _c("div", { staticClass: "usr-pic" }, [
+                                _c("img", {
+                                  attrs: {
+                                    src: _vm.$gets.user.image
+                                      ? _vm.$gets.user.image.path
+                                      : "http://via.placeholder.com/100x100",
+                                    alt: ""
+                                  }
+                                })
+                              ])
+                            ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "user-specs" }, [
                               _c("h3", [_vm._v(_vm._s(_vm.$gets.user.name))]),
@@ -65172,11 +65182,11 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _vm._m(1)
+                          _vm._m(0)
                         ])
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm._m(2)
+                    _vm._m(1)
                   ])
                 ]
               ),
@@ -65184,7 +65194,7 @@ var render = function() {
               _c("div", { staticClass: "col-lg-6 col-md-8 no-pd" }, [
                 _c("div", { staticClass: "main-ws-sec" }, [
                   _c("div", { staticClass: "post-topbar" }, [
-                    _vm._m(3),
+                    _vm._m(2),
                     _vm._v(" "),
                     _c("div", { staticClass: "post-st" }, [
                       _c("ul", [
@@ -65269,7 +65279,7 @@ var render = function() {
                                 }
                               },
                               [
-                                _vm._m(4, true),
+                                _vm._m(3, true),
                                 _vm._v(" "),
                                 _c(
                                   "ul",
@@ -65278,15 +65288,15 @@ var render = function() {
                                     class: { active: posts == _vm.showOp }
                                   },
                                   [
+                                    _vm._m(4, true),
+                                    _vm._v(" "),
                                     _vm._m(5, true),
                                     _vm._v(" "),
                                     _vm._m(6, true),
                                     _vm._v(" "),
                                     _vm._m(7, true),
                                     _vm._v(" "),
-                                    _vm._m(8, true),
-                                    _vm._v(" "),
-                                    _vm._m(9, true)
+                                    _vm._m(8, true)
                                   ]
                                 )
                               ]
@@ -65319,9 +65329,9 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("ul", { staticClass: "bk-links" }, [
-                              _vm._m(10, true),
+                              _vm._m(9, true),
                               _vm._v(" "),
-                              _vm._m(11, true),
+                              _vm._m(10, true),
                               _vm._v(" "),
                               posts.type == "servic"
                                 ? _c("li", [
@@ -65345,7 +65355,7 @@ var render = function() {
                             _c("h3", [_vm._v(_vm._s(posts.title))]),
                             _vm._v(" "),
                             _c("ul", { staticClass: "job-dt" }, [
-                              _vm._m(12, true),
+                              _vm._m(11, true),
                               _vm._v(" "),
                               _c("li", [
                                 _c("span", [_vm._v("DH" + _vm._s(posts.price))])
@@ -65423,13 +65433,13 @@ var render = function() {
                         _vm._v(" "),
                         _c("span", [_vm._v("Signed In Now ")]),
                         _vm._v(" "),
-                        _vm._m(13)
+                        _vm._m(12)
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm._m(14),
+                  _vm._m(13),
                   _vm._v(" "),
-                  _vm._m(15)
+                  _vm._m(14)
                 ])
               ])
             ])
@@ -65754,7 +65764,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "col-lg-12" }, [
                     _c("ul", [
-                      _vm._m(16),
+                      _vm._m(15),
                       _vm._v(" "),
                       _c("li", [
                         _c(
@@ -66112,7 +66122,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "col-lg-12" }, [
                     _c("ul", [
-                      _vm._m(17),
+                      _vm._m(16),
                       _vm._v(" "),
                       _c("li", [
                         _c(
@@ -66155,18 +66165,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "username-dt" }, [
-      _c("div", { staticClass: "usr-pic" }, [
-        _c("img", {
-          attrs: { src: "http://via.placeholder.com/100x100", alt: "" }
-        })
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -66983,9 +66981,13 @@ var render = function() {
                           _c("div", { staticClass: "post_topbar" }, [
                             _c("div", { staticClass: "usy-dt" }, [
                               _c("img", {
+                                staticStyle: {
+                                  height: "100px",
+                                  width: "100px"
+                                },
                                 attrs: {
-                                  src: posts.image_path
-                                    ? posts.image_path
+                                  src: posts.user_image
+                                    ? posts.user_image.path
                                     : "https://via.placeholder.com/100",
                                   alt: ""
                                 }
@@ -67000,10 +67002,7 @@ var render = function() {
                                   _c("img", {
                                     attrs: { src: "images/clock.png", alt: "" }
                                   }),
-                                  _vm._v(
-                                    _vm._s(_vm._f("mydate")(posts.created_at)) +
-                                      "  "
-                                  )
+                                  _vm._v(_vm._s(posts.created_at) + "  ")
                                 ])
                               ])
                             ]),
@@ -67500,7 +67499,7 @@ var render = function() {
           return _vm.showbackimg
             ? _c("img", {
                 staticClass: "img-fluid",
-                staticStyle: { height: "500px" },
+                staticStyle: { height: "600px" },
                 attrs: {
                   src: users.backimage
                     ? users.backimage.path

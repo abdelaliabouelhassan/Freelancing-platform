@@ -2,9 +2,8 @@
     <div>
         <br>
     <section class="cover-sec">
-        <img  v-if="showbackimg" v-for="users in user" :src="users.backimage ? users.backimage.path : 'http://via.placeholder.com/1600x400'" alt="BackGround Image" style="height: 500px;"  class="img-fluid">
+        <img  v-if="showbackimg" v-for="users in user" :src="users.backimage ? users.backimage.path : 'http://via.placeholder.com/1600x400'" alt="BackGround Image" style="height: 600px;"  class="img-fluid">
         <img  v-if="!showbackimg"  :src="getbackgroundimage()" alt="BackGround Image" style="height: 500px;"  class="img-fluid">
-
         <a href="javascript:void(0)" title="" @click="$refs.backgroundUserImafe.click()"><i class="fa fa-camera"></i> Change Image</a>
         <input type="file"  style="display: none" @change="UpdateBackGroundImage" ref="backgroundUserImafe">
     </section>
