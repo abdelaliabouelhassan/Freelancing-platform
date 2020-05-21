@@ -3627,9 +3627,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       /*My Bids*/
       lastPagebids: 0,
       pagebids: 1,
-      mybids: {}
-      /*End My Bids*/
+      mybids: {},
 
+      /*End My Bids*/
+      form: new Form({
+        overview: ''
+      })
     };
   }
 }, _defineProperty(_components$data$comp, "components", {
@@ -3865,18 +3868,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     } else {
       this.showOp = feeds;
     }
+  },
+  loadoverivew: function loadoverivew() {
+    var _this9 = this;
+
+    axios.get('api/getoverview').then(function (_ref4) {
+      var data = _ref4.data;
+      return _this9.form.fill(data);
+    });
   }
 }), _defineProperty(_components$data$comp, "mounted", function mounted() {}), _defineProperty(_components$data$comp, "created", function created() {
-  var _this9 = this;
+  var _this10 = this;
 
   this.$Progress.start();
-  axios.get('api/Profile').then(function (_ref4) {
-    var data = _ref4.data;
-    _this9.user = data.data;
+  axios.get('api/Profile').then(function (_ref5) {
+    var data = _ref5.data;
+    _this10.user = data.data;
   });
   this.loadfeeds();
   this.loadbids();
   this.loadsaves();
+  this.loadoverivew();
+  something.$on('wherecreateuserloaddate', function () {
+    _this10.loadoverivew();
+  });
   this.$Progress.finish();
 }), _components$data$comp);
 
@@ -4328,21 +4343,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {
-      // Create a new form instance
-      form: new Form({
-        text: ''
-      })
+    return {// Create a new form instance
     };
   },
-  props: ['css_class', 'overlay'],
+  props: ['css_class', 'overlay', 'form'],
   methods: {
     CreateOverView: function CreateOverView() {
       var _this = this;
 
       this.$Progress.start();
       this.$Progress.start();
-      this.form.post('api/test').then(function () {
+      this.form.put('api/overview').then(function () {
         _this.$Progress.finish();
 
         Toast.fire({
@@ -4350,6 +4361,10 @@ __webpack_require__.r(__webpack_exports__);
           title: 'OverView Created Successfully'
         });
         something.$emit('wherecreateuserloaddate');
+
+        _this.$emit('update:overlay', false);
+
+        _this.$emit('update:css_class', false);
       })["catch"](function () {
         _this.$Progress.decrease(20);
 
@@ -68111,11 +68126,15 @@ var render = function() {
                               )
                             ]),
                             _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus consectetur aliquam lectus commodo viverra. Nunc eu augue nec arcu efficitur faucibus. Aliquam accumsan ac magna convallis bibendum. Quisque laoreet augue eget augue fermentum scelerisque. Vivamus dignissim mollis est dictum blandit. Nam porta auctor neque sed congue. Nullam rutrum eget ex at maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget vestibulum lorem."
-                              )
-                            ])
+                            _c("p", {
+                              domProps: {
+                                textContent: _vm._s(
+                                  _vm.form.overview
+                                    ? _vm.form.overview
+                                    : "Say Something About Yourself"
+                                )
+                              }
+                            })
                           ]),
                           _vm._v(" "),
                           _vm._m(19),
@@ -68574,7 +68593,11 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("overview", {
-        attrs: { css_class: _vm.showoverview, overlay: _vm.overlay },
+        attrs: {
+          css_class: _vm.showoverview,
+          overlay: _vm.overlay,
+          form: this.form
+        },
         on: {
           "update:css_class": function($event) {
             _vm.showoverview = $event
@@ -70712,99 +70735,94 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "form",
+    "div",
     {
-      on: {
-        submit: function($event) {
-          $event.preventDefault()
-          return _vm.CreateOverView()
-        }
-      }
+      staticClass: "overview-box",
+      class: { open: _vm.css_class },
+      attrs: { id: "overview-box" }
     },
     [
-      _c(
-        "div",
-        {
-          staticClass: "overview-box",
-          class: { open: _vm.css_class },
-          attrs: { id: "overview-box" }
-        },
-        [
-          _c("div", { staticClass: "overview-edit" }, [
-            _c("h3", [_vm._v("Overview")]),
-            _vm._v(" "),
-            _c("span", [_vm._v("5000 character left")]),
-            _vm._v(" "),
-            _c(
-              "form",
-              [
-                _c("textarea", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.text,
-                      expression: "form.text"
-                    }
-                  ],
-                  class: { "is-invalid": _vm.form.errors.has("text") },
-                  domProps: { value: _vm.form.text },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "text", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("has-error", { attrs: { form: _vm.form, field: "text" } }),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  { staticClass: "save", attrs: { type: "submit" } },
-                  [_vm._v("Save")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "btn btn-secondary",
-                    on: {
-                      click: function($event) {
-                        _vm.$emit("update:css_class", false)
-                        _vm.$emit("update:overlay", false)
-                      }
-                    }
-                  },
-                  [_vm._v("Cancel")]
-                )
+      _c("div", { staticClass: "overview-edit" }, [
+        _c("h3", [_vm._v("Overview")]),
+        _vm._v(" "),
+        _c("span", [_vm._v("5000 character left")]),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.CreateOverView()
+              }
+            }
+          },
+          [
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.overview,
+                  expression: "form.overview"
+                }
               ],
-              1
-            ),
+              class: { "is-invalid": _vm.form.errors.has("overview") },
+              domProps: { value: _vm.form.overview },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "overview", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("has-error", { attrs: { form: _vm.form, field: "overview" } }),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("button", { staticClass: "save", attrs: { type: "submit" } }, [
+              _vm._v("Save")
+            ]),
             _vm._v(" "),
             _c(
               "a",
               {
-                staticClass: "close-box",
-                attrs: { href: "javascript:void(0)", title: "" }
-              },
-              [
-                _c("i", {
-                  staticClass: "la la-close",
-                  on: {
-                    click: function($event) {
-                      _vm.$emit("update:css_class", false)
-                      _vm.$emit("update:overlay", false)
-                    }
+                staticClass: "btn btn-lg",
+                on: {
+                  click: function($event) {
+                    _vm.$emit("update:css_class", false)
+                    _vm.$emit("update:overlay", false)
                   }
-                })
-              ]
+                }
+              },
+              [_vm._v("Cancel")]
             )
-          ])
-        ]
-      )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "close-box",
+            attrs: { href: "javascript:void(0)", title: "" }
+          },
+          [
+            _c("i", {
+              staticClass: "la la-close",
+              on: {
+                click: function($event) {
+                  _vm.$emit("update:css_class", false)
+                  _vm.$emit("update:overlay", false)
+                }
+              }
+            })
+          ]
+        )
+      ])
     ]
   )
 }

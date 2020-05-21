@@ -9,6 +9,7 @@ use App\Mybid;
 use App\Post;
 use App\Saved_Job;
 use App\User;
+use App\User_info;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -94,6 +95,26 @@ class ProfileController extends Controller
     public function myBids(){
         $bids = Mybid::where('user_id',auth('api')->id())->with('post')->paginate(5);
         return SavedPostCollection::collection($bids);
+    }
+    public function overview(Request $request){
+
+        $this->validate($request,[
+            'overview'=>'required|min:50',
+        ]);
+        $overview = User_info::where('user_id',auth()->id())->get();
+        if( count($overview) != 0){
+            $overview = User_info::where('user_id',auth()->id());
+             $overview->update(['overview'=>$request->overview]);
+            return ['Brikol'=>'(:','errorcode'=>'Updated'];
+        }else{
+             User_info::create(['user_id'=>auth('api')->id(),'overview'=>$request->overview]);
+            return ['Brikol'=>'(:','errorcode'=>'Created'];
+        }
+    }
+
+    public function getoverview(){
+        $overview =  User_info::where('user_id',auth('api')->id())->first('overview');
+        return $overview;
     }
     /**
      * Store a newly created resource in storage.

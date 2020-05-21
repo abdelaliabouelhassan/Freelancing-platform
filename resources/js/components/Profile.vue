@@ -220,7 +220,7 @@
                                 <div class="product-feed-tab"  v-bind:class="{current:Info}" id="info-dd">
                                     <div class="user-profile-ov">
                                         <h3><a href="javascript:void(0)" title="" class="overview-open" @click="showoverview = true;overlay = true">Overview</a> <a href="javascript:void(0)" title="" class="overview-open"  @click="showoverview = true;overlay = true"><i class="fa fa-pencil"></i></a></h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus consectetur aliquam lectus commodo viverra. Nunc eu augue nec arcu efficitur faucibus. Aliquam accumsan ac magna convallis bibendum. Quisque laoreet augue eget augue fermentum scelerisque. Vivamus dignissim mollis est dictum blandit. Nam porta auctor neque sed congue. Nullam rutrum eget ex at maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget vestibulum lorem.</p>
+                                        <p v-text="form.overview ? form.overview : 'Say Something About Yourself'"></p>
                                     </div><!--user-profile-ov end-->
                                     <div class="user-profile-ov st2">
                                         <h3><a href="javascript:void(0)" title="" class="exp-bx-open">Experience </a><a href="javascript:void(0)" title="" class="exp-bx-open"><i class="fa fa-pencil"></i></a> <a href="javascript:void(0)" title="" class="exp-bx-open"><i class="fa fa-plus-square"></i></a></h3>
@@ -562,7 +562,7 @@
         </div>
     </main>
 
-     <overview  :css_class.sync="showoverview" :overlay.sync="overlay"></overview>
+     <overview  :css_class.sync="showoverview" :overlay.sync="overlay" :form="this.form"></overview>
 
     </div>
 </template>
@@ -603,8 +603,11 @@
                 /*My Bids*/
                 lastPagebids: 0,
                 pagebids: 1,
-                mybids:{}
+                mybids:{},
                 /*End My Bids*/
+                form: new Form({
+                    overview: '',
+                })
             }
         },
         components: {
@@ -849,6 +852,9 @@
                 }
 
             },
+            loadoverivew:function () {
+                axios.get('api/getoverview').then(({data})=>(this.form.fill(data)))
+            }
         },
         mounted() {
         },
@@ -858,6 +864,10 @@
             this.loadfeeds();
             this.loadbids()
             this.loadsaves()
+            this.loadoverivew();
+            something.$on('wherecreateuserloaddate',()=>{
+                this.loadoverivew();
+            });
             this.$Progress.finish()
         }
     }
