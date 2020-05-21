@@ -9,7 +9,7 @@
     </section>
 
     <main>
-        <div class="main-section">
+        <div class="main-section" v-bind:class="{'overlay':overlay}">
             <div class="container">
                 <div class="main-section-data">
                     <div class="row">
@@ -219,7 +219,7 @@
                                 </div><!--product-feed-tab end-->
                                 <div class="product-feed-tab"  v-bind:class="{current:Info}" id="info-dd">
                                     <div class="user-profile-ov">
-                                        <h3><a href="javascript:void(0)" title="" class="overview-open">Overview</a> <a href="javascript:void(0)" title="" class="overview-open"><i class="fa fa-pencil"></i></a></h3>
+                                        <h3><a href="javascript:void(0)" title="" class="overview-open" @click="showoverview = true;overlay = true">Overview</a> <a href="javascript:void(0)" title="" class="overview-open"  @click="showoverview = true;overlay = true"><i class="fa fa-pencil"></i></a></h3>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus consectetur aliquam lectus commodo viverra. Nunc eu augue nec arcu efficitur faucibus. Aliquam accumsan ac magna convallis bibendum. Quisque laoreet augue eget augue fermentum scelerisque. Vivamus dignissim mollis est dictum blandit. Nam porta auctor neque sed congue. Nullam rutrum eget ex at maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget vestibulum lorem.</p>
                                     </div><!--user-profile-ov end-->
                                     <div class="user-profile-ov st2">
@@ -561,11 +561,16 @@
             </div>
         </div>
     </main>
+
+     <overview  :css_class.sync="showoverview" :overlay.sync="overlay"></overview>
+
     </div>
 </template>
 
 <script>
+    import ProfileOverView from "./includs/ProfileOverView";
     export default {
+        components: {ProfileOverView},
         data () {
 
             return {
@@ -581,6 +586,8 @@
                 Bids:false,
                 Payment:false,
                 Portfolio:false,
+                showoverview:false,
+                overlay:false,
                 /*End v-bind:class variable*/
                 /*feed*/
                 showOp:null,
@@ -599,6 +606,9 @@
                 mybids:{}
                 /*End My Bids*/
             }
+        },
+        components: {
+            'overview':ProfileOverView
         },
         watch: {
             $route: {
@@ -852,4 +862,5 @@
         }
     }
 </script>
+
 

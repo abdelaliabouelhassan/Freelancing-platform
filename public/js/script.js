@@ -53,14 +53,14 @@ $(window).on("load", function() {
 
     //  ============= SIGNIN SWITCH TAB FUNCTIONALITY =========
 
-    $('.tab-feed ul li').on("click", function(){
-        var tab_id = $(this).attr('data-tab');
-        $('.tab-feed ul li').removeClass('active');
-        $('.product-feed-tab').removeClass('current');
-        $(this).addClass('active animated fadeIn');
-        $("#"+tab_id).addClass('current animated fadeIn');
-        return false;
-    });
+    // $('.tab-feed ul li').on("click", function(){
+    //     var tab_id = $(this).attr('data-tab');
+    //     $('.tab-feed ul li').removeClass('active');
+    //     $('.product-feed-tab').removeClass('current');
+    //     $(this).addClass('active animated fadeIn');
+    //     $("#"+tab_id).addClass('current animated fadeIn');
+    //     return false;
+    // });
 
     //  ============= COVER GAP FUNCTION =========
 
@@ -71,16 +71,16 @@ $(window).on("load", function() {
 
     //  ============= OVERVIEW EDIT FUNCTION =========
 
-    $(".overview-open").on("click", function(){
-        $("#overview-box").addClass("open");
-        $(".wrapper").addClass("overlay");
-        return false;
-    });
-    $(".close-box").on("click", function(){
-        $("#overview-box").removeClass("open");
-        $(".wrapper").removeClass("overlay");
-        return false;
-    });
+    // $(".overview-open").on("click", function(){
+    //     $("#overview-box").addClass("open");
+    //     $(".wrapper").addClass("overlay");
+    //     return false;
+    // });
+    // $(".close-box").on("click", function(){
+    //     $("#overview-box").removeClass("open");
+    //     $(".wrapper").removeClass("overlay");
+    //     return false;
+    // });
 
     //  ============= EXPERIENCE EDIT FUNCTION =========
 
