@@ -223,13 +223,13 @@
                                         <p v-text="form.overview ? form.overview : 'Say Something About Yourself'"></p>
                                     </div><!--user-profile-ov end-->
                                     <div class="user-profile-ov st2">
-                                        <h3><a href="javascript:void(0)" title="" class="exp-bx-open">Experience </a><a href="javascript:void(0)" title="" class="exp-bx-open"><i class="fa fa-pencil"></i></a> <a href="javascript:void(0)" title="" class="exp-bx-open"><i class="fa fa-plus-square"></i></a></h3>
-                                        <h4>Web designer <a href="javascript:void(0)" title=""><i class="fa fa-pencil"></i></a></h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus consectetur aliquam lectus commodo viverra. </p>
-                                        <h4>UI / UX Designer <a href="javascript:void(0)" title=""><i class="fa fa-pencil"></i></a></h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id.</p>
-                                        <h4>PHP developer <a href="javascript:void(0)" title=""><i class="fa fa-pencil"></i></a></h4>
-                                        <p class="no-margin">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus consectetur aliquam lectus commodo viverra. </p>
+                                        <h3 ><a href="javascript:void(0)" title="" class="exp-bx-open" @click="showExper = true;overlay = true;form.ExpBody = '';form.ExpTitle = ''">Experience </a> <a href="javascript:void(0)" @click="showExper = true;overlay = true;form.ExpBody = '';form.ExpTitle = ''" title="" class="exp-bx-open"><i class="fa fa-plus-square"></i></a></h3>
+                                        <span v-for="Exp in Experience">
+                                        <h4>{{Exp.title}} <a href="javascript:void(0)" title="" @click="updateExp(Exp)"><i class="fa fa-pencil"></i></a> <a
+                                            href="javascript:void(0)" @click="DeleteExp(Exp)"><i class="fas fa-trash-alt"></i></a></h4>
+                                        <p>{{Exp.body}} </p>
+                                        </span>
+                                        <span v-if="Experience.length == 0">Add Some Experience</span>
                                     </div><!--user-profile-ov end-->
                                     <div class="user-profile-ov">
                                         <h3><a href="javascript:void(0)" title="" class="ed-box-open">Education</a> <a href="javascript:void(0)" title="" class="ed-box-open"><i class="fa fa-pencil"></i></a> <a href="javascript:void(0)" title=""><i class="fa fa-plus-square"></i></a></h3>
@@ -563,14 +563,15 @@
     </main>
 
      <overview  :css_class.sync="showoverview" :overlay.sync="overlay" :form="this.form"></overview>
-
+     <exp :css_class.sync="showExper" :overlay.sync="overlay" :form.sync="this.form" :type.sync="IsExpUpdate"></exp>
     </div>
 </template>
 
 <script>
     import ProfileOverView from "./includs/ProfileOverView";
+    import ProfileExperience from "./includs/ProfileExperience";
     export default {
-        components: {ProfileOverView},
+        components: {ProfileExperience, ProfileOverView},
         data () {
 
             return {
@@ -588,6 +589,8 @@
                 Portfolio:false,
                 showoverview:false,
                 overlay:false,
+                showExper:false,
+                IsExpUpdate : false,
                 /*End v-bind:class variable*/
                 /*feed*/
                 showOp:null,
@@ -605,13 +608,20 @@
                 pagebids: 1,
                 mybids:{},
                 /*End My Bids*/
+                /*Experience*/
+                Experience:{},
+                /*End Experience*/
                 form: new Form({
                     overview: '',
+                    ExpTitle:'',
+                    ExpBody:'',
+                    ExpId:''
                 })
             }
         },
         components: {
-            'overview':ProfileOverView
+            'overview':ProfileOverView,
+            'exp':ProfileExperience
         },
         watch: {
             $route: {
@@ -854,7 +864,56 @@
             },
             loadoverivew:function () {
                 axios.get('api/getoverview').then(({data})=>(this.form.fill(data)))
-            }
+            },
+            loadExp(){
+                axios.get('api/getExperience').then(({data}) => {
+                    this.Experience = data.data
+                })
+
+            },
+            updateExp(exp){
+                this.form.ExpId = exp.id
+                this.form.ExpBody = exp.body
+                this.form.ExpTitle = exp.title
+                this.showExper = true
+                this.IsExpUpdate = true
+            },
+            DeleteExp(exp){
+                Swal.fire({
+                    title: 'Are you sure You Wnat Delete This ?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        this.form.ExpId = exp.id
+                        this.$Progress.start()
+                        this.form.post('api/DeleteExperience')
+                            .then(()=> {
+                                this.$Progress.finish()
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your Experience has been deleted.',
+                                    'success'
+                                )
+                                something.$emit('loadExperience');
+                            })
+                            .catch(()=> {
+                                this.$Progress.decrease(20)
+                                this.$Progress.fail()
+                                Toast.fire({
+                                    icon: 'error',
+                                    title: 'Something Went Wrong'
+                                })
+                            });
+
+                    }
+                })
+            },
+
         },
         mounted() {
         },
@@ -865,8 +924,12 @@
             this.loadbids()
             this.loadsaves()
             this.loadoverivew();
+            this.loadExp()
             something.$on('wherecreateuserloaddate',()=>{
                 this.loadoverivew();
+            });
+            something.$on('loadExperience',()=>{
+                this.loadExp();
             });
             this.$Progress.finish()
         }

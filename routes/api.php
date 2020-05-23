@@ -58,4 +58,9 @@ Route::get('save','API\ProfileController@savejob');
 Route::get('bids','API\ProfileController@myBids');
 Route::put('overview','API\ProfileController@overview');
 Route::get('getoverview','API\ProfileController@getoverview');
+Route::get('getExperience','API\ProfileController@getExperience');
+Route::post('addExperience','API\ProfileController@addExperience');
+Route::post('UpdateExperience','API\ProfileController@UpdateExperience');
+Route::post('DeleteExperience','API\ProfileController@DeleteExperience');
+
 /*End Profile*/

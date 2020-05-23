@@ -84,11 +84,11 @@ $(window).on("load", function() {
 
     //  ============= EXPERIENCE EDIT FUNCTION =========
 
-    $(".exp-bx-open").on("click", function(){
-        $("#experience-box").addClass("open");
-        $(".wrapper").addClass("overlay");
-        return false;
-    });
+    // $(".exp-bx-open").on("click", function(){
+    //     $("#experience-box").addClass("open");
+    //     $(".wrapper").addClass("overlay");
+    //     return false;
+    // });
     $(".close-box").on("click", function(){
         $("#experience-box").removeClass("open");
         $(".wrapper").removeClass("overlay");
@@ -110,81 +110,81 @@ $(window).on("load", function() {
 
     //  ============= LOCATION EDIT FUNCTION =========
 
-    $(".lct-box-open").on("click", function(){
-        $("#location-box").addClass("open");
-        $(".wrapper").addClass("overlay");
-        return false;
-    });
-    $(".close-box").on("click", function(){
-        $("#location-box").removeClass("open");
-        $(".wrapper").removeClass("overlay");
-        return false;
-    });
+    // $(".lct-box-open").on("click", function(){
+    //     $("#location-box").addClass("open");
+    //     $(".wrapper").addClass("overlay");
+    //     return false;
+    // });
+    // $(".close-box").on("click", function(){
+    //     $("#location-box").removeClass("open");
+    //     $(".wrapper").removeClass("overlay");
+    //     return false;
+    // });
 
     //  ============= SKILLS EDIT FUNCTION =========
 
-    $(".skills-open").on("click", function(){
-        $("#skills-box").addClass("open");
-        $(".wrapper").addClass("overlay");
-        return false;
-    });
-    $(".close-box").on("click", function(){
-        $("#skills-box").removeClass("open");
-        $(".wrapper").removeClass("overlay");
-        return false;
-    });
+    // $(".skills-open").on("click", function(){
+    //     $("#skills-box").addClass("open");
+    //     $(".wrapper").addClass("overlay");
+    //     return false;
+    // });
+    // $(".close-box").on("click", function(){
+    //     $("#skills-box").removeClass("open");
+    //     $(".wrapper").removeClass("overlay");
+    //     return false;
+    // });
 
     //  ============= ESTABLISH EDIT FUNCTION =========
 
-    $(".esp-bx-open").on("click", function(){
-        $("#establish-box").addClass("open");
-        $(".wrapper").addClass("overlay");
-        return false;
-    });
-    $(".close-box").on("click", function(){
-        $("#establish-box").removeClass("open");
-        $(".wrapper").removeClass("overlay");
-        return false;
-    });
+    // $(".esp-bx-open").on("click", function(){
+    //     $("#establish-box").addClass("open");
+    //     $(".wrapper").addClass("overlay");
+    //     return false;
+    // });
+    // $(".close-box").on("click", function(){
+    //     $("#establish-box").removeClass("open");
+    //     $(".wrapper").removeClass("overlay");
+    //     return false;
+    // });
 
     //  ============= CREATE PORTFOLIO FUNCTION =========
 
-    $(".gallery_pt > a").on("click", function(){
-        $("#create-portfolio").addClass("open");
-        $(".wrapper").addClass("overlay");
-        return false;
-    });
-    $(".close-box").on("click", function(){
-        $("#create-portfolio").removeClass("open");
-        $(".wrapper").removeClass("overlay");
-        return false;
-    });
+    // $(".gallery_pt > a").on("click", function(){
+    //     $("#create-portfolio").addClass("open");
+    //     $(".wrapper").addClass("overlay");
+    //     return false;
+    // });
+    // $(".close-box").on("click", function(){
+    //     $("#create-portfolio").removeClass("open");
+    //     $(".wrapper").removeClass("overlay");
+    //     return false;
+    // });
 
     //  ============= EMPLOYEE EDIT FUNCTION =========
 
-    $(".emp-open").on("click", function(){
-        $("#total-employes").addClass("open");
-        $(".wrapper").addClass("overlay");
-        return false;
-    });
-    $(".close-box").on("click", function(){
-        $("#total-employes").removeClass("open");
-        $(".wrapper").removeClass("overlay");
-        return false;
-    });
+    // $(".emp-open").on("click", function(){
+    //     $("#total-employes").addClass("open");
+    //     $(".wrapper").addClass("overlay");
+    //     return false;
+    // });
+    // $(".close-box").on("click", function(){
+    //     $("#total-employes").removeClass("open");
+    //     $(".wrapper").removeClass("overlay");
+    //     return false;
+    // });
 
     //  =============== Ask a Question Popup ============
 
-    $(".ask-question").on("click", function(){
-        $("#question-box").addClass("open");
-        $(".wrapper").addClass("overlay");
-        return false;
-    });
-    $(".close-box").on("click", function(){
-        $("#question-box").removeClass("open");
-        $(".wrapper").removeClass("overlay");
-        return false;
-    });
+    // $(".ask-question").on("click", function(){
+    //     $("#question-box").addClass("open");
+    //     $(".wrapper").addClass("overlay");
+    //     return false;
+    // });
+    // $(".close-box").on("click", function(){
+    //     $("#question-box").removeClass("open");
+    //     $(".wrapper").removeClass("overlay");
+    //     return false;
+    // });
 
 
     //  ============== ChatBox ==============

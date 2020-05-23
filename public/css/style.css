@@ -2936,6 +2936,7 @@ footer {
 	color: #686868;
 	font-size: 14px;
 	line-height: 24px;
+    overflow-wrap: break-word;
 }
 .user-profile-ov.st2 p {
 	margin-bottom: 23px;

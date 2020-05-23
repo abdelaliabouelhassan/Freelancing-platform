@@ -3011,6 +3011,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _includs_ProfileOverView__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./includs/ProfileOverView */ "./resources/js/components/includs/ProfileOverView.vue");
+/* harmony import */ var _includs_ProfileExperience__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./includs/ProfileExperience */ "./resources/js/components/includs/ProfileExperience.vue");
 var _components$data$comp;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -3585,8 +3586,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = (_components$data$comp = {
   components: {
+    ProfileExperience: _includs_ProfileExperience__WEBPACK_IMPORTED_MODULE_1__["default"],
     ProfileOverView: _includs_ProfileOverView__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
@@ -3606,6 +3609,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       Portfolio: false,
       showoverview: false,
       overlay: false,
+      showExper: false,
+      IsExpUpdate: false,
 
       /*End v-bind:class variable*/
 
@@ -3630,13 +3635,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       mybids: {},
 
       /*End My Bids*/
+
+      /*Experience*/
+      Experience: {},
+
+      /*End Experience*/
       form: new Form({
-        overview: ''
+        overview: '',
+        ExpTitle: '',
+        ExpBody: '',
+        ExpId: ''
       })
     };
   }
 }, _defineProperty(_components$data$comp, "components", {
-  'overview': _includs_ProfileOverView__WEBPACK_IMPORTED_MODULE_0__["default"]
+  'overview': _includs_ProfileOverView__WEBPACK_IMPORTED_MODULE_0__["default"],
+  'exp': _includs_ProfileExperience__WEBPACK_IMPORTED_MODULE_1__["default"]
 }), _defineProperty(_components$data$comp, "watch", {
   $route: {
     immediate: true,
@@ -3876,21 +3890,75 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var data = _ref4.data;
       return _this9.form.fill(data);
     });
+  },
+  loadExp: function loadExp() {
+    var _this10 = this;
+
+    axios.get('api/getExperience').then(function (_ref5) {
+      var data = _ref5.data;
+      _this10.Experience = data.data;
+    });
+  },
+  updateExp: function updateExp(exp) {
+    this.form.ExpId = exp.id;
+    this.form.ExpBody = exp.body;
+    this.form.ExpTitle = exp.title;
+    this.showExper = true;
+    this.IsExpUpdate = true;
+  },
+  DeleteExp: function DeleteExp(exp) {
+    var _this11 = this;
+
+    Swal.fire({
+      title: 'Are you sure You Wnat Delete This ?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then(function (result) {
+      if (result.value) {
+        _this11.form.ExpId = exp.id;
+
+        _this11.$Progress.start();
+
+        _this11.form.post('api/DeleteExperience').then(function () {
+          _this11.$Progress.finish();
+
+          Swal.fire('Deleted!', 'Your Experience has been deleted.', 'success');
+          something.$emit('loadExperience');
+        })["catch"](function () {
+          _this11.$Progress.decrease(20);
+
+          _this11.$Progress.fail();
+
+          Toast.fire({
+            icon: 'error',
+            title: 'Something Went Wrong'
+          });
+        });
+      }
+    });
   }
 }), _defineProperty(_components$data$comp, "mounted", function mounted() {}), _defineProperty(_components$data$comp, "created", function created() {
-  var _this10 = this;
+  var _this12 = this;
 
   this.$Progress.start();
-  axios.get('api/Profile').then(function (_ref5) {
-    var data = _ref5.data;
-    _this10.user = data.data;
+  axios.get('api/Profile').then(function (_ref6) {
+    var data = _ref6.data;
+    _this12.user = data.data;
   });
   this.loadfeeds();
   this.loadbids();
   this.loadsaves();
   this.loadoverivew();
+  this.loadExp();
   something.$on('wherecreateuserloaddate', function () {
-    _this10.loadoverivew();
+    _this12.loadoverivew();
+  });
+  something.$on('loadExperience', function () {
+    _this12.loadExp();
   });
   this.$Progress.finish();
 }), _components$data$comp);
@@ -4314,6 +4382,106 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/includs/ProfileExperience.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/includs/ProfileExperience.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['css_class', 'overlay', 'form', 'type'],
+  data: function data() {
+    return {
+      saveandadd: false
+    };
+  },
+  methods: {
+    addExperience: function addExperience() {
+      var _this = this;
+
+      this.$Progress.start();
+
+      if (!this.type) {
+        this.form.post('api/addExperience').then(function () {
+          _this.$Progress.finish();
+
+          Toast.fire({
+            icon: 'success',
+            title: 'Experience  Created Successfully'
+          });
+          something.$emit('loadExperience');
+
+          if (!_this.saveandadd) {
+            _this.$emit('update:overlay', false);
+
+            _this.$emit('update:css_class', false);
+          } else {
+            _this.form.ExpBody = '';
+            _this.form.ExpTitle = '';
+          }
+        })["catch"](function () {
+          _this.$Progress.decrease(20);
+
+          _this.$Progress.fail();
+        });
+        this.form.errors.clear();
+      } else {
+        this.$Progress.start();
+        this.form.post('api/UpdateExperience/').then(function () {
+          _this.$Progress.finish();
+
+          Toast.fire({
+            icon: 'success',
+            title: 'Experience  Updated Successfully'
+          });
+          something.$emit('loadExperience');
+
+          if (!_this.saveandadd) {
+            _this.$emit('update:overlay', false);
+
+            _this.$emit('update:css_class', false);
+
+            _this.$emit('update:type', false);
+          } else {
+            _this.form.ExpBody = '';
+            _this.form.ExpTitle = '';
+          }
+        })["catch"](function () {
+          _this.$Progress.decrease(20);
+
+          _this.$Progress.fail();
+        });
+        this.form.errors.clear();
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/includs/ProfileOverView.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/includs/ProfileOverView.vue?vue&type=script&lang=js& ***!
@@ -4351,7 +4519,6 @@ __webpack_require__.r(__webpack_exports__);
     CreateOverView: function CreateOverView() {
       var _this = this;
 
-      this.$Progress.start();
       this.$Progress.start();
       this.form.put('api/overview').then(function () {
         _this.$Progress.finish();
@@ -68137,13 +68304,110 @@ var render = function() {
                             })
                           ]),
                           _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "user-profile-ov st2" },
+                            [
+                              _c("h3", [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "exp-bx-open",
+                                    attrs: {
+                                      href: "javascript:void(0)",
+                                      title: ""
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.showExper = true
+                                        _vm.overlay = true
+                                        _vm.form.ExpBody = ""
+                                        _vm.form.ExpTitle = ""
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Experience ")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "exp-bx-open",
+                                    attrs: {
+                                      href: "javascript:void(0)",
+                                      title: ""
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.showExper = true
+                                        _vm.overlay = true
+                                        _vm.form.ExpBody = ""
+                                        _vm.form.ExpTitle = ""
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-plus-square"
+                                    })
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.Experience, function(Exp) {
+                                return _c("span", [
+                                  _c("h4", [
+                                    _vm._v(_vm._s(Exp.title) + " "),
+                                    _c(
+                                      "a",
+                                      {
+                                        attrs: {
+                                          href: "javascript:void(0)",
+                                          title: ""
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.updateExp(Exp)
+                                          }
+                                        }
+                                      },
+                                      [_c("i", { staticClass: "fa fa-pencil" })]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "a",
+                                      {
+                                        attrs: { href: "javascript:void(0)" },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.DeleteExp(Exp)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "fas fa-trash-alt"
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("p", [_vm._v(_vm._s(Exp.body) + " ")])
+                                ])
+                              }),
+                              _vm._v(" "),
+                              _vm.Experience.length == 0
+                                ? _c("span", [_vm._v("Add Some Experience")])
+                                : _vm._e()
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
                           _vm._m(19),
                           _vm._v(" "),
                           _vm._m(20),
                           _vm._v(" "),
-                          _vm._m(21),
-                          _vm._v(" "),
-                          _vm._m(22)
+                          _vm._m(21)
                         ]
                       ),
                       _vm._v(" "),
@@ -68203,7 +68467,7 @@ var render = function() {
                                       }
                                     },
                                     [
-                                      _vm._m(23, true),
+                                      _vm._m(22, true),
                                       _vm._v(" "),
                                       _c(
                                         "ul",
@@ -68212,15 +68476,15 @@ var render = function() {
                                           class: { active: save == _vm.showOp }
                                         },
                                         [
+                                          _vm._m(23, true),
+                                          _vm._v(" "),
                                           _vm._m(24, true),
                                           _vm._v(" "),
                                           _vm._m(25, true),
                                           _vm._v(" "),
                                           _vm._m(26, true),
                                           _vm._v(" "),
-                                          _vm._m(27, true),
-                                          _vm._v(" "),
-                                          _vm._m(28, true)
+                                          _vm._m(27, true)
                                         ]
                                       )
                                     ]
@@ -68259,9 +68523,9 @@ var render = function() {
                                   ]),
                                   _vm._v(" "),
                                   _c("ul", { staticClass: "bk-links" }, [
-                                    _vm._m(29, true),
+                                    _vm._m(28, true),
                                     _vm._v(" "),
-                                    _vm._m(30, true),
+                                    _vm._m(29, true),
                                     _vm._v(" "),
                                     save.type == "servic"
                                       ? _c("li", [
@@ -68285,7 +68549,7 @@ var render = function() {
                                   _c("h3", [_vm._v(_vm._s(save.title))]),
                                   _vm._v(" "),
                                   _c("ul", { staticClass: "job-dt" }, [
-                                    _vm._m(31, true),
+                                    _vm._m(30, true),
                                     _vm._v(" "),
                                     _c("li", [
                                       _c("span", [
@@ -68409,7 +68673,7 @@ var render = function() {
                                       }
                                     },
                                     [
-                                      _vm._m(32, true),
+                                      _vm._m(31, true),
                                       _vm._v(" "),
                                       _c(
                                         "ul",
@@ -68418,15 +68682,15 @@ var render = function() {
                                           class: { active: mybid == _vm.showOp }
                                         },
                                         [
+                                          _vm._m(32, true),
+                                          _vm._v(" "),
                                           _vm._m(33, true),
                                           _vm._v(" "),
                                           _vm._m(34, true),
                                           _vm._v(" "),
                                           _vm._m(35, true),
                                           _vm._v(" "),
-                                          _vm._m(36, true),
-                                          _vm._v(" "),
-                                          _vm._m(37, true)
+                                          _vm._m(36, true)
                                         ]
                                       )
                                     ]
@@ -68465,9 +68729,9 @@ var render = function() {
                                   ]),
                                   _vm._v(" "),
                                   _c("ul", { staticClass: "bk-links" }, [
-                                    _vm._m(38, true),
+                                    _vm._m(37, true),
                                     _vm._v(" "),
-                                    _vm._m(39, true),
+                                    _vm._m(38, true),
                                     _vm._v(" "),
                                     mybid.type == "servic"
                                       ? _c("li", [
@@ -68491,7 +68755,7 @@ var render = function() {
                                   _c("h3", [_vm._v(_vm._s(mybid.title))]),
                                   _vm._v(" "),
                                   _c("ul", { staticClass: "job-dt" }, [
-                                    _vm._m(40, true),
+                                    _vm._m(39, true),
                                     _vm._v(" "),
                                     _c("li", [
                                       _c("span", [
@@ -68569,7 +68833,7 @@ var render = function() {
                           class: { current: _vm.Portfolio },
                           attrs: { id: "portfolio-dd" }
                         },
-                        [_vm._m(41)]
+                        [_vm._m(40)]
                       ),
                       _vm._v(" "),
                       _c(
@@ -68579,12 +68843,12 @@ var render = function() {
                           class: { current: _vm.Payment },
                           attrs: { id: "payment-dd" }
                         },
-                        [_vm._m(42), _vm._v(" "), _vm._m(43)]
+                        [_vm._m(41), _vm._v(" "), _vm._m(42)]
                       )
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(44)
+                  _vm._m(43)
                 ])
               ])
             ])
@@ -68604,6 +68868,29 @@ var render = function() {
           },
           "update:overlay": function($event) {
             _vm.overlay = $event
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("exp", {
+        attrs: {
+          css_class: _vm.showExper,
+          overlay: _vm.overlay,
+          form: this.form,
+          type: _vm.IsExpUpdate
+        },
+        on: {
+          "update:css_class": function($event) {
+            _vm.showExper = $event
+          },
+          "update:overlay": function($event) {
+            _vm.overlay = $event
+          },
+          "update:form": function($event) {
+            return _vm.$set(this, "form", $event)
+          },
+          "update:type": function($event) {
+            _vm.IsExpUpdate = $event
           }
         }
       })
@@ -68996,79 +69283,6 @@ var staticRenderFns = [
     return _c("li", [
       _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
         _vm._v("Full Time")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "user-profile-ov st2" }, [
-      _c("h3", [
-        _c(
-          "a",
-          {
-            staticClass: "exp-bx-open",
-            attrs: { href: "javascript:void(0)", title: "" }
-          },
-          [_vm._v("Experience ")]
-        ),
-        _c(
-          "a",
-          {
-            staticClass: "exp-bx-open",
-            attrs: { href: "javascript:void(0)", title: "" }
-          },
-          [_c("i", { staticClass: "fa fa-pencil" })]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "exp-bx-open",
-            attrs: { href: "javascript:void(0)", title: "" }
-          },
-          [_c("i", { staticClass: "fa fa-plus-square" })]
-        )
-      ]),
-      _vm._v(" "),
-      _c("h4", [
-        _vm._v("Web designer "),
-        _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-          _c("i", { staticClass: "fa fa-pencil" })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus consectetur aliquam lectus commodo viverra. "
-        )
-      ]),
-      _vm._v(" "),
-      _c("h4", [
-        _vm._v("UI / UX Designer "),
-        _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-          _c("i", { staticClass: "fa fa-pencil" })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id."
-        )
-      ]),
-      _vm._v(" "),
-      _c("h4", [
-        _vm._v("PHP developer "),
-        _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-          _c("i", { staticClass: "fa fa-pencil" })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "no-margin" }, [
-        _vm._v(
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus consectetur aliquam lectus commodo viverra. "
-        )
       ])
     ])
   },
@@ -70719,6 +70933,170 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/includs/ProfileExperience.vue?vue&type=template&id=0396a9ff&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/includs/ProfileExperience.vue?vue&type=template&id=0396a9ff& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "overview-box",
+      class: { open: _vm.css_class },
+      attrs: { id: "experience-box" }
+    },
+    [
+      _c("div", { staticClass: "overview-edit" }, [
+        _c("h3", [_vm._v("Experience")]),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.addExperience()
+              }
+            }
+          },
+          [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.ExpTitle,
+                  expression: "form.ExpTitle"
+                }
+              ],
+              class: { "is-invalid": _vm.form.errors.has("ExpTitle") },
+              attrs: { type: "text", name: "ExpTitle", placeholder: "Subject" },
+              domProps: { value: _vm.form.ExpTitle },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "ExpTitle", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("has-error", { attrs: { form: _vm.form, field: "ExpTitle" } }),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.ExpBody,
+                  expression: "form.ExpBody"
+                }
+              ],
+              class: { "is-invalid": _vm.form.errors.has("ExpBody") },
+              attrs: { name: "ExBody" },
+              domProps: { value: _vm.form.ExpBody },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "ExpBody", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("has-error", { attrs: { form: _vm.form, field: "ExpBody" } }),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("button", { staticClass: "save", attrs: { type: "submit" } }, [
+              _vm._v("Save")
+            ]),
+            _vm._v(" "),
+            !_vm.type
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "save-add",
+                    attrs: { type: "submit" },
+                    on: {
+                      click: function($event) {
+                        _vm.saveandadd = true
+                      }
+                    }
+                  },
+                  [_vm._v("Save & Add More")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticStyle: {
+                  color: "#000000",
+                  "font-size": "16px",
+                  border: "1px solid #e5e5e5",
+                  padding: "10px 25px",
+                  display: "inline-block",
+                  "background-color": "#fff",
+                  "font-weight": "600",
+                  cursor: "pointer"
+                },
+                on: {
+                  click: function($event) {
+                    _vm.$emit("update:css_class", false)
+                    _vm.$emit("update:overlay", false)
+                    _vm.$emit("update:type", false)
+                    _vm.form.errors.clear()
+                  }
+                }
+              },
+              [_vm._v("Cancel")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "close-box",
+            attrs: { href: "javascript:void(0)", title: "" },
+            on: {
+              click: function($event) {
+                _vm.$emit("update:css_class", false)
+                _vm.$emit("update:overlay", false)
+                _vm.$emit("update:type", false)
+                _vm.form.errors.clear()
+              }
+            }
+          },
+          [_c("i", { staticClass: "la la-close" })]
+        )
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/includs/ProfileOverView.vue?vue&type=template&id=05539dee&":
 /*!**************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/includs/ProfileOverView.vue?vue&type=template&id=05539dee& ***!
@@ -70790,7 +71168,16 @@ var render = function() {
             _c(
               "a",
               {
-                staticClass: "btn btn-lg",
+                staticStyle: {
+                  color: "#000000",
+                  "font-size": "16px",
+                  border: "1px solid #e5e5e5",
+                  padding: "10px 25px",
+                  display: "inline-block",
+                  "background-color": "#fff",
+                  "font-weight": "600",
+                  cursor: "pointer"
+                },
                 on: {
                   click: function($event) {
                     _vm.$emit("update:css_class", false)
@@ -88234,6 +88621,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Project_vue_vue_type_template_id_c10f8004___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Project_vue_vue_type_template_id_c10f8004___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/includs/ProfileExperience.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/includs/ProfileExperience.vue ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ProfileExperience_vue_vue_type_template_id_0396a9ff___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProfileExperience.vue?vue&type=template&id=0396a9ff& */ "./resources/js/components/includs/ProfileExperience.vue?vue&type=template&id=0396a9ff&");
+/* harmony import */ var _ProfileExperience_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProfileExperience.vue?vue&type=script&lang=js& */ "./resources/js/components/includs/ProfileExperience.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ProfileExperience_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ProfileExperience_vue_vue_type_template_id_0396a9ff___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ProfileExperience_vue_vue_type_template_id_0396a9ff___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/includs/ProfileExperience.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/includs/ProfileExperience.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/includs/ProfileExperience.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProfileExperience_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ProfileExperience.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/includs/ProfileExperience.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProfileExperience_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/includs/ProfileExperience.vue?vue&type=template&id=0396a9ff&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/includs/ProfileExperience.vue?vue&type=template&id=0396a9ff& ***!
+  \**********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProfileExperience_vue_vue_type_template_id_0396a9ff___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ProfileExperience.vue?vue&type=template&id=0396a9ff& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/includs/ProfileExperience.vue?vue&type=template&id=0396a9ff&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProfileExperience_vue_vue_type_template_id_0396a9ff___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProfileExperience_vue_vue_type_template_id_0396a9ff___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

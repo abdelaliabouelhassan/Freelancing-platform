@@ -9,7 +9,7 @@
                 <has-error :form="form" field="overview"></has-error>
                 <br>
                 <button type="submit" class="save">Save</button>
-                <a  class="btn btn-lg" @click="$emit('update:css_class', false);$emit('update:overlay', false)"  >Cancel</a>
+                <a  style="color: #000000;font-size: 16px;border: 1px solid #e5e5e5; padding: 10px 25px;display: inline-block;background-color: #fff;font-weight: 600;cursor: pointer;" @click="$emit('update:css_class', false);$emit('update:overlay', false)"  >Cancel</a>
             </form>
             <a href="javascript:void(0)" title="" class="close-box"><i class="la la-close" @click="$emit('update:css_class', false);$emit('update:overlay', false)"></i></a>
         </div><!--overview-edit end-->
@@ -29,7 +29,6 @@
         methods:{
             CreateOverView(){
                 this.$Progress.start()
-                    this.$Progress.start()
                     this.form.put('api/overview')
                         .then(()=>{
                             this.$Progress.finish()

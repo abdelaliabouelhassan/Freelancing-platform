@@ -10,6 +10,7 @@ use App\Post;
 use App\Saved_Job;
 use App\User;
 use App\User_info;
+use App\Experience;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -115,6 +116,42 @@ class ProfileController extends Controller
     public function getoverview(){
         $overview =  User_info::where('user_id',auth('api')->id())->first('overview');
         return $overview;
+    }
+    public  function addExperience(Request $request){
+        $this->validate($request,[
+            'ExpTitle'=>'required|min:3',
+            'ExpBody'=>'required|min:50'
+
+        ]);
+        Experience::create(['title'=>$request->ExpTitle,'body'=>$request->ExpBody,'user_id'=>auth('api')->id()]);
+        return ['brikol'=>'(:'];
+    }
+    public function getExperience(){
+       $exp = Experience::latest()->orderBy('id')->where('user_id',auth('api')->id())->paginate(5);
+       return $exp;
+    }
+    public  function  UpdateExperience(Request $request){
+        $this->validate($request,[
+            'ExpTitle'=>'required|min:3',
+            'ExpBody'=>'required|min:50'
+
+        ]);
+        $exp = Experience::where('user_id',auth('api')->id())->where('id',$request->ExpId);
+        if($exp){
+              $exp->update(['title'=>$request->ExpTitle,'body'=>$request->ExpBody]);
+            return ['brikol'=>'(:'];
+        }else{
+            return ['brikol'=>'):'];
+        }
+    }
+    public  function  DeleteExperience(Request $request){
+        $exp = Experience::where('user_id',auth('api')->id())->where('id',$request->ExpId);
+        if($exp){
+            $exp->delete();
+            return ['brikol'=>'(:'];
+        }else{
+            return ['brikol'=>'):'];
+        }
     }
     /**
      * Store a newly created resource in storage.
