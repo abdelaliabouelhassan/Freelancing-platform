@@ -21,7 +21,7 @@ class PostController extends Controller
      */
 //    public function __construct()
 //    {
-//        $this->middleware('auth:api');
+//        $this->middleware('guest');
 //    }
 
     /*    Jobs   */

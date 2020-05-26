@@ -241,23 +241,13 @@
                                         <span v-if="Educ.length == 0">Add Your Education</span>
                                     </div><!--user-profile-ov end-->
                                     <div class="user-profile-ov">
-                                        <h3><a href="javascript:void(0)" title="" class="lct-box-open">Location</a> <a href="javascript:void(0)" title="" class="lct-box-open"><i class="fa fa-pencil"></i></a> <a href="javascript:void(0)" title=""><i class="fa fa-plus-square"></i></a></h3>
-                                        <h4>India</h4>
-                                        <p>151/4 BT Chownk, Delhi </p>
+                                        <h3><a href="javascript:void(0)" title="" class="lct-box-open" @click="showLoac = true;overlay= true">Location</a> <a href="javascript:void(0)" title="" class="lct-box-open" @click="showLoac = true;overlay= true"><i class="fa fa-pencil"></i></a> <a href="javascript:void(0)" title="" @click="showLoac = true;overlay= true"><i class="fa fa-plus-square"></i></a></h3>
+                                       <span  v-for="Loacs in Loac" >
+                                        <h4>{{Loacs.city_name}}</h4>
+                                       </span>
+                                        <span v-if="!Loac">Add Your Location</span>
                                     </div><!--user-profile-ov end-->
-                                    <div class="user-profile-ov">
-                                        <h3><a href="javascript:void(0)" title="" class="skills-open">Skills</a> <a href="javascript:void(0)" title="" class="skills-open"><i class="fa fa-pencil"></i></a> <a href="javascript:void(0)"><i class="fa fa-plus-square"></i></a></h3>
-                                        <ul>
-                                            <li><a href="javascript:void(0)" title="">HTML</a></li>
-                                            <li><a href="javascript:void(0)" title="">PHP</a></li>
-                                            <li><a href="javascript:void(0)" title="">CSS</a></li>
-                                            <li><a href="javascript:void(0)" title="">Javascript</a></li>
-                                            <li><a href="javascript:void(0)" title="">Wordpress</a></li>
-                                            <li><a href="javascript:void(0)" title="">Photoshop</a></li>
-                                            <li><a href="javascript:void(0)" title="">Illustrator</a></li>
-                                            <li><a href="javascript:void(0)" title="">Corel Draw</a></li>
-                                        </ul>
-                                    </div><!--user-profile-ov end-->
+
                                 </div><!--product-feed-tab end-->
                                 <div class="product-feed-tab" id="saved-jobs" v-bind:class="{current:Saved}">
                                     <div class="posts-section">
@@ -566,8 +556,9 @@
     </main>
 
      <overview  :css_class.sync="showoverview" :overlay.sync="overlay" :form="this.form"></overview>
-      <exp :css_class.sync="showExper" :overlay.sync="overlay" :form.sync="this.form" :type.sync="IsExpUpdate"></exp>
+     <exp :css_class.sync="showExper" :overlay.sync="overlay" :form.sync="this.form" :type.sync="IsExpUpdate"></exp>
      <educ :css_class.sync="showEduc" :overlay.sync="overlay" :form.sync="this.form" :type.sync="IsEducUpdate"></educ>
+     <location :css_class.sync="showLoac" :overlay.sync="overlay" :form.sync="this.form"></location>
     </div>
 </template>
 
@@ -575,6 +566,7 @@
     import ProfileOverView from "./includs/ProfileOverView";
     import ProfileExperience from "./includs/ProfileExperience";
     import ProfileEduc from "./includs/ProfileEduc";
+    import ProfileLocation from "./includs/ProfileLocation";
 
     export default {
         components: {ProfileExperience, ProfileOverView,ProfileEduc},
@@ -597,6 +589,7 @@
                 overlay:false,
                 showExper:false,
                 showEduc:false,
+                showLoac:false,
                 IsExpUpdate : false,
                 IsEducUpdate : false,
                 /*End v-bind:class variable*/
@@ -622,6 +615,9 @@
                 /**/
                 Educ:{},
                 /**/
+                /**/
+                Loac:{},
+                /**/
                 form: new Form({
                     overview: '',
                     ExpTitle:'',
@@ -631,14 +627,16 @@
                     school:'',
                     from:'',
                     to:'',
-                    Description:''
+                    Description:'',
+                    City:''
                 })
             }
         },
         components: {
             'overview':ProfileOverView,
             'exp':ProfileExperience,
-            'educ':ProfileEduc
+            'educ':ProfileEduc,
+            'location':ProfileLocation
         },
         watch: {
             $route: {
@@ -979,7 +977,13 @@
 
                     }
                 })
-            }
+            },
+            LoadLocation(){
+                axios.get('api/getLocation').then(({data}) => {
+                    this.Loac = data.data
+                    this.form.City = '0'
+                })
+            },
 
         },
         mounted() {
@@ -993,6 +997,7 @@
             this.loadoverivew();
             this.loadExp()
             this.loadEduc()
+            this.LoadLocation()
             something.$on('wherecreateuserloaddate',()=>{
                 this.loadoverivew();
             });
@@ -1001,6 +1006,9 @@
             });
             something.$on('loadEduc',()=>{
                 this.loadEduc();
+            });
+            something.$on('loadLoac',()=>{
+                this.LoadLocation();
             });
             this.$Progress.finish()
         }

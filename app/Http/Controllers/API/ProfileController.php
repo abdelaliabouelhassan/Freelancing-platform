@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\City;
 use App\Education;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Post\PostCollection;
@@ -199,6 +200,22 @@ class ProfileController extends Controller
         }else{
             return ['brikol'=>'):'];
         }
+    }
+    public  function getLocation(){
+        $user = auth('api')->user();
+        if($user['city_id']){
+       return  $city = City::where('id',$user['city_id'])->paginate(1);
+        }
+    }
+    public  function  addLocation(Request $request){
+        if($request){
+            City::findOrFail($request->City);
+         $user =   User::where(['id'=>auth('api')->id()]);
+          $user->update(['city_id'=>$request->City]);
+            return ['brikol'=>'(:'];
+        }
+
+        return ['brikol'=>'):'];
     }
     /**
      * Store a newly created resource in storage.

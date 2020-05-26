@@ -66,6 +66,8 @@ Route::get('getEduc','API\ProfileController@getEduc');
 Route::post('addEduc','API\ProfileController@addEduc');
 Route::post('UpdateEduc','API\ProfileController@UpdateEduc');
 Route::post('DeleteEduc','API\ProfileController@DeleteEduc');
+Route::post('addLocation','API\ProfileController@addLocation');
+Route::get('getLocation','API\ProfileController@getLocation');
 
 
 /*End Profile*/
