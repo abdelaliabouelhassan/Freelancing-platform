@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Education;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Post\PostCollection;
 use App\Http\Resources\Profile\SavedPostCollection;
@@ -11,6 +12,7 @@ use App\Saved_Job;
 use App\User;
 use App\User_info;
 use App\Experience;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -148,6 +150,51 @@ class ProfileController extends Controller
         $exp = Experience::where('user_id',auth('api')->id())->where('id',$request->ExpId);
         if($exp){
             $exp->delete();
+            return ['brikol'=>'(:'];
+        }else{
+            return ['brikol'=>'):'];
+        }
+    }
+    public  function  getEduc(){
+        $educ = Education::latest()->orderBy('id')->where('user_id',auth('api')->id())->paginate(5);
+        return $educ;
+    }
+    public  function  addEduc(Request $request){
+        $this->validate($request,[
+            'Description'=>'required|min:50',
+            'from'=>'required|date',
+            'to'=>'required|date',
+            'school'=>'required|max:150'
+
+        ]);
+        $educ=   Education::create(['school'=>$request->school,'description'=>$request->Description,'user_id'=>auth('api')->id(),'from'=>$request->from,'to'=>$request->to]);
+        if($educ){
+            return ['brikol'=>'(:'];
+        }else{
+            return ['brikol'=>'):'];
+        }
+    }
+
+    public  function UpdateEduc(Request $request){
+        $this->validate($request,[
+            'Description'=>'required|min:50',
+            'from'=>'required|date',
+            'to'=>'required|date',
+            'school'=>'required|max:150'
+
+        ]);
+        $educ = Education::where('user_id',auth('api')->id())->where('id',$request->EducId);
+        if($educ){
+            $educ->update(['school'=>$request->school,'description'=>$request->Description,'from'=>$request->from,'to'=>$request->to]);
+            return ['brikol'=>'(:'];
+        }else{
+            return ['brikol'=>'):'];
+        }
+    }
+    public  function  DeleteEduc(Request $request){
+        $educ = Education::where('user_id',auth('api')->id())->where('id',$request->EducId);
+        if($educ){
+            $educ->delete();
             return ['brikol'=>'(:'];
         }else{
             return ['brikol'=>'):'];

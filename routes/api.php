@@ -62,5 +62,10 @@ Route::get('getExperience','API\ProfileController@getExperience');
 Route::post('addExperience','API\ProfileController@addExperience');
 Route::post('UpdateExperience','API\ProfileController@UpdateExperience');
 Route::post('DeleteExperience','API\ProfileController@DeleteExperience');
+Route::get('getEduc','API\ProfileController@getEduc');
+Route::post('addEduc','API\ProfileController@addEduc');
+Route::post('UpdateEduc','API\ProfileController@UpdateEduc');
+Route::post('DeleteEduc','API\ProfileController@DeleteEduc');
+
 
 /*End Profile*/

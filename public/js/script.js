@@ -97,16 +97,16 @@ $(window).on("load", function() {
 
     //  ============= EDUCATION EDIT FUNCTION =========
 
-    $(".ed-box-open").on("click", function(){
-        $("#education-box").addClass("open");
-        $(".wrapper").addClass("overlay");
-        return false;
-    });
-    $(".close-box").on("click", function(){
-        $("#education-box").removeClass("open");
-        $(".wrapper").removeClass("overlay");
-        return false;
-    });
+    // $(".ed-box-open").on("click", function(){
+    //     $("#education-box").addClass("open");
+    //     $(".wrapper").addClass("overlay");
+    //     return false;
+    // });
+    // $(".close-box").on("click", function(){
+    //     $("#education-box").removeClass("open");
+    //     $(".wrapper").removeClass("overlay");
+    //     return false;
+    // });
 
     //  ============= LOCATION EDIT FUNCTION =========
 

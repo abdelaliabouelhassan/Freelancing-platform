@@ -25,13 +25,16 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.13.0",
+        "luxon": "^1.24.1",
         "moment": "^2.25.3",
         "sweetalert2": "^9.10.12",
         "vform": "^1.0.1",
+        "vue-datetime": "^1.0.0-beta.13",
         "vue-infinite-loading": "^2.4.5",
         "vue-progressbar": "^0.7.5",
         "vue-read-more": "^1.1.1",
         "vue-resource": "^1.5.1",
-        "vue-router": "^3.1.6"
+        "vue-router": "^3.1.6",
+        "weekstart": "^1.0.1"
     }
 }

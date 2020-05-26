@@ -232,10 +232,13 @@
                                         <span v-if="Experience.length == 0">Add Some Experience</span>
                                     </div><!--user-profile-ov end-->
                                     <div class="user-profile-ov">
-                                        <h3><a href="javascript:void(0)" title="" class="ed-box-open">Education</a> <a href="javascript:void(0)" title="" class="ed-box-open"><i class="fa fa-pencil"></i></a> <a href="javascript:void(0)" title=""><i class="fa fa-plus-square"></i></a></h3>
-                                        <h4>Master of Computer Science</h4>
-                                        <span>2015 - 2018</span>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus consectetur aliquam lectus commodo viverra. </p>
+                                        <h3><a href="javascript:void(0)" title="" class="ed-box-open" @click="showEduc = true;overlay= true;form.idEduc = '';form.Description = '';form.school = '';form.to= '';form.from = ''">Education</a>  <a href="javascript:void(0)" title="" @click="showEduc = true;overlay= true;form.idEduc = '';form.Description = '';form.school = '';form.to= '';form.from = ''"><i class="fa fa-plus-square"></i></a></h3>
+                                        <span v-for="educs in Educ">
+                                            <h4>{{educs.school}} <a href="javascript:void(0)" title="" @click="updateEduc(educs)"><i class="fa fa-pencil"></i></a>
+                                                <a href="javascript:void(0)" @click="DeleteEduc(educs)"><i class="fas fa-trash-alt"></i></a></h4>
+                                            <span> {{educs.from | mydate}}  |  {{educs.to | mydate}}</span>
+                                            <p>{{educs.description}} </p> </span>
+                                        <span v-if="Educ.length == 0">Add Your Education</span>
                                     </div><!--user-profile-ov end-->
                                     <div class="user-profile-ov">
                                         <h3><a href="javascript:void(0)" title="" class="lct-box-open">Location</a> <a href="javascript:void(0)" title="" class="lct-box-open"><i class="fa fa-pencil"></i></a> <a href="javascript:void(0)" title=""><i class="fa fa-plus-square"></i></a></h3>
@@ -563,15 +566,18 @@
     </main>
 
      <overview  :css_class.sync="showoverview" :overlay.sync="overlay" :form="this.form"></overview>
-     <exp :css_class.sync="showExper" :overlay.sync="overlay" :form.sync="this.form" :type.sync="IsExpUpdate"></exp>
+      <exp :css_class.sync="showExper" :overlay.sync="overlay" :form.sync="this.form" :type.sync="IsExpUpdate"></exp>
+     <educ :css_class.sync="showEduc" :overlay.sync="overlay" :form.sync="this.form" :type.sync="IsEducUpdate"></educ>
     </div>
 </template>
 
 <script>
     import ProfileOverView from "./includs/ProfileOverView";
     import ProfileExperience from "./includs/ProfileExperience";
+    import ProfileEduc from "./includs/ProfileEduc";
+
     export default {
-        components: {ProfileExperience, ProfileOverView},
+        components: {ProfileExperience, ProfileOverView,ProfileEduc},
         data () {
 
             return {
@@ -590,7 +596,9 @@
                 showoverview:false,
                 overlay:false,
                 showExper:false,
+                showEduc:false,
                 IsExpUpdate : false,
+                IsEducUpdate : false,
                 /*End v-bind:class variable*/
                 /*feed*/
                 showOp:null,
@@ -611,17 +619,26 @@
                 /*Experience*/
                 Experience:{},
                 /*End Experience*/
+                /**/
+                Educ:{},
+                /**/
                 form: new Form({
                     overview: '',
                     ExpTitle:'',
                     ExpBody:'',
-                    ExpId:''
+                    ExpId:'',
+                    EducId:'',
+                    school:'',
+                    from:'',
+                    to:'',
+                    Description:''
                 })
             }
         },
         components: {
             'overview':ProfileOverView,
-            'exp':ProfileExperience
+            'exp':ProfileExperience,
+            'educ':ProfileEduc
         },
         watch: {
             $route: {
@@ -913,6 +930,56 @@
                     }
                 })
             },
+            loadEduc(){
+                axios.get('api/getEduc').then(({data}) => {
+                    this.Educ = data.data
+                })
+
+            },
+            updateEduc(educ){
+                    this.form.EducId = educ.id;
+                    this.form.school = educ.school;
+                    this.form.from = educ.from;
+                    this.form.to = educ.to;
+                    this.form.Description = educ.description;
+                    this.showEduc = true;
+                    this.IsEducUpdate = true;
+            },
+            DeleteEduc(educ){
+                Swal.fire({
+                    title: 'Are you sure You Wnat Delete This ?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        this.form.EducId = educ.id
+                        this.$Progress.start()
+                        this.form.post('api/DeleteEduc')
+                            .then(()=> {
+                                this.$Progress.finish()
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your Education has been deleted.',
+                                    'success'
+                                )
+                                something.$emit('loadEduc');
+                            })
+                            .catch(()=> {
+                                this.$Progress.decrease(20)
+                                this.$Progress.fail()
+                                Toast.fire({
+                                    icon: 'error',
+                                    title: 'Something Went Wrong'
+                                })
+                            });
+
+                    }
+                })
+            }
 
         },
         mounted() {
@@ -925,11 +992,15 @@
             this.loadsaves()
             this.loadoverivew();
             this.loadExp()
+            this.loadEduc()
             something.$on('wherecreateuserloaddate',()=>{
                 this.loadoverivew();
             });
             something.$on('loadExperience',()=>{
                 this.loadExp();
+            });
+            something.$on('loadEduc',()=>{
+                this.loadEduc();
             });
             this.$Progress.finish()
         }

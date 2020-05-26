@@ -53,7 +53,7 @@ const router = new VueRouter({
 /*moment */
 import moment from  'moment'
 Vue.filter('mydate',function (created) {
-    return moment(created).format('MMMM Do YYYY, h:mm:ss a');
+    return moment(created).format('YYYY');
 });
 
 /*end vue moment */
@@ -117,12 +117,20 @@ window.Toast = Toast
 
 window.something = new Vue();
 
-
-
 /*Read More*/
 import ReadMore from 'vue-read-more';
 Vue.use(ReadMore);
 /*End Read More*/
+
+
+/*Datetime picker*/
+import { Datetime } from 'vue-datetime'
+// You need a specific loader for CSS files
+import 'vue-datetime/dist/vue-datetime.css'
+Vue.use(Datetime)
+Vue.component('datetime', Datetime);
+
+/*End Datetime picker*/
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
