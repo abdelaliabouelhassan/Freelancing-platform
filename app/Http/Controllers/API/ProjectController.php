@@ -7,6 +7,7 @@ use App\City;
 use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class ProjectController extends Controller
@@ -48,9 +49,16 @@ class ProjectController extends Controller
         City::findOrFail($request->city);
         if($request->image){
             $name = time() . '.'  . explode('/',explode(':',substr($request->image,0,strpos($request->image,';')))[1])[1];
-            Image::make($request->image)->save(public_path('store/images/').$name);
-            $imageid = \App\Image::create(['path'=>'store/images/' . $name]);
+            $img =   Image::make($request->image);
+            $img->resize('500','500')->save(public_path('store/images/').$name);
+            Storage::disk('azure')->put($name,$img,'public');
+            $url = Storage::disk('azure')->url($name);
+            $imageid = \App\Image::create(['path'=>$url,'name'=>$name]);
             $request['image'] = $imageid->id;
+            $oldimg = public_path('store/images/'. $name );
+            if(file_exists($oldimg)){
+                unlink($oldimg);
+            }
         }
         Post::create([
             'title'=>$request->title,

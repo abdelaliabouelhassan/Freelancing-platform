@@ -15,7 +15,10 @@ use App\User_info;
 use App\Experience;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+
 
 class ProfileController extends Controller
 {
@@ -42,10 +45,15 @@ class ProfileController extends Controller
      if($request->data){
          $name = time() . '.'  . explode('/',explode(':',substr($request->data,0,strpos($request->data,';')))[1])[1];
          $img =   Image::make($request->data);
-         $img->resize('170','170')->save(public_path('store/images/').$name);
-         $imageid = \App\Image::create(['path'=>'store/images/' . $name]);
+        $img->resize('170','170')->save(public_path('store/images/').$name);
+         Storage::disk('azure')->put($name,$img,'public');
+         $url = Storage::disk('azure')->url($name);
+         $imageid = \App\Image::create(['path'=>$url,'name'=>$name]);
          $request['data'] = $imageid->id;
-
+         $oldimg = public_path('store/images/'. $name );
+         if(file_exists($oldimg)){
+             unlink($oldimg);
+         }
          $img = \App\Image::find($user->user_image);
          if($img){
              $oldimg = public_path( $img->path );
@@ -53,7 +61,9 @@ class ProfileController extends Controller
                  unlink($oldimg);
                  $img->delete();
              }
+             Storage::disk('azure')->delete($img->name);
          }
+
 
          if($imageid){
              $user->update(['user_image'=>$request['data']]);
@@ -67,9 +77,15 @@ class ProfileController extends Controller
             $name = time() . '.'  . explode('/',explode(':',substr($request->data,0,strpos($request->data,';')))[1])[1];
             $img =   Image::make($request->data);
             $img->resize('1600','500')->save(public_path('store/images/').$name);
-            $imageid = \App\Image::create(['path'=>'store/images/' . $name]);
-            $request['data'] = $imageid->id;
+            Storage::disk('azure')->put($name,$img,'public');
+            $url = Storage::disk('azure')->url($name);
+            $imageid = \App\Image::create(['path'=>$url,'name'=>$name]);
 
+            $request['data'] = $imageid->id;
+            $oldimg = public_path('store/images/'. $name );
+            if(file_exists($oldimg)){
+                unlink($oldimg);
+            }
             $img = \App\Image::find($user->user_backgroundImage);
             if($img){
                 $oldimg = public_path( $img->path );
@@ -77,7 +93,9 @@ class ProfileController extends Controller
                     unlink($oldimg);
                     $img->delete();
                 }
+                Storage::disk('azure')->delete($img->name);
             }
+
 
             if($imageid){
                 $user->update(['user_backgroundImage'=>$request['data']]);

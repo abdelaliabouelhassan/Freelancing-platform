@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'cloud' => env('FILESYSTEM_CLOUD', 's3'),
+    'cloud' => env('FILESYSTEM_CLOUD', 'azure'),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,14 +55,19 @@ return [
             'visibility' => 'public',
         ],
 
-        's3' => [
-            'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET'),
-            'url' => env('AWS_URL'),
-            'endpoint' => env('AWS_ENDPOINT'),
+//        'azure' => [
+//            'driver'    => 'azure',
+//            'name'      => env('AZURE_STORAGE_NAME','brikol'),
+//            'key'       => env('AZURE_STORAGE_KEY','oKSfVrr8b3I46ncIO0EPIzpU5szM6LvvrSHezTSK+fCaj0PyNw+r9RBC/x6EYdybBet7WwUldWBpXNadLW1Y/A=='),
+//            'container' => env('AZURE_STORAGE_CONTAINER','brikolblob'),
+//        ],
+        'azure' => [
+            'driver'    => 'azure',
+            'name'      => 'brikol',
+            'key'       => 'oKSfVrr8b3I46ncIO0EPIzpU5szM6LvvrSHezTSK+fCaj0PyNw+r9RBC/x6EYdybBet7WwUldWBpXNadLW1Y/A==',
+            'container' =>'brikolblob',
+            'prefix'    => null,
+            'url'       => env('AZURE_STORAGE_URL'),
         ],
 
     ],
