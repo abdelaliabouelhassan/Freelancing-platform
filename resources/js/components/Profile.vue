@@ -353,75 +353,7 @@
                                     <infinite-loading @distance="1" @infinite="loadbid"></infinite-loading>
 
                                 </div><!--product-feed-tab end-->
-                                <div class="product-feed-tab" id="portfolio-dd" v-bind:class="{current:Portfolio}">
-                                    <div class="portfolio-gallery-sec">
-                                        <h3>Portfolio</h3>
-                                        <div class="gallery_pf">
-                                            <div class="row">
-                                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                                    <div class="gallery_pt">
-                                                        <img src="http://via.placeholder.com/271x174" alt="">
-                                                        <a href="javascript:void(0)" title=""><img src="images/all-out.png" alt=""></a>
-                                                    </div><!--gallery_pt end-->
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                                    <div class="gallery_pt">
-                                                        <img src="http://via.placeholder.com/170x170" alt="">
-                                                        <a href="javascript:void(0)" title=""><img src="images/all-out.png" alt=""></a>
-                                                    </div><!--gallery_pt end-->
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                                    <div class="gallery_pt">
-                                                        <img src="http://via.placeholder.com/170x170" alt="">
-                                                        <a href="javascript:void(0)" title=""><img src="images/all-out.png" alt=""></a>
-                                                    </div><!--gallery_pt end-->
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                                    <div class="gallery_pt">
-                                                        <img src="http://via.placeholder.com/170x170" alt="">
-                                                        <a href="javascript:void(0)" title=""><img src="images/all-out.png" alt=""></a>
-                                                    </div><!--gallery_pt end-->
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                                    <div class="gallery_pt">
-                                                        <img src="http://via.placeholder.com/170x170" alt="">
-                                                        <a href="javascript:void(0)" title=""><img src="images/all-out.png" alt=""></a>
-                                                    </div><!--gallery_pt end-->
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                                    <div class="gallery_pt">
-                                                        <img src="http://via.placeholder.com/170x170" alt="">
-                                                        <a href="javascript:void(0)" title=""><img src="images/all-out.png" alt=""></a>
-                                                    </div><!--gallery_pt end-->
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                                    <div class="gallery_pt">
-                                                        <img src="http://via.placeholder.com/170x170" alt="">
-                                                        <a href="javascript:void(0)" title=""><img src="images/all-out.png" alt=""></a>
-                                                    </div><!--gallery_pt end-->
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                                    <div class="gallery_pt">
-                                                        <img src="http://via.placeholder.com/170x170" alt="">
-                                                        <a href="javascript:void(0)" title=""><img src="images/all-out.png" alt=""></a>
-                                                    </div><!--gallery_pt end-->
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                                    <div class="gallery_pt">
-                                                        <img src="http://via.placeholder.com/170x170" alt="">
-                                                        <a href="javascript:void(0)" title=""><img src="images/all-out.png" alt=""></a>
-                                                    </div><!--gallery_pt end-->
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                                    <div class="gallery_pt">
-                                                        <img src="http://via.placeholder.com/170x170" alt="">
-                                                        <a href="javascript:void(0)" title=""><img src="images/all-out.png" alt=""></a>
-                                                    </div><!--gallery_pt end-->
-                                                </div>
-                                            </div>
-                                        </div><!--gallery_pf end-->
-                                    </div><!--portfolio-gallery-sec end-->
-                                </div><!--product-feed-tab end-->
+                                    <proto :Portfolio="Portfolio" :showProf.sync="showProf" :overlay.sync="overlay" ></proto>
                                 <div class="product-feed-tab" id="payment-dd" v-bind:class="{current:Payment}">
                                     <div class="billing-method">
                                         <ul>
@@ -567,12 +499,14 @@
     import ProfileExperience from "./includs/ProfileExperience";
     import ProfileEduc from "./includs/ProfileEduc";
     import ProfileLocation from "./includs/ProfileLocation";
+    import ProfileProtfolio from "./includs/ProfileProtfolio";
 
     export default {
-        components: {ProfileExperience, ProfileOverView,ProfileEduc},
+        components: {ProfileExperience, ProfileOverView,ProfileEduc,ProfileLocation,ProfileProtfolio},
         data () {
 
             return {
+
                 user:[],
                 image:'',
                 backimg:'',
@@ -592,6 +526,7 @@
                 showLoac:false,
                 IsExpUpdate : false,
                 IsEducUpdate : false,
+                showProf:false,
                 /*End v-bind:class variable*/
                 /*feed*/
                 showOp:null,
@@ -636,7 +571,8 @@
             'overview':ProfileOverView,
             'exp':ProfileExperience,
             'educ':ProfileEduc,
-            'location':ProfileLocation
+            'location':ProfileLocation,
+            'proto':ProfileProtfolio
         },
         watch: {
             $route: {

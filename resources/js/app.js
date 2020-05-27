@@ -131,6 +131,13 @@ Vue.use(Datetime)
 Vue.component('datetime', Datetime);
 
 /*End Datetime picker*/
+/*Image Gallery*/
+
+import VueGallery from 'vue-gallery'
+Vue.use(VueGallery)
+Vue.component('VGallery', VueGallery)
+
+/*End Image Gallery */
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
