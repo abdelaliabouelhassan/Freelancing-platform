@@ -353,7 +353,7 @@
                                     <infinite-loading @distance="1" @infinite="loadbid"></infinite-loading>
 
                                 </div><!--product-feed-tab end-->
-                                    <proto :Portfolio="Portfolio" :showProf.sync="showProf" :overlay.sync="overlay" ></proto>
+                                    <proto :Portfolio="Portfolio" :showProf.sync="showProf" :overlay.sync="overlay" :form.sync="form"  ></proto>
                                 <div class="product-feed-tab" id="payment-dd" v-bind:class="{current:Payment}">
                                     <div class="billing-method">
                                         <ul>
@@ -462,21 +462,14 @@
                                         <h3>Portfolio</h3>
                                         <img src="images/photo-icon.png" alt="">
                                     </div>
-                                    <div class="pf-gallery">
-                                        <ul>
-                                            <li><a href="javascript:void(0)" title=""><img src="http://via.placeholder.com/70x70" alt=""></a></li>
-                                            <li><a href="javascript:void(0)" title=""><img src="http://via.placeholder.com/70x70" alt=""></a></li>
-                                            <li><a href="javascript:void(0)" title=""><img src="http://via.placeholder.com/70x70" alt=""></a></li>
-                                            <li><a href="javascript:void(0)" title=""><img src="http://via.placeholder.com/70x70" alt=""></a></li>
-                                            <li><a href="javascript:void(0)" title=""><img src="http://via.placeholder.com/70x70" alt=""></a></li>
-                                            <li><a href="javascript:void(0)" title=""><img src="http://via.placeholder.com/70x70" alt=""></a></li>
-                                            <li><a href="javascript:void(0)" title=""><img src="http://via.placeholder.com/70x70" alt=""></a></li>
-                                            <li><a href="javascript:void(0)" title=""><img src="http://via.placeholder.com/70x70" alt=""></a></li>
-                                            <li><a href="javascript:void(0)" title=""><img src="http://via.placeholder.com/70x70" alt=""></a></li>
-                                            <li><a href="javascript:void(0)" title=""><img src="http://via.placeholder.com/70x70" alt=""></a></li>
-                                            <li><a href="javascript:void(0)" title=""><img src="http://via.placeholder.com/70x70" alt=""></a></li>
-                                            <li><a href="javascript:void(0)" title=""><img src="http://via.placeholder.com/70x70" alt=""></a></li>
+                                    <div class="pf-gallery" >
+                                        <VGallery :images="imagesproto" :index="index1" @close="index1 = null"></VGallery>
+                                        <ul >
+                                            <li  v-for="(image, imageIndex) in imagesproto"
+                                                 :key="imageIndex"><a href="javascript:void(0)" @click="index1 = imageIndex" title=""><img :src="image.path" alt=""></a></li>
+
                                         </ul>
+                                        <div v-if="imagesproto.length == 0">You Dont Have Any Portfolio</div>
                                     </div><!--pf-gallery end-->
                                 </div><!--widget-portfolio end-->
                             </div><!--right-sidebar end-->
@@ -506,7 +499,8 @@
         data () {
 
             return {
-
+                imagesproto:[],
+                index1: null,
                 user:[],
                 image:'',
                 backimg:'',
@@ -563,7 +557,9 @@
                     from:'',
                     to:'',
                     Description:'',
-                    City:''
+                    City:'',
+                    path:'',
+                    profId:'',
                 })
             }
         },
@@ -583,6 +579,12 @@
             },
         },
         methods:{
+            loadImage(){
+                let vm = this;
+                axios.get('api/getPortfolio').then(({data}) => {
+                    this.imagesproto = data.data
+                })
+            },
             loadbids(){
                 let vm = this;
                 axios.get('api/bids').then(({data}) => {
@@ -593,7 +595,7 @@
             loadbid($state){
                 let vm = this;
                 if (this.mybids.length != 0) {
-                    axios.get('api/save?bids=' + this.pagebids)
+                    axios.get('api/bids?page=' + this.pagebids)
                         .then(response => {
                             return response.data;
                         }).then(data => {
@@ -697,13 +699,12 @@
                 }
             },
             UploadImg:function(e){
-                this.$Progress.start()
+                this.$Progress.start('8000')
                 let file = e.target.files[0];
                 let reader = new FileReader();
                 if(file['type']==='image/jpeg' || file['type']==='image/png'){
                     if(file['size'] < 2111775){
                         reader.onloadend = (file) =>{
-                            console.log(reader.result)
                             this.image = reader.result
                                 axios.post('api/UpdateImage' , {
                                     data: this.image,
@@ -756,13 +757,12 @@
                 }
             },
             UpdateBackGroundImage:function (e) {
-                this.$Progress.start()
+                this.$Progress.start('8000')
                 let file = e.target.files[0];
                 let reader = new FileReader();
                 if(file['type']==='image/jpeg' || file['type']==='image/png'){
                     if(file['size'] < 2111775){
                         reader.onloadend = (file) =>{
-                            console.log(reader.result)
                             this.backimg = reader.result
                             axios.post('api/UpdateBackGround' , {
                                 data: this.backimg,
@@ -925,7 +925,7 @@
         mounted() {
         },
         created() {
-            this.$Progress.start()
+            this.$Progress.start('1000')
             axios.get('api/Profile').then(({data}) => {this.user = data.data})
             this.loadfeeds();
             this.loadbids()
@@ -934,6 +934,7 @@
             this.loadExp()
             this.loadEduc()
             this.LoadLocation()
+            this.loadImage()
             something.$on('wherecreateuserloaddate',()=>{
                 this.loadoverivew();
             });
@@ -946,6 +947,9 @@
             something.$on('loadLoac',()=>{
                 this.LoadLocation();
             });
+            something.$on('loadport',()=>{
+                this.loadImage();
+            })
             this.$Progress.finish()
         }
     }

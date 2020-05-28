@@ -6,9 +6,11 @@ use App\City;
 use App\Education;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Post\PostCollection;
+use App\Http\Resources\Profile\ProtfolioCollection;
 use App\Http\Resources\Profile\SavedPostCollection;
 use App\Mybid;
 use App\Post;
+use App\Protofolio;
 use App\Saved_Job;
 use App\User;
 use App\User_info;
@@ -234,6 +236,47 @@ class ProfileController extends Controller
         }
 
         return ['brikol'=>'):'];
+    }
+
+    public  function  getPortfolio(){
+            $prot = Protofolio::where('user_id',auth('api')->id())->paginate(12);
+         return   ProtfolioCollection::collection($prot);
+    }
+    public  function addProt(Request $request){
+        $this->validate($request,[
+            'path'=>'required',
+        ]);
+        if($request->path){
+            $name = time() . '.'  . explode('/',explode(':',substr($request->path,0,strpos($request->path,';')))[1])[1];
+            $img =   Image::make($request->path)->save(public_path('store/images/').$name);
+//            $img->resize('1600','500')->save(public_path('store/images/').$name);
+            Storage::disk('azure')->put($name,$img,'public');
+            $url = Storage::disk('azure')->url($name);
+            $imageid = \App\Image::create(['path'=>$url,'name'=>$name]);
+
+            $request['path'] = $imageid->id;
+            $oldimg = public_path('store/images/'. $name );
+            if(file_exists($oldimg)){
+                unlink($oldimg);
+            }
+
+            if($imageid){
+                return    Protofolio::create(['image_id'=>$imageid->id,'user_id'=>auth('api')->id()]);
+            }
+        }
+
+            return $request->all();
+    }
+
+    public  function  DeleteProt(Request $request){
+
+        $id =  $request->profId;
+        $p =  Protofolio::findOrFail($id)->first();
+        $image_id =  $p['image_id'];
+        $img = \App\Image::findOrFail($image_id)->first();
+        Storage::disk('azure')->delete($img->name);
+        $p->delete();
+        $img->delete();
     }
     /**
      * Store a newly created resource in storage.

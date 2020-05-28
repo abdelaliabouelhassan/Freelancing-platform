@@ -2443,7 +2443,7 @@ __webpack_require__.r(__webpack_exports__);
     CreateProject: function CreateProject() {
       var _this5 = this;
 
-      this.$Progress.start();
+      this.$Progress.start('8000');
 
       if (this.isready) {
         this.$Progress.start();
@@ -2471,7 +2471,7 @@ __webpack_require__.r(__webpack_exports__);
     CreateJob: function CreateJob() {
       var _this6 = this;
 
-      this.$Progress.start();
+      this.$Progress.start('8000');
 
       if (this.isready) {
         this.form.post('api/CreateJob').then(function () {
@@ -2505,7 +2505,6 @@ __webpack_require__.r(__webpack_exports__);
       if (file['type'] === 'image/jpeg' || file['type'] === 'image/png') {
         if (file['size'] < 2111775) {
           reader.onloadend = function (file) {
-            console.log(reader.result);
             _this7.form.image = reader.result;
 
             _this7.$Progress.finish();
@@ -2571,7 +2570,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this8 = this;
 
-    this.$Progress.start();
+    this.$Progress.start('1000');
     this.LoadCategory();
     this.LoadCity();
     this.LoadPost();
@@ -2580,9 +2579,7 @@ __webpack_require__.r(__webpack_exports__);
     });
     this.$Progress.finish();
   },
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -2988,15 +2985,13 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.$Progress.start();
+    this.$Progress.start('1000');
     this.LoadJobs();
     this.LoadCategory();
     this.LoadCity();
     this.$Progress.finish();
   },
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -3508,13 +3503,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3530,6 +3518,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
+      imagesproto: [],
+      index1: null,
       user: [],
       image: '',
       backimg: '',
@@ -3600,7 +3590,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         from: '',
         to: '',
         Description: '',
-        City: ''
+        City: '',
+        path: '',
+        profId: ''
       })
     };
   }
@@ -3618,27 +3610,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }
 }), _defineProperty(_components$data$comp, "methods", {
-  loadbids: function loadbids() {
+  loadImage: function loadImage() {
     var _this = this;
 
     var vm = this;
-    axios.get('api/bids').then(function (_ref) {
+    axios.get('api/getPortfolio').then(function (_ref) {
       var data = _ref.data;
-      _this.mybids = data.data;
+      _this.imagesproto = data.data;
+    });
+  },
+  loadbids: function loadbids() {
+    var _this2 = this;
+
+    var vm = this;
+    axios.get('api/bids').then(function (_ref2) {
+      var data = _ref2.data;
+      _this2.mybids = data.data;
       vm.lastPagebids = data.meta.last_page;
     });
   },
   loadbid: function loadbid($state) {
-    var _this2 = this;
+    var _this3 = this;
 
     var vm = this;
 
     if (this.mybids.length != 0) {
-      axios.get('api/save?bids=' + this.pagebids).then(function (response) {
+      axios.get('api/bids?page=' + this.pagebids).then(function (response) {
         return response.data;
       }).then(function (data) {
         //
-        if (_this2.pagesave - 1 == _this2.lastPagebids) {
+        if (_this3.pagesave - 1 == _this3.lastPagebids) {
           $state.complete();
         } else {
           setTimeout(function () {
@@ -3649,7 +3650,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             Vue.nextTick(function () {
               $('[data-toggle="tooltip"]').tooltip();
             });
-          }.bind(_this2), 0);
+          }.bind(_this3), 0);
         }
       });
       this.pagebids = this.pagebids + 1;
@@ -3658,17 +3659,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   loadsaves: function loadsaves() {
-    var _this3 = this;
+    var _this4 = this;
 
     var vm = this;
-    axios.get('api/save').then(function (_ref2) {
-      var data = _ref2.data;
-      _this3.saves = data.data;
+    axios.get('api/save').then(function (_ref3) {
+      var data = _ref3.data;
+      _this4.saves = data.data;
       vm.lastPagesave = data.meta.last_page;
     });
   },
   loadsave: function loadsave($state) {
-    var _this4 = this;
+    var _this5 = this;
 
     var vm = this;
 
@@ -3677,7 +3678,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return response.data;
       }).then(function (data) {
         //
-        if (_this4.pagesave - 1 == _this4.lastPagesave) {
+        if (_this5.pagesave - 1 == _this5.lastPagesave) {
           $state.complete();
         } else {
           setTimeout(function () {
@@ -3688,7 +3689,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             Vue.nextTick(function () {
               $('[data-toggle="tooltip"]').tooltip();
             });
-          }.bind(_this4), 0);
+          }.bind(_this5), 0);
         }
       });
       this.pagesave = this.pagesave + 1;
@@ -3697,17 +3698,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   loadfeeds: function loadfeeds() {
-    var _this5 = this;
+    var _this6 = this;
 
     var vm = this;
-    axios.get('api/feeds').then(function (_ref3) {
-      var data = _ref3.data;
-      _this5.feeds = data.data;
+    axios.get('api/feeds').then(function (_ref4) {
+      var data = _ref4.data;
+      _this6.feeds = data.data;
       vm.lastPage = data.meta.last_page;
     });
   },
   loadfeed: function loadfeed($state) {
-    var _this6 = this;
+    var _this7 = this;
 
     var vm = this;
 
@@ -3716,7 +3717,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return response.data;
       }).then(function (data) {
         //
-        if (_this6.page - 1 == _this6.lastPage) {
+        if (_this7.page - 1 == _this7.lastPage) {
           $state.complete();
         } else {
           setTimeout(function () {
@@ -3727,7 +3728,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             Vue.nextTick(function () {
               $('[data-toggle="tooltip"]').tooltip();
             });
-          }.bind(_this6), 0);
+          }.bind(_this7), 0);
         }
       });
       this.page = this.page + 1;
@@ -3743,19 +3744,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   UploadImg: function UploadImg(e) {
-    var _this7 = this;
+    var _this8 = this;
 
-    this.$Progress.start();
+    this.$Progress.start('8000');
     var file = e.target.files[0];
     var reader = new FileReader();
 
     if (file['type'] === 'image/jpeg' || file['type'] === 'image/png') {
       if (file['size'] < 2111775) {
         reader.onloadend = function (file) {
-          console.log(reader.result);
-          _this7.image = reader.result;
+          _this8.image = reader.result;
           axios.post('api/UpdateImage', {
-            data: _this7.image,
+            data: _this8.image,
             _method: 'patch'
           }).then(function (response) {
             Toast.fire({
@@ -3768,9 +3768,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               title: 'something went wrong'
             });
           });
-          _this7.showimg = false;
+          _this8.showimg = false;
 
-          _this7.$Progress.finish();
+          _this8.$Progress.finish();
         };
 
         reader.readAsDataURL(file);
@@ -3793,19 +3793,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   UpdateBackGroundImage: function UpdateBackGroundImage(e) {
-    var _this8 = this;
+    var _this9 = this;
 
-    this.$Progress.start();
+    this.$Progress.start('8000');
     var file = e.target.files[0];
     var reader = new FileReader();
 
     if (file['type'] === 'image/jpeg' || file['type'] === 'image/png') {
       if (file['size'] < 2111775) {
         reader.onloadend = function (file) {
-          console.log(reader.result);
-          _this8.backimg = reader.result;
+          _this9.backimg = reader.result;
           axios.post('api/UpdateBackGround', {
-            data: _this8.backimg,
+            data: _this9.backimg,
             _method: 'patch'
           }).then(function (response) {
             Toast.fire({
@@ -3818,9 +3817,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               title: 'Something Went Wrong !!!'
             });
           });
-          _this8.showbackimg = false;
+          _this9.showbackimg = false;
 
-          _this8.$Progress.finish();
+          _this9.$Progress.finish();
         };
 
         reader.readAsDataURL(file);
@@ -3843,19 +3842,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   loadoverivew: function loadoverivew() {
-    var _this9 = this;
+    var _this10 = this;
 
-    axios.get('api/getoverview').then(function (_ref4) {
-      var data = _ref4.data;
-      return _this9.form.fill(data);
+    axios.get('api/getoverview').then(function (_ref5) {
+      var data = _ref5.data;
+      return _this10.form.fill(data);
     });
   },
   loadExp: function loadExp() {
-    var _this10 = this;
+    var _this11 = this;
 
-    axios.get('api/getExperience').then(function (_ref5) {
-      var data = _ref5.data;
-      _this10.Experience = data.data;
+    axios.get('api/getExperience').then(function (_ref6) {
+      var data = _ref6.data;
+      _this11.Experience = data.data;
     });
   },
   updateExp: function updateExp(exp) {
@@ -3866,7 +3865,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.IsExpUpdate = true;
   },
   DeleteExp: function DeleteExp(exp) {
-    var _this11 = this;
+    var _this12 = this;
 
     Swal.fire({
       title: 'Are you sure You Wnat Delete This ?',
@@ -3878,19 +3877,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       confirmButtonText: 'Yes, delete it!'
     }).then(function (result) {
       if (result.value) {
-        _this11.form.ExpId = exp.id;
+        _this12.form.ExpId = exp.id;
 
-        _this11.$Progress.start();
+        _this12.$Progress.start();
 
-        _this11.form.post('api/DeleteExperience').then(function () {
-          _this11.$Progress.finish();
+        _this12.form.post('api/DeleteExperience').then(function () {
+          _this12.$Progress.finish();
 
           Swal.fire('Deleted!', 'Your Experience has been deleted.', 'success');
           something.$emit('loadExperience');
         })["catch"](function () {
-          _this11.$Progress.decrease(20);
+          _this12.$Progress.decrease(20);
 
-          _this11.$Progress.fail();
+          _this12.$Progress.fail();
 
           Toast.fire({
             icon: 'error',
@@ -3901,11 +3900,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
   },
   loadEduc: function loadEduc() {
-    var _this12 = this;
+    var _this13 = this;
 
-    axios.get('api/getEduc').then(function (_ref6) {
-      var data = _ref6.data;
-      _this12.Educ = data.data;
+    axios.get('api/getEduc').then(function (_ref7) {
+      var data = _ref7.data;
+      _this13.Educ = data.data;
     });
   },
   updateEduc: function updateEduc(educ) {
@@ -3918,7 +3917,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.IsEducUpdate = true;
   },
   DeleteEduc: function DeleteEduc(educ) {
-    var _this13 = this;
+    var _this14 = this;
 
     Swal.fire({
       title: 'Are you sure You Wnat Delete This ?',
@@ -3930,19 +3929,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       confirmButtonText: 'Yes, delete it!'
     }).then(function (result) {
       if (result.value) {
-        _this13.form.EducId = educ.id;
+        _this14.form.EducId = educ.id;
 
-        _this13.$Progress.start();
+        _this14.$Progress.start();
 
-        _this13.form.post('api/DeleteEduc').then(function () {
-          _this13.$Progress.finish();
+        _this14.form.post('api/DeleteEduc').then(function () {
+          _this14.$Progress.finish();
 
           Swal.fire('Deleted!', 'Your Education has been deleted.', 'success');
           something.$emit('loadEduc');
         })["catch"](function () {
-          _this13.$Progress.decrease(20);
+          _this14.$Progress.decrease(20);
 
-          _this13.$Progress.fail();
+          _this14.$Progress.fail();
 
           Toast.fire({
             icon: 'error',
@@ -3953,21 +3952,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
   },
   LoadLocation: function LoadLocation() {
-    var _this14 = this;
+    var _this15 = this;
 
-    axios.get('api/getLocation').then(function (_ref7) {
-      var data = _ref7.data;
-      _this14.Loac = data.data;
-      _this14.form.City = '0';
+    axios.get('api/getLocation').then(function (_ref8) {
+      var data = _ref8.data;
+      _this15.Loac = data.data;
+      _this15.form.City = '0';
     });
   }
 }), _defineProperty(_components$data$comp, "mounted", function mounted() {}), _defineProperty(_components$data$comp, "created", function created() {
-  var _this15 = this;
+  var _this16 = this;
 
-  this.$Progress.start();
-  axios.get('api/Profile').then(function (_ref8) {
-    var data = _ref8.data;
-    _this15.user = data.data;
+  this.$Progress.start('1000');
+  axios.get('api/Profile').then(function (_ref9) {
+    var data = _ref9.data;
+    _this16.user = data.data;
   });
   this.loadfeeds();
   this.loadbids();
@@ -3976,17 +3975,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   this.loadExp();
   this.loadEduc();
   this.LoadLocation();
+  this.loadImage();
   something.$on('wherecreateuserloaddate', function () {
-    _this15.loadoverivew();
+    _this16.loadoverivew();
   });
   something.$on('loadExperience', function () {
-    _this15.loadExp();
+    _this16.loadExp();
   });
   something.$on('loadEduc', function () {
-    _this15.loadEduc();
+    _this16.loadEduc();
   });
   something.$on('loadLoac', function () {
-    _this15.LoadLocation();
+    _this16.LoadLocation();
+  });
+  something.$on('loadport', function () {
+    _this16.loadImage();
   });
   this.$Progress.finish();
 }), _components$data$comp);
@@ -4395,17 +4398,13 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.$Progress.start();
+    this.$Progress.start('1000');
     this.LoadJobs();
     this.LoadCategory();
     this.LoadCity();
     this.$Progress.finish();
   },
-  mounted: function mounted() {
-    this.$Progress.start();
-    console.log('Component mounted.');
-    this.$Progress.finish();
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -4845,14 +4844,157 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      images: ['https://dummyimage.com/800/ffffff/000000', 'https://dummyimage.com/1600/ffffff/000000', 'https://dummyimage.com/1280/000000/ffffff', 'https://dummyimage.com/400/000000/ffffff'],
-      index: null
+      images: [],
+      index: null,
+      lastPage: 0,
+      page: 1
     };
   },
-  props: ['Portfolio', 'showProf', 'overlay']
+  props: ['Portfolio', 'showProf', 'overlay', 'form'],
+  methods: {
+    seeimageporf: function seeimageporf() {
+      if (this.form.path != '' && this.form.path != null) {
+        return this.form.path;
+      } else {
+        return 'http://via.placeholder.com/60x60';
+      }
+    },
+    addProt: function addProt() {
+      var _this = this;
+
+      this.$Progress.start('8000');
+      this.form.post('api/addProt').then(function () {
+        _this.$Progress.finish();
+
+        Toast.fire({
+          icon: 'success',
+          title: 'Portfolio Added Successfully'
+        });
+        something.$emit('loadport');
+
+        _this.$emit('update:overlay', false);
+
+        _this.$emit('update:showProf', false);
+      })["catch"](function () {
+        _this.$Progress.decrease(50);
+
+        _this.$Progress.fail();
+      });
+    },
+    deletepic: function deletepic(image) {
+      var _this2 = this;
+
+      Swal.fire({
+        title: 'Are you sure You Wnat Delete This ?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          _this2.form.profId = image.id;
+
+          _this2.$Progress.start();
+
+          _this2.form.post('api/DeleteProt').then(function () {
+            _this2.$Progress.finish();
+
+            Swal.fire('Deleted!', 'Your Experience has been deleted.', 'success');
+            something.$emit('loadport');
+          })["catch"](function () {
+            _this2.$Progress.decrease(20);
+
+            _this2.$Progress.fail();
+
+            Toast.fire({
+              icon: 'error',
+              title: 'Something Went Wrong'
+            });
+          });
+        }
+      });
+    },
+    loadmore: function loadmore() {
+      var _this3 = this;
+
+      this.page++;
+      var vm = this;
+      axios.get('api/getPortfolio?page=' + this.page).then(function (response) {
+        return response.data;
+      }).then(function (data) {
+        setTimeout(function () {
+          $.each(data.data, function (key, value) {
+            vm.images.push(value);
+          });
+          Vue.nextTick(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+          });
+        }.bind(_this3), 0);
+      });
+    },
+    loadImage: function loadImage() {
+      var _this4 = this;
+
+      var vm = this;
+      axios.get('api/getPortfolio').then(function (_ref) {
+        var data = _ref.data;
+        _this4.images = data.data;
+        vm.lastPage = data.meta.last_page;
+      });
+    },
+    UploadImg: function UploadImg(e) {
+      var _this5 = this;
+
+      this.$Progress.start();
+      var file = e.target.files[0];
+      var reader = new FileReader();
+
+      if (file['type'] === 'image/jpeg' || file['type'] === 'image/png') {
+        if (file['size'] < 2111775) {
+          reader.onloadend = function (file) {
+            _this5.form.path = reader.result;
+
+            _this5.$Progress.finish();
+
+            _this5.isready = true;
+          };
+
+          reader.readAsDataURL(file);
+        } else {
+          this.$emit('update:overlay', false);
+          this.$emit('update:showProf', false);
+          swalWithBootstrapButtons.fire('Cancelled', 'Image Size Is Big Then 2MB', 'error');
+          this.$Progress.decrease(20);
+          this.$Progress.fail();
+          this.isready = false;
+        }
+      } else {
+        this.$emit('update:overlay', false);
+        this.$emit('update:showProf', false);
+        swalWithBootstrapButtons.fire('Cancelled', 'This File Is Not Image', 'error');
+        this.$Progress.decrease(20);
+        this.$Progress.fail();
+        this.isready = false;
+      }
+    }
+  },
+  created: function created() {
+    var _this6 = this;
+
+    this.loadImage();
+    something.$on('loadport', function () {
+      _this6.loadImage();
+    });
+  }
 });
 
 /***/ }),
@@ -11762,7 +11904,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.image[data-v-3fc7751d] {\n    float: left;\n    background-size: cover;\n    background-repeat: no-repeat;\n    background-position: center center;\n    border: 1px solid #ebebeb;\n    margin: 5px;\n}\n", ""]);
+exports.push([module.i, "\n.image[data-v-3fc7751d] {\n    float: left;\n    background-size: cover;\n    background-repeat: no-repeat;\n    background-position: center center;\n    border: 1px solid #ebebeb;\n    margin: 5px;\n}\n.deletepic[data-v-3fc7751d]{\n  cursor:pointer;\n}\n", ""]);
 
 // exports
 
@@ -81929,7 +82071,8 @@ var render = function() {
                           attrs: {
                             Portfolio: _vm.Portfolio,
                             showProf: _vm.showProf,
-                            overlay: _vm.overlay
+                            overlay: _vm.overlay,
+                            form: _vm.form
                           },
                           on: {
                             "update:showProf": function($event) {
@@ -81940,6 +82083,9 @@ var render = function() {
                             },
                             "update:overlay": function($event) {
                               _vm.overlay = $event
+                            },
+                            "update:form": function($event) {
+                              _vm.form = $event
                             }
                           }
                         }),
@@ -81958,7 +82104,71 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._m(39)
+                  _c("div", { staticClass: "col-lg-3" }, [
+                    _c("div", { staticClass: "right-sidebar" }, [
+                      _vm._m(39),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "widget widget-portfolio" }, [
+                        _vm._m(40),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "pf-gallery" },
+                          [
+                            _c("VGallery", {
+                              attrs: {
+                                images: _vm.imagesproto,
+                                index: _vm.index1
+                              },
+                              on: {
+                                close: function($event) {
+                                  _vm.index1 = null
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "ul",
+                              _vm._l(_vm.imagesproto, function(
+                                image,
+                                imageIndex
+                              ) {
+                                return _c("li", { key: imageIndex }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      attrs: {
+                                        href: "javascript:void(0)",
+                                        title: ""
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.index1 = imageIndex
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("img", {
+                                        attrs: { src: image.path, alt: "" }
+                                      })
+                                    ]
+                                  )
+                                ])
+                              }),
+                              0
+                            ),
+                            _vm._v(" "),
+                            _vm.imagesproto.length == 0
+                              ? _c("div", [
+                                  _vm._v("You Dont Have Any Portfolio")
+                                ])
+                              : _vm._e()
+                          ],
+                          1
+                        )
+                      ])
+                    ])
+                  ])
                 ])
               ])
             ])
@@ -82804,123 +83014,21 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-3" }, [
-      _c("div", { staticClass: "right-sidebar" }, [
-        _c("div", { staticClass: "message-btn" }, [
-          _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-            _c("i", { staticClass: "fa fa-envelope" }),
-            _vm._v(" Message")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "widget widget-portfolio" }, [
-          _c("div", { staticClass: "wd-heady" }, [
-            _c("h3", [_vm._v("Portfolio")]),
-            _vm._v(" "),
-            _c("img", { attrs: { src: "images/photo-icon.png", alt: "" } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "pf-gallery" }, [
-            _c("ul", [
-              _c("li", [
-                _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-                  _c("img", {
-                    attrs: { src: "http://via.placeholder.com/70x70", alt: "" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-                  _c("img", {
-                    attrs: { src: "http://via.placeholder.com/70x70", alt: "" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-                  _c("img", {
-                    attrs: { src: "http://via.placeholder.com/70x70", alt: "" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-                  _c("img", {
-                    attrs: { src: "http://via.placeholder.com/70x70", alt: "" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-                  _c("img", {
-                    attrs: { src: "http://via.placeholder.com/70x70", alt: "" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-                  _c("img", {
-                    attrs: { src: "http://via.placeholder.com/70x70", alt: "" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-                  _c("img", {
-                    attrs: { src: "http://via.placeholder.com/70x70", alt: "" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-                  _c("img", {
-                    attrs: { src: "http://via.placeholder.com/70x70", alt: "" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-                  _c("img", {
-                    attrs: { src: "http://via.placeholder.com/70x70", alt: "" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-                  _c("img", {
-                    attrs: { src: "http://via.placeholder.com/70x70", alt: "" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-                  _c("img", {
-                    attrs: { src: "http://via.placeholder.com/70x70", alt: "" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-                  _c("img", {
-                    attrs: { src: "http://via.placeholder.com/70x70", alt: "" }
-                  })
-                ])
-              ])
-            ])
-          ])
-        ])
+    return _c("div", { staticClass: "message-btn" }, [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _c("i", { staticClass: "fa fa-envelope" }),
+        _vm._v(" Message")
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "wd-heady" }, [
+      _c("h3", [_vm._v("Portfolio")]),
+      _vm._v(" "),
+      _c("img", { attrs: { src: "images/photo-icon.png", alt: "" } })
     ])
   }
 ]
@@ -85554,29 +85662,62 @@ var render = function() {
                     "div",
                     {
                       key: imageIndex,
-                      staticClass: "col-lg-4 col-md-4 col-sm-6 col-6",
-                      on: {
-                        click: function($event) {
-                          _vm.index = imageIndex
-                        }
-                      }
+                      staticClass: "col-lg-4 col-md-4 col-sm-6 col-6"
                     },
                     [
-                      _c("div", { staticClass: "gallery_pt" }, [
-                        _c("img", {
-                          staticClass: "image",
-                          attrs: { src: image, alt: "" }
-                        }),
-                        _vm._v(" "),
-                        _vm._m(1, true)
-                      ])
+                      _c(
+                        "div",
+                        {
+                          staticClass: "gallery_pt",
+                          on: {
+                            click: function($event) {
+                              _vm.index = imageIndex
+                            }
+                          }
+                        },
+                        [
+                          _c("img", {
+                            staticClass: "image",
+                            attrs: { src: image.path, alt: "" }
+                          }),
+                          _vm._v(" "),
+                          _vm._m(1, true)
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("i", {
+                        staticClass: "fas fa-trash deletepic",
+                        on: {
+                          click: function($event) {
+                            return _vm.deletepic(image)
+                          }
+                        }
+                      })
                     ]
                   )
-                })
+                }),
+                _vm._v(" "),
+                _vm.images.length == 0
+                  ? _c("div", [_vm._v("Add some of your works")])
+                  : _vm._e()
               ],
               2
             )
           ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col text-center" }, [
+          this.page < this.lastPage
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-outline-info",
+                  attrs: { type: "button" },
+                  on: { click: _vm.loadmore }
+                },
+                [_vm._v("Load More")]
+              )
+            : _vm._e()
         ])
       ]
     ),
@@ -85592,54 +85733,69 @@ var render = function() {
         _c("div", { staticClass: "overview-edit" }, [
           _c("h3", [_vm._v("Create Portfolio")]),
           _vm._v(" "),
-          _c("form", [
-            _c("input", {
-              attrs: {
-                type: "text",
-                name: "pf-name",
-                placeholder: "Portfolio Name"
-              }
-            }),
-            _vm._v(" "),
-            _vm._m(2),
-            _vm._v(" "),
-            _vm._m(3),
-            _vm._v(" "),
-            _c("input", {
-              attrs: {
-                type: "text",
-                name: "website-url",
-                placeholder: "htp://www.example.com"
-              }
-            }),
-            _vm._v(" "),
-            _c("button", { staticClass: "save", attrs: { type: "submit" } }, [
-              _vm._v("Save")
-            ]),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticStyle: {
-                  color: "#000000",
-                  "font-size": "16px",
-                  border: "1px solid #e5e5e5",
-                  padding: "10px 25px",
-                  display: "inline-block",
-                  "background-color": "#fff",
-                  "font-weight": "600",
-                  cursor: "pointer"
-                },
-                on: {
-                  click: function($event) {
-                    _vm.$emit("update:showProf", false)
-                    _vm.$emit("update:overlay", false)
-                  }
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.addProt()
                 }
-              },
-              [_vm._v("Cancel")]
-            )
-          ]),
+              }
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "file-submit" },
+                [
+                  _c("input", {
+                    class: { "is-invalid": _vm.form.errors.has("path") },
+                    attrs: { type: "file", name: "file" },
+                    on: { change: _vm.UploadImg }
+                  }),
+                  _vm._v(" "),
+                  _c("has-error", { attrs: { form: _vm.form, field: "path" } }),
+                  _vm._v(" "),
+                  _c("br")
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "pf-img" }, [
+                _c("img", {
+                  staticStyle: { height: "100px", width: "100px" },
+                  attrs: { src: _vm.seeimageporf(), alt: "" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("button", { staticClass: "save", attrs: { type: "submit" } }, [
+                _vm._v("Save")
+              ]),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticStyle: {
+                    color: "#000000",
+                    "font-size": "16px",
+                    border: "1px solid #e5e5e5",
+                    padding: "10px 25px",
+                    display: "inline-block",
+                    "background-color": "#fff",
+                    "font-weight": "600",
+                    cursor: "pointer"
+                  },
+                  on: {
+                    click: function($event) {
+                      _vm.$emit("update:showProf", false)
+                      _vm.$emit("update:overlay", false)
+                    }
+                  }
+                },
+                [_vm._v("Cancel")]
+              )
+            ]
+          ),
           _vm._v(" "),
           _c(
             "a",
@@ -85680,22 +85836,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("a", { attrs: { href: "javascript:void(0)" } }, [
       _c("img", { attrs: { src: "images/all-out.png", alt: "" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "file-submit" }, [
-      _c("input", { attrs: { type: "file", name: "file" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "pf-img" }, [
-      _c("img", { attrs: { src: "http://via.placeholder.com/60x60", alt: "" } })
     ])
   }
 ]

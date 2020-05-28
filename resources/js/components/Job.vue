@@ -394,14 +394,13 @@
             },
         },
         created() {
-            this.$Progress.start()
+            this.$Progress.start('1000')
             this.LoadJobs()
             this.LoadCategory()
             this.LoadCity()
             this.$Progress.finish()
         },
         mounted() {
-            console.log('Component mounted.')
         }
     }
 

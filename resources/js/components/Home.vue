@@ -494,7 +494,7 @@
                 })
             },
             CreateProject:function () {
-                this.$Progress.start()
+                this.$Progress.start('8000')
                 if(this.isready){
                     this.$Progress.start()
                     this.form.post('api/CreateProject')
@@ -524,7 +524,7 @@
 
             },
             CreateJob:function(){
-                this.$Progress.start()
+                this.$Progress.start('8000')
                 if(this.isready){
                     this.form.post('api/CreateJob')
                         .then(()=>{
@@ -558,7 +558,6 @@
               if(file['type']==='image/jpeg' || file['type']==='image/png'){
                   if(file['size'] < 2111775){
                       reader.onloadend = (file) =>{
-                          console.log(reader.result)
                           this.form.image = reader.result
                           this.$Progress.finish()
                           this.isready = true
@@ -634,7 +633,7 @@
             },
         },
         created(){
-            this.$Progress.start()
+            this.$Progress.start('1000')
             this.LoadCategory()
             this.LoadCity()
             this.LoadPost()
@@ -644,7 +643,7 @@
             this.$Progress.finish()
         },
         mounted() {
-            console.log('Component mounted.')
+
         }
     }
 </script>
