@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Post\PostCollection;
 use App\Http\Resources\Profile\ProtfolioCollection;
 use App\Http\Resources\Profile\SavedPostCollection;
+use App\Http\Resources\Profile\ShowProfilCollection;
 use App\Mybid;
 use App\Post;
 use App\Protofolio;
@@ -345,9 +346,13 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+         $user =   User::where('slug',$slug)->paginate(1);
+         if(count($user) > 0)
+        return ShowProfilCollection::collection($user);
+         else
+             return response(['error'=>true,'not found'=>'User Not Found'],404);
     }
 
     /**

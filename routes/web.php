@@ -17,6 +17,8 @@ use Stevebauman\Location\Facades\Location;
 */
 include 'includes/vue_route.php';
 
+
+
 Route::get('/', function () {
     if(auth()->check()){
         return view('home');

@@ -27,6 +27,7 @@ class PostCollection extends JsonResource
             'post_image' => $this->image_id ? $this->image->path : '',
             'user_image'=>$this->user->image,
             'is_done' => $this->is_done,
+            'slug'=>$this->user->slug,
             'category_name' => $this->category->category_name,
         ];
     }

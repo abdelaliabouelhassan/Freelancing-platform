@@ -75,6 +75,7 @@ Route::get('getUrl','API\ProfileController@getUrl');
 Route::post('AddUrl','API\ProfileController@AddUrl');
 Route::post('DeleteUrl','API\ProfileController@DeleteUrl');
 Route::post('AddBio','API\ProfileController@AddBio');
+Route::get('showUser/{slug}','API\ProfileController@show');
 
 
 /*End Profile*/

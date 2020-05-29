@@ -9,6 +9,9 @@ Route::get('/Projects', function () {
 Route::get('/Home', function () {
     return view('home');
 });
+Route::get('{slug}', function () {
+    return view('home');
+});
 route::group(['middleware'=>'auth'],function () {
     Route::get('/Profile', function () {
         return view('home');

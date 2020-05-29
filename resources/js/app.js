@@ -35,11 +35,13 @@ const routes = [
     { path: '/Jobs', component: require('./components/Job').default },
     { path: '/Projects', component: require('./components/Project').default },
     { path: '/Home', component: require('./components/Home').default },
+    { path: '/NotFound404', component: require('./components/404').default },
     { path: '/', component: require('./components/Home').default, meta: {
             auth: true,
             title: 'Brikole'
         } },
     { path: '/Profile', component: require('./components/Profile').default },
+    { path: '/:username', component: require('./components/ShowUserProfile').default },
 ]
 const router = new VueRouter({
     mode:'history',
