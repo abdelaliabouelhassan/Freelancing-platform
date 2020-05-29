@@ -38,16 +38,8 @@
                                             </li>
                                         </ul>
                                     </div><!--user_pro_status end-->
-                                    <ul class="social_links">
-                                        <li><a href="javascript:void(0)" title=""><i class="la la-globe"></i> www.example.com</a></li>
-                                        <li><a href="javascript:void(0)" title=""><i class="fa fa-facebook-square"></i> Http://www.facebook.com/john...</a></li>
-                                        <li><a href="javascript:void(0)" title=""><i class="fa fa-twitter"></i> Http://www.Twitter.com/john...</a></li>
-                                        <li><a href="javascript:void(0)" title=""><i class="fa fa-google-plus-square"></i> Http://www.googleplus.com/john...</a></li>
-                                        <li><a href="javascript:void(0)" title=""><i class="fa fa-behance-square"></i> Http://www.behance.com/john...</a></li>
-                                        <li><a href="javascript:void(0)" title=""><i class="fa fa-pinterest"></i> Http://www.pinterest.com/john...</a></li>
-                                        <li><a href="javascript:void(0)" title=""><i class="fa fa-instagram"></i> Http://www.instagram.com/john...</a></li>
-                                        <li><a href="javascript:void(0)" title=""><i class="fa fa-youtube"></i> Http://www.youtube.com/john...</a></li>
-                                    </ul>
+<!--                                    web sites component-->
+                                    <websites :css_class.sync="showurl" :overlay.sync="overlay" :form.sync="this.form"></websites>
                                 </div><!--user_profile end-->
                                 <div class="suggestions full-width">
                                     <div class="sd-title">
@@ -112,10 +104,12 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="main-ws-sec">
-                                <div class="user-tab-sec">
-                                    <h3 v-for="users in user">{{users.name}}</h3>
+                                <div class="user-tab-sec" v-for="users in user">
+                                    <h3>{{users.name}}</h3>
                                     <div class="star-descp">
-                                        <span>Graphic Designer at Self Employed</span>
+                                        <span @click="showbio = true"><i class="fa fa-pencil piont"></i></span>
+                                        <span>{{users.bio}}</span>
+                                        <span v-if="!users.bio">Add Your Work Name</span>
                                         <ul>
                                             <li><i class="fa fa-star"></i></li>
                                             <li><i class="fa fa-star"></i></li>
@@ -478,6 +472,23 @@
                 </div><!-- main-section-data end-->
             </div>
         </div>
+
+
+        <div class="overview-box" id="create-portfolio" v-bind:class="{open:showbio}">
+            <div class="overview-edit">
+                <h3>Create Portfolio</h3>
+                <form @submit.prevent="addbio()">
+
+                    <input type="text" name="bio" :class="{ 'is-invalid': form.errors.has('bio') }" v-model="form.bio" placeholder="Exp : Graphic Designer at Self Employed..." >
+                    <has-error :form="form" field="bio"></has-error>
+                    <br>
+
+                    <button type="submit" class="save">Save</button>
+                </form>
+                <a href="javascript:void(0)" title="" class="close-box"><i class="la la-close" @click="showbio = false"></i></a>
+            </div><!--overview-edit end-->
+        </div>
+
     </main>
 
      <overview  :css_class.sync="showoverview" :overlay.sync="overlay" :form="this.form"></overview>
@@ -493,6 +504,7 @@
     import ProfileEduc from "./includs/ProfileEduc";
     import ProfileLocation from "./includs/ProfileLocation";
     import ProfileProtfolio from "./includs/ProfileProtfolio";
+    import ProfileWebSites from "./includs/ProfileWebSites";
 
     export default {
         components: {ProfileExperience, ProfileOverView,ProfileEduc,ProfileLocation,ProfileProtfolio},
@@ -521,6 +533,8 @@
                 IsExpUpdate : false,
                 IsEducUpdate : false,
                 showProf:false,
+                showurl:false,
+                showbio:false,
                 /*End v-bind:class variable*/
                 /*feed*/
                 showOp:null,
@@ -560,6 +574,8 @@
                     City:'',
                     path:'',
                     profId:'',
+                    url:'',
+                    bio:''
                 })
             }
         },
@@ -568,7 +584,8 @@
             'exp':ProfileExperience,
             'educ':ProfileEduc,
             'location':ProfileLocation,
-            'proto':ProfileProtfolio
+            'proto':ProfileProtfolio,
+            'websites':ProfileWebSites,
         },
         watch: {
             $route: {
@@ -920,6 +937,23 @@
                     this.form.City = '0'
                 })
             },
+            addbio(){
+                this.$Progress.start('8000')
+                this.form.post('api/AddBio')
+                    .then(()=>{
+                        this.$Progress.finish()
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Bio Added Successfully'
+                        })
+                        something.$emit('loaduser');
+                        this.showbio = false
+                    })
+                    .catch(()=>{
+                        this.$Progress.decrease(50)
+                        this.$Progress.fail()
+                    })
+            },
 
         },
         mounted() {
@@ -950,9 +984,21 @@
             something.$on('loadport',()=>{
                 this.loadImage();
             })
+            something.$on('loaduser',()=>{
+                axios.get('api/Profile').then(({data}) => {this.user = data.data})
+            })
             this.$Progress.finish()
         }
     }
 </script>
 
+<style scoped>
+    .piont{
+        cursor: pointer;
+    }
+    .piont:hover{
+        cursor: pointer;
+        color: #3f9ae5;
+    }
+</style>
 

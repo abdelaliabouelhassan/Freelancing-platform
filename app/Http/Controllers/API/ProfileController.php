@@ -12,6 +12,7 @@ use App\Mybid;
 use App\Post;
 use App\Protofolio;
 use App\Saved_Job;
+use App\Url;
 use App\User;
 use App\User_info;
 use App\Experience;
@@ -19,6 +20,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
 
@@ -277,6 +279,54 @@ class ProfileController extends Controller
         Storage::disk('azure')->delete($img->name);
         $p->delete();
         $img->delete();
+    }
+
+    public function getUrl(){
+      return  $usr = Url::where('user_id',auth('api')->id())->paginate(15);
+
+    }
+
+    public  function AddUrl(Request $request){
+        $this->validate($request,[
+            'url'=>'required|unique:urls'
+        ]);
+        $slice = Str::between($request->url, 'www.', '.com');
+        $cont = Str::contains($request->url, $slice);
+        $icon = 'la la-globe';
+        if($cont && $slice == 'facebook'){
+            $icon = 'fa fa-facebook-square';
+        }
+        if($cont && $slice == 'twitter'){
+            $icon = 'fa fa-twitter';
+        }
+        if($cont && $slice == 'googleplus'){
+            $icon = 'fa fa-google-plus-square';
+        } if($cont && $slice == 'youtube'){
+            $icon = 'fa fa-youtube';
+        }
+        if($cont && $slice == 'behance'){
+            $icon = 'fa fa-behance-square';
+        }
+        if($cont && $slice == 'pinterest'){
+            $icon = 'fa fa-pinterest';
+        }
+        if($cont && $slice == 'instagram'){
+            $icon = 'fa fa-instagram';
+        }
+        Url::create(['url'=>$request->url,'icon'=>$icon,'user_id'=>auth('api')->id()]);
+
+    }
+    public function DeleteUrl(Request $request){
+        $url = Url::where('url',$request->url)->where('user_id',auth('api')->id());
+        $url->delete();
+    }
+
+    public function AddBio(Request $request){
+        $this->validate($request,[
+            'bio'=>'required'
+        ]);
+        $user = User::where('id',auth('api')->id());
+        $user->update(['bio'=>$request->bio]);
     }
     /**
      * Store a newly created resource in storage.

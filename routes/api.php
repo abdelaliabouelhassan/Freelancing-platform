@@ -71,6 +71,10 @@ Route::get('getLocation','API\ProfileController@getLocation');
 Route::get('getPortfolio','API\ProfileController@getPortfolio');
 Route::post('addProt','API\ProfileController@addProt');
 Route::post('DeleteProt','API\ProfileController@DeleteProt');
+Route::get('getUrl','API\ProfileController@getUrl');
+Route::post('AddUrl','API\ProfileController@AddUrl');
+Route::post('DeleteUrl','API\ProfileController@DeleteUrl');
+Route::post('AddBio','API\ProfileController@AddBio');
 
 
 /*End Profile*/
