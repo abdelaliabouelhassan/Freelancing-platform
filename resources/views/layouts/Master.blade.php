@@ -238,7 +238,9 @@
     </div>
 </div>
 <script>
-    window.user = @json(auth()->user());
+    @if(auth()->check())
+    window.user = @json(auth()->user()->first('name'));
+    @endif
     var style = 'color: tomato; background:#eee; -webkit-text-stroke: 1px black; font-size:30px;';
     console.log('%cHi, We are Happy 😆 to have you Here, But This is a browser feature intended for developers. If someone told you to copy-paste something here to enable a Brikol feature or "hack" 🛑 someone\'s account, it is a scam and will give them access to your Brikol account.', style );
 </script>

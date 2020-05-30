@@ -2410,6 +2410,25 @@ __webpack_require__.r(__webpack_exports__);
       })
     };
   },
+  beforeRouteLeave: function beforeRouteLeave(to, from, next) {
+    next(false);
+
+    if (this.$gets.IsLogedIn()) {
+      next();
+    } else {
+      if (to.path != '/Projects' && to.path != '/home' && to.path != '/Jobs') {
+        Swal.fire({
+          icon: 'error',
+          title: 'You Are Not Logged In !!!',
+          text: 'Please Logged In first Or Create New Account',
+          footer: '<a href="/">Logged In here Or Create Account</a>'
+        });
+        next(false);
+      } else {
+        next();
+      }
+    }
+  },
   methods: {
     LoadPost: function LoadPost() {
       var _this = this;
@@ -2896,6 +2915,25 @@ __webpack_require__.r(__webpack_exports__);
       showFilter: false
     };
   },
+  beforeRouteLeave: function beforeRouteLeave(to, from, next) {
+    next(false);
+
+    if (this.$gets.IsLogedIn()) {
+      next();
+    } else {
+      if (to.path != '/Projects' && to.path != '/home' && to.path != '/Jobs') {
+        Swal.fire({
+          icon: 'error',
+          title: 'You Are Not Logged In !!!',
+          text: 'Please Logged In first Or Create New Account',
+          footer: '<a href="/">Logged In here Or Create Account</a>'
+        });
+        next(false);
+      } else {
+        next();
+      }
+    }
+  },
   methods: {
     LoadCategory: function LoadCategory() {
       var _this = this;
@@ -3038,7 +3076,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _includs_ProfileLocation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./includs/ProfileLocation */ "./resources/js/components/includs/ProfileLocation.vue");
 /* harmony import */ var _includs_ProfileProtfolio__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./includs/ProfileProtfolio */ "./resources/js/components/includs/ProfileProtfolio.vue");
 /* harmony import */ var _includs_ProfileWebSites__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./includs/ProfileWebSites */ "./resources/js/components/includs/ProfileWebSites.vue");
-var _components$data$comp;
+var _components$data$befo;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -3548,7 +3586,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (_components$data$comp = {
+/* harmony default export */ __webpack_exports__["default"] = (_components$data$befo = {
   components: {
     ProfileExperience: _includs_ProfileExperience__WEBPACK_IMPORTED_MODULE_1__["default"],
     ProfileOverView: _includs_ProfileOverView__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -3639,22 +3677,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         bio: ''
       })
     };
+  },
+  beforeRouteLeave: function beforeRouteLeave(to, from, next) {
+    next(false);
+
+    if (this.$gets.IsLogedIn()) {
+      next();
+    } else {
+      if (to.path != '/Projects' && to.path != '/home' && to.path != '/Jobs') {
+        Swal.fire({
+          icon: 'error',
+          title: 'You Are Not Logged In !!!',
+          text: 'Please Logged In first Or Create New Account',
+          footer: '<a href="/">Logged In here Or Create Account</a>'
+        });
+        next(false);
+      } else {
+        next();
+      }
+    }
   }
-}, _defineProperty(_components$data$comp, "components", {
+}, _defineProperty(_components$data$befo, "components", {
   'overview': _includs_ProfileOverView__WEBPACK_IMPORTED_MODULE_0__["default"],
   'exp': _includs_ProfileExperience__WEBPACK_IMPORTED_MODULE_1__["default"],
   'educ': _includs_ProfileEduc__WEBPACK_IMPORTED_MODULE_2__["default"],
   'location': _includs_ProfileLocation__WEBPACK_IMPORTED_MODULE_3__["default"],
   'proto': _includs_ProfileProtfolio__WEBPACK_IMPORTED_MODULE_4__["default"],
   'websites': _includs_ProfileWebSites__WEBPACK_IMPORTED_MODULE_5__["default"]
-}), _defineProperty(_components$data$comp, "watch", {
+}), _defineProperty(_components$data$befo, "watch", {
   $route: {
     immediate: true,
     handler: function handler(to, from) {
       document.title = to.meta.title || 'Profile | Brikole';
     }
   }
-}), _defineProperty(_components$data$comp, "methods", {
+}), _defineProperty(_components$data$befo, "methods", {
   loadImage: function loadImage() {
     var _this = this;
 
@@ -4024,14 +4081,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       _this16.$Progress.fail();
     });
   }
-}), _defineProperty(_components$data$comp, "mounted", function mounted() {}), _defineProperty(_components$data$comp, "created", function created() {
+}), _defineProperty(_components$data$befo, "beforeRouteEnter", function beforeRouteEnter(to, from, next) {
+  next(function (vm) {
+    if (vm.$gets.IsLogedIn()) {
+      next();
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'You Are Not Logged In !!!',
+        text: 'Please Logged In first Or Create New Account',
+        footer: '<a href="/">Logged In here Or Create Account</a>'
+      });
+      next('Jobs');
+      setTimeout(function () {
+        console.clear();
+      }, 10000);
+    }
+  });
+}), _defineProperty(_components$data$befo, "mounted", function mounted() {}), _defineProperty(_components$data$befo, "created", function created() {
   var _this17 = this;
 
   this.$Progress.start('1000');
   axios.get('api/Profile').then(function (_ref9) {
     var data = _ref9.data;
     _this17.user = data.data;
-  });
+  }).then(function (response) {})["catch"](function (error) {});
   this.loadfeeds();
   this.loadbids();
   this.loadsaves();
@@ -4062,7 +4136,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
   });
   this.$Progress.finish();
-}), _components$data$comp);
+}), _components$data$befo);
 
 /***/ }),
 
@@ -4350,6 +4424,25 @@ __webpack_require__.r(__webpack_exports__);
       searchresult: '',
       showOp: null
     };
+  },
+  beforeRouteLeave: function beforeRouteLeave(to, from, next) {
+    next(false);
+
+    if (this.$gets.IsLogedIn()) {
+      next();
+    } else {
+      if (to.path != '/Projects' && to.path != '/home' && to.path != '/Jobs') {
+        Swal.fire({
+          icon: 'error',
+          title: 'You Are Not Logged In !!!',
+          text: 'Please Logged In first Or Create New Account',
+          footer: '<a href="/">Logged In here Or Create Account</a>'
+        });
+        next(false);
+      } else {
+        next();
+      }
+    }
   },
   methods: {
     LoadJobs: function LoadJobs() {
@@ -4946,17 +5039,22 @@ __webpack_require__.r(__webpack_exports__);
       var data = _ref8.data;
       _this10.user = data.data;
     }).then(function (response) {
-      console.log(response);
+      _this10.loadfeeds();
+
+      _this10.loadExperience();
+
+      _this10.loadOverView();
+
+      _this10.loadEduc();
+
+      _this10.loadLoac();
+
+      _this10.loadImage();
+
+      _this10.loadUrl();
     })["catch"](function (error) {
       _this10.$router.push("/NotFound404");
     });
-    this.loadfeeds();
-    this.loadExperience();
-    this.loadOverView();
-    this.loadEduc();
-    this.loadLoac();
-    this.loadImage();
-    this.loadUrl();
   }
 });
 

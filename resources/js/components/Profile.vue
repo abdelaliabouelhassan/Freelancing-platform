@@ -39,7 +39,7 @@
                                         </ul>
                                     </div><!--user_pro_status end-->
 <!--                                    web sites component-->
-                                    <websites :css_class.sync="showurl" :overlay.sync="overlay" :form.sync="this.form"></websites>
+                                    <websites :css_class.sync="showurl" :overlay.sync="overlay" :form.sync="this.form" ></websites>
                                 </div><!--user_profile end-->
                                 <div class="suggestions full-width">
                                     <div class="sd-title">
@@ -347,7 +347,7 @@
                                     <infinite-loading @distance="1" @infinite="loadbid"></infinite-loading>
 
                                 </div><!--product-feed-tab end-->
-                                    <proto :Portfolio="Portfolio" :showProf.sync="showProf" :overlay.sync="overlay" :form.sync="form"  ></proto>
+                                    <proto :Portfolio="Portfolio" :showProf.sync="showProf" :overlay.sync="overlay" :form.sync="form"   ></proto>
                                 <div class="product-feed-tab" id="payment-dd" v-bind:class="{current:Payment}">
                                     <div class="billing-method">
                                         <ul>
@@ -577,6 +577,25 @@
                     url:'',
                     bio:''
                 })
+            }
+        },
+        beforeRouteLeave (to, from, next) {
+            next(false);
+            if(this.$gets.IsLogedIn()){
+                next();
+            }else{
+                if(to.path != '/Projects' && to.path != '/home' && to.path != '/Jobs'){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'You Are Not Logged In !!!',
+                        text: 'Please Logged In first Or Create New Account',
+                        footer: '<a href="/">Logged In here Or Create Account</a>'
+                    })
+                    next(false);
+                }else{
+                    next();
+                }
+
             }
         },
         components: {
@@ -956,37 +975,64 @@
             },
 
         },
+        beforeRouteEnter (to, from, next) {
+            next(vm => {
+                if(vm.$gets.IsLogedIn()){
+                    next();
+                }else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'You Are Not Logged In !!!',
+                        text: 'Please Logged In first Or Create New Account',
+                        footer: '<a href="/">Logged In here Or Create Account</a>'
+                    })
+                    next('Jobs');
+                    setTimeout(function () {
+                        console.clear();
+                    }, 10000);
+
+                }
+            })
+
+
+        },
         mounted() {
         },
         created() {
             this.$Progress.start('1000')
             axios.get('api/Profile').then(({data}) => {this.user = data.data})
-            this.loadfeeds();
-            this.loadbids()
-            this.loadsaves()
-            this.loadoverivew();
-            this.loadExp()
-            this.loadEduc()
-            this.LoadLocation()
-            this.loadImage()
-            something.$on('wherecreateuserloaddate',()=>{
+                .then(
+                    (response) => {},
+                ).catch(error => {
+            });
+                this.loadfeeds();
+                this.loadbids()
+                this.loadsaves()
                 this.loadoverivew();
-            });
-            something.$on('loadExperience',()=>{
-                this.loadExp();
-            });
-            something.$on('loadEduc',()=>{
-                this.loadEduc();
-            });
-            something.$on('loadLoac',()=>{
-                this.LoadLocation();
-            });
-            something.$on('loadport',()=>{
-                this.loadImage();
-            })
-            something.$on('loaduser',()=>{
-                axios.get('api/Profile').then(({data}) => {this.user = data.data})
-            })
+                this.loadExp()
+                this.loadEduc()
+                this.LoadLocation()
+                this.loadImage()
+                something.$on('wherecreateuserloaddate',()=>{
+                    this.loadoverivew();
+                });
+                something.$on('loadExperience',()=>{
+                    this.loadExp();
+                });
+                something.$on('loadEduc',()=>{
+                    this.loadEduc();
+                });
+                something.$on('loadLoac',()=>{
+                    this.LoadLocation();
+                });
+                something.$on('loadport',()=>{
+                    this.loadImage();
+                })
+                something.$on('loaduser',()=>{
+                    axios.get('api/Profile').then(({data}) => {this.user = data.data})
+                })
+
+
             this.$Progress.finish()
         }
     }

@@ -423,17 +423,19 @@
       created() {
           axios.get('api/showUser' + this.$route.fullPath).then(({data}) => {this.user = data.data})
               .then(
-              (response) => { console.log(response) },
+              (response) => {
+                  this.loadfeeds()
+                  this.loadExperience()
+                  this.loadOverView()
+                  this.loadEduc()
+                  this.loadLoac()
+                  this.loadImage()
+                  this.loadUrl()
+               },
               ).catch(error => {
               this.$router.push("/NotFound404")
           });
-          this.loadfeeds()
-          this.loadExperience()
-          this.loadOverView()
-          this.loadEduc()
-          this.loadLoac()
-          this.loadImage()
-            this.loadUrl()
+
       }
     }
 </script>

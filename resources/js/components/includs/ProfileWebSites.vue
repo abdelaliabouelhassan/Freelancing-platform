@@ -97,10 +97,12 @@
             }
         },
         created() {
-            this.loadUrl()
-            something.$on('loadurl',()=>{
-                this.loadUrl();
-            })
+
+                this.loadUrl()
+                something.$on('loadurl',()=>{
+                    this.loadUrl();
+                })
+
         }
     }
 </script>

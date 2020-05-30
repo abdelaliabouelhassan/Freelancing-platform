@@ -191,10 +191,12 @@
 
         },
         created() {
-            this.loadImage()
-            something.$on('loadport',()=>{
-                this.loadImage();
-            })
+                this.loadImage()
+                something.$on('loadport',()=>{
+                    this.loadImage();
+                })
+
+
         }
 
 

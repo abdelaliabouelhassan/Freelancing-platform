@@ -276,6 +276,25 @@
                 showFilter:false,
             }
         },
+        beforeRouteLeave (to, from, next) {
+            next(false);
+            if(this.$gets.IsLogedIn()){
+                next();
+            }else{
+                if(to.path != '/Projects' && to.path != '/home' && to.path != '/Jobs'){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'You Are Not Logged In !!!',
+                        text: 'Please Logged In first Or Create New Account',
+                        footer: '<a href="/">Logged In here Or Create Account</a>'
+                    })
+                    next(false);
+                }else{
+                    next();
+                }
+
+            }
+        },
 
         methods: {
             LoadCategory: function () {
