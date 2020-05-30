@@ -76,6 +76,12 @@ Route::post('AddUrl','API\ProfileController@AddUrl');
 Route::post('DeleteUrl','API\ProfileController@DeleteUrl');
 Route::post('AddBio','API\ProfileController@AddBio');
 Route::get('showUser/{slug}','API\ProfileController@show');
+Route::get('showfeeds/{slug}','API\ProfileController@showProfileFeeds');
+Route::get('showoverview/{slug}','API\ProfileController@showoverview');
+Route::get('showexp/{slug}','API\ProfileController@showexp');
+Route::get('showeduc/{slug}','API\ProfileController@showeduc');
+Route::get('showloac/{slug}','API\ProfileController@showloac');
+Route::get('showportload/{slug}','API\ProfileController@showportload');
 
 
 /*End Profile*/

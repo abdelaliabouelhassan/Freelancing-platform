@@ -165,9 +165,9 @@
                                         <div class="post-bar" v-for="feedss in feeds">
                                             <div class="post_topbar">
                                                 <div class="usy-dt">
-                                                    <img :src="feedss.user_image ? feedss.user_image.path : 'https://via.placeholder.com/100'" alt="" style="height: 100px; width: 100px;">
+                                                    <router-link  :to="feedss.slug"><img :src="feedss.user_image ? feedss.user_image.path : 'https://via.placeholder.com/100'" alt="" style="height: 100px; width: 100px;" ></router-link>
                                                     <div class="usy-name">
-                                                        <h3>{{feedss.user_name}} </h3>
+                                                        <h3><router-link class="lnk"  :to=" feedss.slug">{{feedss.user_name}}</router-link></h3>
                                                         <span><img src="images/clock.png" alt="">{{feedss.created_at}}  </span>
                                                     </div>
                                                 </div>
@@ -248,9 +248,9 @@
                                         <div class="post-bar" v-for="save in saves">
                                             <div class="post_topbar">
                                                 <div class="usy-dt">
-                                                    <img :src="save.user_image ? save.user_image.path : 'https://via.placeholder.com/100'" alt="" style="height: 100px; width: 100px;">
+                                                    <router-link  :to="save.slug"><img :src="save.user_image ? save.user_image.path : 'https://via.placeholder.com/100'" alt="" style="height: 100px; width: 100px;" ></router-link>
                                                     <div class="usy-name">
-                                                        <h3>{{save.username}} </h3>
+                                                        <h3><router-link class="lnk" :to="save.slug">{{save.username}}</router-link></h3>
                                                         <span><img src="images/clock.png" alt="">{{save.time}}  </span>
                                                     </div>
                                                 </div>
@@ -300,9 +300,9 @@
                                         <div class="post-bar" v-for="mybid in mybids">
                                             <div class="post_topbar">
                                                 <div class="usy-dt">
-                                                    <img :src="mybid.user_image ? mybid.user_image.path : 'https://via.placeholder.com/100'" alt="" style="height: 100px; width: 100px;">
+                                                    <router-link  :to="mybid.slug"><img :src="mybid.user_image ? mybid.user_image.path : 'https://via.placeholder.com/100'" alt="" style="height: 100px; width: 100px;" ></router-link>
                                                     <div class="usy-name">
-                                                        <h3>{{mybid.username}} </h3>
+                                                        <h3><router-link  class="lnk" :to="mybid.slug">{{mybid.username}}</router-link></h3>
                                                         <span><img src="images/clock.png" alt="">{{mybid.time}}  </span>
                                                     </div>
                                                 </div>
@@ -555,12 +555,12 @@
                 /*Experience*/
                 Experience:{},
                 /*End Experience*/
-                /**/
+                /*Education*/
                 Educ:{},
-                /**/
-                /**/
+                /*End Education*/
+                /*Location*/
                 Loac:{},
-                /**/
+                /*End Location*/
                 form: new Form({
                     overview: '',
                     ExpTitle:'',
@@ -1000,5 +1000,10 @@
         cursor: pointer;
         color: #3f9ae5;
     }
+    .lnk{
+        color: rgb(247, 247, 247);
+    }
 </style>
+
+
 

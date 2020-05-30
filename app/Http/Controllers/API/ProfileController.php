@@ -354,6 +354,35 @@ class ProfileController extends Controller
          else
              return response(['error'=>true,'not found'=>'User Not Found'],404);
     }
+    public  function  showProfileFeeds($slug){
+
+        $post =  Post::latest()->orderBy('id')->where('user_id',User::UserId($slug))->paginate(5);
+        return PostCollection::collection($post);
+    }
+
+    public  function  showoverview($slug){
+        $overview =  User_info::where('user_id',User::UserId($slug))->paginate(1);
+        return $overview;
+    }
+    public  function  showexp($slug){
+        $exp = Experience::latest()->orderBy('id')->where('user_id',User::UserId($slug))->paginate(5);
+        return $exp;
+    }
+    public  function  showeduc($slug){
+        $educ = Education::latest()->orderBy('id')->where('user_id',User::UserId($slug))->paginate(5);
+        return $educ;
+    }
+    public  function  showloac($slug){
+        $user = User::where('id',User::UserId($slug))->first();
+        if($user['city_id']){
+            return  $city = City::where('id',$user['city_id'])->paginate(1);
+        }
+    }
+
+    public  function  showportload($slug){
+        $prot = Protofolio::where('user_id',User::UserId($slug))->paginate(12);
+        return   ProtfolioCollection::collection($prot);
+    }
 
     /**
      * Update the specified resource in storage.

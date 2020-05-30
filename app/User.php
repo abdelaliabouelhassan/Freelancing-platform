@@ -81,6 +81,12 @@ class User extends Authenticatable
     public  function getnameAttribute($value){
         return ucfirst($value);
     }
+    public static function UserId($slug)
+    {
+        $user =     User::where('slug',$slug)->first();
+        return $user->id;
+    }
+
     public function ip_address()
     {
         return $this->hasMany('App\Ip_Address');

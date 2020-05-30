@@ -4,7 +4,14 @@
 
 <script>
     export default {
-
+        watch: {
+            $route: {
+                immediate: true,
+                handler(to, from) {
+                    document.title = to.meta.title || 'Brikole | 404';
+                }
+            },
+        },
     }
 </script>
 

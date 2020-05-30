@@ -100,9 +100,9 @@
                                         <div class="post-bar" v-for="posts in post">
                                             <div class="post_topbar">
                                                 <div class="usy-dt">
-                                                    <router-link  :to=" posts.slug"><img :src="posts.user_image ? posts.user_image.path : 'https://via.placeholder.com/100'" alt="" style="height: 100px;width: 100px;" ></router-link>
+                                                    <router-link :to=" posts.slug"><img :src="posts.user_image ? posts.user_image.path : 'https://via.placeholder.com/100'" alt="" style="height: 100px;width: 100px;" ></router-link>
                                                     <div class="usy-name">
-                                                        <h3><router-link  :to=" posts.slug">{{posts.user_name}}</router-link></h3>
+                                                        <h3><router-link  class="lnk" :to=" posts.slug">{{posts.user_name}}</router-link></h3>
 
                                                         <span><img src="images/clock.png" alt="">{{posts.created_at}}  </span>
                                                     </div>
@@ -406,3 +406,9 @@
     }
 
 </script>
+
+<style scoped>
+    .lnk{
+        color: rgb(247, 247, 247);
+    }
+</style>

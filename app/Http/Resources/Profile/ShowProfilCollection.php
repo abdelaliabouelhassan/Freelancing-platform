@@ -23,6 +23,7 @@ class ShowProfilCollection extends JsonResource
             'backimage' => $this->user_backgroundImage ? $this->backimage->path : '',
             'slug' => $this->slug,
             'bio' => $this->bio,
+            'ismy'=>$this->id === auth('api')->id() ? true : false,
         ];
     }
 }
