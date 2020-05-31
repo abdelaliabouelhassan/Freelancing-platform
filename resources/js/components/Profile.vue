@@ -24,17 +24,17 @@
                                     </div><!--user-pro-img end-->
                                     <div class="user_pro_status">
                                         <ul class="flw-hr">
-                                            <li><a href="javascript:void(0)" title="" class="flww"><i class="la la-plus"></i> Follow</a></li>
-                                            <li><a href="javascript:void(0)" title="" class="hre">Hire</a></li>
+                                            <li><a href="javascript:void(0)" title="" class="flww" @click="diny"><i class="la la-plus"></i> Follow</a></li>
+                                            <li><a href="javascript:void(0)" title="" class="hre"  @click="diny">Hire</a></li>
                                         </ul>
-                                        <ul class="flw-status">
+                                        <ul class="flw-status" v-for="fl in userforfolw">
                                             <li>
                                                 <span>Following</span>
-                                                <b>34</b>
+                                                <b v-text="fl.followingCount">0</b>
                                             </li>
                                             <li>
                                                 <span>Followers</span>
-                                                <b>155</b>
+                                                <b v-text="fl.followersCount">0</b>
                                             </li>
                                         </ul>
                                     </div><!--user_pro_status end-->
@@ -187,11 +187,7 @@
                                                     <li><img src="images/icon8.png" alt=""><span>{{feedss.is_done ? 'done' : 'available'}} </span></li>
                                                     <li><img src="images/icon9.png" alt=""><span> {{feedss.city_name}}</span></li>
                                                 </ul>
-                                                <ul class="bk-links">
-                                                    <li><a href="javascript:void(0)" title=""><i class="la la-bookmark"></i></a></li>
-                                                    <li><a href="javascript:void(0)" title=""><i class="la la-envelope"></i></a></li>
-                                                    <li v-if="feedss.type == 'servic'"><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
-                                                </ul>
+
                                             </div>
                                             <div class="job_descp">
                                                 <h3>{{feedss.title}}</h3>
@@ -271,7 +267,7 @@
                                                     <li><img src="images/icon9.png" alt=""><span> {{save.city}}</span></li>
                                                 </ul>
                                                 <ul class="bk-links">
-                                                    <li><a href="javascript:void(0)" title=""><i class="la la-bookmark"></i></a></li>
+                                                    <li><a href="javascript:void(0)" title="" @click="SavePost(save)" ><i class="la la-bookmark savecolor" :class="{savecolor:save}"></i></a></li>
                                                     <li><a href="javascript:void(0)" title=""><i class="la la-envelope"></i></a></li>
                                                     <li v-if="save.type == 'servic'"><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
                                                 </ul>
@@ -323,9 +319,8 @@
                                                     <li><img src="images/icon9.png" alt=""><span> {{mybid.city}}</span></li>
                                                 </ul>
                                                 <ul class="bk-links">
-                                                    <li><a href="javascript:void(0)" title=""><i class="la la-bookmark"></i></a></li>
                                                     <li><a href="javascript:void(0)" title=""><i class="la la-envelope"></i></a></li>
-                                                    <li v-if="mybid.type == 'servic'"><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
+                                                    <li><a href="javascript:void(0)" title=""><i class="fas fa-unlock-alt bg-danger"></i></i></a></li>
                                                 </ul>
                                             </div>
                                             <div class="job_descp">
@@ -449,7 +444,7 @@
                         <div class="col-lg-3">
                             <div class="right-sidebar">
                                 <div class="message-btn">
-                                    <a href="javascript:void(0)" title=""><i class="fa fa-envelope"></i> Message</a>
+                                    <a href="javascript:void(0)" title="" @click="diny"><i class="fa fa-envelope"></i> Message</a>
                                 </div>
                                 <div class="widget widget-portfolio">
                                     <div class="wd-heady">
@@ -514,6 +509,7 @@
                 imagesproto:[],
                 index1: null,
                 user:[],
+                userforfolw:[],
                 image:'',
                 backimg:'',
                 /*v-bind:class variable*/
@@ -973,6 +969,40 @@
                         this.$Progress.fail()
                     })
             },
+            SavePost(posts){
+                this.$Progress.start('8000')
+                if(this.$gets.IsLogedIn()){
+                    axios.post('api/SavePost', {
+                        id: posts.id,
+                    }).then(function (response) {
+                        var   status = response.data.status;
+                        var   icon = 'success'
+                        if(status == '500'){
+                            icon = 'error';
+                        }
+                        Toast.fire({
+                            icon: icon,
+                            title: response.data.msg,
+                        })
+                    })
+                    this.saves.splice(this.saves.indexOf(posts), 1);
+                    this.$Progress.finish()
+                }else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'You Are Not Logged In !!!',
+                        text: 'Please Logged In first Or Create New Account',
+                        footer: '<a href="/">Logged In here Or Create Account</a>'
+                    })
+                    this.$Progress.fail()
+                }
+            },
+            diny(){
+                Toast.fire({
+                    icon: 'error',
+                    title: 'You Can\'t Do This In Your Profile !!'
+                })
+            }
 
         },
         beforeRouteEnter (to, from, next) {
@@ -1001,6 +1031,11 @@
         created() {
             this.$Progress.start('1000')
             axios.get('api/Profile').then(({data}) => {this.user = data.data})
+                .then(
+                    (response) => {},
+                ).catch(error => {
+            });
+            axios.get('api/userforfolw').then(({data}) => {this.userforfolw = data.data})
                 .then(
                     (response) => {},
                 ).catch(error => {
@@ -1048,6 +1083,9 @@
     }
     .lnk{
         color: rgb(247, 247, 247);
+    }
+    .savecolor{
+        background-color: #2a71f5;
     }
 </style>
 

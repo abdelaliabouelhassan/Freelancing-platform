@@ -164,7 +164,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Stevebauman\Location\LocationServiceProvider::class,
         Cviebrock\EloquentSluggable\ServiceProvider::class,
-
+        Overtrue\LaravelFollow\FollowServiceProvider::class,
         /*
          * Package Service Providers...
          */

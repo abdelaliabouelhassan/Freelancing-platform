@@ -21,6 +21,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "league/flysystem-azure-blob-storage": "^0.1.6",
+        "overtrue/laravel-follow": "^2.1",
         "steffjenl/laravel-azure-blob-storage": "^1.0",
         "stevebauman/location": "^5.0"
     },

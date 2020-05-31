@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Post\PostCollection;
 use App\Http\Resources\PostResource;
 use App\Post;
+use App\Saved_Job;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Stevebauman\Location\Facades\Location;
@@ -434,7 +435,33 @@ public function search(Request $request){
 
     /*   End all Posts   */
 
-
+    /*Save Post*/
+    public function SavePost(Request $request){
+        if(auth('api')->check()){
+            $id = $request->id;
+       $save =  Saved_Job::where('user_id',auth('api')->id())->where('post_id',$id)->get();
+          if(count($save) == 0){
+              //add
+           $c_save =   Saved_Job::create(['user_id'=>auth('api')->id(),'post_id'=>$id]);
+           if($c_save){
+               return ['msg'=>'Post Saved successfully','status'=>200];
+           }else{
+               return ['msg'=>'something went wrong','status'=>500];
+           }
+          }else{
+              //already saved
+              $save =  Saved_Job::where('user_id',auth('api')->id())->where('post_id',$id);
+              if($save->delete()){
+                  return ['msg'=>'Unsaved successfully','status'=>200];
+              }else{
+                  return ['msg'=>'something went wrong','status'=>500];
+              }
+          }
+        }else{
+            return ['msg'=>'You Are Not Logged In','status'=>500];
+        }
+    }
+    /*End Save Post*/
 
 
 

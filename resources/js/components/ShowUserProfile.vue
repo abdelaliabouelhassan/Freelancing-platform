@@ -14,19 +14,19 @@
                                     <div class="user-pro-img" v-for="users in user">
                                         <img  :src="users.image ? users.image :'http://via.placeholder.com/170x170'" alt="">
                                     </div><!--user-pro-img end-->
-                                    <div class="user_pro_status">
-                                        <ul class="flw-hr" v-for="users in user">
-                                            <li><a href="javascript:void(0)" title="" v-if="!users.ismy" class="flww"><i class="la la-plus"></i> Follow</a></li>
+                                    <div class="user_pro_status" v-for="users in user">
+                                        <ul class="flw-hr" >
+                                            <li><a href="javascript:void(0)" title="" v-if="!users.ismy" class="flww" @click="follow(users)" v-text="users.isfollow ? 'unfollow' : 'Follow'" :class="{unfollow:users.isfollow}"><i class="la la-plus"></i></a></li>
                                             <li><a href="javascript:void(0)" title="" v-if="!users.ismy" class="hre">Hire</a></li>
                                         </ul>
                                         <ul class="flw-status">
                                             <li>
                                                 <span>Following</span>
-                                                <b>34</b>
+                                                <b v-text="users.followingCount">0</b>
                                             </li>
                                             <li>
                                                 <span>Followers</span>
-                                                <b>155</b>
+                                                <b v-text="users.followersCount">0</b>
                                             </li>
                                         </ul>
                                     </div><!--user_pro_status end-->
@@ -162,10 +162,10 @@
                                                     <li><img src="images/icon8.png" alt=""><span>{{feedss.is_done ? 'done' : 'available'}} </span></li>
                                                     <li><img src="images/icon9.png" alt=""><span> {{feedss.city_name}}</span></li>
                                                 </ul>
-                                                <ul class="bk-links">
-                                                    <li><a href="javascript:void(0)" title=""><i class="la la-bookmark"></i></a></li>
-                                                    <li><a href="javascript:void(0)" title=""><i class="la la-envelope"></i></a></li>
-                                                    <li v-if="feedss.type == 'servic'"><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
+                                                <ul class="bk-links" v-for="users in user">
+                                                    <li  v-if="!users.ismy"><a href="javascript:void(0)" title="" @click="SavePost(feedss)" ><i class="la la-bookmark" :class="{savecolor:feedss.IsSave}"></i></a></li>
+                                                    <li v-if="!users.ismy"><a href="javascript:void(0)" title=""><i class="la la-envelope"></i></a></li>
+                                                    <li v-if="feedss.type == 'servic' && !users.ismy"  ><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
                                                 </ul>
                                             </div>
                                             <div class="job_descp">
@@ -182,6 +182,7 @@
                                             </div>
 
                                         </div>
+
                                         <!--post-bar end-->
                                     </div>
                                     <infinite-loading @distance="1" @infinite="loadfeed"></infinite-loading>
@@ -332,7 +333,7 @@
                     }).then(data => {
                     setTimeout(function () {
                         $.each(data.data, function (key, value) {
-                            vm.images.push(value);
+                            this.images.push(value);
                         });
                         Vue.nextTick(function () {
                             $('[data-toggle="tooltip"]').tooltip();
@@ -411,6 +412,20 @@
                 }
 
             },
+            follow(user){
+                axios.post('api/follow', {
+                    slug: this.$route.fullPath.substring(0, 0) + this.$route.fullPath.substring(0 + 1),
+                }).then(function (response) {
+                    if(response.data.msg == 'unfollow'){
+                            user.isfollow = false
+                        user.followersCount--
+                    }else{
+                        user.isfollow = true
+                        user.followersCount++
+
+                    }
+                })
+            },
             showOption:function (feeds) {
                 if(this.showOp == feeds){
                     this.showOp = null
@@ -419,22 +434,53 @@
                 }
 
             },
+            SavePost(posts){
+                this.$Progress.start('8000')
+                if(this.$gets.IsLogedIn()){
+                    axios.post('api/SavePost', {
+                        id: posts.id,
+                    }).then(function (response) {
+                        var   status = response.data.status;
+                        var   icon = 'success'
+                        if(status == '500'){
+                            icon = 'error';
+                        }
+                        Toast.fire({
+                            icon: icon,
+                            title: response.data.msg,
+                        })
+                    })
+                    if(posts.IsSave){
+                        posts.IsSave = false
+                    }else{
+                        posts.IsSave = true
+                    }
+                    this.$Progress.finish()
+                }else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'You Are Not Logged In !!!',
+                        text: 'Please Logged In first Or Create New Account',
+                        footer: '<a href="/">Logged In here Or Create Account</a>'
+                    })
+                    this.$Progress.fail()
+                }
+            },
         },
       created() {
           axios.get('api/showUser' + this.$route.fullPath).then(({data}) => {this.user = data.data})
               .then(
-              (response) => {
-                  this.loadfeeds()
-                  this.loadExperience()
-                  this.loadOverView()
-                  this.loadEduc()
-                  this.loadLoac()
-                  this.loadImage()
-                  this.loadUrl()
-               },
+              (response) => {},
               ).catch(error => {
               this.$router.push("/NotFound404")
           });
+          this.loadfeeds()
+          this.loadExperience()
+          this.loadOverView()
+          this.loadEduc()
+          this.loadLoac()
+          this.loadImage()
+          this.loadUrl()
 
       }
     }
@@ -444,5 +490,10 @@
     .url{
         overflow-wrap: break-word;
     }
-
+    .savecolor{
+        background-color: #2a71f5;
+    }
+    .unfollow{
+        background-color: red;
+    }
 </style>

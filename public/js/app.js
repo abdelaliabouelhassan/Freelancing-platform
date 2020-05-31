@@ -2383,10 +2383,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2601,6 +2597,43 @@ __webpack_require__.r(__webpack_exports__);
         this.showOp = null;
       } else {
         this.showOp = posts;
+      }
+    },
+    SavePost: function SavePost(posts) {
+      this.$Progress.start('8000');
+
+      if (this.$gets.IsLogedIn()) {
+        axios.post('api/SavePost', {
+          id: posts.id
+        }).then(function (response) {
+          var status = response.data.status;
+          var icon = 'success';
+
+          if (status == '500') {
+            icon = 'error';
+          }
+
+          Toast.fire({
+            icon: icon,
+            title: response.data.msg
+          });
+        });
+
+        if (posts.IsSave) {
+          posts.IsSave = false;
+        } else {
+          posts.IsSave = true;
+        }
+
+        this.$Progress.finish();
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'You Are Not Logged In !!!',
+          text: 'Please Logged In first Or Create New Account',
+          footer: '<a href="/">Logged In here Or Create Account</a>'
+        });
+        this.$Progress.fail();
       }
     }
   },
@@ -3038,6 +3071,43 @@ __webpack_require__.r(__webpack_exports__);
         this.showOp = null;
       } else {
         this.showOp = posts;
+      }
+    },
+    SavePost: function SavePost(posts) {
+      this.$Progress.start('8000');
+
+      if (this.$gets.IsLogedIn()) {
+        axios.post('api/SavePost', {
+          id: posts.id
+        }).then(function (response) {
+          var status = response.data.status;
+          var icon = 'success';
+
+          if (status == '500') {
+            icon = 'error';
+          }
+
+          Toast.fire({
+            icon: icon,
+            title: response.data.msg
+          });
+        });
+
+        if (posts.IsSave) {
+          posts.IsSave = false;
+        } else {
+          posts.IsSave = true;
+        }
+
+        this.$Progress.finish();
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'You Are Not Logged In !!!',
+          text: 'Please Logged In first Or Create New Account',
+          footer: '<a href="/">Logged In here Or Create Account</a>'
+        });
+        this.$Progress.fail();
       }
     }
   },
@@ -3575,11 +3645,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -3599,6 +3664,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       imagesproto: [],
       index1: null,
       user: [],
+      userforfolw: [],
       image: '',
       backimg: '',
 
@@ -4080,6 +4146,43 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       _this16.$Progress.fail();
     });
+  },
+  SavePost: function SavePost(posts) {
+    this.$Progress.start('8000');
+
+    if (this.$gets.IsLogedIn()) {
+      axios.post('api/SavePost', {
+        id: posts.id
+      }).then(function (response) {
+        var status = response.data.status;
+        var icon = 'success';
+
+        if (status == '500') {
+          icon = 'error';
+        }
+
+        Toast.fire({
+          icon: icon,
+          title: response.data.msg
+        });
+      });
+      this.saves.splice(this.saves.indexOf(posts), 1);
+      this.$Progress.finish();
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'You Are Not Logged In !!!',
+        text: 'Please Logged In first Or Create New Account',
+        footer: '<a href="/">Logged In here Or Create Account</a>'
+      });
+      this.$Progress.fail();
+    }
+  },
+  diny: function diny() {
+    Toast.fire({
+      icon: 'error',
+      title: 'You Can\'t Do This In Your Profile !!'
+    });
   }
 }), _defineProperty(_components$data$befo, "beforeRouteEnter", function beforeRouteEnter(to, from, next) {
   next(function (vm) {
@@ -4106,6 +4209,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var data = _ref9.data;
     _this17.user = data.data;
   }).then(function (response) {})["catch"](function (error) {});
+  axios.get('api/userforfolw').then(function (_ref10) {
+    var data = _ref10.data;
+    _this17.userforfolw = data.data;
+  }).then(function (response) {})["catch"](function (error) {});
   this.loadfeeds();
   this.loadbids();
   this.loadsaves();
@@ -4130,8 +4237,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     _this17.loadImage();
   });
   something.$on('loaduser', function () {
-    axios.get('api/Profile').then(function (_ref10) {
-      var data = _ref10.data;
+    axios.get('api/Profile').then(function (_ref11) {
+      var data = _ref11.data;
       _this17.user = data.data;
     });
   });
@@ -4549,6 +4656,43 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.showOp = posts;
       }
+    },
+    SavePost: function SavePost(posts) {
+      this.$Progress.start('8000');
+
+      if (this.$gets.IsLogedIn()) {
+        axios.post('api/SavePost', {
+          id: posts.id
+        }).then(function (response) {
+          var status = response.data.status;
+          var icon = 'success';
+
+          if (status == '500') {
+            icon = 'error';
+          }
+
+          Toast.fire({
+            icon: icon,
+            title: response.data.msg
+          });
+        });
+
+        if (posts.IsSave) {
+          posts.IsSave = false;
+        } else {
+          posts.IsSave = true;
+        }
+
+        this.$Progress.finish();
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'You Are Not Logged In !!!',
+          text: 'Please Logged In first Or Create New Account',
+          footer: '<a href="/">Logged In here Or Create Account</a>'
+        });
+        this.$Progress.fail();
+      }
     }
   },
   watch: {
@@ -4580,6 +4724,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -4930,7 +5075,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (data) {
         setTimeout(function () {
           $.each(data.data, function (key, value) {
-            vm.images.push(value);
+            this.images.push(value);
           });
           Vue.nextTick(function () {
             $('[data-toggle="tooltip"]').tooltip();
@@ -5024,11 +5169,61 @@ __webpack_require__.r(__webpack_exports__);
         $state.complete();
       }
     },
+    follow: function follow(user) {
+      axios.post('api/follow', {
+        slug: this.$route.fullPath.substring(0, 0) + this.$route.fullPath.substring(0 + 1)
+      }).then(function (response) {
+        if (response.data.msg == 'unfollow') {
+          user.isfollow = false;
+          user.followersCount--;
+        } else {
+          user.isfollow = true;
+          user.followersCount++;
+        }
+      });
+    },
     showOption: function showOption(feeds) {
       if (this.showOp == feeds) {
         this.showOp = null;
       } else {
         this.showOp = feeds;
+      }
+    },
+    SavePost: function SavePost(posts) {
+      this.$Progress.start('8000');
+
+      if (this.$gets.IsLogedIn()) {
+        axios.post('api/SavePost', {
+          id: posts.id
+        }).then(function (response) {
+          var status = response.data.status;
+          var icon = 'success';
+
+          if (status == '500') {
+            icon = 'error';
+          }
+
+          Toast.fire({
+            icon: icon,
+            title: response.data.msg
+          });
+        });
+
+        if (posts.IsSave) {
+          posts.IsSave = false;
+        } else {
+          posts.IsSave = true;
+        }
+
+        this.$Progress.finish();
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'You Are Not Logged In !!!',
+          text: 'Please Logged In first Or Create New Account',
+          footer: '<a href="/">Logged In here Or Create Account</a>'
+        });
+        this.$Progress.fail();
       }
     }
   },
@@ -5038,23 +5233,16 @@ __webpack_require__.r(__webpack_exports__);
     axios.get('api/showUser' + this.$route.fullPath).then(function (_ref8) {
       var data = _ref8.data;
       _this10.user = data.data;
-    }).then(function (response) {
-      _this10.loadfeeds();
-
-      _this10.loadExperience();
-
-      _this10.loadOverView();
-
-      _this10.loadEduc();
-
-      _this10.loadLoac();
-
-      _this10.loadImage();
-
-      _this10.loadUrl();
-    })["catch"](function (error) {
+    }).then(function (response) {})["catch"](function (error) {
       _this10.$router.push("/NotFound404");
     });
+    this.loadfeeds();
+    this.loadExperience();
+    this.loadOverView();
+    this.loadEduc();
+    this.loadLoac();
+    this.loadImage();
+    this.loadUrl();
   }
 });
 
@@ -12683,7 +12871,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.lnk[data-v-f2b6376c]{\n    color: rgb(247, 247, 247);\n}\n", ""]);
+exports.push([module.i, "\n.lnk[data-v-f2b6376c]{\n    color: rgb(247, 247, 247);\n}\n.savecolor[data-v-f2b6376c]{\n    background-color: #2a71f5;\n}\n", ""]);
 
 // exports
 
@@ -12702,7 +12890,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.lnk[data-v-7ff3e5bc]{\n    color: rgb(247, 247, 247);\n}\n", ""]);
+exports.push([module.i, "\n.lnk[data-v-7ff3e5bc]{\n    color: rgb(247, 247, 247);\n}\n.savecolor[data-v-7ff3e5bc]{\n    background-color: #2a71f5;\n}\n", ""]);
 
 // exports
 
@@ -12721,7 +12909,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.piont[data-v-3bd692e4]{\n    cursor: pointer;\n}\n.piont[data-v-3bd692e4]:hover{\n    cursor: pointer;\n    color: #3f9ae5;\n}\n.lnk[data-v-3bd692e4]{\n    color: rgb(247, 247, 247);\n}\n", ""]);
+exports.push([module.i, "\n.piont[data-v-3bd692e4]{\n    cursor: pointer;\n}\n.piont[data-v-3bd692e4]:hover{\n    cursor: pointer;\n    color: #3f9ae5;\n}\n.lnk[data-v-3bd692e4]{\n    color: rgb(247, 247, 247);\n}\n.savecolor[data-v-3bd692e4]{\n    background-color: #2a71f5;\n}\n", ""]);
 
 // exports
 
@@ -12740,7 +12928,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.lnk[data-v-c10f8004]{\n    color: rgb(247, 247, 247);\n}\n", ""]);
+exports.push([module.i, "\n.lnk[data-v-c10f8004]{\n    color: rgb(247, 247, 247);\n}\n.savecolor[data-v-c10f8004]{\n    background-color: #2a71f5;\n}\n", ""]);
 
 // exports
 
@@ -12759,7 +12947,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.url[data-v-04017c06]{\n    overflow-wrap: break-word;\n}\n\n", ""]);
+exports.push([module.i, "\n.url[data-v-04017c06]{\n    overflow-wrap: break-word;\n}\n.savecolor[data-v-04017c06]{\n    background-color: #2a71f5;\n}\n.unfollow[data-v-04017c06]{\n    background-color: red;\n}\n", ""]);
 
 // exports
 
@@ -79738,34 +79926,57 @@ var render = function() {
                               ])
                             ]),
                             _vm._v(" "),
-                            _c("ul", { staticClass: "bk-links" }, [
-                              _vm._m(9, true),
-                              _vm._v(" "),
-                              _vm._m(10, true),
-                              _vm._v(" "),
-                              posts.type == "servic"
-                                ? _c("li", [
+                            !posts.ismy
+                              ? _c("ul", { staticClass: "bk-links" }, [
+                                  _c("li", [
                                     _c(
                                       "a",
                                       {
-                                        staticClass: "bid_now",
                                         attrs: {
                                           href: "javascript:void(0)",
                                           title: ""
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.SavePost(posts)
+                                          }
                                         }
                                       },
-                                      [_vm._v("Bid Now")]
+                                      [
+                                        _c("i", {
+                                          staticClass: "la la-bookmark",
+                                          class: { savecolor: posts.IsSave }
+                                        })
+                                      ]
                                     )
-                                  ])
-                                : _vm._e()
-                            ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._m(9, true),
+                                  _vm._v(" "),
+                                  posts.type == "servic"
+                                    ? _c("li", [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass: "bid_now",
+                                            attrs: {
+                                              href: "javascript:void(0)",
+                                              title: ""
+                                            }
+                                          },
+                                          [_vm._v("Bid Now")]
+                                        )
+                                      ])
+                                    : _vm._e()
+                                ])
+                              : _vm._e()
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "job_descp" }, [
                             _c("h3", [_vm._v(_vm._s(posts.title))]),
                             _vm._v(" "),
                             _c("ul", { staticClass: "job-dt" }, [
-                              _vm._m(11, true),
+                              _vm._m(10, true),
                               _vm._v(" "),
                               _c("li", [
                                 _c("span", [_vm._v("DH" + _vm._s(posts.price))])
@@ -79843,13 +80054,13 @@ var render = function() {
                         _vm._v(" "),
                         _c("span", [_vm._v("Signed In Now ")]),
                         _vm._v(" "),
-                        _vm._m(12)
+                        _vm._m(11)
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm._m(13),
+                  _vm._m(12),
                   _vm._v(" "),
-                  _vm._m(14)
+                  _vm._m(13)
                 ])
               ])
             ])
@@ -80174,7 +80385,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "col-lg-12" }, [
                     _c("ul", [
-                      _vm._m(15),
+                      _vm._m(14),
                       _vm._v(" "),
                       _c("li", [
                         _c(
@@ -80532,7 +80743,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "col-lg-12" }, [
                     _c("ul", [
-                      _vm._m(16),
+                      _vm._m(15),
                       _vm._v(" "),
                       _c("li", [
                         _c(
@@ -80773,16 +80984,6 @@ var staticRenderFns = [
     return _c("li", [
       _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
         _vm._v("Hide")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-        _c("i", { staticClass: "la la-bookmark" })
       ])
     ])
   },
@@ -81502,7 +81703,34 @@ var render = function() {
                               ])
                             ]),
                             _vm._v(" "),
-                            _vm._m(12, true)
+                            !posts.ismy
+                              ? _c("ul", { staticClass: "bk-links" }, [
+                                  _c("li", [
+                                    _c(
+                                      "a",
+                                      {
+                                        attrs: {
+                                          href: "javascript:void(0)",
+                                          title: ""
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.SavePost(posts)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "la la-bookmark",
+                                          class: { savecolor: posts.IsSave }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._m(12, true)
+                                ])
+                              : _vm._e()
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "job_descp" }, [
@@ -81711,17 +81939,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "bk-links" }, [
-      _c("li", [
-        _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-          _c("i", { staticClass: "la la-bookmark" })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-          _c("i", { staticClass: "la la-envelope" })
-        ])
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _c("i", { staticClass: "la la-envelope" })
       ])
     ])
   },
@@ -82055,7 +82275,79 @@ var render = function() {
                             2
                           ),
                           _vm._v(" "),
-                          _vm._m(0),
+                          _c(
+                            "div",
+                            { staticClass: "user_pro_status" },
+                            [
+                              _c("ul", { staticClass: "flw-hr" }, [
+                                _c("li", [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "flww",
+                                      attrs: {
+                                        href: "javascript:void(0)",
+                                        title: ""
+                                      },
+                                      on: { click: _vm.diny }
+                                    },
+                                    [
+                                      _c("i", { staticClass: "la la-plus" }),
+                                      _vm._v(" Follow")
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "hre",
+                                      attrs: {
+                                        href: "javascript:void(0)",
+                                        title: ""
+                                      },
+                                      on: { click: _vm.diny }
+                                    },
+                                    [_vm._v("Hire")]
+                                  )
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.userforfolw, function(fl) {
+                                return _c("ul", { staticClass: "flw-status" }, [
+                                  _c("li", [
+                                    _c("span", [_vm._v("Following")]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "b",
+                                      {
+                                        domProps: {
+                                          textContent: _vm._s(fl.followingCount)
+                                        }
+                                      },
+                                      [_vm._v("0")]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("li", [
+                                    _c("span", [_vm._v("Followers")]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "b",
+                                      {
+                                        domProps: {
+                                          textContent: _vm._s(fl.followersCount)
+                                        }
+                                      },
+                                      [_vm._v("0")]
+                                    )
+                                  ])
+                                ])
+                              })
+                            ],
+                            2
+                          ),
                           _vm._v(" "),
                           _c("websites", {
                             attrs: {
@@ -82079,7 +82371,7 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _vm._m(1)
+                      _vm._m(0)
                     ])
                   ]),
                   _vm._v(" "),
@@ -82111,7 +82403,7 @@ var render = function() {
                                 ? _c("span", [_vm._v("Add Your Work Name")])
                                 : _vm._e(),
                               _vm._v(" "),
-                              _vm._m(2, true),
+                              _vm._m(1, true),
                               _vm._v(" "),
                               _c(
                                 "a",
@@ -82146,7 +82438,7 @@ var render = function() {
                                       }
                                     }
                                   },
-                                  [_vm._m(3, true)]
+                                  [_vm._m(2, true)]
                                 ),
                                 _vm._v(" "),
                                 _c(
@@ -82168,7 +82460,7 @@ var render = function() {
                                       }
                                     }
                                   },
-                                  [_vm._m(4, true)]
+                                  [_vm._m(3, true)]
                                 ),
                                 _vm._v(" "),
                                 _c(
@@ -82190,7 +82482,7 @@ var render = function() {
                                       }
                                     }
                                   },
-                                  [_vm._m(5, true)]
+                                  [_vm._m(4, true)]
                                 ),
                                 _vm._v(" "),
                                 _c(
@@ -82212,7 +82504,7 @@ var render = function() {
                                       }
                                     }
                                   },
-                                  [_vm._m(6, true)]
+                                  [_vm._m(5, true)]
                                 ),
                                 _vm._v(" "),
                                 _c(
@@ -82234,7 +82526,7 @@ var render = function() {
                                       }
                                     }
                                   },
-                                  [_vm._m(7, true)]
+                                  [_vm._m(6, true)]
                                 ),
                                 _vm._v(" "),
                                 _c(
@@ -82256,7 +82548,7 @@ var render = function() {
                                       }
                                     }
                                   },
-                                  [_vm._m(8, true)]
+                                  [_vm._m(7, true)]
                                 )
                               ])
                             ])
@@ -82347,7 +82639,7 @@ var render = function() {
                                         }
                                       },
                                       [
-                                        _vm._m(9, true),
+                                        _vm._m(8, true),
                                         _vm._v(" "),
                                         _c(
                                           "ul",
@@ -82358,15 +82650,15 @@ var render = function() {
                                             }
                                           },
                                           [
+                                            _vm._m(9, true),
+                                            _vm._v(" "),
                                             _vm._m(10, true),
                                             _vm._v(" "),
                                             _vm._m(11, true),
                                             _vm._v(" "),
                                             _vm._m(12, true),
                                             _vm._v(" "),
-                                            _vm._m(13, true),
-                                            _vm._v(" "),
-                                            _vm._m(14, true)
+                                            _vm._m(13, true)
                                           ]
                                         )
                                       ]
@@ -82404,28 +82696,6 @@ var render = function() {
                                           _vm._v(" " + _vm._s(feedss.city_name))
                                         ])
                                       ])
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("ul", { staticClass: "bk-links" }, [
-                                      _vm._m(15, true),
-                                      _vm._v(" "),
-                                      _vm._m(16, true),
-                                      _vm._v(" "),
-                                      feedss.type == "servic"
-                                        ? _c("li", [
-                                            _c(
-                                              "a",
-                                              {
-                                                staticClass: "bid_now",
-                                                attrs: {
-                                                  href: "javascript:void(0)",
-                                                  title: ""
-                                                }
-                                              },
-                                              [_vm._v("Bid Now")]
-                                            )
-                                          ])
-                                        : _vm._e()
                                     ])
                                   ]),
                                   _vm._v(" "),
@@ -82433,7 +82703,7 @@ var render = function() {
                                     _c("h3", [_vm._v(_vm._s(feedss.title))]),
                                     _vm._v(" "),
                                     _c("ul", { staticClass: "job-dt" }, [
-                                      _vm._m(17, true),
+                                      _vm._m(14, true),
                                       _vm._v(" "),
                                       _c("li", [
                                         _c("span", [
@@ -82940,7 +83210,7 @@ var render = function() {
                                         }
                                       },
                                       [
-                                        _vm._m(18, true),
+                                        _vm._m(15, true),
                                         _vm._v(" "),
                                         _c(
                                           "ul",
@@ -82951,15 +83221,15 @@ var render = function() {
                                             }
                                           },
                                           [
+                                            _vm._m(16, true),
+                                            _vm._v(" "),
+                                            _vm._m(17, true),
+                                            _vm._v(" "),
+                                            _vm._m(18, true),
+                                            _vm._v(" "),
                                             _vm._m(19, true),
                                             _vm._v(" "),
-                                            _vm._m(20, true),
-                                            _vm._v(" "),
-                                            _vm._m(21, true),
-                                            _vm._v(" "),
-                                            _vm._m(22, true),
-                                            _vm._v(" "),
-                                            _vm._m(23, true)
+                                            _vm._m(20, true)
                                           ]
                                         )
                                       ]
@@ -83000,9 +83270,31 @@ var render = function() {
                                     ]),
                                     _vm._v(" "),
                                     _c("ul", { staticClass: "bk-links" }, [
-                                      _vm._m(24, true),
+                                      _c("li", [
+                                        _c(
+                                          "a",
+                                          {
+                                            attrs: {
+                                              href: "javascript:void(0)",
+                                              title: ""
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.SavePost(save)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "la la-bookmark savecolor",
+                                              class: { savecolor: save }
+                                            })
+                                          ]
+                                        )
+                                      ]),
                                       _vm._v(" "),
-                                      _vm._m(25, true),
+                                      _vm._m(21, true),
                                       _vm._v(" "),
                                       save.type == "servic"
                                         ? _c("li", [
@@ -83026,7 +83318,7 @@ var render = function() {
                                     _c("h3", [_vm._v(_vm._s(save.title))]),
                                     _vm._v(" "),
                                     _c("ul", { staticClass: "job-dt" }, [
-                                      _vm._m(26, true),
+                                      _vm._m(22, true),
                                       _vm._v(" "),
                                       _c("li", [
                                         _c("span", [
@@ -83175,7 +83467,7 @@ var render = function() {
                                         }
                                       },
                                       [
-                                        _vm._m(27, true),
+                                        _vm._m(23, true),
                                         _vm._v(" "),
                                         _c(
                                           "ul",
@@ -83186,15 +83478,15 @@ var render = function() {
                                             }
                                           },
                                           [
-                                            _vm._m(28, true),
+                                            _vm._m(24, true),
                                             _vm._v(" "),
-                                            _vm._m(29, true),
+                                            _vm._m(25, true),
                                             _vm._v(" "),
-                                            _vm._m(30, true),
+                                            _vm._m(26, true),
                                             _vm._v(" "),
-                                            _vm._m(31, true),
+                                            _vm._m(27, true),
                                             _vm._v(" "),
-                                            _vm._m(32, true)
+                                            _vm._m(28, true)
                                           ]
                                         )
                                       ]
@@ -83234,34 +83526,14 @@ var render = function() {
                                       ])
                                     ]),
                                     _vm._v(" "),
-                                    _c("ul", { staticClass: "bk-links" }, [
-                                      _vm._m(33, true),
-                                      _vm._v(" "),
-                                      _vm._m(34, true),
-                                      _vm._v(" "),
-                                      mybid.type == "servic"
-                                        ? _c("li", [
-                                            _c(
-                                              "a",
-                                              {
-                                                staticClass: "bid_now",
-                                                attrs: {
-                                                  href: "javascript:void(0)",
-                                                  title: ""
-                                                }
-                                              },
-                                              [_vm._v("Bid Now")]
-                                            )
-                                          ])
-                                        : _vm._e()
-                                    ])
+                                    _vm._m(29, true)
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "job_descp" }, [
                                     _c("h3", [_vm._v(_vm._s(mybid.title))]),
                                     _vm._v(" "),
                                     _c("ul", { staticClass: "job-dt" }, [
-                                      _vm._m(35, true),
+                                      _vm._m(30, true),
                                       _vm._v(" "),
                                       _c("li", [
                                         _c("span", [
@@ -83362,7 +83634,7 @@ var render = function() {
                             class: { current: _vm.Payment },
                             attrs: { id: "payment-dd" }
                           },
-                          [_vm._m(36), _vm._v(" "), _vm._m(37)]
+                          [_vm._m(31), _vm._v(" "), _vm._m(32)]
                         )
                       ],
                       2
@@ -83371,10 +83643,22 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "col-lg-3" }, [
                     _c("div", { staticClass: "right-sidebar" }, [
-                      _vm._m(38),
+                      _c("div", { staticClass: "message-btn" }, [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "javascript:void(0)", title: "" },
+                            on: { click: _vm.diny }
+                          },
+                          [
+                            _c("i", { staticClass: "fa fa-envelope" }),
+                            _vm._v(" Message")
+                          ]
+                        )
+                      ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "widget widget-portfolio" }, [
-                        _vm._m(39),
+                        _vm._m(33),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -83608,50 +83892,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "user_pro_status" }, [
-      _c("ul", { staticClass: "flw-hr" }, [
-        _c("li", [
-          _c(
-            "a",
-            {
-              staticClass: "flww",
-              attrs: { href: "javascript:void(0)", title: "" }
-            },
-            [_c("i", { staticClass: "la la-plus" }), _vm._v(" Follow")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c(
-            "a",
-            {
-              staticClass: "hre",
-              attrs: { href: "javascript:void(0)", title: "" }
-            },
-            [_vm._v("Hire")]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("ul", { staticClass: "flw-status" }, [
-        _c("li", [
-          _c("span", [_vm._v("Following")]),
-          _vm._v(" "),
-          _c("b", [_vm._v("34")])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("span", [_vm._v("Followers")]),
-          _vm._v(" "),
-          _c("b", [_vm._v("155")])
-        ])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -83901,7 +84141,70 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("li", [
       _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-        _c("i", { staticClass: "la la-bookmark" })
+        _vm._v("Full Time")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "ed-opts-open",
+        attrs: { href: "javascript:void(0)", title: "" }
+      },
+      [_c("i", { staticClass: "la la-ellipsis-v" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Edit Post")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Unsaved")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Unbid")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Close")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _vm._v("Hide")
       ])
     ])
   },
@@ -83992,112 +84295,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-        _c("i", { staticClass: "la la-bookmark" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-        _c("i", { staticClass: "la la-envelope" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-        _vm._v("Full Time")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "ed-opts-open",
-        attrs: { href: "javascript:void(0)", title: "" }
-      },
-      [_c("i", { staticClass: "la la-ellipsis-v" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-        _vm._v("Edit Post")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-        _vm._v("Unsaved")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-        _vm._v("Unbid")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-        _vm._v("Close")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-        _vm._v("Hide")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-        _c("i", { staticClass: "la la-bookmark" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-        _c("i", { staticClass: "la la-envelope" })
+    return _c("ul", { staticClass: "bk-links" }, [
+      _c("li", [
+        _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+          _c("i", { staticClass: "la la-envelope" })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+          _c("i", { staticClass: "fas fa-unlock-alt bg-danger" })
+        ])
       ])
     ])
   },
@@ -84284,17 +84492,6 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("h4", [_vm._v("Add Paypal Account")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "message-btn" }, [
-      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-        _c("i", { staticClass: "fa fa-envelope" }),
-        _vm._v(" Message")
       ])
     ])
   },
@@ -84804,7 +85001,36 @@ var render = function() {
                               ])
                             ]),
                             _vm._v(" "),
-                            _vm._m(12, true)
+                            !posts.ismy
+                              ? _c("ul", { staticClass: "bk-links" }, [
+                                  _c("li", [
+                                    _c(
+                                      "a",
+                                      {
+                                        attrs: {
+                                          href: "javascript:void(0)",
+                                          title: ""
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.SavePost(posts)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "la la-bookmark",
+                                          class: { savecolor: posts.IsSave }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._m(12, true),
+                                  _vm._v(" "),
+                                  _vm._m(13, true)
+                                ])
+                              : _vm._e()
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "job_descp" }, [
@@ -84883,13 +85109,13 @@ var render = function() {
                         _vm._v(" "),
                         _c("span", [_vm._v("Signed In Now ")]),
                         _vm._v(" "),
-                        _vm._m(13)
+                        _vm._m(14)
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm._m(14),
+                  _vm._m(15),
                   _vm._v(" "),
-                  _vm._m(15)
+                  _vm._m(16)
                 ])
               ])
             ])
@@ -85011,29 +85237,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "bk-links" }, [
-      _c("li", [
-        _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-          _c("i", { staticClass: "la la-bookmark" })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-          _c("i", { staticClass: "la la-envelope" })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c(
-          "a",
-          {
-            staticClass: "bid_now",
-            attrs: { href: "javascript:void(0)", title: "" }
-          },
-          [_vm._v("Bid Now")]
-        )
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _c("i", { staticClass: "la la-envelope" })
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c(
+        "a",
+        {
+          staticClass: "bid_now",
+          attrs: { href: "javascript:void(0)", title: "" }
+        },
+        [_vm._v("Bid Now")]
+      )
     ])
   },
   function() {
@@ -85264,55 +85486,86 @@ var render = function() {
                           ])
                         }),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "user_pro_status" },
-                          [
-                            _vm._l(_vm.user, function(users) {
-                              return _c("ul", { staticClass: "flw-hr" }, [
-                                _c("li", [
-                                  !users.ismy
-                                    ? _c(
-                                        "a",
-                                        {
-                                          staticClass: "flww",
-                                          attrs: {
-                                            href: "javascript:void(0)",
-                                            title: ""
-                                          }
+                        _vm._l(_vm.user, function(users) {
+                          return _c("div", { staticClass: "user_pro_status" }, [
+                            _c("ul", { staticClass: "flw-hr" }, [
+                              _c("li", [
+                                !users.ismy
+                                  ? _c(
+                                      "a",
+                                      {
+                                        staticClass: "flww",
+                                        class: { unfollow: users.isfollow },
+                                        attrs: {
+                                          href: "javascript:void(0)",
+                                          title: ""
                                         },
-                                        [
-                                          _c("i", {
-                                            staticClass: "la la-plus"
-                                          }),
-                                          _vm._v(" Follow")
-                                        ]
-                                      )
-                                    : _vm._e()
-                                ]),
-                                _vm._v(" "),
-                                _c("li", [
-                                  !users.ismy
-                                    ? _c(
-                                        "a",
-                                        {
-                                          staticClass: "hre",
-                                          attrs: {
-                                            href: "javascript:void(0)",
-                                            title: ""
-                                          }
+                                        domProps: {
+                                          textContent: _vm._s(
+                                            users.isfollow
+                                              ? "unfollow"
+                                              : "Follow"
+                                          )
                                         },
-                                        [_vm._v("Hire")]
-                                      )
-                                    : _vm._e()
-                                ])
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.follow(users)
+                                          }
+                                        }
+                                      },
+                                      [_c("i", { staticClass: "la la-plus" })]
+                                    )
+                                  : _vm._e()
+                              ]),
+                              _vm._v(" "),
+                              _c("li", [
+                                !users.ismy
+                                  ? _c(
+                                      "a",
+                                      {
+                                        staticClass: "hre",
+                                        attrs: {
+                                          href: "javascript:void(0)",
+                                          title: ""
+                                        }
+                                      },
+                                      [_vm._v("Hire")]
+                                    )
+                                  : _vm._e()
                               ])
-                            }),
+                            ]),
                             _vm._v(" "),
-                            _vm._m(0)
-                          ],
-                          2
-                        ),
+                            _c("ul", { staticClass: "flw-status" }, [
+                              _c("li", [
+                                _c("span", [_vm._v("Following")]),
+                                _vm._v(" "),
+                                _c(
+                                  "b",
+                                  {
+                                    domProps: {
+                                      textContent: _vm._s(users.followingCount)
+                                    }
+                                  },
+                                  [_vm._v("0")]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("li", [
+                                _c("span", [_vm._v("Followers")]),
+                                _vm._v(" "),
+                                _c(
+                                  "b",
+                                  {
+                                    domProps: {
+                                      textContent: _vm._s(users.followersCount)
+                                    }
+                                  },
+                                  [_vm._v("0")]
+                                )
+                              ])
+                            ])
+                          ])
+                        }),
                         _vm._v(" "),
                         _c(
                           "ul",
@@ -85342,7 +85595,7 @@ var render = function() {
                       2
                     ),
                     _vm._v(" "),
-                    _vm._m(1)
+                    _vm._m(0)
                   ])
                 ]),
                 _vm._v(" "),
@@ -85362,7 +85615,7 @@ var render = function() {
                               ? _c("span", [_vm._v("Work type not specified")])
                               : _vm._e(),
                             _vm._v(" "),
-                            _vm._m(2, true)
+                            _vm._m(1, true)
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "tab-feed" }, [
@@ -85380,7 +85633,7 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [_vm._m(3, true)]
+                                [_vm._m(2, true)]
                               ),
                               _vm._v(" "),
                               _c(
@@ -85396,7 +85649,7 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [_vm._m(4, true)]
+                                [_vm._m(3, true)]
                               ),
                               _vm._v(" "),
                               _c(
@@ -85412,7 +85665,7 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [_vm._m(5, true)]
+                                [_vm._m(4, true)]
                               )
                             ])
                           ])
@@ -85475,7 +85728,7 @@ var render = function() {
                                       }
                                     },
                                     [
-                                      _vm._m(6, true),
+                                      _vm._m(5, true),
                                       _vm._v(" "),
                                       _c(
                                         "ul",
@@ -85486,82 +85739,125 @@ var render = function() {
                                           }
                                         },
                                         [
+                                          _vm._m(6, true),
+                                          _vm._v(" "),
                                           _vm._m(7, true),
                                           _vm._v(" "),
                                           _vm._m(8, true),
                                           _vm._v(" "),
                                           _vm._m(9, true),
                                           _vm._v(" "),
-                                          _vm._m(10, true),
-                                          _vm._v(" "),
-                                          _vm._m(11, true)
+                                          _vm._m(10, true)
                                         ]
                                       )
                                     ]
                                   )
                                 ]),
                                 _vm._v(" "),
-                                _c("div", { staticClass: "epi-sec" }, [
-                                  _c("ul", { staticClass: "descp" }, [
-                                    _c("li", [
-                                      _c("img", {
-                                        attrs: {
-                                          src: "images/icon8.png",
-                                          alt: ""
-                                        }
-                                      }),
-                                      _c("span", [
-                                        _vm._v(
-                                          _vm._s(
-                                            feedss.is_done
-                                              ? "done"
-                                              : "available"
-                                          ) + " "
-                                        )
+                                _c(
+                                  "div",
+                                  { staticClass: "epi-sec" },
+                                  [
+                                    _c("ul", { staticClass: "descp" }, [
+                                      _c("li", [
+                                        _c("img", {
+                                          attrs: {
+                                            src: "images/icon8.png",
+                                            alt: ""
+                                          }
+                                        }),
+                                        _c("span", [
+                                          _vm._v(
+                                            _vm._s(
+                                              feedss.is_done
+                                                ? "done"
+                                                : "available"
+                                            ) + " "
+                                          )
+                                        ])
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("li", [
+                                        _c("img", {
+                                          attrs: {
+                                            src: "images/icon9.png",
+                                            alt: ""
+                                          }
+                                        }),
+                                        _c("span", [
+                                          _vm._v(" " + _vm._s(feedss.city_name))
+                                        ])
                                       ])
                                     ]),
                                     _vm._v(" "),
-                                    _c("li", [
-                                      _c("img", {
-                                        attrs: {
-                                          src: "images/icon9.png",
-                                          alt: ""
-                                        }
-                                      }),
-                                      _c("span", [
-                                        _vm._v(" " + _vm._s(feedss.city_name))
-                                      ])
-                                    ])
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("ul", { staticClass: "bk-links" }, [
-                                    _vm._m(12, true),
-                                    _vm._v(" "),
-                                    _vm._m(13, true),
-                                    _vm._v(" "),
-                                    feedss.type == "servic"
-                                      ? _c("li", [
-                                          _c(
-                                            "a",
-                                            {
-                                              staticClass: "bid_now",
-                                              attrs: {
-                                                href: "javascript:void(0)",
-                                                title: ""
-                                              }
-                                            },
-                                            [_vm._v("Bid Now")]
-                                          )
-                                        ])
-                                      : _vm._e()
-                                  ])
-                                ]),
+                                    _vm._l(_vm.user, function(users) {
+                                      return _c(
+                                        "ul",
+                                        { staticClass: "bk-links" },
+                                        [
+                                          !users.ismy
+                                            ? _c("li", [
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    attrs: {
+                                                      href:
+                                                        "javascript:void(0)",
+                                                      title: ""
+                                                    },
+                                                    on: {
+                                                      click: function($event) {
+                                                        return _vm.SavePost(
+                                                          feedss
+                                                        )
+                                                      }
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass:
+                                                        "la la-bookmark",
+                                                      class: {
+                                                        savecolor: feedss.IsSave
+                                                      }
+                                                    })
+                                                  ]
+                                                )
+                                              ])
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          !users.ismy
+                                            ? _c("li", [_vm._m(11, true)])
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          feedss.type == "servic" && !users.ismy
+                                            ? _c("li", [
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass: "bid_now",
+                                                    attrs: {
+                                                      href:
+                                                        "javascript:void(0)",
+                                                      title: ""
+                                                    }
+                                                  },
+                                                  [_vm._v("Bid Now")]
+                                                )
+                                              ])
+                                            : _vm._e()
+                                        ]
+                                      )
+                                    })
+                                  ],
+                                  2
+                                ),
                                 _vm._v(" "),
                                 _c("div", { staticClass: "job_descp" }, [
                                   _c("h3", [_vm._v(_vm._s(feedss.title))]),
                                   _vm._v(" "),
                                   _c("ul", { staticClass: "job-dt" }, [
-                                    _vm._m(14, true),
+                                    _vm._m(12, true),
                                     _vm._v(" "),
                                     _c("li", [
                                       _c("span", [
@@ -85791,7 +86087,7 @@ var render = function() {
                                               }
                                             }),
                                             _vm._v(" "),
-                                            _vm._m(15, true)
+                                            _vm._m(13, true)
                                           ]
                                         )
                                       ]
@@ -85853,7 +86149,7 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _c("div", { staticClass: "widget widget-portfolio" }, [
-                        _vm._m(16),
+                        _vm._m(14),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -85923,24 +86219,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "flw-status" }, [
-      _c("li", [
-        _c("span", [_vm._v("Following")]),
-        _vm._v(" "),
-        _c("b", [_vm._v("34")])
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c("span", [_vm._v("Followers")]),
-        _vm._v(" "),
-        _c("b", [_vm._v("155")])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -86156,20 +86434,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-        _c("i", { staticClass: "la la-bookmark" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-        _c("i", { staticClass: "la la-envelope" })
-      ])
+    return _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+      _c("i", { staticClass: "la la-envelope" })
     ])
   },
   function() {

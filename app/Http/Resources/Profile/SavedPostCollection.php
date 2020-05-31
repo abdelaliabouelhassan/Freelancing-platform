@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Resources\Profile;
+use App\Saved_Job;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Carbon;
 
@@ -16,7 +17,7 @@ class SavedPostCollection extends JsonResource
     {
         return [
                  'id'=>$this->post->id,
-                 'username'=>$this->user->name,
+                 'username'=>$this->post->user->name,
                  'title'=>$this->post->title,
                  'time'=>Carbon::createFromFormat('Y-m-d H:i:s',$this->post->created_at)->diffForHumans(),
                  'city'=>$this->post->city->city_name,
@@ -25,10 +26,9 @@ class SavedPostCollection extends JsonResource
                  'price' => $this->post->price,
                  'type' => $this->post->type,
                  'post_image' => $this->post->image_id ? $this->post->image->path : '',
-                 'user_image'=>$this->user->image,
+                 'user_image'=>$this->post->user->image,
                  'is_done' => $this->post->is_done,
                  'slug'=>$this->user->slug,
-
         ];
     }
 }

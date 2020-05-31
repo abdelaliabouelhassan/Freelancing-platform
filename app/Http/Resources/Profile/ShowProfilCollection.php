@@ -24,6 +24,9 @@ class ShowProfilCollection extends JsonResource
             'slug' => $this->slug,
             'bio' => $this->bio,
             'ismy'=>$this->id === auth('api')->id() ? true : false,
+            'isfollow'=>auth('api')->user()->isFollowing($this->id),
+            'followersCount'=>count($this->followers),
+            'followingCount'=>count($this->followings),
         ];
     }
 }

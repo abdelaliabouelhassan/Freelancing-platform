@@ -7,10 +7,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Cviebrock\EloquentSluggable\Sluggable;
-
+use Overtrue\LaravelFollow\Followable;
 class User extends Authenticatable
 {
-    use Notifiable,HasApiTokens,Sluggable;
+    use Notifiable,HasApiTokens,Sluggable,Followable;
 
     /**
      * The attributes that are mass assignable.

@@ -384,6 +384,21 @@ class ProfileController extends Controller
         return   ProtfolioCollection::collection($prot);
     }
 
+    public  function  follow(Request $request){
+        $user = User::findOrFail(User::UserId($request->slug));
+        $response = auth('api')->user()->toggleFollow($user);
+        $isfollow =   auth('api')->user()->isFollowing($user);
+             if($isfollow){
+                 return ['msg'=>'follow'];
+             }else{
+                 return ['msg'=>'unfollow'];
+             }
+    }
+
+    public  function  userforfolw(){
+        $user =   User::where('id',auth('api')->id())->paginate(1);
+        return   ShowProfilCollection::collection($user);
+    }
     /**
      * Update the specified resource in storage.
      *

@@ -37,6 +37,7 @@ Route::get('filterProject/{cat}/{city}/{price}/{isdone}','API\PostController@fil
 Route::post('searchProject','API\PostController@searchProject');
 Route::get('search1Project/{input}','API\PostController@search1Project');
 Route::get('AllPosts','API\PostController@AllPosts');
+Route::post('SavePost','API\PostController@SavePost');
 
 /*  END POSTS api */
 
@@ -82,6 +83,7 @@ Route::get('showexp/{slug}','API\ProfileController@showexp');
 Route::get('showeduc/{slug}','API\ProfileController@showeduc');
 Route::get('showloac/{slug}','API\ProfileController@showloac');
 Route::get('showportload/{slug}','API\ProfileController@showportload');
-
+Route::post('follow','API\ProfileController@follow');
+Route::get('userforfolw','API\ProfileController@userforfolw');
 
 /*End Profile*/

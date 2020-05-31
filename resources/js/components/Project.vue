@@ -124,8 +124,8 @@
                                                     <li><img src="images/icon8.png" alt=""><span>{{posts.is_done ? 'done' : 'available'}} </span></li>
                                                     <li><img src="images/icon9.png" alt=""><span> {{posts.city_name}}</span></li>
                                                 </ul>
-                                                <ul class="bk-links">
-                                                    <li><a href="javascript:void(0)" title=""><i class="la la-bookmark"></i></a></li>
+                                                <ul class="bk-links" v-if="!posts.ismy">
+                                                    <li><a href="javascript:void(0)" title="" @click="SavePost(posts)" ><i class="la la-bookmark" :class="{savecolor:posts.IsSave}"></i></a></li>
                                                     <li><a href="javascript:void(0)" title=""><i class="la la-envelope"></i></a></li>
                                                     <li><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
                                                 </ul>
@@ -382,7 +382,39 @@
                 }else{
                     this.showOp = posts
                 }
-            }
+            },
+            SavePost(posts){
+                this.$Progress.start('8000')
+                if(this.$gets.IsLogedIn()){
+                    axios.post('api/SavePost', {
+                        id: posts.id,
+                    }).then(function (response) {
+                        var   status = response.data.status;
+                        var   icon = 'success'
+                        if(status == '500'){
+                            icon = 'error';
+                        }
+                        Toast.fire({
+                            icon: icon,
+                            title: response.data.msg,
+                        })
+                    })
+                    if(posts.IsSave){
+                        posts.IsSave = false
+                    }else{
+                        posts.IsSave = true
+                    }
+                    this.$Progress.finish()
+                }else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'You Are Not Logged In !!!',
+                        text: 'Please Logged In first Or Create New Account',
+                        footer: '<a href="/">Logged In here Or Create Account</a>'
+                    })
+                    this.$Progress.fail()
+                }
+            },
         },
         watch: {
             $route: {
@@ -407,5 +439,8 @@
 <style scoped>
     .lnk{
         color: rgb(247, 247, 247);
+    }
+    .savecolor{
+        background-color: #2a71f5;
     }
 </style>
