@@ -87,3 +87,12 @@ Route::post('follow','API\ProfileController@follow');
 Route::get('userforfolw','API\ProfileController@userforfolw');
 
 /*End Profile*/
+
+Route::get('/user','API\ProfileController@fetchuser');
+
+/*chat*/
+//Route::apiResources(['getuser'=>'API\ChatController']);
+Route::get('/message/get/{slug}/{userslug}','MessageController@fetchMessage');
+Route::get('getuser/{slug}/{userslug}','API\ChatController@getusertoAndFrom');
+
+/*end chat*/

@@ -12,6 +12,9 @@ Route::get('/Home', function () {
 Route::get('{slug}', function () {
     return view('home');
 });
+Route::get('/Chat/{slug}/{userslug}', function () {
+    return view('home');
+});
 route::group(['middleware'=>'auth'],function () {
     Route::get('/Profile', function () {
         return view('home');

@@ -2,12 +2,23 @@
 
 namespace App;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected  $guarded = [];
 
+    use Sluggable;
+    protected  $guarded = [];
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name',
+                'onUpdate' => true,
+            ]
+        ];
+    }
 
     public  function  user()
     {

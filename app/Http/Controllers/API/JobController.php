@@ -6,6 +6,7 @@ use App\Category;
 use App\City;
 use App\Http\Controllers\Controller;
 use App\Post;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -67,6 +68,7 @@ class JobController extends Controller
             'price'=>$request->price,
             'type'=>'job',
             'image_id'=>$request->image,
+            'slug' => SlugService::createSlug(Post::class, 'slug', $request->title),
         ]);
     }
 

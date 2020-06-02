@@ -91,4 +91,7 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Ip_Address');
     }
+    public  function  message(){
+        return  $this->hasMany(Message::class);
+    }
 }

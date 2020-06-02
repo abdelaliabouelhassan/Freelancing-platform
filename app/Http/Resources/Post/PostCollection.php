@@ -29,6 +29,7 @@ class PostCollection extends JsonResource
             'user_image'=>$this->user->image,
             'is_done' => $this->is_done,
             'slug'=>$this->user->slug,
+            'postSlug'=>$this->slug,
             'IsSave'=>count(Saved_Job::where('user_id',auth('api')->id())->where('post_id',$this->id)->get()) == 0 ? false : true,
             'ismy'=>$this->user->id == auth('api')->id() ? true : false,
             'category_name' => $this->category->category_name,

@@ -62,10 +62,9 @@
                             Jobs</router-link>
                         </li>
                         <li v-if="$gets.IsLogedIn()">
-                            <a href="javascript:void(0)" title="" class="not-box-open" class="nav-link">
+                            <router-link to="/Chat" >
                                 <span><i class="fa fa-envelope"></i></span>
-                                Messages
-                            </a>
+                                Messages</router-link>
                             <div class="notification-box msg">
                                 <div class="nt-title">
                                     <h4>Setting</h4>
@@ -252,7 +251,23 @@
 <script type="text/javascript" src="{{asset('lib/slick/slick.min.js')}}"></script>
 <script type="text/javascript" src="js/scrollbar.js"></script>
 <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
+
+<script>
+    @if(auth()->check())
+     const globalUserId = {{auth()->id()}}
+    @endif
+
+
+</script>
 <script type="text/javascript" src="{{asset("js/app.js")}}"></script>
-
-
+<script>
+    Echo.private('chat.' + {{auth()->id()}})
+        .listen('MessageSent', (e) => {
+            console.log(e.message.user.name);
+            Toast.fire({
+                icon: 'success',
+                title: e.message.user.name + ' :  ' + e.message.message,
+            })
+        });
+</script>
 </body>

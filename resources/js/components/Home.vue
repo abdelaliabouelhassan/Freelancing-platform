@@ -7,7 +7,7 @@
                        <div class="row">
                            <div class="col-lg-3 col-md-4 pd-left-none no-pd">
                                <div class="main-left-sidebar no-margin">
-                                   <div class="user-data full-width"  v-if="$gets.IsLogedIn()">
+                                   <div class="user-data full-width"  v-if="$gets.IsLogedIn()" v-for="fl in userforfolw">
                                        <div class="user-profile">
                                            <div class="username-dt">
                                                <div class="usr-pic">
@@ -16,20 +16,21 @@
                                            </div><!--username-dt end-->
                                            <div class="user-specs">
                                                <h3>{{$gets.user.name}}</h3>
-                                               <span>Graphic Designer at Self Employed</span>
+                                               <span v-text="fl.bio ? fl.bio : 'new user'"></span>
                                            </div>
                                        </div><!--user-profile end-->
                                        <ul class="user-fw-status">
                                            <li>
                                                <h4>Following</h4>
-                                               <span>34</span>
+                                               <b v-text="fl.followingCount">0</b>
                                            </li>
                                            <li>
                                                <h4>Followers</h4>
-                                               <span>155</span>
+                                               <b v-text="fl.followersCount">0</b>
                                            </li>
                                            <li>
-                                               <a href="javascript:void(0)" title="">View Profile</a>
+                                               <router-link to="/Profile" ><span></span>
+                                                   View Profile</router-link>
                                            </li>
                                        </ul>
                                    </div><!--user-data end-->
@@ -428,6 +429,7 @@
                 showProject:false,
                 showJob:false,
                 showOp:null,
+                userforfolw:[],
                 form: new Form({
                     title: '',
                     body: '',
@@ -502,9 +504,7 @@
                 })
             },
             LoadCity: function () {
-                axios.get('api/city').then(({
-                                                data
-                                            }) => {
+                axios.get('api/city').then(({data}) => {
                     this.city = data.data
                 })
             },
@@ -682,6 +682,13 @@
         },
         created(){
             this.$Progress.start('1000')
+            if(this.$gets.IsLogedIn()){
+                axios.get('api/userforfolw').then(({data}) => {this.userforfolw = data.data})
+                    .then(
+                        (response) => {},
+                    ).catch(error => {
+                });
+            }
             this.LoadCategory()
             this.LoadCity()
             this.LoadPost()

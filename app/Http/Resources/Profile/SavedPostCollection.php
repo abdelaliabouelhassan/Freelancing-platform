@@ -29,6 +29,7 @@ class SavedPostCollection extends JsonResource
                  'user_image'=>$this->post->user->image,
                  'is_done' => $this->post->is_done,
                  'slug'=>$this->user->slug,
+                 'postSlug'=>$this->post->slug,
         ];
     }
 }

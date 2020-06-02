@@ -399,6 +399,15 @@ class ProfileController extends Controller
         $user =   User::where('id',auth('api')->id())->paginate(1);
         return   ShowProfilCollection::collection($user);
     }
+
+    public function fetchuser(){
+        $user_id = auth('api')->id();
+        $user =     User::where('id',$user_id)->paginate(1);
+        if(count($user) > 0){
+            return ShowProfilCollection::collection($user);
+        }
+        return false;
+    }
     /**
      * Update the specified resource in storage.
      *

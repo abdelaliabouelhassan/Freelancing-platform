@@ -126,7 +126,10 @@
                                                 </ul>
                                                 <ul class="bk-links" v-if="!posts.ismy">
                                                     <li><a href="javascript:void(0)" title="" @click="SavePost(posts)" ><i class="la la-bookmark" :class="{savecolor:posts.IsSave}"></i></a></li>
-                                                    <li><a href="javascript:void(0)" title=""><i class="la la-envelope"></i></a></li>
+                                                    <li v-for="us in user"> <router-link  :to="'Chat/' + posts.postSlug + '/' + us.slug" ><span><i class="la la-envelope"></i></span>
+                                                    </router-link></li>
+
+<!--                                                    <li @click="chat(posts)"><a href="javascript:void(0)" title=""><i class="la la-envelope"></i></a></li>-->
                                                 </ul>
                                             </div>
                                             <div class="job_descp">
@@ -263,6 +266,7 @@
                 // Create a new form instance
                 post: {},
                 city: {},
+                user:{},
                 category: {},
                 lastPage: 0,
                 page: 1,
@@ -436,6 +440,22 @@
                     this.$Progress.fail()
                 }
             },
+            chat(post){
+                this.$Progress.start('8000')
+                if(this.$gets.IsLogedIn()){
+                    console.log(post.slug)
+                    this.$router.push("Chat/"+ post.postSlug)
+                    this.$Progress.finish()
+                }else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'You Are Not Logged In !!!',
+                        text: 'Please Logged In first Or Create New Account',
+                        footer: '<a href="/">Logged In here Or Create Account</a>'
+                    })
+                    this.$Progress.fail()
+                }
+            }
         },
         watch: {
             $route: {
@@ -446,6 +466,14 @@
             },
         },
         created() {
+            if(this.$gets.IsLogedIn()){
+            axios.get('api/user').then(({data}) => {this.user = data.data})
+                .then(
+                    (response) => {},
+                ).catch(error => {
+                this.$router.push("/NotFound404")
+            });
+            }
             this.$Progress.start('1000')
             this.LoadJobs()
             this.LoadCategory()

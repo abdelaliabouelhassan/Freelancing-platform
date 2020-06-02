@@ -33,6 +33,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 const routes = [
     { path: '/Jobs', component: require('./components/Job').default },
+    { path: '/Chat/:slug/:userslug', component: require('./components/chat').default },
     { path: '/Projects', component: require('./components/Project').default },
     { path: '/Home', component: require('./components/Home').default },
     { path: '/NotFound404', component: require('./components/404').default },
@@ -42,6 +43,8 @@ const routes = [
         } },
     { path: '/Profile', component: require('./components/Profile').default },
     { path: '/:username', component: require('./components/ShowUserProfile').default },
+
+
 ]
 const router = new VueRouter({
     mode:'history',
@@ -140,6 +143,7 @@ Vue.use(VueGallery)
 Vue.component('VGallery', VueGallery)
 
 /*End Image Gallery */
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

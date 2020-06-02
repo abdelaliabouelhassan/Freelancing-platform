@@ -23,6 +23,7 @@ class CreatePostsTable extends Migration
             $table->integer('user_id')->unsigned()->index();
             $table->integer('price')->nullable();
             $table->string('type',50);
+            $table->string('slug');
             $table->boolean('is_done')->default(false);
             $table->timestamps();
         });
