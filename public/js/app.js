@@ -5368,18 +5368,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       text: '',
       text2: '',
       globalUserId: globalUserId,
-      messages: []
+      messages: [],
+      useridTO: '',
+      typing: false
     };
   },
   methods: {
     sendmessage: function sendmessage() {
-      var _this = this;
+      var _this2 = this;
 
       if (this.text.length != 0) {
         this.text2 = this.text;
@@ -5388,31 +5395,31 @@ __webpack_require__.r(__webpack_exports__);
           message: this.text2,
           slug: this.$route.fullPath.replace('/Chat/', '')
         }).then(function (data) {
-          console.log(data.data);
+          _this2.messages.unshift(data.data);
 
-          _this.messages.push(data.data);
-
-          setTimeout(_this.scrollToEnd, 100);
+          setTimeout(_this2.scrollToEnd, 100);
         });
       }
     },
     fetchMessaged: function fetchMessaged() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get('/api/message/get' + this.$route.fullPath.replace('/Chat', '')).then(function (_ref) {
         var data = _ref.data;
-        console.log(data.data);
-        _this2.messages = data.data;
-        setTimeout(_this2.scrollToEnd, 100);
+        _this3.messages = data.data;
+        setTimeout(_this3.scrollToEnd, 100);
       });
     },
     scrollToEnd: function scrollToEnd() {
       document.getElementById('scroll').scrollTo(0, 999999);
     },
-    onTyping: function onTyping() {
-      Echo["private"]('chat.' + globalUserId).whisper('typing', {
-        user: globalUserId
-      });
+    isTyping: function isTyping() {
+      var channel = Echo["private"]('chat.' + this.useridTO);
+      setTimeout(function () {
+        channel.whisper('typing', {
+          typing: true
+        });
+      }, 100);
     }
   },
   created: function created() {
@@ -5421,14 +5428,22 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    var _this3 = this;
+    var _this4 = this;
+
+    var _this = this;
 
     Echo["private"]('chat.' + globalUserId).listen('MessageSent', function (e) {
-      _this3.messages.push(e.message);
+      _this4.messages.unshift(e.message);
 
-      setTimeout(_this3.scrollToEnd, 100);
+      setTimeout(_this4.scrollToEnd, 100);
     }).listenForWhisper('typing', function (e) {
-      console.log('typing');
+      _this4.user = e.user;
+      _this4.typing = e.typing; // remove is typing indicator after 0.9s
+
+      setTimeout(function () {
+        console.log('typing');
+        _this.typing = false;
+      }, 1000);
     });
   },
   watch: {
@@ -13161,7 +13176,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n*\n* ==========================================\n* FOR DEMO PURPOSES\n* ==========================================\n*\n*/\nbody[data-v-151b8bba] {\n    background-color: #74EBD5;\n    background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);\n\n    min-height: 100vh;\n}\n[data-v-151b8bba]::-webkit-scrollbar {\n    width: 5px;\n}\n[data-v-151b8bba]::-webkit-scrollbar-track {\n    width: 5px;\n    background: #f5f5f5;\n}\n[data-v-151b8bba]::-webkit-scrollbar-thumb {\n    width: 1em;\n    background-color: #ddd;\n    outline: 1px solid slategrey;\n    border-radius: 1rem;\n}\n.text-small[data-v-151b8bba] {\n    font-size: 0.9rem;\n}\n.messages-box[data-v-151b8bba],\n.chat-box[data-v-151b8bba] {\n    height: 510px;\n    overflow-y: scroll;\n    width: 354px;\n}\n.rounded-lg[data-v-151b8bba] {\n    border-radius: 0.5rem;\n}\n#frm[data-v-151b8bba]{\n    width: 354px;\n}\ninput[data-v-151b8bba]::-webkit-input-placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\ninput[data-v-151b8bba]::-moz-placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\ninput[data-v-151b8bba]:-ms-input-placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\ninput[data-v-151b8bba]::-ms-input-placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\ninput[data-v-151b8bba]::placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n*\n* ==========================================\n* FOR DEMO PURPOSES\n* ==========================================\n*\n*/\nbody[data-v-151b8bba] {\n    background-color: #74EBD5;\n    background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);\n\n    min-height: 100vh;\n}\n[data-v-151b8bba]::-webkit-scrollbar {\n    width: 5px;\n}\n[data-v-151b8bba]::-webkit-scrollbar-track {\n    width: 5px;\n    background: #f5f5f5;\n}\n[data-v-151b8bba]::-webkit-scrollbar-thumb {\n    width: 1em;\n    background-color: #ddd;\n    outline: 1px solid slategrey;\n    border-radius: 1rem;\n}\n.text-small[data-v-151b8bba] {\n    font-size: 0.9rem;\n}\n.messages-box[data-v-151b8bba],\n.chat-box[data-v-151b8bba] {\n    height: 510px;\n    overflow-y: scroll;\n    width: 354px;\n}\n.rounded-lg[data-v-151b8bba] {\n    border-radius: 0.5rem;\n}\n#frm[data-v-151b8bba]{\n    width: 354px;\n}\ninput[data-v-151b8bba]::-webkit-input-placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\ninput[data-v-151b8bba]::-moz-placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\ninput[data-v-151b8bba]:-ms-input-placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\ninput[data-v-151b8bba]::-ms-input-placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\ninput[data-v-151b8bba]::placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\n.reverseorder[data-v-151b8bba] {\n    display: flex;\n    flex-direction: column-reverse;\n}\n\n", ""]);
 
 // exports
 
@@ -92827,77 +92842,123 @@ var render = function() {
                 _c(
                   "div",
                   {
-                    staticClass: "px-4 py-5 chat-box bg-white",
+                    staticClass: "px-4 py-5 chat-box bg-white ",
                     attrs: { id: "scroll" }
                   },
-                  _vm._l(_vm.messages, function(message) {
-                    return _c(
-                      "div",
-                      {
-                        staticClass: "media w-50 mb-3",
-                        class: {
-                          "ml-auto": _vm.globalUserId == message.user_id
-                        }
-                      },
-                      [
-                        _vm.globalUserId != message.user_id
-                          ? _c("img", {
-                              staticClass: "rounded-circle",
-                              attrs: {
-                                src:
-                                  "https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg",
-                                alt: "user",
-                                width: "50"
-                              }
-                            })
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "media-body",
-                            class: {
-                              "ml-3": _vm.globalUserId != message.user_id
-                            }
+                  [
+                    _vm._l(_vm.messages.slice().reverse(), function(message) {
+                      return _c(
+                        "div",
+                        {
+                          staticClass: "media w-50 mb-3",
+                          class: {
+                            "ml-auto": _vm.globalUserId == message.user_id
                           },
-                          [
-                            _c(
-                              "div",
-                              {
-                                staticClass: "rounded py-2 px-3 mb-2",
-                                class: {
-                                  "bg-light":
-                                    _vm.globalUserId != message.user_id,
-                                  "bg-primary":
-                                    _vm.globalUserId == message.user_id
-                                }
-                              },
-                              [
-                                _c(
-                                  "p",
+                          attrs: { "track-by": "id" }
+                        },
+                        [
+                          message.user_id != _vm.globalUserId
+                            ? _c("input", {
+                                directives: [
                                   {
-                                    staticClass: "text-small mb-0",
-                                    class: {
-                                      "text-muted":
-                                        _vm.globalUserId != message.user_id,
-                                      "text-white":
-                                        _vm.globalUserId == message.user_id
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: (_vm.useridTO = message.user_id),
+                                    expression: "useridTO = message.user_id "
+                                  }
+                                ],
+                                attrs: { type: "hidden" },
+                                domProps: {
+                                  value: (_vm.useridTO = message.user_id)
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
                                     }
-                                  },
-                                  [_vm._v(_vm._s(message.message))]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("p", { staticClass: "small text-muted" }, [
-                              _vm._v(_vm._s(message.created_at))
-                            ])
-                          ]
+                                    _vm.$set(
+                                      (_vm.useridTO = message),
+                                      "user_id",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.globalUserId != message.user_id
+                            ? _c("img", {
+                                staticClass: "rounded-circle",
+                                attrs: {
+                                  src:
+                                    "https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg",
+                                  alt: "user",
+                                  width: "50"
+                                }
+                              })
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "media-body",
+                              class: {
+                                "ml-3": _vm.globalUserId != message.user_id
+                              }
+                            },
+                            [
+                              (_vm.globalUserId != message.user_id
+                              ? (_vm.touserid = message.user_id)
+                              : "")
+                                ? _c("input", { attrs: { type: "hidden" } })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "rounded py-2 px-3 mb-2",
+                                  class: {
+                                    "bg-light":
+                                      _vm.globalUserId != message.user_id,
+                                    "bg-primary":
+                                      _vm.globalUserId == message.user_id
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "p",
+                                    {
+                                      staticClass: "text-small mb-0",
+                                      class: {
+                                        "text-muted":
+                                          _vm.globalUserId != message.user_id,
+                                        "text-white":
+                                          _vm.globalUserId == message.user_id
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(message.message))]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "small text-muted" }, [
+                                _vm._v(_vm._s(message.created_at))
+                              ])
+                            ]
+                          )
+                        ]
+                      )
+                    }),
+                    _vm._v(" "),
+                    _vm.typing
+                      ? _c(
+                          "span",
+                          { staticClass: "text-small mb-0 text-muted" },
+                          [_vm._v("Typing...")]
                         )
-                      ]
-                    )
-                  }),
-                  0
+                      : _vm._e()
+                  ],
+                  2
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "bg-light", attrs: { id: "frm" } }, [
@@ -92935,7 +92996,7 @@ var render = function() {
                           }
                           return _vm.sendmessage($event)
                         },
-                        keydown: _vm.onTyping,
+                        keydown: _vm.isTyping,
                         input: function($event) {
                           if ($event.target.composing) {
                             return

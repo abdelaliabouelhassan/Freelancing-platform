@@ -32,23 +32,28 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="col-7 px-0" >
-                                <div class="px-4 py-5 chat-box bg-white" id="scroll">
-                                    <div v-for="message in messages"  class="media w-50 mb-3" :class="{'ml-auto':globalUserId == message.user_id}">
-                                        <img v-if="globalUserId != message.user_id" src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                                <div class="px-4 py-5 chat-box bg-white "  id="scroll">
+                                    <div  v-for="message in messages.slice().reverse() " track-by="id"  class="media w-50 mb-3" :class="{'ml-auto':globalUserId == message.user_id}">
+                                        <input type="hidden" v-if="message.user_id != globalUserId" v-model="useridTO = message.user_id ">
+                                        <img v-if="globalUserId != message.user_id"  src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+
                                         <div class="media-body" :class="{'ml-3':globalUserId != message.user_id}">
+                                            <input type="hidden" v-if="globalUserId != message.user_id ? touserid = message.user_id : ''">
                                             <div class="rounded py-2 px-3 mb-2" :class="{'bg-light':globalUserId != message.user_id,'bg-primary':globalUserId == message.user_id}">
                                                 <p class="text-small mb-0" :class="{'text-muted':globalUserId != message.user_id,'text-white':globalUserId == message.user_id}">{{message.message}}</p>
                                             </div>
                                             <p class="small text-muted">{{message.created_at}}</p>
                                         </div>
+
                                     </div>
+                                    <span class="text-small mb-0 text-muted" v-if="typing" >Typing...</span>
 
                                 </div>
 
                                 <!-- Typing area -->
                                 <div  class="bg-light" id="frm">
                                     <div class="input-group">
-                                        <input type="text" @keyup.enter="sendmessage" @keydown="onTyping" v-model="text" placeholder="Type a message" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
+                                        <input type="text" @keyup.enter="sendmessage" @keydown="isTyping" v-model="text" placeholder="Type a message" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
                                         <div class="input-group-append">
                                             <button id="button-addon2" @click="sendmessage" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
                                         </div>
@@ -76,6 +81,9 @@
                 text2 :'',
                 globalUserId : globalUserId,
                 messages:[],
+                useridTO:'',
+                typing: false
+
             }
         },
         methods: {
@@ -89,8 +97,7 @@
                        message:this.text2,
                        slug:this.$route.fullPath.replace('/Chat/','')
                    }).then(data=>{
-                       console.log(data.data);
-                       this.messages.push(data.data)
+                       this.messages.unshift(data.data)
                        setTimeout(this.scrollToEnd,100)
 
                    })
@@ -101,7 +108,6 @@
             },
             fetchMessaged(){
                 axios.get('/api/message/get' + this.$route.fullPath.replace('/Chat','')).then(({data}) => {
-                    console.log(data.data)
                     this.messages = data.data
                     setTimeout(this.scrollToEnd,100)
                 })
@@ -109,11 +115,14 @@
             scrollToEnd(){
                document.getElementById('scroll').scrollTo(0,999999);
             },
-            onTyping(){
-               Echo.private('chat.' + globalUserId).whisper('typing',{
-                   user:globalUserId
-               })
-            }
+            isTyping() {
+                let channel = Echo.private('chat.' + this.useridTO);
+                setTimeout(function() {
+                    channel.whisper('typing', {
+                        typing: true
+                    });
+                }, 100);
+            },
         },
         created() {
             if(this.$gets.IsLogedIn()){
@@ -121,13 +130,21 @@
             }
         },
         mounted() {
+            let _this = this;
             Echo.private('chat.' + globalUserId)
                 .listen('MessageSent', (e) => {
-                    this.messages.push(e.message)
+                    this.messages.unshift(e.message)
                     setTimeout(this.scrollToEnd,100)
-                }).listenForWhisper('typing',(e)=>{
-                console.log('typing')
-            })
+                }) .listenForWhisper('typing', (e) => {
+                this.user = e.user;
+                this.typing = e.typing;
+                // remove is typing indicator after 0.9s
+                setTimeout(function() {
+                    console.log('typing')
+                    _this.typing = false
+                }, 1000);
+            });
+
         },
         watch: {
             $route: {
@@ -136,6 +153,7 @@
                     document.title = to.meta.title || 'lets go | Brikole';
                 }
             },
+
         },
     }
 </script>
@@ -191,6 +209,10 @@
     input::placeholder {
         font-size: 0.9rem;
         color: #999;
+    }
+    .reverseorder {
+        display: flex;
+        flex-direction: column-reverse;
     }
 
 </style>

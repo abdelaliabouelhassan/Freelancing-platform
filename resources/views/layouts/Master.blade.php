@@ -263,11 +263,14 @@
 <script>
     Echo.private('chat.' + {{auth()->id()}})
         .listen('MessageSent', (e) => {
-            console.log(e.message.user.name);
-            Toast.fire({
-                icon: 'success',
-                title: e.message.user.name + ' :  ' + e.message.message,
-            })
+            if(!window.location.href.includes( e.message.url)){
+                Toast.fire({
+                    icon: 'question',
+                    html:  '<span style="color:white"> '+e.message.user.name  + '</span>  <br> <h1> ' + e.message.message + '</h1> <a href=" ' + e.message.url + '">Go To Message !!</a>',
+                    title:'<strong>New Message</strong>',
+                })
+            }
+
         });
 </script>
 </body>

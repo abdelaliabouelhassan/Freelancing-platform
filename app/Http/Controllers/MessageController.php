@@ -9,6 +9,7 @@ use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use function foo\func;
 
 
 class MessageController extends Controller
@@ -22,28 +23,27 @@ class MessageController extends Controller
     public  function  fetchMessage($slug,$userslug){
 
 
-//        $priverchat = Message::with('user')->where(['user_id'=>auth('api')->id(),'to_user_id'=>$to_user_id])
-//            ->orWhere(function ($qury) use($user){
-//                $qury->where(['user_id'=>$user_id,'to_user_id'=>auth()->id()]);
-//            });
+
 
         $post =   Post::where('slug',$slug)->first();
         $user = User::where('slug',$userslug)->first();
         $user_id = $user->id;
         $to_user_id = $post->user_id;
         $currentuser_id = auth('api')->id();
-        if($currentuser_id == $user_id){
-            $to_user_id = $post->user_id;
-        }else{
-            $to_user_id =  $user->id;
-        }
+//        if($currentuser_id == $user_id){
+//            $to_user_id = $post->user_id;
+//        }else{
+//            $to_user_id =  $user->id;
+//        }
 
         if(!$user_id == $currentuser_id || !$to_user_id = $currentuser_id){
             return false;
         }
 
-        return   fetchMessages::collection(Message::orderBy('id','DESC')->where('user_id',auth('api')->id())->where('to_user_id',$to_user_id)->orWhere('user_id',$to_user_id)->orWhere('to_user_id',auth('api')->id())->paginate(5));
+//               fetchMessages::collection(Message::where('user_id',1)->where('to_user_id',9)->orWhere(['user_id'=>9,'to_user_id'=>1])->latest()->orderby('id','DESC')->paginate(50));
 
+      return fetchMessages::collection(Message::whereIn('user_id', [$post->user_id, $user->id])
+            ->whereIn('to_user_id', [$post->user_id, $user->id])->latest()->orderby('id','DESC')->paginate(50));
     }
     public  function sendMessage(Request $request){
        $path =    $request->slug;
