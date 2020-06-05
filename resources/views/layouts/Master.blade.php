@@ -61,10 +61,9 @@
                             <span><i class="fa fa-briefcase"></i></span>
                             Jobs</router-link>
                         </li>
+                        <Message v-if="$gets.IsLogedIn()"></Message>
+
                         <li v-if="$gets.IsLogedIn()">
-                            <router-link to="/Chat" >
-                                <span><i class="fa fa-envelope"></i></span>
-                                Messages</router-link>
                             <div class="notification-box msg">
                                 <div class="nt-title">
                                     <h4>Setting</h4>
@@ -253,24 +252,25 @@
 <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
 
 <script>
-    @if(auth()->check())
-     const globalUserId = {{auth()->id()}}
+        @if(auth()->check())
+    const globalUserId = {{auth()->id()}}
     @endif
-
-
 </script>
 <script type="text/javascript" src="{{asset("js/app.js")}}"></script>
 <script>
+        @if(auth()->check())
+
     Echo.private('chat.' + {{auth()->id()}})
         .listen('MessageSent', (e) => {
             if(!window.location.href.includes( e.message.url)){
                 Toast.fire({
                     icon: 'question',
-                    html:  '<span style="color:white"> '+e.message.user.name  + '</span>  <br> <h1> ' + e.message.message + '</h1> <a href=" ' + e.message.url + '">Go To Message !!</a>',
+                    html:  '<b> '+e.message.user.name  + '</b> <h1> ' + e.message.message + '</h1> <a href=" ' + e.message.url + '">Go To Message !!</a>',
                     title:'<strong>New Message</strong>',
                 })
             }
 
         });
+    @endif
 </script>
 </body>

@@ -82,6 +82,7 @@ Vue.use(VueProgressBar, {
 /*end VueProgressBar*/
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('Message', require('./components/Message.vue').default);
 
 
 /*  vform */

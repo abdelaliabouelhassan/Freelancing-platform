@@ -22,26 +22,14 @@ class MessageController extends Controller
     }
     public  function  fetchMessage($slug,$userslug){
 
-
-
-
         $post =   Post::where('slug',$slug)->first();
         $user = User::where('slug',$userslug)->first();
         $user_id = $user->id;
         $to_user_id = $post->user_id;
         $currentuser_id = auth('api')->id();
-//        if($currentuser_id == $user_id){
-//            $to_user_id = $post->user_id;
-//        }else{
-//            $to_user_id =  $user->id;
-//        }
-
-        if(!$user_id == $currentuser_id || !$to_user_id = $currentuser_id){
+        if($user_id != $currentuser_id && $to_user_id != $currentuser_id){
             return false;
         }
-
-//               fetchMessages::collection(Message::where('user_id',1)->where('to_user_id',9)->orWhere(['user_id'=>9,'to_user_id'=>1])->latest()->orderby('id','DESC')->paginate(50));
-
       return fetchMessages::collection(Message::whereIn('user_id', [$post->user_id, $user->id])
             ->whereIn('to_user_id', [$post->user_id, $user->id])->latest()->orderby('id','DESC')->paginate(50));
     }
@@ -71,6 +59,5 @@ class MessageController extends Controller
         $message =  auth()->user()->message()->create(['message'=>$request->message,'to_user_id'=>$to_user_id,'user_id'=>$user_id,'url'=>$path]);
         broadcast(new MessageSent($message->load('user')))->toOthers();
         return $message;
-        return response(['status'=>'message set Successfully']);
     }
 }

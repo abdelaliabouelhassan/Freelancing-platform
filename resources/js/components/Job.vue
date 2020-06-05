@@ -256,6 +256,11 @@
                 </div>
             </div>
         </main>
+<!--        v-for="messages in userchat.message"-->
+<!--        v-for="userchat in chatusers"-->
+       <!--chat-list end-->
+
+            </div>
     </div>
 </template>
 
@@ -278,6 +283,8 @@
                 searchresult: '',
                 showOp:null,
                 showFilter:false,
+                chatusers:[],
+                showmsg:null,
             }
         },
         beforeRouteLeave (to, from, next) {
@@ -408,6 +415,13 @@
                 }
 
             },
+            showmsgs(msgchat){
+                if(this.showmsg == msgchat){
+                    this.showmsg = null
+                }else{
+                    this.showmsg = msgchat
+                }
+            },
             SavePost(posts){
                 this.$Progress.start('8000')
                 if(this.$gets.IsLogedIn()){
@@ -488,7 +502,7 @@
 
 <style scoped>
     .lnk{
-        color: rgb(247, 247, 247);
+        color: rgb(0, 0, 0);
     }
     .savecolor{
         background-color: #2a71f5;

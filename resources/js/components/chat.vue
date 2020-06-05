@@ -46,14 +46,26 @@
                                         </div>
 
                                     </div>
-                                    <span class="text-small mb-0 text-muted" v-if="typing" >Typing...</span>
+                                    <div    class="media w-50 mb-3"  v-if="typing">
+                                        <img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                                        <div class="media-body ml-3'">
 
+                                                <div class="text-small mb-0 text-muted">
+                                                    <div class="spinner">
+                                                        <div class="bounce1"></div>
+                                                        <div class="bounce2"></div>
+                                                    </div>
+                                                </div>
+
+                                        </div>
+
+                                    </div>
                                 </div>
 
                                 <!-- Typing area -->
                                 <div  class="bg-light" id="frm">
                                     <div class="input-group">
-                                        <input type="text" @keyup.enter="sendmessage" @keydown="isTyping" v-model="text" placeholder="Type a message" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
+                                        <input type="text" @keyup.enter="sendmessage" @keydown="isTyping"  v-model="text" placeholder="Type a message" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
                                         <div class="input-group-append">
                                             <button id="button-addon2" @click="sendmessage" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
                                         </div>
@@ -117,6 +129,7 @@
             },
             isTyping() {
                 let channel = Echo.private('chat.' + this.useridTO);
+                document.getElementById('scroll').scrollTo(0,999999);
                 setTimeout(function() {
                     channel.whisper('typing', {
                         typing: true
@@ -133,16 +146,17 @@
             let _this = this;
             Echo.private('chat.' + globalUserId)
                 .listen('MessageSent', (e) => {
-                    this.messages.unshift(e.message)
+                 if(e.message.url == this.$route.fullPath){
+                     this.messages.unshift(e.message)
+                 }
                     setTimeout(this.scrollToEnd,100)
                 }) .listenForWhisper('typing', (e) => {
                 this.user = e.user;
                 this.typing = e.typing;
                 // remove is typing indicator after 0.9s
                 setTimeout(function() {
-                    console.log('typing')
                     _this.typing = false
-                }, 1000);
+                }, 3000);
             });
 
         },
@@ -213,6 +227,30 @@
     .reverseorder {
         display: flex;
         flex-direction: column-reverse;
+    }
+    .spinner {
+        margin: 0 30px;
+        width: 30px;
+        height: 30px;
+        border:none;
+        text-align: center;
+    }
+    .spinner > div {
+        width: 10px;
+        height: 10px;
+        background-color: #888;
+        -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    }
+
+    .spinner .bounce1 {
+        -webkit-animation-delay: -0.32s;
+        animation-delay: -0.32s;
+    }
+
+    .spinner .bounce2 {
+        -webkit-animation-delay: -0.16s;
+        animation-delay: -0.16s;
     }
 
 </style>

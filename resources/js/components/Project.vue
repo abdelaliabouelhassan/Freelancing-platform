@@ -438,7 +438,7 @@
 
 <style scoped>
     .lnk{
-        color: rgb(247, 247, 247);
+        color: rgb(0, 0, 0);
     }
     .savecolor{
         background-color: #2a71f5;
