@@ -3228,6 +3228,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3235,10 +3241,13 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    go: function go(url) {
+      this.$router.push(url);
+    },
     getmessages: function getmessages() {
       var _this = this;
 
-      axios.get('api/getchatmsg/' + 2).then(function (_ref) {
+      axios.get('api/getchatmsg').then(function (_ref) {
         var data = _ref.data;
         _this.messages = data.data;
       }).then(function (response) {
@@ -3252,8 +3261,10 @@ __webpack_require__.r(__webpack_exports__);
     this.getmessages();
   },
   mounted: function mounted() {
+    var _this2 = this;
+
     Echo["private"]('chat.' + globalUserId).listen('MessageSent', function (e) {
-      console.log(e.message.user_id);
+      _this2.getmessages();
     });
   }
 });
@@ -5386,6 +5397,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -5480,7 +5493,8 @@ __webpack_require__.r(__webpack_exports__);
       globalUserId: globalUserId,
       messages: [],
       useridTO: '',
-      typing: false
+      typing: false,
+      url: ''
     };
   },
   methods: {
@@ -5547,14 +5561,14 @@ __webpack_require__.r(__webpack_exports__);
       }, 3000);
     });
   },
-  watch: {
+  watch: _defineProperty({
     $route: {
       immediate: true,
       handler: function handler(to, from) {
         document.title = to.meta.title || 'lets go | Brikole';
       }
     }
-  }
+  }, "$route", 'fetchMessaged')
 });
 
 /***/ }),
@@ -13277,7 +13291,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n*\n* ==========================================\n* FOR DEMO PURPOSES\n* ==========================================\n*\n*/\nbody[data-v-151b8bba] {\n    background-color: #74EBD5;\n    background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);\n\n    min-height: 100vh;\n}\n[data-v-151b8bba]::-webkit-scrollbar {\n    width: 5px;\n}\n[data-v-151b8bba]::-webkit-scrollbar-track {\n    width: 5px;\n    background: #f5f5f5;\n}\n[data-v-151b8bba]::-webkit-scrollbar-thumb {\n    width: 1em;\n    background-color: #ddd;\n    outline: 1px solid slategrey;\n    border-radius: 1rem;\n}\n.text-small[data-v-151b8bba] {\n    font-size: 0.9rem;\n}\n.messages-box[data-v-151b8bba],\n.chat-box[data-v-151b8bba] {\n    height: 510px;\n    overflow-y: scroll;\n    width: 354px;\n}\n.rounded-lg[data-v-151b8bba] {\n    border-radius: 0.5rem;\n}\n#frm[data-v-151b8bba]{\n    width: 354px;\n}\ninput[data-v-151b8bba]::-webkit-input-placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\ninput[data-v-151b8bba]::-moz-placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\ninput[data-v-151b8bba]:-ms-input-placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\ninput[data-v-151b8bba]::-ms-input-placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\ninput[data-v-151b8bba]::placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\n.reverseorder[data-v-151b8bba] {\n    display: flex;\n    flex-direction: column-reverse;\n}\n.spinner[data-v-151b8bba] {\n    margin: 0 30px;\n    width: 30px;\n    height: 30px;\n    border:none;\n    text-align: center;\n}\n.spinner > div[data-v-151b8bba] {\n    width: 10px;\n    height: 10px;\n    background-color: #888;\n    -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;\n    animation: sk-bouncedelay 1.4s infinite ease-in-out both;\n}\n.spinner .bounce1[data-v-151b8bba] {\n    -webkit-animation-delay: -0.32s;\n    animation-delay: -0.32s;\n}\n.spinner .bounce2[data-v-151b8bba] {\n    -webkit-animation-delay: -0.16s;\n    animation-delay: -0.16s;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n*\n* ==========================================\n* FOR DEMO PURPOSES\n* ==========================================\n*\n*/\nbody[data-v-151b8bba] {\n    background-color: #74EBD5;\n    background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);\n\n    min-height: 100vh;\n}\n[data-v-151b8bba]::-webkit-scrollbar {\n    width: 5px;\n}\n[data-v-151b8bba]::-webkit-scrollbar-track {\n    width: 5px;\n    background: #f5f5f5;\n}\n[data-v-151b8bba]::-webkit-scrollbar-thumb {\n    width: 1em;\n    background-color: #ddd;\n    outline: 1px solid slategrey;\n    border-radius: 1rem;\n}\n.text-small[data-v-151b8bba] {\n    font-size: 0.9rem;\n}\n.messages-box[data-v-151b8bba],\n.chat-box[data-v-151b8bba] {\n    height: 510px;\n    overflow-y: scroll;\n    width: 354px;\n}\n.rounded-lg[data-v-151b8bba] {\n    border-radius: 0.5rem;\n}\n#frm[data-v-151b8bba]{\n    width: 354px;\n}\ninput[data-v-151b8bba]::-webkit-input-placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\ninput[data-v-151b8bba]::-moz-placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\ninput[data-v-151b8bba]:-ms-input-placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\ninput[data-v-151b8bba]::-ms-input-placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\ninput[data-v-151b8bba]::placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\n.reverseorder[data-v-151b8bba] {\n    display: flex;\n    flex-direction: column-reverse;\n}\n.spinner[data-v-151b8bba] {\n    margin: 0 30px;\n    width: 30px;\n    height: 30px;\n    border:none;\n    text-align: center;\n}\n.spinner > div[data-v-151b8bba] {\n    width: 10px;\n    height: 10px;\n    background-color: #888;\n    -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;\n    animation: sk-bouncedelay 1.4s infinite ease-in-out both;\n}\n.spinner .bounce1[data-v-151b8bba] {\n    -webkit-animation-delay: -0.32s;\n    animation-delay: -0.32s;\n}\n.spinner .bounce2[data-v-151b8bba] {\n    -webkit-animation-delay: -0.16s;\n    animation-delay: -0.16s;\n}\n\n", ""]);
 
 // exports
 
@@ -88585,52 +88599,66 @@ var render = function() {
   return _c("li", [
     _vm._m(0),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "notification-box msg" },
-      [
-        _vm._m(1),
-        _vm._v(" "),
-        _vm._l(_vm.messages, function(msg) {
-          return _c(
-            "div",
-            { staticClass: "nott-list" },
-            [
-              _vm._l(msg.message, function(msgs) {
-                return _c("div", { staticClass: "notfication-details" }, [
-                  _c("div", { staticClass: "noty-user-img" }, [
-                    _c("img", {
-                      attrs: {
-                        src: msgs.image
-                          ? msgs.image
-                          : "images/resources/ny-img3.png",
-                        alt: ""
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "notification-info" }, [
-                    _c("h3", [
-                      _c("a", { attrs: { href: "messages.html", title: "" } }, [
-                        _vm._v(_vm._s(msgs.username))
-                      ])
+    _c("div", { staticClass: "notification-box msg" }, [
+      _vm._m(1),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "nott-list" },
+        [
+          _vm._l(_vm.messages.slice().reverse(), function(msg) {
+            return _c(
+              "div",
+              { staticClass: "notfication-details" },
+              [
+                _c(
+                  "router-link",
+                  { key: _vm.$route.fullPath, attrs: { to: msg.url } },
+                  [
+                    _c("div", { staticClass: "noty-user-img" }, [
+                      _c("img", {
+                        attrs: {
+                          src: msg.image
+                            ? msg.image
+                            : "https://via.placeholder.com/70",
+                          alt: ""
+                        }
+                      })
                     ]),
                     _vm._v(" "),
-                    _c("p", [_vm._v(_vm._s(msgs.message))]),
-                    _vm._v(" "),
-                    _c("span", [_vm._v(_vm._s(msgs.created_at))])
-                  ])
+                    _c("div", { staticClass: "notification-info" }, [
+                      _c("h3", [
+                        _c("a", { attrs: { href: msg.url, title: "" } }, [
+                          _vm._v(_vm._s(msg.username))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("b", [_vm._v(_vm._s(msg.message))]),
+                      _vm._v(" "),
+                      _c("span", [_vm._v(_vm._s(msg.created_at))])
+                    ])
+                  ]
+                )
+              ],
+              1
+            )
+          }),
+          _vm._v(" "),
+          _vm.messages.length == 0
+            ? _c("div", { staticClass: "notfication-details" }, [_vm._m(2)])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.messages.length != 0
+            ? _c("div", { staticClass: "view-all-nots" }, [
+                _c("a", { attrs: { href: "messages.html", title: "" } }, [
+                  _vm._v("View All Messsages")
                 ])
-              }),
-              _vm._v(" "),
-              _vm._m(2, true)
-            ],
-            2
-          )
-        })
-      ],
-      2
-    )
+              ])
+            : _vm._e()
+        ],
+        2
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -88666,10 +88694,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "view-all-nots" }, [
-      _c("a", { attrs: { href: "messages.html", title: "" } }, [
-        _vm._v("View All Messsages")
-      ])
+    return _c("div", { staticClass: "notification-info" }, [
+      _c("h3", [_vm._v("There is No Messages")])
     ])
   }
 ]

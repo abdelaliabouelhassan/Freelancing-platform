@@ -265,8 +265,7 @@
             if(!window.location.href.includes( e.message.url)){
                 Toast.fire({
                     icon: 'question',
-                    html:  '<b> '+e.message.user.name  + '</b> <h1> ' + e.message.message + '</h1> <a href=" ' + e.message.url + '">Go To Message !!</a>',
-                    title:'<strong>New Message</strong>',
+                    title:  '<strong>New Message</strong>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> ' + e.message.user.name  + ' </b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1>: ' + e.message.message + ' </h1> ',
                 })
             }
 

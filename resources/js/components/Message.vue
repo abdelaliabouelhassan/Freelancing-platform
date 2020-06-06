@@ -9,20 +9,26 @@
                 <h4>Setting</h4>
                 <a href="#" title="">Clear all</a>
             </div>
-            <div class="nott-list" v-for="msg in messages">
-                <div class="notfication-details" v-for="msgs in msg.message">
+            <div class="nott-list">
+                <div class="notfication-details" v-for="msg in messages.slice().reverse()">
+                    <router-link  :to="msg.url" :key="$route.fullPath" >
                     <div class="noty-user-img">
-                        <img :src="msgs.image ? msgs.image : 'images/resources/ny-img3.png'"  alt="">
+                        <img :src="msg.image ? msg.image : 'https://via.placeholder.com/70'"  alt="">
                     </div>
                     <div class="notification-info">
-                        <h3><a href="messages.html" title="">{{msgs.username}}</a></h3>
-                        <p>{{msgs.message}}</p>
-                        <span>{{msgs.created_at}}</span>
+                        <h3><a :href="msg.url"  title="">{{msg.username}}</a></h3>
+                        <b>{{msg.message}}</b>
+                        <span>{{msg.created_at}}</span>
+                    </div><!--notification-info -->
+                    </router-link>
+                </div>
+                <div  class="notfication-details" v-if="messages.length == 0 ">
+                    <div class="notification-info">
+                        <h3>There is No Messages</h3>
                     </div><!--notification-info -->
                 </div>
 
-
-                <div class="view-all-nots">
+                <div class="view-all-nots" v-if="messages.length != 0 ">
                     <a href="messages.html" title="">View All Messsages</a>
                 </div>
             </div><!--nott-list end-->
@@ -38,8 +44,11 @@
             }
         },
         methods:{
+            go(url){
+                this.$router.push(url)
+            },
             getmessages(){
-                axios.get('api/getchatmsg/'+ 2).then(({data}) => {this.messages = data.data})
+                axios.get('api/getchatmsg').then(({data}) => {this.messages = data.data})
                     .then(
                         (response) => {console.log(response)},
                     ).catch(error => {
@@ -54,7 +63,7 @@
 
                 Echo.private('chat.' + globalUserId)
                     .listen('MessageSent', (e) => {
-                        console.log(e.message.user_id)
+                        this.getmessages()
                     });
 
 

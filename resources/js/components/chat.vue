@@ -94,10 +94,12 @@
                 globalUserId : globalUserId,
                 messages:[],
                 useridTO:'',
-                typing: false
+                typing: false,
+                url:''
 
             }
         },
+
         methods: {
 
            sendmessage() {
@@ -166,7 +168,9 @@
                 handler(to, from) {
                     document.title = to.meta.title || 'lets go | Brikole';
                 }
+
             },
+            '$route': 'fetchMessaged'
 
         },
     }

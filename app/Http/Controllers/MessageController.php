@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\MessageSent;
 use App\Http\Resources\Message\fetchMessages;
 use App\Message;
+use App\Particpent;
 use App\Post;
 use App\User;
 use Illuminate\Http\Request;
@@ -57,6 +58,13 @@ class MessageController extends Controller
          $path = '/Chat/' . $path;
 
         $message =  auth()->user()->message()->create(['message'=>$request->message,'to_user_id'=>$to_user_id,'user_id'=>$user_id,'url'=>$path]);
+       $parcount =  Particpent::whereIn('user_id', [$to_user_id,$user_id])->whereIn('to_user_id', [$to_user_id,$user_id])->get();
+        if(count($parcount) == 0){
+            $particpent = Particpent::create(['user_id'=>$user_id,'to_user_id'=>$to_user_id,'message'=>$request->message,'url'=>$path]);
+        }else{
+            $parcount =  Particpent::whereIn('user_id', [$to_user_id,$user_id])->whereIn('to_user_id', [$to_user_id,$user_id]);
+            $particpent  = $parcount->update(['user_id'=>$user_id,'to_user_id'=>$to_user_id,'message'=>$request->message,'url'=>$path]);
+        }
         broadcast(new MessageSent($message->load('user')))->toOthers();
         return $message;
     }
