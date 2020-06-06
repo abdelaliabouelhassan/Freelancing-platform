@@ -2384,11 +2384,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       // Create a new form instance
       post: {},
+      user: [],
       lastPage: 0,
       page: 1,
       city: {},
@@ -2653,8 +2655,15 @@ __webpack_require__.r(__webpack_exports__);
     this.$Progress.start('1000');
 
     if (this.$gets.IsLogedIn()) {
-      axios.get('api/userforfolw').then(function (_ref4) {
+      axios.get('api/user').then(function (_ref4) {
         var data = _ref4.data;
+        _this8.user = data.data;
+      }).then(function (response) {})["catch"](function (error) {});
+    }
+
+    if (this.$gets.IsLogedIn()) {
+      axios.get('api/userforfolw').then(function (_ref5) {
+        var data = _ref5.data;
         _this8.userforfolw = data.data;
       }).then(function (response) {})["catch"](function (error) {});
     }
@@ -3171,9 +3180,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('api/user').then(function (_ref6) {
         var data = _ref6.data;
         _this8.user = data.data;
-      }).then(function (response) {})["catch"](function (error) {
-        _this8.$router.push("/NotFound404");
-      });
+      }).then(function (response) {})["catch"](function (error) {});
     }
 
     this.$Progress.start('1000');
@@ -3290,6 +3297,8 @@ var _components$data$befo;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
 //
 //
 //
@@ -4654,12 +4663,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       // Create a new form instance
       post: {},
       city: {},
+      user: {},
       category: {},
       lastPage: 0,
       page: 1,
@@ -4844,7 +4855,17 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
+    var _this8 = this;
+
     this.$Progress.start('1000');
+
+    if (this.$gets.IsLogedIn()) {
+      axios.get('api/user').then(function (_ref6) {
+        var data = _ref6.data;
+        _this8.user = data.data;
+      }).then(function (response) {})["catch"](function (error) {});
+    }
+
     this.LoadJobs();
     this.LoadCategory();
     this.LoadCity();
@@ -5140,10 +5161,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       user: [],
+      me: [],
       feed: true,
       info: false,
       proto: false,
@@ -5370,12 +5393,17 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this10 = this;
 
+    this.$Progress.start('1000');
     axios.get('api/showUser' + this.$route.fullPath).then(function (_ref8) {
       var data = _ref8.data;
       _this10.user = data.data;
     }).then(function (response) {})["catch"](function (error) {
       _this10.$router.push("/NotFound404");
     });
+    axios.get('api/user').then(function (_ref9) {
+      var data = _ref9.data;
+      _this10.me = data.data;
+    }).then(function (response) {})["catch"](function (error) {});
     this.loadfeeds();
     this.loadExperience();
     this.loadOverView();
@@ -5383,6 +5411,7 @@ __webpack_require__.r(__webpack_exports__);
     this.loadLoac();
     this.loadImage();
     this.loadUrl();
+    this.$Progress.finish();
   }
 });
 
@@ -5485,6 +5514,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5494,12 +5533,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       messages: [],
       useridTO: '',
       typing: false,
-      url: ''
+      url: '',
+      post: []
     };
   },
   methods: {
-    sendmessage: function sendmessage() {
+    fetchPost: function fetchPost() {
       var _this2 = this;
+
+      axios.post('/api/getPostMessage', {
+        message: this.text2,
+        slug: this.$route.fullPath.replace('/Chat/', '')
+      }).then(function (data) {
+        _this2.post = data.data;
+      });
+    },
+    sendmessage: function sendmessage() {
+      var _this3 = this;
 
       if (this.text.length != 0) {
         this.text2 = this.text;
@@ -5508,19 +5558,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           message: this.text2,
           slug: this.$route.fullPath.replace('/Chat/', '')
         }).then(function (data) {
-          _this2.messages.unshift(data.data);
+          _this3.messages.unshift(data.data);
 
-          setTimeout(_this2.scrollToEnd, 100);
+          setTimeout(_this3.scrollToEnd, 100);
         });
       }
     },
     fetchMessaged: function fetchMessaged() {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.get('/api/message/get' + this.$route.fullPath.replace('/Chat', '')).then(function (_ref) {
         var data = _ref.data;
-        _this3.messages = data.data;
-        setTimeout(_this3.scrollToEnd, 100);
+        _this4.messages = data.data;
+        setTimeout(_this4.scrollToEnd, 100);
       });
     },
     scrollToEnd: function scrollToEnd() {
@@ -5539,22 +5589,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     if (this.$gets.IsLogedIn()) {
       this.fetchMessaged();
+      this.fetchPost();
     }
   },
   mounted: function mounted() {
-    var _this4 = this;
+    var _this5 = this;
 
     var _this = this;
 
     Echo["private"]('chat.' + globalUserId).listen('MessageSent', function (e) {
-      if (e.message.url == _this4.$route.fullPath) {
-        _this4.messages.unshift(e.message);
+      if (e.message.url == _this5.$route.fullPath) {
+        _this5.messages.unshift(e.message);
       }
 
-      setTimeout(_this4.scrollToEnd, 100);
+      setTimeout(_this5.scrollToEnd, 100);
     }).listenForWhisper('typing', function (e) {
-      _this4.user = e.user;
-      _this4.typing = e.typing; // remove is typing indicator after 0.9s
+      _this5.user = e.user;
+      _this5.typing = e.typing; // remove is typing indicator after 0.9s
 
       setTimeout(function () {
         _this.typing = false;
@@ -5568,7 +5619,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         document.title = to.meta.title || 'lets go | Brikole';
       }
     }
-  }, "$route", 'fetchMessaged')
+  }, "$route", ['fetchMessaged', 'fetchPost'])
 });
 
 /***/ }),
@@ -13291,7 +13342,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n*\n* ==========================================\n* FOR DEMO PURPOSES\n* ==========================================\n*\n*/\nbody[data-v-151b8bba] {\n    background-color: #74EBD5;\n    background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);\n\n    min-height: 100vh;\n}\n[data-v-151b8bba]::-webkit-scrollbar {\n    width: 5px;\n}\n[data-v-151b8bba]::-webkit-scrollbar-track {\n    width: 5px;\n    background: #f5f5f5;\n}\n[data-v-151b8bba]::-webkit-scrollbar-thumb {\n    width: 1em;\n    background-color: #ddd;\n    outline: 1px solid slategrey;\n    border-radius: 1rem;\n}\n.text-small[data-v-151b8bba] {\n    font-size: 0.9rem;\n}\n.messages-box[data-v-151b8bba],\n.chat-box[data-v-151b8bba] {\n    height: 510px;\n    overflow-y: scroll;\n    width: 354px;\n}\n.rounded-lg[data-v-151b8bba] {\n    border-radius: 0.5rem;\n}\n#frm[data-v-151b8bba]{\n    width: 354px;\n}\ninput[data-v-151b8bba]::-webkit-input-placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\ninput[data-v-151b8bba]::-moz-placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\ninput[data-v-151b8bba]:-ms-input-placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\ninput[data-v-151b8bba]::-ms-input-placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\ninput[data-v-151b8bba]::placeholder {\n    font-size: 0.9rem;\n    color: #999;\n}\n.reverseorder[data-v-151b8bba] {\n    display: flex;\n    flex-direction: column-reverse;\n}\n.spinner[data-v-151b8bba] {\n    margin: 0 30px;\n    width: 30px;\n    height: 30px;\n    border:none;\n    text-align: center;\n}\n.spinner > div[data-v-151b8bba] {\n    width: 10px;\n    height: 10px;\n    background-color: #888;\n    -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;\n    animation: sk-bouncedelay 1.4s infinite ease-in-out both;\n}\n.spinner .bounce1[data-v-151b8bba] {\n    -webkit-animation-delay: -0.32s;\n    animation-delay: -0.32s;\n}\n.spinner .bounce2[data-v-151b8bba] {\n    -webkit-animation-delay: -0.16s;\n    animation-delay: -0.16s;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    /*\n    *\n    * ==========================================\n    * FOR DEMO PURPOSES\n    * ==========================================\n    *\n    */\nbody[data-v-151b8bba] {\n        background-color: #74EBD5;\n        background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);\n\n        min-height: 100vh;\n}\n[data-v-151b8bba]::-webkit-scrollbar {\n        width: 5px;\n}\n[data-v-151b8bba]::-webkit-scrollbar-track {\n        width: 5px;\n        background: #f5f5f5;\n}\n[data-v-151b8bba]::-webkit-scrollbar-thumb {\n        width: 1em;\n        background-color: #ddd;\n        outline: 1px solid slategrey;\n        border-radius: 1rem;\n}\n.text-small[data-v-151b8bba] {\n        font-size: 0.9rem;\n}\n.messages-box[data-v-151b8bba],\n    .chat-box[data-v-151b8bba] {\n        height: 510px;\n        overflow-y: scroll;\n        width: 354px;\n}\n.rounded-lg[data-v-151b8bba] {\n        border-radius: 0.5rem;\n}\n#frm[data-v-151b8bba]{\n        width: 354px;\n}\ninput[data-v-151b8bba]::-webkit-input-placeholder {\n        font-size: 0.9rem;\n        color: #999;\n}\ninput[data-v-151b8bba]::-moz-placeholder {\n        font-size: 0.9rem;\n        color: #999;\n}\ninput[data-v-151b8bba]:-ms-input-placeholder {\n        font-size: 0.9rem;\n        color: #999;\n}\ninput[data-v-151b8bba]::-ms-input-placeholder {\n        font-size: 0.9rem;\n        color: #999;\n}\ninput[data-v-151b8bba]::placeholder {\n        font-size: 0.9rem;\n        color: #999;\n}\n.reverseorder[data-v-151b8bba] {\n        display: flex;\n        flex-direction: column-reverse;\n}\n.spinner[data-v-151b8bba] {\n        margin: 0 30px;\n        width: 30px;\n        height: 30px;\n        border:none;\n        text-align: center;\n}\n.spinner > div[data-v-151b8bba] {\n        width: 10px;\n        height: 10px;\n        background-color: #888;\n        -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;\n        animation: sk-bouncedelay 1.4s infinite ease-in-out both;\n}\n.spinner .bounce1[data-v-151b8bba] {\n        -webkit-animation-delay: -0.32s;\n        animation-delay: -0.32s;\n}\n.spinner .bounce2[data-v-151b8bba] {\n        -webkit-animation-delay: -0.16s;\n        animation-delay: -0.16s;\n}\n.lnk[data-v-151b8bba]{\n    cursor:pointer;\n}\n", ""]);
 
 // exports
 
@@ -86383,48 +86434,79 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             !posts.ismy
-                              ? _c("ul", { staticClass: "bk-links" }, [
-                                  _c("li", [
-                                    _c(
-                                      "a",
-                                      {
-                                        attrs: {
-                                          href: "javascript:void(0)",
-                                          title: ""
-                                        },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.SavePost(posts)
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "la la-bookmark",
-                                          class: { savecolor: posts.IsSave }
-                                        })
-                                      ]
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _vm._m(8, true),
-                                  _vm._v(" "),
-                                  posts.type == "servic"
-                                    ? _c("li", [
-                                        _c(
-                                          "a",
-                                          {
-                                            staticClass: "bid_now",
-                                            attrs: {
-                                              href: "javascript:void(0)",
-                                              title: ""
-                                            }
+                              ? _c(
+                                  "ul",
+                                  { staticClass: "bk-links" },
+                                  [
+                                    _c("li", [
+                                      _c(
+                                        "a",
+                                        {
+                                          attrs: {
+                                            href: "javascript:void(0)",
+                                            title: ""
                                           },
-                                          [_vm._v("Bid Now")]
-                                        )
-                                      ])
-                                    : _vm._e()
-                                ])
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.SavePost(posts)
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "la la-bookmark",
+                                            class: { savecolor: posts.IsSave }
+                                          })
+                                        ]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.user, function(us) {
+                                      return _c(
+                                        "li",
+                                        [
+                                          _c(
+                                            "router-link",
+                                            {
+                                              attrs: {
+                                                to:
+                                                  "Chat/" +
+                                                  posts.postSlug +
+                                                  "/" +
+                                                  us.slug
+                                              }
+                                            },
+                                            [
+                                              _c("span", [
+                                                _c("i", {
+                                                  staticClass: "la la-envelope"
+                                                })
+                                              ])
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    }),
+                                    _vm._v(" "),
+                                    posts.type == "servic"
+                                      ? _c("li", [
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass: "bid_now",
+                                              attrs: {
+                                                href: "javascript:void(0)",
+                                                title: ""
+                                              }
+                                            },
+                                            [_vm._v("Bid Now")]
+                                          )
+                                        ])
+                                      : _vm._e()
+                                  ],
+                                  2
+                                )
                               : _vm._e()
                           ]),
                           _vm._v(" "),
@@ -86432,7 +86514,7 @@ var render = function() {
                             _c("h3", [_vm._v(_vm._s(posts.title))]),
                             _vm._v(" "),
                             _c("ul", { staticClass: "job-dt" }, [
-                              _vm._m(9, true),
+                              _vm._m(8, true),
                               _vm._v(" "),
                               _c("li", [
                                 _c("span", [_vm._v("DH" + _vm._s(posts.price))])
@@ -86510,13 +86592,13 @@ var render = function() {
                         _vm._v(" "),
                         _c("span", [_vm._v("Signed In Now ")]),
                         _vm._v(" "),
-                        _vm._m(10)
+                        _vm._m(9)
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm._m(11),
+                  _vm._m(10),
                   _vm._v(" "),
-                  _vm._m(12)
+                  _vm._m(11)
                 ])
               ])
             ])
@@ -86841,7 +86923,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "col-lg-12" }, [
                     _c("ul", [
-                      _vm._m(13),
+                      _vm._m(12),
                       _vm._v(" "),
                       _c("li", [
                         _c(
@@ -87199,7 +87281,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "col-lg-12" }, [
                     _c("ul", [
-                      _vm._m(14),
+                      _vm._m(13),
                       _vm._v(" "),
                       _c("li", [
                         _c(
@@ -87416,16 +87498,6 @@ var staticRenderFns = [
     return _c("li", [
       _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
         _vm._v("Hide")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-        _c("i", { staticClass: "la la-envelope" })
       ])
     ])
   },
@@ -89846,56 +89918,88 @@ var render = function() {
                                       ])
                                     ]),
                                     _vm._v(" "),
-                                    _c("ul", { staticClass: "bk-links" }, [
-                                      _c("li", [
-                                        _c(
-                                          "a",
-                                          {
-                                            attrs: {
-                                              href: "javascript:void(0)",
-                                              title: ""
-                                            },
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.SavePost(save)
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass:
-                                                "la la-bookmark savecolor",
-                                              class: { savecolor: save }
-                                            })
-                                          ]
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _vm._m(21, true),
-                                      _vm._v(" "),
-                                      save.type == "servic"
-                                        ? _c("li", [
-                                            _c(
-                                              "a",
-                                              {
-                                                staticClass: "bid_now",
-                                                attrs: {
-                                                  href: "javascript:void(0)",
-                                                  title: ""
-                                                }
+                                    _c(
+                                      "ul",
+                                      { staticClass: "bk-links" },
+                                      [
+                                        _c("li", [
+                                          _c(
+                                            "a",
+                                            {
+                                              attrs: {
+                                                href: "javascript:void(0)",
+                                                title: ""
                                               },
-                                              [_vm._v("Bid Now")]
-                                            )
-                                          ])
-                                        : _vm._e()
-                                    ])
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.SavePost(save)
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "la la-bookmark savecolor",
+                                                class: { savecolor: save }
+                                              })
+                                            ]
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _vm._l(_vm.user, function(us) {
+                                          return _c(
+                                            "li",
+                                            [
+                                              _c(
+                                                "router-link",
+                                                {
+                                                  attrs: {
+                                                    to:
+                                                      "Chat/" +
+                                                      save.postSlug +
+                                                      "/" +
+                                                      us.slug
+                                                  }
+                                                },
+                                                [
+                                                  _c("span", [
+                                                    _c("i", {
+                                                      staticClass:
+                                                        "la la-envelope"
+                                                    })
+                                                  ])
+                                                ]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        }),
+                                        _vm._v(" "),
+                                        save.type == "servic"
+                                          ? _c("li", [
+                                              _c(
+                                                "a",
+                                                {
+                                                  staticClass: "bid_now",
+                                                  attrs: {
+                                                    href: "javascript:void(0)",
+                                                    title: ""
+                                                  }
+                                                },
+                                                [_vm._v("Bid Now")]
+                                              )
+                                            ])
+                                          : _vm._e()
+                                      ],
+                                      2
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "job_descp" }, [
                                     _c("h3", [_vm._v(_vm._s(save.title))]),
                                     _vm._v(" "),
                                     _c("ul", { staticClass: "job-dt" }, [
-                                      _vm._m(22, true),
+                                      _vm._m(21, true),
                                       _vm._v(" "),
                                       _c("li", [
                                         _c("span", [
@@ -90044,7 +90148,7 @@ var render = function() {
                                         }
                                       },
                                       [
-                                        _vm._m(23, true),
+                                        _vm._m(22, true),
                                         _vm._v(" "),
                                         _c(
                                           "ul",
@@ -90055,15 +90159,15 @@ var render = function() {
                                             }
                                           },
                                           [
+                                            _vm._m(23, true),
+                                            _vm._v(" "),
                                             _vm._m(24, true),
                                             _vm._v(" "),
                                             _vm._m(25, true),
                                             _vm._v(" "),
                                             _vm._m(26, true),
                                             _vm._v(" "),
-                                            _vm._m(27, true),
-                                            _vm._v(" "),
-                                            _vm._m(28, true)
+                                            _vm._m(27, true)
                                           ]
                                         )
                                       ]
@@ -90103,14 +90207,50 @@ var render = function() {
                                       ])
                                     ]),
                                     _vm._v(" "),
-                                    _vm._m(29, true)
+                                    _c(
+                                      "ul",
+                                      { staticClass: "bk-links" },
+                                      [
+                                        _vm._l(_vm.user, function(us) {
+                                          return _c(
+                                            "li",
+                                            [
+                                              _c(
+                                                "router-link",
+                                                {
+                                                  attrs: {
+                                                    to:
+                                                      "Chat/" +
+                                                      mybid.postSlug +
+                                                      "/" +
+                                                      us.slug
+                                                  }
+                                                },
+                                                [
+                                                  _c("span", [
+                                                    _c("i", {
+                                                      staticClass:
+                                                        "la la-envelope"
+                                                    })
+                                                  ])
+                                                ]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        }),
+                                        _vm._v(" "),
+                                        _vm._m(28, true)
+                                      ],
+                                      2
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "job_descp" }, [
                                     _c("h3", [_vm._v(_vm._s(mybid.title))]),
                                     _vm._v(" "),
                                     _c("ul", { staticClass: "job-dt" }, [
-                                      _vm._m(30, true),
+                                      _vm._m(29, true),
                                       _vm._v(" "),
                                       _c("li", [
                                         _c("span", [
@@ -90211,7 +90351,7 @@ var render = function() {
                             class: { current: _vm.Payment },
                             attrs: { id: "payment-dd" }
                           },
-                          [_vm._m(31), _vm._v(" "), _vm._m(32)]
+                          [_vm._m(30), _vm._v(" "), _vm._m(31)]
                         )
                       ],
                       2
@@ -90235,7 +90375,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "widget widget-portfolio" }, [
-                        _vm._m(33),
+                        _vm._m(32),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -90791,16 +90931,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("li", [
       _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-        _c("i", { staticClass: "la la-envelope" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
         _vm._v("Full Time")
       ])
     ])
@@ -90872,17 +91002,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "bk-links" }, [
-      _c("li", [
-        _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-          _c("i", { staticClass: "la la-envelope" })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-          _c("i", { staticClass: "fas fa-unlock-alt bg-danger" })
-        ])
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
+        _c("i", { staticClass: "fas fa-unlock-alt bg-danger" })
       ])
     ])
   },
@@ -91579,34 +91701,65 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             !posts.ismy
-                              ? _c("ul", { staticClass: "bk-links" }, [
-                                  _c("li", [
-                                    _c(
-                                      "a",
-                                      {
-                                        attrs: {
-                                          href: "javascript:void(0)",
-                                          title: ""
-                                        },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.SavePost(posts)
+                              ? _c(
+                                  "ul",
+                                  { staticClass: "bk-links" },
+                                  [
+                                    _c("li", [
+                                      _c(
+                                        "a",
+                                        {
+                                          attrs: {
+                                            href: "javascript:void(0)",
+                                            title: ""
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.SavePost(posts)
+                                            }
                                           }
-                                        }
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "la la-bookmark",
-                                          class: { savecolor: posts.IsSave }
-                                        })
-                                      ]
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _vm._m(12, true),
-                                  _vm._v(" "),
-                                  _vm._m(13, true)
-                                ])
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "la la-bookmark",
+                                            class: { savecolor: posts.IsSave }
+                                          })
+                                        ]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.user, function(us) {
+                                      return _c(
+                                        "li",
+                                        [
+                                          _c(
+                                            "router-link",
+                                            {
+                                              attrs: {
+                                                to:
+                                                  "Chat/" +
+                                                  posts.postSlug +
+                                                  "/" +
+                                                  us.slug
+                                              }
+                                            },
+                                            [
+                                              _c("span", [
+                                                _c("i", {
+                                                  staticClass: "la la-envelope"
+                                                })
+                                              ])
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    }),
+                                    _vm._v(" "),
+                                    _vm._m(12, true)
+                                  ],
+                                  2
+                                )
                               : _vm._e()
                           ]),
                           _vm._v(" "),
@@ -91686,13 +91839,13 @@ var render = function() {
                         _vm._v(" "),
                         _c("span", [_vm._v("Signed In Now ")]),
                         _vm._v(" "),
-                        _vm._m(14)
+                        _vm._m(13)
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm._m(15),
+                  _vm._m(14),
                   _vm._v(" "),
-                  _vm._m(16)
+                  _vm._m(15)
                 ])
               ])
             ])
@@ -91807,16 +91960,6 @@ var staticRenderFns = [
     return _c("li", [
       _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
         _vm._v("Hide")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-        _c("i", { staticClass: "la la-envelope" })
       ])
     ])
   },
@@ -92403,9 +92546,36 @@ var render = function() {
                                               ])
                                             : _vm._e(),
                                           _vm._v(" "),
-                                          !users.ismy
-                                            ? _c("li", [_vm._m(11, true)])
-                                            : _vm._e(),
+                                          _vm._l(_vm.me, function(us) {
+                                            return !users.ismy
+                                              ? _c(
+                                                  "li",
+                                                  [
+                                                    _c(
+                                                      "router-link",
+                                                      {
+                                                        attrs: {
+                                                          to:
+                                                            "Chat/" +
+                                                            feedss.postSlug +
+                                                            "/" +
+                                                            us.slug
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("span", [
+                                                          _c("i", {
+                                                            staticClass:
+                                                              "la la-envelope"
+                                                          })
+                                                        ])
+                                                      ]
+                                                    )
+                                                  ],
+                                                  1
+                                                )
+                                              : _vm._e()
+                                          }),
                                           _vm._v(" "),
                                           feedss.type == "servic" && !users.ismy
                                             ? _c("li", [
@@ -92423,7 +92593,8 @@ var render = function() {
                                                 )
                                               ])
                                             : _vm._e()
-                                        ]
+                                        ],
+                                        2
                                       )
                                     })
                                   ],
@@ -92434,7 +92605,7 @@ var render = function() {
                                   _c("h3", [_vm._v(_vm._s(feedss.title))]),
                                   _vm._v(" "),
                                   _c("ul", { staticClass: "job-dt" }, [
-                                    _vm._m(12, true),
+                                    _vm._m(11, true),
                                     _vm._v(" "),
                                     _c("li", [
                                       _c("span", [
@@ -92664,7 +92835,7 @@ var render = function() {
                                               }
                                             }),
                                             _vm._v(" "),
-                                            _vm._m(13, true)
+                                            _vm._m(12, true)
                                           ]
                                         )
                                       ]
@@ -92726,7 +92897,7 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _c("div", { staticClass: "widget widget-portfolio" }, [
-                        _vm._m(14),
+                        _vm._m(13),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -93011,14 +93182,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
-      _c("i", { staticClass: "la la-envelope" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("li", [
       _c("a", { attrs: { href: "javascript:void(0)", title: "" } }, [
         _vm._v("Full Time")
@@ -93074,202 +93237,299 @@ var render = function() {
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "forum-questions-sec" }, [
           _c("div", { staticClass: "row" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-lg-4" }, [
-              _c("div", { staticClass: "col-7 px-0" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "px-4 py-5 chat-box bg-white ",
-                    attrs: { id: "scroll" }
-                  },
-                  [
-                    _vm._l(_vm.messages.slice().reverse(), function(message) {
-                      return _c(
-                        "div",
-                        {
-                          staticClass: "media w-50 mb-3",
-                          class: {
-                            "ml-auto": _vm.globalUserId == message.user_id
-                          },
-                          attrs: { "track-by": "id" }
-                        },
-                        [
-                          message.user_id != _vm.globalUserId
-                            ? _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: (_vm.useridTO = message.user_id),
-                                    expression: "useridTO = message.user_id "
-                                  }
-                                ],
-                                attrs: { type: "hidden" },
-                                domProps: {
-                                  value: (_vm.useridTO = message.user_id)
-                                },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      (_vm.useridTO = message),
-                                      "user_id",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.globalUserId != message.user_id
-                            ? _c("img", {
-                                staticClass: "rounded-circle",
-                                attrs: {
-                                  src:
-                                    "https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg",
-                                  alt: "user",
-                                  width: "50"
-                                }
-                              })
-                            : _vm._e(),
-                          _vm._v(" "),
+            _c("div", { staticClass: "col-lg-8" }, [
+              _c("div", { staticClass: "forum-questions" }, [
+                _c("div", { staticClass: "col-lg-8" }, [
+                  _c(
+                    "div",
+                    { staticClass: "forum-post-view" },
+                    _vm._l(_vm.post.data, function(posts) {
+                      return _c("div", { staticClass: "usr-question" }, [
+                        _c("div", { staticClass: "usr_img" }, [
+                          _c("img", {
+                            staticClass: "lnk",
+                            attrs: {
+                              src: posts.user_image
+                                ? posts.user_image.path
+                                : "http://via.placeholder.com/60x60",
+                              alt: "user image"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.$router.push({
+                                  path: "/" + posts.slug
+                                })
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "usy-name" }, [
                           _c(
-                            "div",
+                            "h3",
                             {
-                              staticClass: "media-body",
-                              class: {
-                                "ml-3": _vm.globalUserId != message.user_id
+                              staticClass: "lnk",
+                              on: {
+                                click: function($event) {
+                                  return _vm.$router.push({
+                                    path: "/" + posts.slug
+                                  })
+                                }
                               }
                             },
-                            [
-                              (_vm.globalUserId != message.user_id
-                              ? (_vm.touserid = message.user_id)
-                              : "")
-                                ? _c("input", { attrs: { type: "hidden" } })
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "rounded py-2 px-3 mb-2",
-                                  class: {
-                                    "bg-light":
-                                      _vm.globalUserId != message.user_id,
-                                    "bg-primary":
-                                      _vm.globalUserId == message.user_id
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "p",
-                                    {
-                                      staticClass: "text-small mb-0",
-                                      class: {
-                                        "text-muted":
-                                          _vm.globalUserId != message.user_id,
-                                        "text-white":
-                                          _vm.globalUserId == message.user_id
-                                      }
-                                    },
-                                    [_vm._v(_vm._s(message.message))]
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("p", { staticClass: "small text-muted" }, [
-                                _vm._v(_vm._s(message.created_at))
-                              ])
-                            ]
+                            [_vm._v(_vm._s(posts.user_name))]
                           )
-                        ]
-                      )
-                    }),
-                    _vm._v(" "),
-                    _vm.typing
-                      ? _c("div", { staticClass: "media w-50 mb-3" }, [
-                          _c("img", {
-                            staticClass: "rounded-circle",
-                            attrs: {
-                              src:
-                                "https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg",
-                              alt: "user",
-                              width: "50"
-                            }
-                          }),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "usr_quest" }, [
+                          _c("br"),
                           _vm._v(" "),
-                          _vm._m(1)
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("h3", [_vm._v(_vm._s(posts.title))]),
+                          _vm._v(" "),
+                          _c("span", [
+                            _c("i", { staticClass: "fa fa-clock-o" }),
+                            _vm._v(_vm._s(posts.created_at))
+                          ]),
+                          _vm._v(" "),
+                          _c("ul", { staticClass: "react-links" }, [
+                            _vm._m(0, true),
+                            _vm._v(" "),
+                            _vm._m(1, true),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c("span", [_vm._v("DH" + _vm._s(posts.price))])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("ul", { staticClass: "quest-tags" }, [
+                            _c("li", [
+                              _c("a", { attrs: { href: "#", title: "" } }, [
+                                _vm._v(_vm._s(posts.category_name))
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [_vm._v(_vm._s(posts.body))])
                         ])
-                      : _vm._e()
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "bg-light", attrs: { id: "frm" } }, [
-                  _c("div", { staticClass: "input-group" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.text,
-                          expression: "text"
-                        }
-                      ],
-                      staticClass:
-                        "form-control rounded-0 border-0 py-4 bg-light",
-                      attrs: {
-                        type: "text",
-                        placeholder: "Type a message",
-                        "aria-describedby": "button-addon2"
-                      },
-                      domProps: { value: _vm.text },
-                      on: {
-                        keyup: function($event) {
-                          if (
-                            !$event.type.indexOf("key") &&
-                            _vm._k(
-                              $event.keyCode,
-                              "enter",
-                              13,
-                              $event.key,
-                              "Enter"
-                            )
-                          ) {
-                            return null
-                          }
-                          return _vm.sendmessage($event)
-                        },
-                        keydown: _vm.isTyping,
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.text = $event.target.value
-                        }
-                      }
+                      ])
                     }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "input-group-append" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-link",
-                          attrs: { id: "button-addon2", type: "submit" },
-                          on: { click: _vm.sendmessage }
+                    0
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-4" },
+              [
+                _c("div", { staticClass: "col-7 px-0" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "px-4 py-5 chat-box bg-white ",
+                      attrs: { id: "scroll" }
+                    },
+                    [
+                      _vm._l(_vm.messages.slice().reverse(), function(message) {
+                        return _c(
+                          "div",
+                          {
+                            staticClass: "media w-50 mb-3",
+                            class: {
+                              "ml-auto": _vm.globalUserId == message.user_id
+                            },
+                            attrs: { "track-by": "id" }
+                          },
+                          [
+                            message.user_id != _vm.globalUserId
+                              ? _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: (_vm.useridTO = message.user_id),
+                                      expression: "useridTO = message.user_id "
+                                    }
+                                  ],
+                                  attrs: { type: "hidden" },
+                                  domProps: {
+                                    value: (_vm.useridTO = message.user_id)
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        (_vm.useridTO = message),
+                                        "user_id",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.globalUserId != message.user_id
+                              ? _c("img", {
+                                  staticClass: "rounded-circle",
+                                  attrs: {
+                                    src:
+                                      "https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg",
+                                    alt: "user",
+                                    width: "50"
+                                  }
+                                })
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "media-body",
+                                class: {
+                                  "ml-3": _vm.globalUserId != message.user_id
+                                }
+                              },
+                              [
+                                (_vm.globalUserId != message.user_id
+                                ? (_vm.touserid = message.user_id)
+                                : "")
+                                  ? _c("input", { attrs: { type: "hidden" } })
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "rounded py-2 px-3 mb-2",
+                                    class: {
+                                      "bg-light":
+                                        _vm.globalUserId != message.user_id,
+                                      "bg-primary":
+                                        _vm.globalUserId == message.user_id
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "p",
+                                      {
+                                        staticClass: "text-small mb-0",
+                                        class: {
+                                          "text-muted":
+                                            _vm.globalUserId != message.user_id,
+                                          "text-white":
+                                            _vm.globalUserId == message.user_id
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(message.message))]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("p", { staticClass: "small text-muted" }, [
+                                  _vm._v(_vm._s(message.created_at))
+                                ])
+                              ]
+                            )
+                          ]
+                        )
+                      }),
+                      _vm._v(" "),
+                      _vm.typing
+                        ? _c("div", { staticClass: "media w-50 mb-3" }, [
+                            _c("img", {
+                              staticClass: "rounded-circle",
+                              attrs: {
+                                src:
+                                  "https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg",
+                                alt: "user",
+                                width: "50"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _vm._m(2)
+                          ])
+                        : _vm._e()
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "bg-light", attrs: { id: "frm" } }, [
+                    _c("div", { staticClass: "input-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.text,
+                            expression: "text"
+                          }
+                        ],
+                        staticClass:
+                          "form-control rounded-0 border-0 py-4 bg-light",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Type a message",
+                          "aria-describedby": "button-addon2"
                         },
-                        [_c("i", { staticClass: "fa fa-paper-plane" })]
-                      )
+                        domProps: { value: _vm.text },
+                        on: {
+                          keyup: function($event) {
+                            if (
+                              !$event.type.indexOf("key") &&
+                              _vm._k(
+                                $event.keyCode,
+                                "enter",
+                                13,
+                                $event.key,
+                                "Enter"
+                              )
+                            ) {
+                              return null
+                            }
+                            return _vm.sendmessage($event)
+                          },
+                          keydown: _vm.isTyping,
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.text = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-append" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-link",
+                            attrs: { id: "button-addon2", type: "submit" },
+                            on: { click: _vm.sendmessage }
+                          },
+                          [_c("i", { staticClass: "fa fa-paper-plane" })]
+                        )
+                      ])
                     ])
                   ])
-                ])
-              ]),
-              _vm._v(" "),
-              _vm._m(2)
-            ])
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.post.data, function(posts) {
+                  return _c("div", { staticClass: "widget widget-adver" }, [
+                    _c("img", {
+                      attrs: {
+                        src: posts.post_image
+                          ? posts.post_image
+                          : "http://via.placeholder.com/370x270"
+                      }
+                    })
+                  ])
+                })
+              ],
+              2
+            )
           ])
         ])
       ])
@@ -93281,64 +93541,26 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-8" }, [
-      _c("div", { staticClass: "forum-questions" }, [
-        _c("div", { staticClass: "usr-question" }, [
-          _c("div", { staticClass: "usr_img" }, [
-            _c("img", {
-              attrs: { src: "http://via.placeholder.com/50x50", alt: "" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "usr_quest" }, [
-            _c("h3", [
-              _vm._v("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
-            ]),
-            _vm._v(" "),
-            _c("ul", { staticClass: "react-links" }, [
-              _c("li", [
-                _c("a", { attrs: { href: "#", title: "" } }, [
-                  _c("i", { staticClass: "fa fa-heart" }),
-                  _vm._v(" Vote 150")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#", title: "" } }, [
-                  _c("i", { staticClass: "fa fa-comment" }),
-                  _vm._v(" Comments  15")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#", title: "" } }, [
-                  _c("i", { staticClass: "fa fa-eye" }),
-                  _vm._v(" Views  50")
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("ul", { staticClass: "quest-tags" }, [
-              _c("li", [
-                _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Work")])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Php")])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#", title: "" } }, [_vm._v("Design")])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("span", { staticClass: "quest-posted-time" }, [
-            _c("i", { staticClass: "fa fa-clock-o" }),
-            _vm._v("3 min ago")
-          ])
-        ])
+    return _c("li", [
+      _c("a", { attrs: { href: "#", title: "" } }, [
+        _c("i", { staticClass: "fa fa-share-alt" }),
+        _vm._v(" Share")
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c(
+        "a",
+        {
+          staticClass: "bid_now",
+          attrs: { href: "javascript:void(0)", title: "" }
+        },
+        [_vm._v("Bid Now")]
+      )
     ])
   },
   function() {
@@ -93353,16 +93575,6 @@ var staticRenderFns = [
           _c("div", { staticClass: "bounce2" })
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "widget widget-adver" }, [
-      _c("img", {
-        attrs: { src: "http://via.placeholder.com/370x270", alt: "" }
-      })
     ])
   }
 ]

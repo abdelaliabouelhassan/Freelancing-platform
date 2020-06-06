@@ -164,7 +164,8 @@
                                                 </ul>
                                                 <ul class="bk-links" v-for="users in user">
                                                     <li  v-if="!users.ismy"><a href="javascript:void(0)" title="" @click="SavePost(feedss)" ><i class="la la-bookmark" :class="{savecolor:feedss.IsSave}"></i></a></li>
-                                                    <li v-if="!users.ismy"><a href="javascript:void(0)" title=""><i class="la la-envelope"></i></a></li>
+                                                    <li v-for="us in me "   v-if="!users.ismy"> <router-link  :to="'Chat/' + feedss.postSlug + '/' + us.slug" ><span><i class="la la-envelope"></i></span>
+                                                    </router-link></li>
                                                     <li v-if="feedss.type == 'servic' && !users.ismy"  ><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
                                                 </ul>
                                             </div>
@@ -280,6 +281,7 @@
 
             return {
                 user:[],
+                me:[],
                 feed:true,
                 info:false,
                 proto:false,
@@ -468,11 +470,18 @@
             },
         },
       created() {
+          this.$Progress.start('1000')
           axios.get('api/showUser' + this.$route.fullPath).then(({data}) => {this.user = data.data})
               .then(
               (response) => {},
               ).catch(error => {
               this.$router.push("/NotFound404")
+          });
+          axios.get('api/user').then(({data}) => {this.me = data.data})
+              .then(
+                  (response) => {},
+              ).catch(error => {
+
           });
           this.loadfeeds()
           this.loadExperience()
@@ -481,6 +490,7 @@
           this.loadLoac()
           this.loadImage()
           this.loadUrl()
+          this.$Progress.finish()
 
       }
     }

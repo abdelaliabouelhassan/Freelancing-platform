@@ -137,7 +137,8 @@
                                                </ul>
                                                <ul class="bk-links" v-if="!posts.ismy">
                                                    <li><a href="javascript:void(0)" title="" @click="SavePost(posts)" ><i class="la la-bookmark" :class="{savecolor:posts.IsSave}"></i></a></li>
-                                                   <li><a href="javascript:void(0)" title=""><i class="la la-envelope"></i></a></li>
+                                                   <li v-for="us in user"> <router-link  :to="'Chat/' + posts.postSlug + '/' + us.slug" ><span><i class="la la-envelope"></i></span>
+                                                   </router-link></li>
                                                    <li v-if="posts.type == 'servic'"><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
                                                </ul>
                                            </div>
@@ -421,6 +422,7 @@
             return {
                 // Create a new form instance
                 post:{},
+                user:[],
                 lastPage:0,
                 page: 1,
                 city: {},
@@ -682,6 +684,14 @@
         },
         created(){
             this.$Progress.start('1000')
+            if(this.$gets.IsLogedIn()){
+                axios.get('api/user').then(({data}) => {this.user = data.data})
+                    .then(
+                        (response) => {},
+                    ).catch(error => {
+
+                });
+            }
             if(this.$gets.IsLogedIn()){
                 axios.get('api/userforfolw').then(({data}) => {this.userforfolw = data.data})
                     .then(

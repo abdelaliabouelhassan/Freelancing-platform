@@ -268,7 +268,8 @@
                                                 </ul>
                                                 <ul class="bk-links">
                                                     <li><a href="javascript:void(0)" title="" @click="SavePost(save)" ><i class="la la-bookmark savecolor" :class="{savecolor:save}"></i></a></li>
-                                                    <li><a href="javascript:void(0)" title=""><i class="la la-envelope"></i></a></li>
+                                                    <li v-for="us in user"> <router-link  :to="'Chat/' + save.postSlug + '/' + us.slug" ><span><i class="la la-envelope"></i></span>
+                                                    </router-link></li>
                                                     <li v-if="save.type == 'servic'"><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
                                                 </ul>
                                             </div>
@@ -319,7 +320,8 @@
                                                     <li><img src="images/icon9.png" alt=""><span> {{mybid.city}}</span></li>
                                                 </ul>
                                                 <ul class="bk-links">
-                                                    <li><a href="javascript:void(0)" title=""><i class="la la-envelope"></i></a></li>
+                                                    <li v-for="us in user"> <router-link  :to="'Chat/' + mybid.postSlug + '/' + us.slug" ><span><i class="la la-envelope"></i></span>
+                                                    </router-link></li>
                                                     <li><a href="javascript:void(0)" title=""><i class="fas fa-unlock-alt bg-danger"></i></i></a></li>
                                                 </ul>
                                             </div>

@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Message\fetchMessages;
 use App\Http\Resources\Message\GetMsgChat;
 use App\Http\Resources\Message\msgUser;
+use App\Http\Resources\Post\PostCollection;
 use App\Message;
 use App\Particpent;
 use App\Post;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ChatController extends Controller
 {
@@ -32,6 +34,11 @@ class ChatController extends Controller
 
         }
 
+        public  function  getPostMessage(Request $request){
+                $path =  $request->slug;
+            $slug =    Str::beforeLast($path, '/');
+          return  PostCollection::collection( Post::where('slug',$slug)->paginate(1));
+        }
 
 
     /**

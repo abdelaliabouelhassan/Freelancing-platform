@@ -8,25 +8,35 @@
                         <div class="col-lg-8">
                             <div class="forum-questions">
                              <!--usr-question end-->
-                                <div class="usr-question">
-                                    <div class="usr_img">
-                                        <img src="http://via.placeholder.com/50x50" alt="">
-                                    </div>
-                                    <div class="usr_quest">
-                                        <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
-                                        <ul class="react-links">
-                                            <li><a href="#" title=""><i class="fa fa-heart"></i> Vote 150</a></li>
-                                            <li><a href="#" title=""><i class="fa fa-comment"></i> Comments  15</a></li>
-                                            <li><a href="#" title=""><i class="fa fa-eye"></i> Views  50</a></li>
-                                        </ul>
-                                        <ul class="quest-tags">
-                                            <li><a href="#" title="">Work</a></li>
-                                            <li><a href="#" title="">Php</a></li>
-                                            <li><a href="#" title="">Design</a></li>
-                                        </ul>
-                                    </div><!--usr_quest end-->
-                                    <span class="quest-posted-time"><i class="fa fa-clock-o"></i>3 min ago</span>
-                                </div><!--usr-question end-->
+                                <div class="col-lg-8">
+                                    <div class="forum-post-view">
+                                        <div class="usr-question" v-for="posts in post.data">
+                                            <div class="usr_img">
+                                                <img  class="lnk"  @click="$router.push({ path: '/'   + posts.slug})" :src="posts.user_image ? posts.user_image.path : 'http://via.placeholder.com/60x60'"  alt="user image">
+                                            </div>
+                                            <div class="usy-name">
+                                                <h3  class="lnk" @click="$router.push({ path: '/'   + posts.slug})">{{posts.user_name}}</h3>
+                                            </div>
+                                            <div class="usr_quest">
+                                                <br>
+                                                <br>
+                                                <h3>{{posts.title}}</h3>
+                                                <span><i class="fa fa-clock-o"></i>{{posts.created_at}}</span>
+                                                <ul class="react-links">
+                                                    <li><a href="#" title=""><i class="fa fa-share-alt"></i> Share</a></li>
+                                                    <li><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
+                                                    <li><span>DH{{posts.price}}</span></li>
+                                                </ul>
+                                                <ul class="quest-tags">
+                                                    <li><a href="#" title="">{{posts.category_name}}</a></li>
+                                                </ul>
+                                                <p>{{posts.body}}</p>
+                                            </div><!--usr_quest end-->
+                                        </div><!--usr-question end-->
+                                    </div><!--forum-post-view end-->
+
+
+                                </div>
                             </div><!--forum-questions end-->
 
                         </div>
@@ -73,8 +83,8 @@
                                 </div>
 
                             </div>
-                            <div class="widget widget-adver">
-                                <img src="http://via.placeholder.com/370x270" alt="">
+                            <div class="widget widget-adver" v-for="posts in post.data">
+                                <img  :src="posts.post_image ? posts.post_image : 'http://via.placeholder.com/370x270'">
                             </div><!--widget-adver end-->
                         </div>
                     </div>
@@ -95,13 +105,21 @@
                 messages:[],
                 useridTO:'',
                 typing: false,
-                url:''
+                url:'',
+                post:[],
 
             }
         },
 
         methods: {
-
+            fetchPost(){
+                axios.post('/api/getPostMessage',{
+                    message:this.text2,
+                    slug:this.$route.fullPath.replace('/Chat/','')
+                }).then(data=>{
+                    this.post = data.data
+                })
+            },
            sendmessage() {
                if(this.text.length != 0){
                    this.text2 = this.text
@@ -142,6 +160,7 @@
         created() {
             if(this.$gets.IsLogedIn()){
             this.fetchMessaged()
+                this.fetchPost()
             }
         },
         mounted() {
@@ -170,7 +189,8 @@
                 }
 
             },
-            '$route': 'fetchMessaged'
+            '$route': ['fetchMessaged','fetchPost'],
+
 
         },
     }
@@ -256,5 +276,8 @@
         -webkit-animation-delay: -0.16s;
         animation-delay: -0.16s;
     }
+.lnk{
+    cursor:pointer;
 
+}
 </style>

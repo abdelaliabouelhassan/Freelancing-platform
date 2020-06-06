@@ -485,7 +485,7 @@
                 .then(
                     (response) => {},
                 ).catch(error => {
-                this.$router.push("/NotFound404")
+
             });
             }
             this.$Progress.start('1000')

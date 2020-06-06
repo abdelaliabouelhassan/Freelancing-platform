@@ -95,5 +95,6 @@ Route::get('/user','API\ProfileController@fetchuser');
 Route::get('/message/get/{slug}/{userslug}','MessageController@fetchMessage');
 Route::get('getuser/{slug}/{userslug}','API\ChatController@getusertoAndFrom');
 Route::get('getchatmsg','API\ChatController@getchatmsg');
+Route::post('getPostMessage','API\ChatController@getPostMessage');
 
 /*end chat*/
