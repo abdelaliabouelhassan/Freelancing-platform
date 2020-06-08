@@ -96,5 +96,9 @@ Route::get('/message/get/{slug}/{userslug}','MessageController@fetchMessage');
 Route::get('getuser/{slug}/{userslug}','API\ChatController@getusertoAndFrom');
 Route::get('getchatmsg','API\ChatController@getchatmsg');
 Route::post('getPostMessage','API\ChatController@getPostMessage');
-
 /*end chat*/
+
+
+/*BidSystem*/
+Route::get('BidNow/{user}/{slug}','API\BidsController@BidNow');
+/*End BidSystem*/

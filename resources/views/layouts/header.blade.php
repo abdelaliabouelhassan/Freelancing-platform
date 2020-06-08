@@ -37,9 +37,9 @@
                                 <div class="cmp-info">
                                     <div class="cm-logo">
                                         <img src="{{asset('images/logotest.png')}}" alt="">
-                                        <p>Workwise, is a global freelancing platform and social networking where
-                                            businesses and independent professionals connect and collaborate
-                                            remotely</p>
+                                            <p>Brikol , is Moroccan platform for services and jobs and freelance and social networking
+                                                if you have any skills or any serv you can do so are in right place welcome to brikol
+                                                we have more then 1M jobs and serves</p>
                                     </div>
                                     <!--cm-logo end-->
                                     <img src="{{asset('images/sign.png')}}" alt="">

@@ -1,9 +1,9 @@
 //=================Validation Sign In Form=================
 $('#btn_signin').click(function(){
-    var pwd = $('#signin_password').val(); 
-    var email = $('#signin_email').val();       
+    var pwd = $('#signin_password').val();
+    var email = $('#signin_email').val();
     if(email == "" || pwd == ""){
-        if(email == "" || !isValidEmailAddress(email)){            
+        if(email == "" || !isValidEmailAddress(email)){
             $('#signin_email').addClass("error_input");
             if($('#signin_email').next().prop("tagName").toLowerCase()!="label")
                 $('<label class="error">email false</label>').insertAfter('#signin_email');
@@ -11,7 +11,7 @@ $('#btn_signin').click(function(){
         if(pwd == ""){
             $('#signin_password').addClass("error_input");
             if($('#signin_password').next().prop("tagName").toLowerCase()!="label")
-                $('<label class="error">password false</label>').insertAfter('#signin_password');            
+                $('<label class="error">password false</label>').insertAfter('#signin_password');
         }
         return false;
     }
@@ -19,16 +19,16 @@ $('#btn_signin').click(function(){
 });
 $('#signin_email').keyup(function(){
     email_input($('#signin_email'));
-}); 
+});
 $('#signin_password').keyup(function(){
-    var pwd = $('#signin_password').val(); 
+    var pwd = $('#signin_password').val();
     if(pwd == ""){
         $('#signin_password').addClass("error_input");
         $('#signin_password').removeClass("valid_input");
         if($('#signin_password').next().prop("tagName").toLowerCase()!="label")
                 $('<label class="error">password false</label>').insertAfter('#signin_password');
     }
-    else{        
+    else{
         $('#signin_password').addClass("valid_input");
         $('#signin_password').removeClass("error_input");
         if($('#signin_password').next().prop("tagName").toLowerCase()=="label")
@@ -54,15 +54,7 @@ $('#btn_signup').click(function(){
             if($('#email').next().prop("tagName").toLowerCase()!="label")
                 $('<label class="error">Requered field</label>').insertAfter('#email');
         }
-        if(pwd1 == "" || !isValidPassword(pwd1)){
-            $('#pwd1').addClass("error_input");            
-            if(!isValidPassword(pwd1)){
-                $("#pwd_conf").addClass("pwd_pad");
-                if($('#pwd1').next().prop("tagName").toLowerCase()!="label")                    
-                    $('<label class="error pwd-pad">Password muste have lower and uper case number and special caracter</label>').insertAfter('#pwd1');
-            }
 
-        }
         if(pwd2 == "" || pwd1 != pwd2){
             $('#pwd2').addClass("error_input");
             if($('#pwd2').next().prop("tagName").toLowerCase()!="label")
@@ -80,20 +72,20 @@ $('#btn_signup').click(function(){
     }
     return true;
 });
-$("#c2").change(function(){    
+$("#c2").change(function(){
     if($("#c2").is(':checked')){
         $("#checkcolor").css("color","#000");
     }
 });
 $('#name').keyup(function(){
-    var name = $('#name').val(); 
+    var name = $('#name').val();
     if(name == ""){
         $('#name').addClass("error_input");
         $('#name').removeClass("valid_input");
         if($('#name').next().prop("tagName").toLowerCase()!="label")
                 $('<label class="error">Requered field</label>').insertAfter('#name');
     }
-    else{        
+    else{
         $('#name').addClass("valid_input");
         $('#name').removeClass("error_input");
         if($('#name').next().prop("tagName").toLowerCase()=="label")
@@ -104,15 +96,11 @@ $('#email').keyup(function(){
     email_input($('#email'));
 });
 $('#pwd1').keyup(function(){
-    var pwd1 = $('#pwd1').val(); 
+    var pwd1 = $('#pwd1').val();
     if(!isValidPassword(pwd1)){
-        $('#pwd1').addClass("error_input");
-        $('#pwd1').removeClass("valid_input");
-        $("#pwd_conf").addClass("pwd_pad");
-        if($('#pwd1').next().prop("tagName").toLowerCase()!="label")                    
-            $('<label class="error pwd-pad">Password muste have lower and uper case number and special caracter</label>').insertAfter('#pwd1');
+
     }
-    else{        
+    else{
         $('#pwd1').addClass("valid_input");
         $('#pwd1').removeClass("error_input");
         $('#pwd_conf').removeClass("pwd_pad");
@@ -121,23 +109,23 @@ $('#pwd1').keyup(function(){
     }
 });
 $('#pwd2').keyup(function(){
-    var pwd2 = $('#pwd2').val(); 
-    var pwd1 = $('#pwd1').val(); 
+    var pwd2 = $('#pwd2').val();
+    var pwd1 = $('#pwd1').val();
     if(pwd2 == "" || pwd1 != pwd2){
         $('#pwd2').addClass("error_input");
         $('#pwd2').removeClass("valid_input");
         if(pwd2 != pwd1){
             if($('#pwd2').next().prop("tagName").toLowerCase()=="label")
                 $('#pwd2').next().remove();
-            $('<label class="error">Password not mutch</label>').insertAfter('#pwd2');        
+            $('<label class="error">Password not mutch</label>').insertAfter('#pwd2');
         }
         else{
             f($('#pwd2').next().prop("tagName").toLowerCase()=="label")
                 $('#pwd2').next().remove();
-            $('<label class="error">Requered field</label>').insertAfter('#pwd2');  
+            $('<label class="error">Requered field</label>').insertAfter('#pwd2');
         }
     }
-    else{        
+    else{
         $('#pwd2').addClass("valid_input");
         $('#pwd2').removeClass("error_input");
         if($('#pwd2').next().prop("tagName").toLowerCase()=="label")

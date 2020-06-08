@@ -30,7 +30,7 @@ class ChatController extends Controller
 
     public  function  getchatmsg(){
 
-        return GetMsgChat::collection(Particpent::where('user_id',auth('api')->id())->orWhere('to_user_id',auth('api')->id())->paginate(7));
+        return GetMsgChat::collection(Particpent::where('user_id',auth('api')->id())->orWhere('to_user_id',auth('api')->id())->latest('updated_at')->paginate(7));
 
         }
 

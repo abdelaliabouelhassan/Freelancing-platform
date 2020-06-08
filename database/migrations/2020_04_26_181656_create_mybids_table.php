@@ -17,6 +17,8 @@ class CreateMybidsTable extends Migration
             $table->id();
             $table->integer('user_id')->index()->unsigned();
             $table->integer('post_id')->index()->unsigned();
+            $table->integer('with')->index()->unsigned();
+            $table->boolean('isDone')->default(false);
             $table->timestamps();
         });
     }

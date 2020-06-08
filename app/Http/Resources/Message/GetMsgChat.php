@@ -22,7 +22,7 @@ class GetMsgChat extends JsonResource
             'message'=>$this->message,
             'username'=>$this->user_id == auth('api')->id() ? Particpent::getusername($this->to_user_id)   :  Particpent::getusername($this->user_id)  ,
             'image'=>$this->user_id == auth('api')->id() ?Particpent::getimage($this->to_user_id)   :  Particpent::getimage($this->user_id)  ,
-            'created_at'=>Carbon::createFromFormat('Y-m-d H:i:s',$this->created_at)->diffForHumans(),
+            'created_at'=> $this->updated_at ?    Carbon::createFromFormat('Y-m-d H:i:s',$this->updated_at)->diffForHumans() : Carbon::createFromFormat('Y-m-d H:i:s',$this->created_at)->diffForHumans(),
             'url'=>$this->url
 
 

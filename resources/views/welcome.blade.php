@@ -15,10 +15,10 @@
     @endif"><a href="{{ route('register') }}" title="register">Sign up</a></li>
 </ul>
 
-<div class="sign_in_sec 
+<div class="sign_in_sec
     @if(Request::is('login') || Request::is('/') && !session()->has('good'))
         current
-    @endif" id="tab-1">    
+    @endif" id="tab-1">
     <h3>Sign In</h3>
     <form method="POST" action="{{ route('login') }}">
         @csrf
@@ -31,7 +31,7 @@
                     placeholder="{{ __('E-Mail Address') }}"
                     value="{{ old('email') }}" required autocomplete="email"
                     autofocus>
-                    <i class="la la-user"></i>                    
+                    <i class="la la-user"></i>
                     @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }} </strong>
@@ -46,7 +46,7 @@
                     @error('email') style="border: 1px solid red" @enderror
                     @endif name="password" placeholder="{{ __('Password') }}"
                     required autocomplete="current-password">
-                    <i class="la la-lock"></i>                    
+                    <i class="la la-lock"></i>
 
                 </div>
             </div>
@@ -92,7 +92,7 @@
     current
         @endif
     " id="tab-2">
-    <h3>Sign Up</h3>    
+    <h3>Sign Up</h3>
     <div class="dff-tab current" id="tab-3">
         <form method="POST" action="{{ route('register') }}">
             @csrf
@@ -143,7 +143,7 @@
                             <label for="c2" id="checkcolor">
                                 <span></span>
                                 {{__('Yes, I understand and agree
-                                to the workwise Terms & Conditions.')}}
+                                to the Brikol Terms & Conditions.')}}
                             </label>
                         </div>
                         <!--fgt-sec end-->
@@ -155,12 +155,12 @@
                 </div>
             </div>
         </form>
-        <div class="login-resources">            
+        <div class="login-resources">
             <ul>
                 <li><a href="{{ url('auth/facebook') }}" title="" class="fb"><i class="fa fa-facebook"></i>Sign Up with
-                        Facebook</a></li>                
+                        Facebook</a></li>
             </ul>
-        </div>  
+        </div>
     </div>
     <!--dff-tab end-->
 </div>

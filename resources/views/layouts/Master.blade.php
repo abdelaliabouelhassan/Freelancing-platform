@@ -31,7 +31,7 @@
                     <a href="javascript:void(0)" title=""><i class="fa fa-bars"></i></a>
                 </div>
                 <div class="logo">
-                    <a href=""  title=""><img src="images/logotesticon.png" style="height: 38px; width: 60px;" alt=""></a>
+                    <a href=""  title=""><img src="{{asset('images/logotesticon.png')}}" style="height: 38px; width: 60px;" alt=""></a>
                 </div><!--logo end-->
                 <div class="search-bar">
                     <form>
@@ -232,7 +232,7 @@
     </ul>
     <div class="cp-sec">
         <img src="{{asset('images/logotest.png')}}" alt="">
-        <p><img src="images/cp.png" alt="">Copyright &copy; 2020 Bricole</p>
+        <p><img src="{{asset('images/cp.png')}}" alt="">Copyright &copy; 2020 Bricole</p>
     </div>
 </div>
 <script>
@@ -246,9 +246,9 @@
 <script type="text/javascript" src="{{asset('js/popper.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
 {{--<script type="text/javascript" src="{{asset('js/jquery.range-min.js')}}"></script>--}}
-<script type="text/javascript" src="js/jquery.mCustomScrollbar.js"></script>
+<script type="text/javascript" src="{{asset('js/jquery.mCustomScrollbar.js')}}"></script>
 <script type="text/javascript" src="{{asset('lib/slick/slick.min.js')}}"></script>
-<script type="text/javascript" src="js/scrollbar.js"></script>
+<script type="text/javascript" src="{{asset('js/scrollbar.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
 
 <script>
@@ -271,5 +271,17 @@
 
         });
     @endif
+    Swal.fire({
+        title: 'Welcome To Brikol This Platform Still In Development Please If You Note Any bugs or anything let me know thank You For being here enjoy (:',
+        width: 600,
+        padding: '3em',
+        background: '#fff url(/images/trees.png)',
+        backdrop: `
+    rgba(0,0,123,0.4)
+    url("https://media.giphy.com/media/j0R2xnont0Z6E/giphy.gif")
+    left top
+    no-repeat
+  `
+    })
 </script>
 </body>

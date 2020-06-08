@@ -10,7 +10,7 @@
                 <a href="#" title="">Clear all</a>
             </div>
             <div class="nott-list">
-                <div class="notfication-details" v-for="msg in messages.slice().reverse()">
+                <div class="notfication-details" v-for="msg in messages">
                     <router-link  :to="msg.url" :key="$route.fullPath" >
                     <div class="noty-user-img">
                         <img :src="msg.image ? msg.image : 'https://via.placeholder.com/70'"  alt="">

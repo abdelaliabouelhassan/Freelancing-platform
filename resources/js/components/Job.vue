@@ -128,8 +128,6 @@
                                                     <li><a href="javascript:void(0)" title="" @click="SavePost(posts)" ><i class="la la-bookmark" :class="{savecolor:posts.IsSave}"></i></a></li>
                                                     <li v-for="us in user"> <router-link  :to="'Chat/' + posts.postSlug + '/' + us.slug" ><span><i class="la la-envelope"></i></span>
                                                     </router-link></li>
-
-<!--                                                    <li @click="chat(posts)"><a href="javascript:void(0)" title=""><i class="la la-envelope"></i></a></li>-->
                                                 </ul>
                                             </div>
                                             <div class="job_descp">
@@ -275,6 +273,7 @@
                 category: {},
                 lastPage: 0,
                 page: 1,
+
                 input: '',
                 cat: '0',
                 price: '0',

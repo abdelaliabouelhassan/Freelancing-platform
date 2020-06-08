@@ -22,9 +22,14 @@
                                                 <br>
                                                 <h3>{{posts.title}}</h3>
                                                 <span><i class="fa fa-clock-o"></i>{{posts.created_at}}</span>
+                                                <br>
+                                                <span  v-if="posts.type == 'servic'"><img src="public/images/icon8.png" alt="">Project</span>
+                                                <span v-if="posts.type == 'job'"><img src="images/icon8.png" alt="">Job</span>
                                                 <ul class="react-links">
                                                     <li><a href="#" title=""><i class="fa fa-share-alt"></i> Share</a></li>
-                                                    <li><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
+                                                    <li @click="bidnow"><a v-if="posts.ismy && posts.type == 'job'" href="javascript:void(0)" title="" class="bid_now">Hier</a></li>
+                                                    <li @click="bidnow"><a v-if="!posts.ismy && posts.type == 'servic'" href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
+
                                                     <li><span>DH{{posts.price}}</span></li>
                                                 </ul>
                                                 <ul class="quest-tags">
@@ -156,6 +161,32 @@
                     });
                 }, 100);
             },
+            bidnow(){
+                Swal.fire({
+                    title: 'Are You Sure You Want Bid This ?',
+                    inputAttributes: {
+                        autocapitalize: 'off'
+                    },
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes I\'m Sure ',
+                    showLoaderOnConfirm: true,
+                    preConfirm: () => {
+                     return   axios.get('/api/BidNow' +  this.$route.fullPath.replace('/Chat',''))
+                            .then(function (response) {
+                                Swal.fire({
+                                    title: response.data.message,
+                                })
+                            })
+                            .catch(function (error) {
+                                Swal.fire({
+                                    title: error.response.data.message,
+                                })
+                            })
+
+                    },
+                    allowOutsideClick: () => !Swal.isLoading()
+                })
+            }
         },
         created() {
             if(this.$gets.IsLogedIn()){
