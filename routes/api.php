@@ -37,7 +37,7 @@ Route::get('filterProject/{cat}/{city}/{price}/{isdone}','API\PostController@fil
 Route::post('searchProject','API\PostController@searchProject');
 Route::get('search1Project/{input}','API\PostController@search1Project');
 Route::get('AllPosts','API\PostController@AllPosts');
-Route::post('SavePost','API\PostController@SavePost');
+Route::post('SavePost','API\PostController@SavePost')->middleware('localization');
 
 /*  END POSTS api */
 
@@ -100,5 +100,5 @@ Route::post('getPostMessage','API\ChatController@getPostMessage');
 
 
 /*BidSystem*/
-Route::get('BidNow/{user}/{slug}','API\BidsController@BidNow');
+Route::get('BidNow/{user}/{slug}','API\BidsController@BidNow')->middleware('localization');
 /*End BidSystem*/

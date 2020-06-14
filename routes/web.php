@@ -1,7 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 use Stevebauman\Location\Facades\Location;
 
 
@@ -16,7 +18,7 @@ use Stevebauman\Location\Facades\Location;
 |
 */
 include 'includes/vue_route.php';
-
+App::setLocale('ar');
 
 
 Route::get('/', function () {
@@ -24,7 +26,13 @@ Route::get('/', function () {
         return view('home');
     }
     return view('welcome');
-});
+})->middleware('localization');
+
+Route::get('/{lng}/setlongae/youfkingou', function ($lng) {
+    \session(['long' => $lng]);
+    return redirect()->back();
+})->name('lgn');
+
 
 Auth::routes();
 
@@ -39,8 +47,7 @@ Route::get('auth/facebook/callback', 'Auth\FacebookController@handleFacebookCall
 
 //chat app
 
-    Route::post('/message/send','MessageController@sendMessage');
-
+Route::post('/message/send','MessageController@sendMessage');
 
 
 

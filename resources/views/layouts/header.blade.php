@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/responsive.css')}}">
+
     @yield('style')
 </head>
 
@@ -37,9 +38,7 @@
                                 <div class="cmp-info">
                                     <div class="cm-logo">
                                         <img src="{{asset('images/logotest.png')}}" alt="">
-                                            <p>Brikol , is Moroccan platform for services and jobs and freelance and social networking
-                                                if you have any skills or any serv you can do so are in right place welcome to brikol
-                                                we have more then 1M jobs and serves</p>
+                                            <p>{{__('BrikolIntro')}}</p>
                                     </div>
                                     <!--cm-logo end-->
                                     <img src="{{asset('images/sign.png')}}" alt="">

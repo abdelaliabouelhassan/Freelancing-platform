@@ -3,23 +3,26 @@
 <title> {{ config('app.name')." | ".__("Sign up or Sign in") }}</title>
 @endsection
 @section('content')
-<ul class="sign-control">
+    <a href="{{ route('lgn','en') }}">en</a>
+    <a href="{{ route('lgn','ar') }}">ar</a>
+
+    <ul class="sign-control">
     <li data-tab="tab-1" class="
     @if(\Request::is('login') || Request::is('/') && !session()->has('good'))
         current
     @endif">
-        <a href="{{ route('login') }}" title="login">Sign in</a></li>
+        <a href="{{ route('login') }}" title="login">{{__("Sign In")}}</a></li>
     <li data-tab="tab-2" class="
     @if(\Request::is('register') || session()->has('good'))
         current
-    @endif"><a href="{{ route('register') }}" title="register">Sign up</a></li>
+    @endif"><a href="{{ route('register') }}" title="register">{{__("Sign Up")}}</a></li>
 </ul>
 
 <div class="sign_in_sec
     @if(Request::is('login') || Request::is('/') && !session()->has('good'))
         current
     @endif" id="tab-1">
-    <h3>Sign In</h3>
+    <h3>{{ __('Sign In') }}</h3>
     <form method="POST" action="{{ route('login') }}">
         @csrf
         <div class="row">
@@ -74,12 +77,11 @@
         </div>
     </form>
     <div class="login-resources">
-        <h4>Login Via Social Account</h4>
+        <h4>{{ __('Login Via Social Account') }}</h4>
         <ul>
-            <li><a href="{{ url('auth/facebook') }}" title="" class="fb"><i class="fa fa-facebook"></i>Login Via
-                    Facebook</a></li>
-            <li><a href="#" title="" class="tw"><i class="fa fa-twitter"></i>Login
-                    Via Twitter</a></li>
+            <li><a href="{{ url('auth/facebook') }}" title="" class="fb"><i class="fa fa-facebook"></i> {{ __('Login Via Facebook') }}</a></li>
+{{--            <li><a href="#" title="" class="tw"><i class="fa fa-twitter"></i>Login--}}
+{{--                    Via Twitter</a></li>--}}
         </ul>
     </div>
     <!--login-resources end-->
@@ -92,7 +94,7 @@
     current
         @endif
     " id="tab-2">
-    <h3>Sign Up</h3>
+    <h3>{{ __('Sign Up') }}</h3>
     <div class="dff-tab current" id="tab-3">
         <form method="POST" action="{{ route('register') }}">
             @csrf
@@ -142,23 +144,21 @@
                                 title="You should Agree Our Terms & Conditions.">
                             <label for="c2" id="checkcolor">
                                 <span></span>
-                                {{__('Yes, I understand and agree
-                                to the Brikol Terms & Conditions.')}}
+                                {{__('Yes, I understand and agree to the Brikol Terms & Conditions.')}}
                             </label>
                         </div>
                         <!--fgt-sec end-->
                     </div>
                 </div>
                 <div class="col-lg-12 no-pdd">
-                    <button type="submit" id="btn_signup" value="submit">Get
-                        Started</button>
+                    <button type="submit" id="btn_signup" value="submit">
+                        {{__('Get Started')}}</button>
                 </div>
             </div>
         </form>
         <div class="login-resources">
             <ul>
-                <li><a href="{{ url('auth/facebook') }}" title="" class="fb"><i class="fa fa-facebook"></i>Sign Up with
-                        Facebook</a></li>
+                <li><a href="{{ url('auth/facebook') }}" title="" class="fb"><i class="fa fa-facebook"></i>{{ __('Login Via Facebook') }}</a></li>
             </ul>
         </div>
     </div>

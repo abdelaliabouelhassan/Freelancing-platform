@@ -444,21 +444,22 @@ public function search(Request $request){
               //add
            $c_save =   Saved_Job::create(['user_id'=>auth('api')->id(),'post_id'=>$id]);
            if($c_save){
-               return ['msg'=>'Post Saved successfully','status'=>200];
+
+               return ['msg'=> trans('messages.posrSucss'),'status'=>200];
            }else{
-               return ['msg'=>'something went wrong','status'=>500];
+               return ['msg'=>trans('messages.wrong'),'status'=>500];
            }
           }else{
               //already saved
               $save =  Saved_Job::where('user_id',auth('api')->id())->where('post_id',$id);
               if($save->delete()){
-                  return ['msg'=>'Unsaved successfully','status'=>200];
+                  return ['msg'=>trans('messages.unsave'),'status'=>200];
               }else{
-                  return ['msg'=>'something went wrong','status'=>500];
+                  return ['msg'=>trans('messages.wrong'),'status'=>500];
               }
           }
         }else{
-            return ['msg'=>'You Are Not Logged In','status'=>500];
+            return ['msg'=>trans('messages.youarenotLog'),'status'=>500];
         }
     }
     /*End Save Post*/

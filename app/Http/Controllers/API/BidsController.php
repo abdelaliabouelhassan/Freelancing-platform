@@ -26,11 +26,11 @@ class BidsController extends Controller
          $user = auth('api')->user();
          if($user->is_active == 0 ){
              return response()->json([
-                 'message' => 'You Can\'t Bid This Post You Should Activate Your Email And Phone First'], 405 );
+                 'message' => trans('messages.youcantbid')], 405 );
          }
          elseif ($user->is_active == 1 ){
              return response()->json([
-             'message' => 'You Can\'t Bid This Post You Should Activate Your  Phone First'], 405 );
+             'message' =>trans('messages.youcantbidphone') ], 405 );
          }
          elseif ($user->is_active  == 2 ){
              $postSlug =   Str::afterLast($path,'/');
@@ -45,37 +45,37 @@ class BidsController extends Controller
                          $bid = Mybid::create(['user_id'=>auth('api')->id(),'post_id'=>$post->id,'with'=>$user->id]);
                          $bid2 = Mybid::create(['user_id'=>$user->id,'post_id'=>$post->id,'with'=>auth('api')->id()]);
                          return response()->json([
-                             'message' => 'You heir This Person Successfully'], 200);
+                             'message' => trans('messages.heir')], 200);
                      }else{
                          return response()->json([
-                             'message' => 'You already hired this person'], 200);
+                             'message' => trans('messages.alreadyheir')], 200);
                      }
 
                  }else{
                      return response()->json([
-                         'message' => 'Some Wenst Wrong'], 405 );
+                         'message' => trans('messages.wrong')], 405 );
                  }
              }else{
                  if($post){
                      if($post->user_id == auth('api')->id() && $post->type != 'job'){
                          return response()->json([
-                             'message' => 'You Cant Bid Your Self'], 405 );
+                             'message' => trans('messages.youcantYourself')], 405 );
                      }else{
                          $bids = Mybid::where('user_id',auth('api')->id())->where('post_id',$post->id)->where('with',$post->user_id)->get();
                          if(count($bids) == 0 ){
                          $bid = Mybid::create(['user_id'=>auth('api')->id(),'post_id'=>$post->id,'with'=>$post->user_id]);
                          $bid2 = Mybid::create(['user_id'=>$post->user_id,'post_id'=>$post->id,'with'=>auth('api')->id()]);
                          return response()->json([
-                             'message' => 'You Bid This Post Successfully'], 200);
+                             'message' => trans('messages.bid')], 200);
                      }else{
                              return response()->json([
-                                 'message' => 'You Already Bid  this Post'], 200);
+                                 'message' => trans('messages.alreadybid')], 200);
                          }
                   }
 
                  }else{
                      return response()->json([
-                         'message' => 'Some Wenst Wrong'], 405 );
+                         'message' => trans('messages.wrong')], 405 );
 
                  }
 
