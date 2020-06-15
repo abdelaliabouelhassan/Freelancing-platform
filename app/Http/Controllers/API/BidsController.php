@@ -15,6 +15,8 @@ class BidsController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
+        $this->middleware('getLong');
+
     }
 
       public  function BidNow($path,$slug){

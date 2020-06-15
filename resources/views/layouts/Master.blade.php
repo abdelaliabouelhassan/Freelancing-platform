@@ -1,3 +1,34 @@
+
+
+    <?php
+    use App\Settings;
+    use Illuminate\Support\Facades\App;
+        if(auth()->check()){
+            $user_id = auth()->id();
+            $setting =    Settings::where('user_id',$user_id)->first();
+            if($setting){
+                if($setting->long){
+                    App::setLocale($setting->long);
+                }else{
+                    App::setLocale('ar');
+                }
+            }else{
+                App::setLocale('ar');
+            }
+        }
+    ?>
+
+
+
+@if(!auth()->check())
+@if(session()->has('long'))
+    {{\Illuminate\Support\Facades\App::setLocale(session()->get('long'))}}
+
+        @else
+    {{\Illuminate\Support\Facades\App::setLocale('ar')}}
+
+@endif
+        @endif
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -39,77 +70,52 @@
                 </div><!--logo end-->
                 <div class="search-bar">
                     <form>
-                        <input type="text" name="search" placeholder="Search...">
+                        <input type="text" name="search" placeholder="{{__('Search...')}}">
                         <button type="submit"><i class="la la-search"></i></button>
                     </form>
                 </div><!--search-bar end-->
                 <nav>
                     <ul>
                         <li>
+                            @if(auth()->check())
+                            <a href="{{ route('setlng','en') }}"><span><i class="fas fa-head-side-cough"></i></span>{{__('english')}}</a>
+
+                            @else
+                                <a href="{{ route('lgn','en') }}"><span><i class="fas fa-head-side-cough"></i></span>{{__('english')}}</a>
+
+                            @endif
+                        </li>
+                        <li>
+                            @if(auth()->check())
+                            <a href="{{ route('setlng','ar') }}"><span><i class="fas fa-head-side-cough"></i></span>{{__('arabic')}}</a>
+
+                                @else
+                                <a href="{{ route('lgn','ar') }}"><span><i class="fas fa-head-side-cough"></i></span>{{__('arabic')}}</a>
+                            @endif
+                        </li>
+                        <li>
                             <router-link to="/home" ><span><i class="fa fa-home"></i></span>
-                            Home</router-link>
+                                {{__('Home')}}  </router-link>
 
                         </li>
 
                         <li>
                             <router-link to="/Projects" ><span><i class="fa fa-bullhorn"></i></span>
-                            Projects</router-link>
+                                {{__('Projects')}}  </router-link>
 
                         </li>
                         <li v-if="$gets.IsLogedIn()">
                             <router-link to="/Profile" ><span><i class="fa fa-user"></i></span>
-                            My Profile</router-link>
+                                {{__('My Profile')}} </router-link>
                         </li>
                         <li>
                             <router-link to="/Jobs" >
                             <span><i class="fa fa-briefcase"></i></span>
-                            Jobs</router-link>
+                           {{__('Jobs')}} </router-link>
                         </li>
                         <Message v-if="$gets.IsLogedIn()"></Message>
 
-                        <li v-if="$gets.IsLogedIn()">
-                            <div class="notification-box msg">
-                                <div class="nt-title">
-                                    <h4>Setting</h4>
-                                    <a href="javascript:void(0)" title="">Clear all</a>
-                                </div>
-                                <div class="nott-list">
-                                    <div class="notfication-details">
-                                        <div class="noty-user-img">
-                                            <img src="" alt="">
-                                        </div>
-                                        <div class="notification-info">
-                                            <h3><a href="messages.html" title="">Jassica William</a> </h3>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.</p>
-                                            <span>2 min ago</span>
-                                        </div><!--notification-info -->
-                                    </div>
-                                    <div class="notfication-details">
-                                        <div class="noty-user-img">
-                                            <img src="" alt="">
-                                        </div>
-                                        <div class="notification-info">
-                                            <h3><a href="messages.html" title="">Jassica William</a></h3>
-                                            <p>Lorem ipsum dolor sit amet.</p>
-                                            <span>2 min ago</span>
-                                        </div><!--notification-info -->
-                                    </div>
-                                    <div class="notfication-details">
-                                        <div class="noty-user-img">
-                                            <img src="" alt="">
-                                        </div>
-                                        <div class="notification-info">
-                                            <h3><a href="messages.html" title="">Jassica William</a></h3>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut labore et dolore magna aliqua.</p>
-                                            <span>2 min ago</span>
-                                        </div><!--notification-info -->
-                                    </div>
-                                    <div class="view-all-nots">
-                                        <a href="messages.html" title="">View All Messsages</a>
-                                    </div>
-                                </div><!--nott-list end-->
-                            </div><!--notification-box end-->
-                        </li>
+
                     </ul>
                 </nav><!--nav end-->
                 <!--menu-btn end-->
@@ -119,8 +125,8 @@
                         <i class="fa fa-bell not-box-open"></i>
                         <div class="notification-box">
                             <div class="nt-title">
-                                <h4>Setting</h4>
-                                <a href="#" title="">Clear all</a>
+                                <h4>{{__('Setting')}}</h4>
+                                <a href="#" title="">{{__('Clear all')}}</a>
                             </div>
                             <div class="nott-list">
                                 <div class="notfication-details">
@@ -160,7 +166,7 @@
                                     </div><!--notification-info -->
                                 </div>
                                 <div class="view-all-nots">
-                                    <a href="#" title="">View All Notification</a>
+                                    <a href="#" title="">{{__('View All Notification')}}</a>
                                 </div>
                             </div><!--nott-list end-->
                         </div><!--notification-box end-->
@@ -175,7 +181,7 @@
                         @if (auth()->check())
                             <h3> {{auth()->user()->name}}</h3>
                         @endif
-                        <h3>Online Status</h3>
+                        <h3>{{__('Online Status')}}</h3>
                         <ul class="on-off-status">
                             <li>
                                 <div class="fgt-sec">
@@ -183,7 +189,7 @@
                                     <label for="c5">
                                         <span></span>
                                     </label>
-                                    <small>Online</small>
+                                    <small>{{__('Online')}} </small>
                                 </div>
                             </li>
                             <li>
@@ -192,23 +198,17 @@
                                     <label for="c6">
                                         <span></span>
                                     </label>
-                                    <small>Offline</small>
+                                    <small>{{__('Offline')}}</small>
                                 </div>
                             </li>
                         </ul>
-                        <h3>Custom Status</h3>
-                        <div class="search_form">
-                            <form>
-                                <input type="text" name="search">
-                                <button type="submit">Ok</button>
-                            </form>
-                        </div><!--search_form end-->
-                        <h3>Setting</h3>
+
+                        <h3>{{__('Setting')}}</h3>
                         <ul class="us-links">
-                            <li><a href="profile-account-setting.html" title="">Account Setting</a></li>
-                            <li><a href="#" title="">Privacy</a></li>
-                            <li><a href="#" title="">Faqs</a></li>
-                            <li><a href="#" title="">Terms & Conditions</a></li>
+                            <li><a href="profile-account-setting.html" title="">{{__('Account Setting')}} </a></li>
+                            <li><a href="#" title="">{{__('Privacy')}} </a></li>
+                            <li><a href="#" title="">{{__('FAQ')}} </a></li>
+                            <li><a href="#" title="">{{__('Terms & Conditions')}} </a></li>
                         </ul>
                         <h3 class="tc"><a href="{{ route('logout') }}" title="{{ __('Logout') }}"
                                           onclick="event.preventDefault();
@@ -225,14 +225,35 @@
 </div><!--theme-bricole end-->
 <div class="tags-sec full-width">
     <ul>
-        <li><a href="#" title="">Help Center</a></li>
-        <li><a href="#" title="">About</a></li>
-        <li><a href="#" title="">Privacy Policy</a></li>
-        <li><a href="#" title="">Community Guidelines</a></li>
-        <li><a href="#" title="">Cookies Policy</a></li>
-        <li><a href="#" title="">Career</a></li>
-        <li><a href="#" title="">Language</a></li>
-        <li><a href="#" title="">Copyright Policy</a></li>
+        <li><a href="javascript:void(0)" title="">{{__('Help Center')}}</a></li>
+        <li><a href="javascript:void(0)" title="">{{__('Privacy Policy')}} </a></li>
+        <li><a href="javascript:void(0)" title="">{{__('Community Guidelines')}} </a></li>
+        <li><a href="javascript:void(0)" title="">{{__('Cookies Policy')}} </a></li>
+        <li><a href="javascript:void(0)" title="">{{__('Career')}} </a></li>
+        <li><a href="javascript:void(0)" title="">{{__('Contact Us')}} </a></li>
+        <li><a href="javascript:void(0)" title="">{{__('Language')}} </a></li>
+        <li><a href="javascript:void(0)" title="">{{__('Copyright Policy')}} </a></li>
+    </ul>
+    <ul>
+        <li></li>
+        <li>
+            @if(auth()->check())
+
+                <a href="{{ route('setlng','en') }}">{{__('english language')}}</a>
+
+            @else
+                <a href="{{ route('lgn','en') }}">{{__('english language')}}</a>
+
+            @endif
+        </li>
+        <li>
+            @if(auth()->check())
+                <a href="{{ route('setlng','ar') }}">{{__('arabic language')}}</a>
+
+            @else
+                <a href="{{ route('lgn','ar') }}">{{__('arabic language')}}</a>
+            @endif
+        </li>
     </ul>
     <div class="cp-sec">
         <img src="{{asset('images/logotest.png')}}" alt="">
@@ -259,9 +280,11 @@
         @if(auth()->check())
     const globalUserId = {{auth()->id()}}
     @endif
+        const Language = @json(app()->getLocale())
 </script>
 <script type="text/javascript" src="{{asset("js/app.js")}}"></script>
 <script>
+
         @if(auth()->check())
 
     Echo.private('chat.' + {{auth()->id()}})

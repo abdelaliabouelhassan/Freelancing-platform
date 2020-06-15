@@ -5,12 +5,12 @@
 @section('content')
 @if(!Auth::check())
     <ul class="sign-control">
-        <li data-tab="tab-2"><a id="tab2" class="controle" href="{{url('login')}}">{{__('Already using Bricole? Sign in')}}</a></li> 
+        <li data-tab="tab-2"><a id="tab2" class="controle" href="/">{{__('Already using Brikole? Sign in')}}</a></li>
     </ul>
 @endif
     <div class="sign_in_sec current" >
         @include('includes.errors.all')
-        <div class="card-body">            
+        <div class="card-body">
             <h3>{{ __('Reset Password') }}</h3>
             <form method="POST" action="{{ route('password.email') }}">
                 @csrf
@@ -48,6 +48,6 @@
     <script>
         showNotification("alert-success", "{{ session('status') }}", "top","center", "", "");
     </script>
-@endif  
+@endif
 @include('includes.errors.all')
 @endsection

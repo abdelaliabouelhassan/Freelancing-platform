@@ -20,10 +20,10 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-//    public function __construct()
-//    {
-//        $this->middleware('guest');
-//    }
+    public function __construct()
+    {
+        $this->middleware('getLong');
+    }
 
     /*    Jobs   */
 

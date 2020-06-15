@@ -16,16 +16,16 @@
                                     </div><!--user-pro-img end-->
                                     <div class="user_pro_status" v-for="users in user">
                                         <ul class="flw-hr" >
-                                            <li><a href="javascript:void(0)" title="" v-if="!users.ismy" class="flww" @click="follow(users)" v-text="users.isfollow ? 'unfollow' : 'Follow'" :class="{unfollow:users.isfollow}"><i class="la la-plus"></i></a></li>
-                                            <li><a href="javascript:void(0)" title="" v-if="!users.ismy" class="hre">Hire</a></li>
+                                            <li><a href="javascript:void(0)" title="" v-if="!users.ismy" class="flww" @click="follow(users)" v-text="users.isfollow ? $t('message.unfollow') : $t('message.Follow')" :class="{unfollow:users.isfollow}"><i class="la la-plus"></i></a></li>
+                                            <li><a href="javascript:void(0)" title="" v-if="!users.ismy" class="hre">{{$t('message.Hire')}}</a></li>
                                         </ul>
                                         <ul class="flw-status">
                                             <li>
-                                                <span>Following</span>
+                                                <span>{{$t('message.Followings')}}</span>
                                                 <b v-text="users.followingCount">0</b>
                                             </li>
                                             <li>
-                                                <span>Followers</span>
+                                                <span>{{$t('message.Followers')}}</span>
                                                 <b v-text="users.followersCount">0</b>
                                             </li>
                                         </ul>
@@ -38,7 +38,7 @@
                                 </div><!--user_profile end-->
                                 <div class="suggestions full-width">
                                     <div class="sd-title">
-                                        <h3>Suggestions</h3>
+                                        <h3>{{$t('message.Suggestions')}}</h3>
                                         <i class="la la-ellipsis-v"></i>
                                     </div><!--sd-title end-->
                                     <div class="suggestions-list">
@@ -91,7 +91,7 @@
                                             <span><i class="la la-plus"></i></span>
                                         </div>
                                         <div class="view-more">
-                                            <a href="#" title="">View More</a>
+                                            <a href="#" title="">{{$t('message.View_More')}}</a>
                                         </div>
                                     </div><!--suggestions-list end-->
                                 </div><!--suggestions end-->
@@ -103,7 +103,7 @@
                                     <h3>{{users.name}}</h3>
                                     <div class="star-descp">
                                         <span>{{users.bio}}</span>
-                                        <span v-if="!users.bio">Work type not specified</span>
+                                        <span v-if="!users.bio">{{$t('message.Work_type_not_specified')}}</span>
                                         <ul>
                                             <li><i class="fa fa-star"></i></li>
                                             <li><i class="fa fa-star"></i></li>
@@ -117,19 +117,19 @@
                                             <li data-tab="feed-dd"  @click="feed = true;info=false;proto=false" v-bind:class="{active:feed}">
                                                 <a href="javascript:void(0)" title="">
                                                     <img src="images/ic1.png" alt="">
-                                                    <span>Feed</span>
+                                                    <span>{{$t('message.Feed')}}</span>
                                                 </a>
                                             </li>
                                             <li data-tab="info-dd" @click="feed = false;info=true;proto=false" v-bind:class="{active:info}">
                                                 <a href="javascript:void(0)" title="">
                                                     <img src="images/ic2.png" alt="">
-                                                    <span>Info</span>
+                                                    <span>{{$t('message.Info')}}</span>
                                                 </a>
                                             </li>
                                             <li data-tab="portfolio-dd" @click="feed = false;info=false;proto=true" v-bind:class="{active:proto}">
                                                 <a href="javascript:void(0)" title="">
                                                     <img src="images/ic3.png" alt="">
-                                                    <span>Portfolio</span>
+                                                    <span>{{$t('message.Portfolio')}}</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -159,7 +159,7 @@
                                             </div>
                                             <div class="epi-sec">
                                                 <ul class="descp">
-                                                    <li><img src="images/icon8.png" alt=""><span>{{feedss.is_done ? 'done' : 'available'}} </span></li>
+                                                    <li><img src="images/icon8.png" alt=""><span>{{feedss.is_done ? $t('message.Done') : $t('message.Available') }} </span></li>
                                                     <li><img src="images/icon9.png" alt=""><span> {{feedss.city_name}}</span></li>
                                                 </ul>
                                                 <ul class="bk-links" v-for="users in user">
@@ -190,11 +190,11 @@
                                 </div><!--product-feed-tab end-->
                                 <div class="product-feed-tab" id="info-dd" v-bind:class="{current:info}">
                                     <div class="user-profile-ov">
-                                        <h3>Overview</h3>
+                                        <h3>{{$t('message.Overview')}}</h3>
                                         <span  v-for="overvs in overview">
                                         <p>{{overvs.overview}}</p>
                                         </span>
-                                        <p v-if="overview.length == 0 ">Overview not specified</p>
+                                        <p v-if="overview.length == 0 ">{{$t('message.Overview_not_specified')}}</p>
 
                                     </div><!--user-profile-ov end-->
                                     <div class="user-profile-ov st2">
@@ -203,7 +203,7 @@
                                         <h4>{{exp.title}}</h4>
                                             <p>{{exp.body}}</p>
                                         </span>
-                                        <span v-if="Experience.length == 0">Experience not specified</span>
+                                        <span v-if="Experience.length == 0">{{$t('message.Experience_not_specified')}}</span>
                                     </div><!--user-profile-ov end-->
                                     <div class="user-profile-ov">
                                         <h3>Education</h3>
@@ -212,14 +212,14 @@
                                         <span>{{ed.from | mydate}}  |  {{ed.to | mydate}}</span>
                                         <p>{{ed.description}}</p>
                                         </span>
-                                        <span v-if="Educ.length == 0">Education not specified</span>
+                                        <span v-if="Educ.length == 0">{{$t('message.Education_not_specified')}}</span>
                                     </div><!--user-profile-ov end-->
                                     <div class="user-profile-ov">
                                         <h3>Location</h3>
                                         <span v-for="Loacs in Loac">
                                         <h4>{{Loacs.city_name}}</h4>
                                         </span>
-                                        <span v-if="!Loac">Location not specified</span>
+                                        <span v-if="!Loac">{{$t('message.Location_not_specified')}}</span>
                                     </div><!--user-profile-ov end-->
                                 </div><!--product-feed-tab end-->
                                 <div class="product-feed-tab" id="portfolio-dd" v-bind:class="{current:proto}">
@@ -235,12 +235,12 @@
                                                         <a href="javascript:void(0)" ><img src="images/all-out.png" alt=""></a>
                                                     </div>
                                                 </div>
-                                                <div v-if="images.length == 0">Empty Portfolio </div>
+                                                <div v-if="images.length == 0">{{$t('message.Empty_Portfolio')}} </div>
                                             </div>
                                         </div><!--gallery_pf end-->
                                     </div><!--portfolio-gallery-sec end-->
                                     <div class="col text-center">
-                                        <button type="button" v-if="this.prpage < this.prlastPage" @click="loadmore" class="btn btn-outline-info">Load More</button>
+                                        <button type="button" v-if="this.prpage < this.prlastPage" @click="loadmore" class="btn btn-outline-info">{{$t('message.Load_More')}} </button>
                                     </div>
                                 </div><!--product-feed-tab end-->
                             </div><!--main-ws-sec end-->
@@ -248,11 +248,11 @@
                         <div class="col-lg-3">
                             <div class="right-sidebar">
                                 <div class="message-btn" v-for="users in user">
-                                    <a href="javascript:void(0)" title="" v-if="!users.ismy"><i class="fa fa-envelope"></i> Message</a>
+                                    <a href="javascript:void(0)" title="" v-if="!users.ismy"><i class="fa fa-envelope"></i> {{$t('message.Message')}}</a>
                                 </div>
                                 <div class="widget widget-portfolio">
                                     <div class="wd-heady">
-                                        <h3>Portfolio</h3>
+                                        <h3>{{$t('message.Portfolio')}}</h3>
                                         <img src="images/photo-icon.png" alt="">
                                     </div>
                                     <div class="pf-gallery" >
@@ -262,7 +262,7 @@
                                                  :key="imageIndex"><a href="javascript:void(0)" @click="index1 = imageIndex" title=""><img :src="image.path" alt=""></a></li>
 
                                         </ul>
-                                        <div v-if="imagesproto.length == 0">Empty Portfolio</div>
+                                        <div v-if="imagesproto.length == 0">{{$t('message.Empty_Portfolio')}}</div>
                                     </div><!--pf-gallery end-->
                                 </div><!--widget-portfolio end-->
                             </div><!--right-sidebar end-->
@@ -461,9 +461,9 @@
                 }else{
                     Swal.fire({
                         icon: 'error',
-                        title: 'You Are Not Logged In !!!',
-                        text: 'Please Logged In first Or Create New Account',
-                        footer: '<a href="/">Logged In here Or Create Account</a>'
+                        title: this.$t('message.youarenotlogedin'),
+                        text: this.$t('message.plselog'),
+                        footer: '<a href="/"> ' +this.$t("message.loghere") + ' </a>'
                     })
                     this.$Progress.fail()
                 }

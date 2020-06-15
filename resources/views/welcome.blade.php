@@ -3,8 +3,7 @@
 <title> {{ config('app.name')." | ".__("Sign up or Sign in") }}</title>
 @endsection
 @section('content')
-    <a href="{{ route('lgn','en') }}">en</a>
-    <a href="{{ route('lgn','ar') }}">ar</a>
+
 
     <ul class="sign-control">
     <li data-tab="tab-1" class="

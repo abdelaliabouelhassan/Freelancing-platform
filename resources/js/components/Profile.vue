@@ -4,7 +4,7 @@
     <section class="cover-sec">
         <img  v-if="showbackimg" v-for="users in user" :src="users.backimage ? users.backimage.path : 'http://via.placeholder.com/1600x400'" alt="BackGround Image" style="height: 600px;"  class="img-fluid">
         <img  v-if="!showbackimg"  :src="getbackgroundimage()" alt="BackGround Image" style="height: 500px;"  class="img-fluid">
-        <a href="javascript:void(0)" title="" @click="$refs.backgroundUserImafe.click()"><i class="fa fa-camera"></i> Change Image</a>
+        <a href="javascript:void(0)" title="" @click="$refs.backgroundUserImafe.click()"><i class="fa fa-camera"></i> {{$t('message.Change_Image')}}</a>
         <input type="file"  style="display: none" @change="UpdateBackGroundImage" ref="backgroundUserImafe">
     </section>
 
@@ -24,16 +24,16 @@
                                     </div><!--user-pro-img end-->
                                     <div class="user_pro_status">
                                         <ul class="flw-hr">
-                                            <li><a href="javascript:void(0)" title="" class="flww" @click="diny"><i class="la la-plus"></i> Follow</a></li>
-                                            <li><a href="javascript:void(0)" title="" class="hre"  @click="diny">Hire</a></li>
+                                            <li><a href="javascript:void(0)" title="" class="flww" @click="diny"><i class="la la-plus"></i> {{$t('message.Follow')}}</a></li>
+                                            <li><a href="javascript:void(0)" title="" class="hre"  @click="diny">{{$t('message.Hire')}} </a></li>
                                         </ul>
                                         <ul class="flw-status" v-for="fl in userforfolw">
                                             <li>
-                                                <span>Following</span>
+                                                <span> {{$t('message.Following')}} </span>
                                                 <b v-text="fl.followingCount">0</b>
                                             </li>
                                             <li>
-                                                <span>Followers</span>
+                                                <span>{{$t('message.Followers')}} </span>
                                                 <b v-text="fl.followersCount">0</b>
                                             </li>
                                         </ul>
@@ -43,7 +43,7 @@
                                 </div><!--user_profile end-->
                                 <div class="suggestions full-width">
                                     <div class="sd-title">
-                                        <h3>People Viewed Profile</h3>
+                                        <h3>{{$t('message.People_Viewed_Profile')}} </h3>
                                         <i class="la la-ellipsis-v"></i>
                                     </div><!--sd-title end-->
                                     <div class="suggestions-list">
@@ -96,7 +96,7 @@
                                             <span><i class="la la-plus"></i></span>
                                         </div>
                                         <div class="view-more">
-                                            <a href="javascript:void(0)" title="">View More</a>
+                                            <a href="javascript:void(0)" title="">{{$t('message.View_More')}}</a>
                                         </div>
                                     </div><!--suggestions-list end-->
                                 </div><!--suggestions end-->
@@ -109,7 +109,7 @@
                                     <div class="star-descp">
                                         <span @click="showbio = true"><i class="fa fa-pencil piont"></i></span>
                                         <span>{{users.bio}}</span>
-                                        <span v-if="!users.bio">Add Your Work Name</span>
+                                        <span v-if="!users.bio">{{$t('message.workname')}}</span>
                                         <ul>
                                             <li><i class="fa fa-star"></i></li>
                                             <li><i class="fa fa-star"></i></li>
@@ -117,44 +117,44 @@
                                             <li><i class="fa fa-star"></i></li>
                                             <li><i class="fa fa-star-half-o"></i></li>
                                         </ul>
-                                        <a href="javascript:void(0)" title="">Status</a>
+                                        <a href="javascript:void(0)" title="">{{$t('message.Status')}}</a>
                                     </div><!--star-descp end-->
                                     <div class="tab-feed st2">
                                         <ul>
                                             <li data-tab="feed-dd"   v-bind:class="{active:feed,'animated fadeIn':feed}" @click="feed=true;Info=false;Saved=false;Portfolio=false;Bids=false;Payment=false">
                                                 <a href="javascript:void(0)" title="">
                                                     <img src="images/ic1.png" alt="">
-                                                    <span>Feed</span>
+                                                    <span>{{$t('message.Feed')}}</span>
                                                 </a>
                                             </li>
                                             <li data-tab="info-dd"  v-bind:class="{active:Info,'animated fadeIn':Info}" @click="Info=true;feed=false;Saved=false;Bids=false;Portfolio=false;Payment=false">
                                                 <a href="javascript:void(0)" title="">
                                                     <img src="images/ic2.png" alt="">
-                                                    <span>Info</span>
+                                                    <span>{{$t('message.Info')}} </span>
                                                 </a>
                                             </li>
                                             <li data-tab="saved-jobs" v-bind:class="{active:Saved,'animated fadeIn':Saved}" @click="Info=false;feed=false;Saved=true;Bids=false;Portfolio=false;Payment=false;">
                                                 <a href="javascript:void(0)" title="">
                                                     <img src="images/ic4.png" alt="">
-                                                    <span>Saved Jobs</span>
+                                                    <span>{{$t('message.Saved_Jobs')}} </span>
                                                 </a>
                                             </li>
                                             <li data-tab="my-bids" v-bind:class="{active:Bids,'animated fadeIn':Bids}" @click="Info=false;feed=false;Saved=false;Bids=true;Portfolio=false;Payment=false">
                                                 <a href="javascript:void(0)" title="">
                                                     <img src="images/ic5.png" alt="">
-                                                    <span>My Bids</span>
+                                                    <span>{{$t('message.My_Bids')}} </span>
                                                 </a>
                                             </li>
                                             <li data-tab="portfolio-dd" v-bind:class="{active:Portfolio,'animated fadeIn':Portfolio}" @click="Info=false;feed=false;Saved=false;Bids=false;Portfolio=true;Payment=false">
                                                 <a href="javascript:void(0)" title="">
                                                     <img src="images/ic3.png" alt="">
-                                                    <span>Portfolio</span>
+                                                    <span>{{$t('message.Portfolio')}} </span>
                                                 </a>
                                             </li>
                                             <li data-tab="payment-dd" v-bind:class="{active:Payment,'animated fadeIn':Payment}" @click="Info=false;feed=false;Saved=false;Bids=false;Portfolio=false;Payment=true">
                                                 <a href="javascript:void(0)" title="">
                                                     <img src="images/ic6.png" alt="">
-                                                    <span>Payment</span>
+                                                    <span>{{$t('message.Payment')}} </span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -184,7 +184,7 @@
                                             </div>
                                             <div class="epi-sec">
                                                 <ul class="descp">
-                                                    <li><img src="images/icon8.png" alt=""><span>{{feedss.is_done ? 'done' : 'available'}} </span></li>
+                                                    <li><img src="images/icon8.png" alt=""><span>{{feedss.is_done ? $t('message.Done') : $t('message.Available')}} </span></li>
                                                     <li><img src="images/icon9.png" alt=""><span> {{feedss.city_name}}</span></li>
                                                 </ul>
 
@@ -209,33 +209,33 @@
                                 </div><!--product-feed-tab end-->
                                 <div class="product-feed-tab"  v-bind:class="{current:Info}" id="info-dd">
                                     <div class="user-profile-ov">
-                                        <h3><a href="javascript:void(0)" title="" class="overview-open" @click="showoverview = true;overlay = true">Overview</a> <a href="javascript:void(0)" title="" class="overview-open"  @click="showoverview = true;overlay = true"><i class="fa fa-pencil"></i></a></h3>
+                                        <h3><a href="javascript:void(0)" title="" class="overview-open" @click="showoverview = true;overlay = true">{{$t('message.Overview')}}</a> <a href="javascript:void(0)" title="" class="overview-open"  @click="showoverview = true;overlay = true"><i class="fa fa-pencil"></i></a></h3>
                                         <p v-text="form.overview ? form.overview : 'Say Something About Yourself'"></p>
                                     </div><!--user-profile-ov end-->
                                     <div class="user-profile-ov st2">
-                                        <h3 ><a href="javascript:void(0)" title="" class="exp-bx-open" @click="showExper = true;overlay = true;form.ExpBody = '';form.ExpTitle = ''">Experience </a> <a href="javascript:void(0)" @click="showExper = true;overlay = true;form.ExpBody = '';form.ExpTitle = ''" title="" class="exp-bx-open"><i class="fa fa-plus-square"></i></a></h3>
+                                        <h3 ><a href="javascript:void(0)" title="" class="exp-bx-open" @click="showExper = true;overlay = true;form.ExpBody = '';form.ExpTitle = ''">{{$t('message.Experience')}} </a> <a href="javascript:void(0)" @click="showExper = true;overlay = true;form.ExpBody = '';form.ExpTitle = ''" title="" class="exp-bx-open"><i class="fa fa-plus-square"></i></a></h3>
                                         <span v-for="Exp in Experience">
                                         <h4>{{Exp.title}} <a href="javascript:void(0)" title="" @click="updateExp(Exp)"><i class="fa fa-pencil"></i></a> <a
                                             href="javascript:void(0)" @click="DeleteExp(Exp)"><i class="fas fa-trash-alt"></i></a></h4>
                                         <p>{{Exp.body}} </p>
                                         </span>
-                                        <span v-if="Experience.length == 0">Add Some Experience</span>
+                                        <span v-if="Experience.length == 0">{{$t('message.addexp')}} </span>
                                     </div><!--user-profile-ov end-->
                                     <div class="user-profile-ov">
-                                        <h3><a href="javascript:void(0)" title="" class="ed-box-open" @click="showEduc = true;overlay= true;form.idEduc = '';form.Description = '';form.school = '';form.to= '';form.from = ''">Education</a>  <a href="javascript:void(0)" title="" @click="showEduc = true;overlay= true;form.idEduc = '';form.Description = '';form.school = '';form.to= '';form.from = ''"><i class="fa fa-plus-square"></i></a></h3>
+                                        <h3><a href="javascript:void(0)" title="" class="ed-box-open" @click="showEduc = true;overlay= true;form.idEduc = '';form.Description = '';form.school = '';form.to= '';form.from = ''">{{$t('message.Education')}}  </a>  <a href="javascript:void(0)" title="" @click="showEduc = true;overlay= true;form.idEduc = '';form.Description = '';form.school = '';form.to= '';form.from = ''"><i class="fa fa-plus-square"></i></a></h3>
                                         <span v-for="educs in Educ">
                                             <h4>{{educs.school}} <a href="javascript:void(0)" title="" @click="updateEduc(educs)"><i class="fa fa-pencil"></i></a>
                                                 <a href="javascript:void(0)" @click="DeleteEduc(educs)"><i class="fas fa-trash-alt"></i></a></h4>
                                             <span> {{educs.from | mydate}}  |  {{educs.to | mydate}}</span>
                                             <p>{{educs.description}} </p> </span>
-                                        <span v-if="Educ.length == 0">Add Your Education</span>
+                                        <span v-if="Educ.length == 0">{{$t('message.addeduc')}}</span>
                                     </div><!--user-profile-ov end-->
                                     <div class="user-profile-ov">
-                                        <h3><a href="javascript:void(0)" title="" class="lct-box-open" @click="showLoac = true;overlay= true">Location</a> <a href="javascript:void(0)" title="" class="lct-box-open" @click="showLoac = true;overlay= true"><i class="fa fa-pencil"></i></a> <a href="javascript:void(0)" title="" @click="showLoac = true;overlay= true"><i class="fa fa-plus-square"></i></a></h3>
+                                        <h3><a href="javascript:void(0)" title="" class="lct-box-open" @click="showLoac = true;overlay= true">{{$t('message.Location')}}</a> <a href="javascript:void(0)" title="" class="lct-box-open" @click="showLoac = true;overlay= true"><i class="fa fa-pencil"></i></a> <a href="javascript:void(0)" title="" @click="showLoac = true;overlay= true"><i class="fa fa-plus-square"></i></a></h3>
                                        <span  v-for="Loacs in Loac" >
                                         <h4>{{Loacs.city_name}}</h4>
                                        </span>
-                                        <span v-if="!Loac">Add Your Location</span>
+                                        <span v-if="!Loac">{{$t('message.addlocal')}}</span>
                                     </div><!--user-profile-ov end-->
 
                                 </div><!--product-feed-tab end-->
@@ -263,14 +263,14 @@
                                             </div>
                                             <div class="epi-sec">
                                                 <ul class="descp">
-                                                    <li><img src="images/icon8.png" alt=""><span>{{save.is_done ? 'done' : 'available'}} </span></li>
+                                                    <li><img src="images/icon8.png" alt=""><span>{{save.is_done ? $t('message.Done') : $t('message.Available')}} </span></li>
                                                     <li><img src="images/icon9.png" alt=""><span> {{save.city}}</span></li>
                                                 </ul>
                                                 <ul class="bk-links">
                                                     <li><a href="javascript:void(0)" title="" @click="SavePost(save)" ><i class="la la-bookmark savecolor" :class="{savecolor:save}"></i></a></li>
                                                     <li v-for="us in user"> <router-link  :to="'Chat/' + save.postSlug + '/' + us.slug" ><span><i class="la la-envelope"></i></span>
                                                     </router-link></li>
-                                                    <li v-if="save.type == 'servic'"><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
+                                                    <li v-if="save.type == 'servic'"><a href="javascript:void(0)" title="" class="bid_now">$t('message.Bid_Now')</a></li>
                                                 </ul>
                                             </div>
                                             <div class="job_descp">
@@ -316,7 +316,7 @@
                                             </div>
                                             <div class="epi-sec">
                                                 <ul class="descp">
-                                                    <li><img src="images/icon8.png" alt=""><span>{{mybid.is_done ? 'done' : 'available'}} </span></li>
+                                                    <li><img src="images/icon8.png" alt=""><span>{{mybid.is_done ? $t('message.Done') : $t('message.Available')}} </span></li>
                                                     <li><img src="images/icon9.png" alt=""><span> {{mybid.city}}</span></li>
                                                 </ul>
                                                 <ul class="bk-links">
@@ -369,7 +369,7 @@
                                     </div><!--billing-method end-->
                                     <div class="add-billing-method">
                                         <h3>Add Billing Method</h3>
-                                        <h4><img src="images/dlr-icon.png" alt=""><span>With workwise payment protection , only pay for work delivered.</span></h4>
+                                        <h4><img src="images/dlr-icon.png" alt=""><span>With Brikole payment protection , only pay for work delivered.</span></h4>
                                         <div class="payment_methods">
                                             <h4>Credit or Debit Cards</h4>
                                             <form>
@@ -446,11 +446,11 @@
                         <div class="col-lg-3">
                             <div class="right-sidebar">
                                 <div class="message-btn">
-                                    <a href="javascript:void(0)" title="" @click="diny"><i class="fa fa-envelope"></i> Message</a>
+                                    <a href="javascript:void(0)" title="" @click="diny"><i class="fa fa-envelope"></i>{{$t('message.Message')}}</a>
                                 </div>
                                 <div class="widget widget-portfolio">
                                     <div class="wd-heady">
-                                        <h3>Portfolio</h3>
+                                        <h3>{{$t('message.Portfolio')}}</h3>
                                         <img src="images/photo-icon.png" alt="">
                                     </div>
                                     <div class="pf-gallery" >
@@ -460,7 +460,7 @@
                                                  :key="imageIndex"><a href="javascript:void(0)" @click="index1 = imageIndex" title=""><img :src="image.path" alt=""></a></li>
 
                                         </ul>
-                                        <div v-if="imagesproto.length == 0">You Dont Have Any Portfolio</div>
+                                        <div v-if="imagesproto.length == 0">{{$t('message.youdonthaveany')}}</div>
                                     </div><!--pf-gallery end-->
                                 </div><!--widget-portfolio end-->
                             </div><!--right-sidebar end-->
@@ -473,14 +473,14 @@
 
         <div class="overview-box" id="create-portfolio" v-bind:class="{open:showbio}">
             <div class="overview-edit">
-                <h3>Create Portfolio</h3>
+                <h3>{{$t('message.Create_Portfolio')}}</h3>
                 <form @submit.prevent="addbio()">
 
                     <input type="text" name="bio" :class="{ 'is-invalid': form.errors.has('bio') }" v-model="form.bio" placeholder="Exp : Graphic Designer at Self Employed..." >
                     <has-error :form="form" field="bio"></has-error>
                     <br>
 
-                    <button type="submit" class="save">Save</button>
+                    <button type="submit" class="save">{{$t('message.Save')}}</button>
                 </form>
                 <a href="javascript:void(0)" title="" class="close-box"><i class="la la-close" @click="showbio = false"></i></a>
             </div><!--overview-edit end-->
@@ -585,9 +585,9 @@
                 if(to.path != '/Projects' && to.path != '/home' && to.path != '/Jobs'){
                     Swal.fire({
                         icon: 'error',
-                        title: 'You Are Not Logged In !!!',
-                        text: 'Please Logged In first Or Create New Account',
-                        footer: '<a href="/">Logged In here Or Create Account</a>'
+                        title: this.$t('message.youarenotlogedin'),
+                        text: this.$t('message.plselog'),
+                        footer: '<a href="/"> ' +this.$t("message.loghere") + ' </a>'
                     })
                     next(false);
                 }else{
@@ -747,13 +747,13 @@
                                     .then(function (response) {
                                         Toast.fire({
                                             icon: 'success',
-                                            title: 'Profile Image Updated Successfully'
+                                            title: this.$t('message.profileimg')
                                         })
                                     })
                                     .catch(function (error) {
                                         Toast.fire({
                                             icon: 'error',
-                                            title: 'something went wrong'
+                                            title:   this.$t('message.error'),
                                         })
                                     });
                             this.showimg = false
@@ -762,8 +762,8 @@
                         reader.readAsDataURL(file)
                     }else{
                         swalWithBootstrapButtons.fire(
-                            'Cancelled',
-                            'Image Size Is Big Then 2MB',
+                            this.$t('message.Cancelled'),
+                            this.$t('message.imgsize'),
                             'error'
 
                         )
@@ -772,8 +772,8 @@
                     }
                 }else{
                     swalWithBootstrapButtons.fire(
-                        'Cancelled',
-                        'This File Is Not Image',
+                        this.$t('message.Cancelled'),
+                        this.$t('message.notimg'),
                         'error'
 
                     )
@@ -805,13 +805,13 @@
                                 .then(function (response) {
                                     Toast.fire({
                                         icon: 'success',
-                                        title: 'BackGround Image Updated Successfully'
+                                        title: this.$t('message.backimg')
                                     })
                                 })
                                 .catch(function (error) {
                                     Toast.fire({
                                         icon: 'error',
-                                        title: 'Something Went Wrong !!!'
+                                        title:   this.$t('message.error'),
                                     })
                                 });
                             this.showbackimg = false
@@ -820,8 +820,8 @@
                         reader.readAsDataURL(file)
                     }else{
                         swalWithBootstrapButtons.fire(
-                            'Cancelled',
-                            'Image Size Is Big Then 2MB',
+                            this.$t('message.Cancelled'),
+                            this.$t('message.imgsize'),
                             'error'
 
                         )
@@ -830,8 +830,8 @@
                     }
                 }else{
                     swalWithBootstrapButtons.fire(
-                        'Cancelled',
-                        'This File Is Not Image',
+                        this.$t('message.Cancelled'),
+                        this.$t('message.notimg'),
                         'error'
 
                     )
@@ -865,13 +865,15 @@
             },
             DeleteExp(exp){
                 Swal.fire({
-                    title: 'Are you sure You Wnat Delete This ?',
-                    text: "You won't be able to revert this!",
+
+                    title: this.$t('message.areyousure'),
+                    text: this.$t('message.youcantback'),
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
+                    cancelButtonText:this.$t('message.Cancel'),
+                    confirmButtonText: this.$t('message.yes')
                 }).then((result) => {
                     if (result.value) {
                         this.form.ExpId = exp.id
@@ -880,8 +882,8 @@
                             .then(()=> {
                                 this.$Progress.finish()
                                 Swal.fire(
-                                    'Deleted!',
-                                    'Your Experience has been deleted.',
+                                    this.$t('message.Deleted'),
+                                    this.$t('message.expd'),
                                     'success'
                                 )
                                 something.$emit('loadExperience');
@@ -891,7 +893,7 @@
                                 this.$Progress.fail()
                                 Toast.fire({
                                     icon: 'error',
-                                    title: 'Something Went Wrong'
+                                    title:  this.$t('message.error'),
                                 })
                             });
 
@@ -915,13 +917,14 @@
             },
             DeleteEduc(educ){
                 Swal.fire({
-                    title: 'Are you sure You Wnat Delete This ?',
-                    text: "You won't be able to revert this!",
+                    title: this.$t('message.areyousure'),
+                    text: this.$t('message.youcantback'),
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
+                    cancelButtonText:this.$t('message.Cancel'),
+                    confirmButtonText: this.$t('message.yes')
                 }).then((result) => {
                     if (result.value) {
                         this.form.EducId = educ.id
@@ -930,8 +933,8 @@
                             .then(()=> {
                                 this.$Progress.finish()
                                 Swal.fire(
-                                    'Deleted!',
-                                    'Your Education has been deleted.',
+                                    this.$t('message.Deleted'),
+                                    this.$t('message.edud'),
                                     'success'
                                 )
                                 something.$emit('loadEduc');
@@ -941,7 +944,7 @@
                                 this.$Progress.fail()
                                 Toast.fire({
                                     icon: 'error',
-                                    title: 'Something Went Wrong'
+                                    title:  this.$t('message.error')
                                 })
                             });
 
@@ -961,7 +964,7 @@
                         this.$Progress.finish()
                         Toast.fire({
                             icon: 'success',
-                            title: 'Bio Added Successfully'
+                            title: this.$t('message.bioadd')
                         })
                         something.$emit('loaduser');
                         this.showbio = false
@@ -992,9 +995,9 @@
                 }else{
                     Swal.fire({
                         icon: 'error',
-                        title: 'You Are Not Logged In !!!',
-                        text: 'Please Logged In first Or Create New Account',
-                        footer: '<a href="/">Logged In here Or Create Account</a>'
+                        title: this.$t('message.youarenotlogedin'),
+                        text: this.$t('message.plselog'),
+                        footer: '<a href="/"> ' +this.$t("message.loghere") + ' </a>'
                     })
                     this.$Progress.fail()
                 }
@@ -1002,7 +1005,7 @@
             diny(){
                 Toast.fire({
                     icon: 'error',
-                    title: 'You Can\'t Do This In Your Profile !!'
+                    title: this.$t("message.youcantdothis")
                 })
             }
 
@@ -1014,9 +1017,9 @@
                 }else{
                     Swal.fire({
                         icon: 'error',
-                        title: 'You Are Not Logged In !!!',
-                        text: 'Please Logged In first Or Create New Account',
-                        footer: '<a href="/">Logged In here Or Create Account</a>'
+                        title: this.$t('message.youarenotlogedin'),
+                        text: this.$t('message.plselog'),
+                        footer: '<a href="/"> ' +this.$t("message.loghere") + ' </a>'
                     })
                     next('Jobs');
                     setTimeout(function () {

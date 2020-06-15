@@ -2,7 +2,7 @@
     <div>
     <div class="product-feed-tab" id="portfolio-dd" v-bind:class="{current:Portfolio}">
         <div class="portfolio-gallery-sec">
-            <h3 @click="$emit('update:showProf', true);$emit('update:overlay', true)"><a href="javascript:void(0)">Portfolio <i class="fa fa-plus-square"></i></a></h3>
+            <h3 @click="$emit('update:showProf', true);$emit('update:overlay', true)"><a href="javascript:void(0)">{{$t('message.Portfolio')}} <i class="fa fa-plus-square"></i></a></h3>
             <div class="gallery_pf">
                 <div class="row">
 
@@ -17,19 +17,19 @@
                             </div>
                           <i   @click="deletepic(image)" class="fas fa-trash deletepic"></i>
                         </div>
-                    <div v-if="images.length == 0">Add some of your works</div>
+                    <div v-if="images.length == 0">{{$t('message.Add_some_of_your_works')}}</div>
                 </div>
             </div><!--gallery_pf end-->
         </div><!--portfolio-gallery-sec end-->
         <div class="col text-center">
-            <button type="button" v-if="this.page < this.lastPage" @click="loadmore" class="btn btn-outline-info">Load More</button>
+            <button type="button" v-if="this.page < this.lastPage" @click="loadmore" class="btn btn-outline-info">{{$t('message.Load_More')}}</button>
         </div>
 
     </div><!--product-feed-tab end-->
 
     <div class="overview-box" id="create-portfolio" v-bind:class="{open:showProf}">
         <div class="overview-edit">
-            <h3>Create Portfolio</h3>
+            <h3>{{$t('message.Create_Portfolio')}} </h3>
             <form @submit.prevent="addProt()">
                 <div class="file-submit">
                     <input type="file" name="file" :class="{ 'is-invalid': form.errors.has('path') }" @change="UploadImg">
@@ -39,8 +39,8 @@
                 <div class="pf-img">
                     <img :src="seeimageporf()" alt="" style="height: 100px;width: 100px">
                 </div>
-                <button type="submit" class="save">Save</button>
-                <a  style="color: #000000;font-size: 16px;border: 1px solid #e5e5e5; padding: 10px 25px;display: inline-block;background-color: #fff;font-weight: 600;cursor: pointer;" @click="$emit('update:showProf', false);$emit('update:overlay', false)"  >Cancel</a>
+                <button type="submit" class="save">{{$t('message.Save')}}  </button>
+                <a  style="color: #000000;font-size: 16px;border: 1px solid #e5e5e5; padding: 10px 25px;display: inline-block;background-color: #fff;font-weight: 600;cursor: pointer;" @click="$emit('update:showProf', false);$emit('update:overlay', false)">{{$t('message.Cancel')}}  </a>
             </form>
             <a href="javascript:void(0)" title="" class="close-box"><i class="la la-close" @click="$emit('update:showProf', false);$emit('update:overlay', false)"></i></a>
         </div><!--overview-edit end-->
@@ -88,13 +88,13 @@
             },
             deletepic(image){
                 Swal.fire({
-                    title: 'Are you sure You Wnat Delete This ?',
-                    text: "You won't be able to revert this!",
+                    title: this.$t('message.areyousure'),
+                    text: this.$t('message.youcantback'),
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
+                    confirmButtonText:  this.$t('message.yes')
                 }).then((result) => {
                     if (result.value) {
                         this.form.profId = image.id;
@@ -103,8 +103,8 @@
                             .then(()=> {
                                 this.$Progress.finish()
                                 Swal.fire(
-                                    'Deleted!',
-                                    'Your Experience has been deleted.',
+                                    this.$t('message.Deleted'),
+                                this.$t('message.gooddelete'),
                                     'success'
                                 )
                                 something.$emit('loadport');
@@ -114,7 +114,7 @@
                                 this.$Progress.fail()
                                 Toast.fire({
                                     icon: 'error',
-                                    title: 'Something Went Wrong'
+                                    title: this.$t('message.error')
                                 })
                             });
 
@@ -165,8 +165,8 @@
                         this.$emit('update:overlay', false)
                         this.$emit('update:showProf', false)
                         swalWithBootstrapButtons.fire(
-                            'Cancelled',
-                            'Image Size Is Big Then 2MB',
+                            this.$t('message.Cancelled'),
+                            this.$t('message.imgsize'),
                             'error'
 
                         )
@@ -178,8 +178,8 @@
                     this.$emit('update:overlay', false)
                     this.$emit('update:showProf', false)
                     swalWithBootstrapButtons.fire(
-                        'Cancelled',
-                        'This File Is Not Image',
+                        this.$t('message.Cancelled'),
+                        this.$t('message.notimg'),
                         'error'
 
                     )

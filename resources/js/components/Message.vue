@@ -2,12 +2,12 @@
     <li>
         <a href="javascript:void(0)" title="" class="not-box-open">
             <span><img src="images/icon6.png" alt=""></span>
-            Messages
+            {{$t('message.Messages')}}
         </a>
         <div class="notification-box msg">
             <div class="nt-title">
-                <h4>Setting</h4>
-                <a href="#" title="">Clear all</a>
+                <h4>{{$t('message.Setting')}} </h4>
+                <a href="#" title="">{{$t('message.Clear_all')}} </a>
             </div>
             <div class="nott-list">
                 <div class="notfication-details" v-for="msg in messages">
@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="view-all-nots" v-if="messages.length != 0 ">
-                    <a href="messages.html" title="">View All Messsages</a>
+                    <a href="messages.html" title="">{{$t('message.View_All_Messsages')}} </a>
                 </div>
             </div><!--nott-list end-->
         </div><!--notification-box end-->

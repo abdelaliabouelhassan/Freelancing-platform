@@ -1,9 +1,9 @@
 <template>
     <div>
     <ul class="social_links">
-        <li>   <h1>Websites and Social Links</h1>
+        <li>   <h1>{{$t('message.websites')}}</h1>
             <br>
-            <a href="javascript:void(0)" @click="$emit('update:css_class', true)"> <i class="fa fa-plus-square"></i>Add a website</a>
+            <a href="javascript:void(0)" @click="$emit('update:css_class', true)"> <i class="fa fa-plus-square"></i>{{$t('message.addweb')}}</a>
         </li>
         <li v-for="urls in Url">
             <a target="_blank" :href="urls.url"  title="" class="url"><i :class="urls.icon"></i> {{urls.url}}</a>
@@ -39,13 +39,14 @@
         methods:{
             deleteUrl(url){
                 Swal.fire({
-                    title: 'Are you sure You Wnat Delete This ?',
-                    text: "You won't be able to revert this!",
+                    title: this.$t('message.areyousure'),
+                    text: this.$t('message.youcantback'),
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
+                    cancelButtonText:this.$t('message.Cancel'),
+                    confirmButtonText: this.$t('message.yes')
                 }).then((result) => {
                     if (result.value) {
                         this.form.url = url.url;
@@ -54,8 +55,8 @@
                             .then(()=> {
                                 this.$Progress.finish()
                                 Swal.fire(
-                                    'Deleted!',
-                                    'The  Url has been deleted.',
+                                    this.$t('message.Deleted'),
+                                    this.$t('message.deleurl'),
                                     'success'
                                 )
                                 this.form.url = '';
@@ -66,7 +67,7 @@
                                 this.$Progress.fail()
                                 Toast.fire({
                                     icon: 'error',
-                                    title: 'Something Went Wrong'
+                                    title:  this.$t('message.error'),
                                 })
                             });
 
@@ -80,7 +81,7 @@
                         this.$Progress.finish()
                         Toast.fire({
                             icon: 'success',
-                            title: 'Url Added Successfully'
+                            title: this.$t('message.addedutl')
                         })
                         something.$emit('loadurl');
                         this.$emit('update:overlay', false)

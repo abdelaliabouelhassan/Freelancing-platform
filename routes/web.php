@@ -17,9 +17,10 @@ use Stevebauman\Location\Facades\Location;
 | contains the "web" middleware group. Now create something great!
 |
 */
-include 'includes/vue_route.php';
-App::setLocale('ar');
 
+
+route::group(['middleware'=>'localization'],function () {
+include 'includes/vue_route.php';
 
 Route::get('/', function () {
     if(auth()->check()){
@@ -27,12 +28,6 @@ Route::get('/', function () {
     }
     return view('welcome');
 })->middleware('localization');
-
-Route::get('/{lng}/setlongae/youfkingou', function ($lng) {
-    \session(['long' => $lng]);
-    return redirect()->back();
-})->name('lgn');
-
 
 Auth::routes();
 
@@ -48,6 +43,19 @@ Route::get('auth/facebook/callback', 'Auth\FacebookController@handleFacebookCall
 //chat app
 
 Route::post('/message/send','MessageController@sendMessage');
+Route::get('/{lng}/forreal/youfkingou', function ($lng) {
+    $user = auth()->id();
+
+ $setting =   \App\Settings::where('user_id',$user);
+ $setting->update(['long'=>$lng]);
+ return redirect()->back();
+
+})->name('setlng');
+
+Route::get('/{lng}/setlongae/youfkingou', function ($lng) {
+    \session(['long' => $lng]);
+    return redirect()->back();
+})->name('lgn');
 
 
-
+});

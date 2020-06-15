@@ -19,6 +19,8 @@ class ChatController extends Controller
         public  function  __construct()
         {
             return  $this->middleware('auth:api');
+            $this->middleware('getLong');
+
         }
 
     public function  getusertoAndFrom($slug)

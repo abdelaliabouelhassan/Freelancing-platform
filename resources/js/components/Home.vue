@@ -30,13 +30,13 @@
                                            </li>
                                            <li>
                                                <router-link to="/Profile" ><span></span>
-                                                   View Profile</router-link>
+                                                   {{$t('message.View_Profile')}}</router-link>
                                            </li>
                                        </ul>
                                    </div><!--user-data end-->
                                    <div class="suggestions full-width">
                                        <div class="sd-title">
-                                           <h3>Suggestions</h3>
+                                           <h3>{{$t('message.Suggestions')}}</h3>
                                            <i class="la la-ellipsis-v"></i>
                                        </div><!--sd-title end-->
                                        <div class="suggestions-list">
@@ -89,7 +89,7 @@
                                                <span><i class="la la-plus"></i></span>
                                            </div>
                                            <div class="view-more">
-                                               <a href="javascript:void(0)" title="">View More</a>
+                                               <a href="javascript:void(0)" title="">{{$t('message.View_More')}}</a>
                                            </div>
                                        </div><!--suggestions-list end-->
                                    </div><!--suggestions end-->
@@ -104,8 +104,8 @@
                                        </div>
                                        <div class="post-st">
                                            <ul>
-                                               <li><a class="post_project" href="javascript:void(0)" title="" @click="islog('project')">Post a Project</a></li>
-                                               <li><a class="post-jb active" href="javascript:void(0)" title="" @click="islog('job')">Post a Job</a></li>
+                                               <li><a class="post_project" href="javascript:void(0)" title="" @click="islog('project')">{{$t('message.project')}}</a></li>
+                                               <li><a class="post-jb active" href="javascript:void(0)" title="" @click="islog('job')">{{$t('message.job')}}</a></li>
                                            </ul>
                                        </div><!--post-st end-->
                                    </div><!--post-topbar end-->
@@ -132,7 +132,7 @@
                                            </div>
                                            <div class="epi-sec">
                                                <ul class="descp">
-                                                   <li><img src="images/icon8.png" alt=""><span>{{posts.is_done ? 'done' : 'available'}} </span></li>
+                                                   <li><img src="images/icon8.png" alt=""><span>{{posts.is_done ? $t('message.Done') : $t('message.Available')}} </span></li>
                                                    <li><img src="images/icon9.png" alt=""><span> {{posts.city_name}}</span></li>
                                                </ul>
                                                <ul class="bk-links" v-if="!posts.ismy">
@@ -165,16 +165,16 @@
                                <div class="right-sidebar">
                                    <div class="widget widget-about" v-if="!$gets.IsLogedIn()">
                                        <img src="images/logotesticon.png" alt="">
-                                       <h3>You are Not Signed In</h3>
-                                       <span>Signed In Now </span>
+                                       <h3>{{$t('message.youarenosingmsg')}}</h3>
+                                       <span>{{$t('message.singnow')}}</span>
                                        <div class="sign_link">
-                                           <h3><a href="/" title="">Sign up</a></h3>
+                                           <h3><a href="/" title="">{{$t('message.Sign_up')}}</a></h3>
                                        </div>
                                    </div><!--widget-about end-->
                                  <!--widget-jobs end-->
                                    <div class="widget widget-jobs">
                                        <div class="sd-title">
-                                           <h3>Most Viewed This Week</h3>
+                                           <h3>{{$t('message.Most_Viewed_This_Week')}}</h3>
                                            <i class="la la-ellipsis-v"></i>
                                        </div>
                                        <div class="jobs-list">
@@ -209,7 +209,7 @@
                                    </div><!--widget-jobs end-->
                                    <div class="widget suggestions full-width">
                                        <div class="sd-title">
-                                           <h3>Most Viewed People</h3>
+                                           <h3>{{$t('message.mostppl')}}</h3>
                                            <i class="la la-ellipsis-v"></i>
                                        </div><!--sd-title end-->
                                        <div class="suggestions-list">
@@ -262,7 +262,7 @@
                                                <span><i class="la la-plus"></i></span>
                                            </div>
                                            <div class="view-more">
-                                               <a href="javascript:void(0)" title="">View More</a>
+                                               <a href="javascript:void(0)" title="">{{$t('message.View_More')}}</a>
                                            </div>
                                        </div><!--suggestions-list end-->
                                    </div>
@@ -277,7 +277,7 @@
 
        <div class="post-popup pst-pj" v-bind:class='{ active: showProject}'>
            <div class="post-project">
-               <h3>Post a project</h3>
+               <h3>{{$t('message.project')}}</h3>
                <div class="post-project-fields">
                    <form @submit.prevent="CreateProject()">
                        <div class="row">
@@ -289,7 +289,7 @@
                            <div class="col-lg-12">
                                <div class="inp-field">
                                    <select name="category" v-model="form.category" :class="{ 'is-invalid': form.errors.has('category') }">
-                                       <option value="0">Select a Project Category</option>
+                                       <option value="0">{{$t('message.Select_a_Project_Category')}}</option>
                                        <option v-for="categorys in category" :value="categorys.id">
                                            {{categorys.category_name}}</option>
                                    </select>
@@ -300,7 +300,7 @@
                            <div class="col-lg-12">
                                <div class="inp-field">
                                        <select name="city"  v-model="form.city" :class="{ 'is-invalid': form.errors.has('city') }">
-                                           <option value="0">Select City</option>
+                                           <option value="0">{{$t('message.Select_City')}}</option>
                                            <option v-for="citys in city" :value="citys.id">{{citys.city_name}}
                                            </option>
                                        </select>
@@ -333,8 +333,8 @@
                            </div>
                            <div class="col-lg-12">
                                <ul>
-                                   <li><button class="active" type="submit" value="post">Post</button></li>
-                                   <li><a href="javascript:void(0)" title="" @click="showProject = false; form.errors.clear()">Cancel</a></li>
+                                   <li><button class="active" type="submit" value="post">{{$t('message.post')}}</button></li>
+                                   <li><a href="javascript:void(0)" title="" @click="showProject = false; form.errors.clear()">{{$t('message.Cancel')}}</a></li>
                                </ul>
                            </div>
                        </div>
@@ -346,7 +346,7 @@
 
        <div class="post-popup job_post" v-bind:class='{ active: showJob}'>
            <div class="post-project">
-               <h3>Post a job</h3>
+               <h3>{{$t('message.job')}}</h3>
                <div class="post-project-fields">
                    <form @submit.prevent="CreateJob()">
                        <div class="row">
@@ -358,7 +358,7 @@
                            <div class="col-lg-12">
                                <div class="inp-field">
                                    <select v-model="form.category" :class="{ 'is-invalid': form.errors.has('category') }">
-                                       <option value="0">Select a job Category</option>
+                                       <option value="0">{{$t('message.Select_a_job_Category')}}</option>
                                        <option v-for="categorys in category" :value="categorys.id">
                                            {{categorys.category_name}}</option>
                                    </select>
@@ -369,7 +369,7 @@
                            <div class="col-lg-12">
                                <div class="inp-field">
                                    <select v-model="form.city" :class="{ 'is-invalid': form.errors.has('city') }">
-                                       <option value="0">Select City</option>
+                                       <option value="0">{{$t('message.Select_City')}}</option>
                                        <option v-for="citys in city" :value="citys.id">{{citys.city_name}}
                                        </option>
                                    </select>
@@ -403,8 +403,8 @@
                            </div>
                            <div class="col-lg-12">
                                <ul>
-                                   <li><button class="active" type="submit" value="post">Post</button></li>
-                                   <li><a href="javascript:void(0)" title="" @click="showJob = false;form.errors.clear()">Cancel</a></li>
+                                   <li><button class="active" type="submit" value="post">{{$t('message.post')}}</button></li>
+                                   <li><a href="javascript:void(0)" title="" @click="showJob = false;form.errors.clear()">{{$t('message.Cancel')}}</a></li>
                                </ul>
                            </div>
                        </div>
@@ -451,9 +451,9 @@
                 if(to.path != '/Projects' && to.path != '/home' && to.path != '/Jobs'){
                     Swal.fire({
                         icon: 'error',
-                        title: 'You Are Not Logged In !!!',
-                        text: 'Please Logged In first Or Create New Account',
-                        footer: '<a href="/">Logged In here Or Create Account</a>'
+                        title: this.$t('message.youarenotlogedin'),
+                        text: this.$t('message.plselog'),
+                        footer: '<a href="/"> ' +this.$t("message.loghere") + ' </a>'
                     })
                     next(false);
                 }else{
@@ -520,7 +520,7 @@
                             this.$Progress.finish()
                             Toast.fire({
                                 icon: 'success',
-                                title: 'Project Created Successfully'
+                                title:this.$t('message.Project_Created_Successfully')
                             })
                             something.$emit('wherecreateuserloaddate');
                         })
@@ -530,8 +530,8 @@
                         })
                 }else {
                     swalWithBootstrapButtons.fire(
-                        'Cancelled',
-                        'Pleas Check You Upload File',
+                        this.$t('message.Cancelled'),
+                    this.$t('message.pleasecheck'),
                         'error'
 
                     )
@@ -549,7 +549,7 @@
                             this.$Progress.finish()
                             Toast.fire({
                                 icon: 'success',
-                                title: 'Job Created Successfully'
+                                title:this.$t('message.Job_Created_Successfully')
                             })
                             something.$emit('wherecreateuserloaddate');
                         })
@@ -559,8 +559,8 @@
                         })
                 }else {
                     swalWithBootstrapButtons.fire(
-                        'Cancelled',
-                        'Pleas Check You Upload File',
+                        this.$t('message.Cancelled'),
+                        this.$t('message.pleasecheck'),
                         'error'
 
                     )
@@ -582,8 +582,8 @@
                       reader.readAsDataURL(file)
                   }else{
                       swalWithBootstrapButtons.fire(
-                          'Cancelled',
-                          'Image Size Is Big Then 2MB',
+                          this.$t('message.Cancelled'),
+                          this.$t('message.imgsize'),
                           'error'
 
                       )
@@ -593,8 +593,8 @@
                   }
               }else{
                   swalWithBootstrapButtons.fire(
-                      'Cancelled',
-                      'This File Is Not Image',
+                      this.$t('message.Cancelled'),
+                      this.$t('message.imgsize'),
                       'error'
 
                   )
@@ -612,9 +612,9 @@
                     }else{
                         Swal.fire({
                             icon: 'error',
-                            title: 'You Are Not Logged In !!!',
-                            text: 'Please Logged In first Or Create New Account',
-                            footer: '<a href="/">Logged In here Or Create Account</a>'
+                            title: this.$t('message.youarenotlogedin'),
+                            text: this.$t('message.plselog'),
+                            footer: '<a href="/"> ' +this.$t("message.loghere") + ' </a>'
                         })
                     }
                 }else{
@@ -623,9 +623,9 @@
                     }else{
                         Swal.fire({
                             icon: 'error',
-                            title: 'You Are Not Logged In !!!',
-                            text: 'Please Logged In first Or Create New Account',
-                            footer: '<a href="/">Logged In here Or Create Account</a>'
+                            title: this.$t('message.youarenotlogedin'),
+                            text: this.$t('message.plselog'),
+                            footer: '<a href="/"> ' +this.$t("message.loghere") + ' </a>'
                         })
                     }
                 }
@@ -665,9 +665,9 @@
                 }else{
                     Swal.fire({
                         icon: 'error',
-                        title: 'You Are Not Logged In !!!',
-                        text: 'Please Logged In first Or Create New Account',
-                        footer: '<a href="/">Logged In here Or Create Account</a>'
+                        title: this.$t('message.youarenotlogedin'),
+                        text: this.$t('message.plselog'),
+                        footer: '<a href="/"> ' +this.$t("message.loghere") + ' </a>'
                     })
                     this.$Progress.fail()
                 }

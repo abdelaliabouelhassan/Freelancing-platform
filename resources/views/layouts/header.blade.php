@@ -61,14 +61,30 @@
                 <div class="footy-sec">
                     <div class="container">
                         <ul>
-                            <li><a href="#" title="">Help Center</a></li>
-                            <li><a href="#" title="">Privacy Policy</a></li>
-                            <li><a href="#" title="">Community Guidelines</a></li>
-                            <li><a href="#" title="">Cookies Policy</a></li>
-                            <li><a href="#" title="">Career</a></li>
-                            <li><a href="" title="">Contact Us</a></li>
-                            <li><a href="#" title="">Language</a></li>
-                            <li><a href="#" title="">Copyright Policy</a></li>
+                            <li><a href="javascript:void(0)" title="">{{__('Help Center')}}</a></li>
+                            <li><a href="javascript:void(0)" title="">{{__('Privacy Policy')}} </a></li>
+                            <li><a href="javascript:void(0)" title="">{{__('Community Guidelines')}} </a></li>
+                            <li><a href="javascript:void(0)" title="">{{__('Cookies Policy')}} </a></li>
+                            <li><a href="javascript:void(0)" title="">{{__('Career')}} </a></li>
+                            <li><a href="javascript:void(0)" title="">{{__('Contact Us')}} </a></li>
+                            <li><a href="javascript:void(0)" title="">{{__('Copyright Policy')}} </a></li>
+                            <li>
+                                @if(auth()->check())
+                                    <a href="{{ route('setlng','en') }}">{{__('english language')}} </a>
+
+                                @else
+                                    <a href="{{ route('lgn','en') }}">{{__('english language')}} </a>
+
+                                @endif
+                            </li>
+                            <li>
+                                @if(auth()->check())
+                                    <a href="{{ route('setlng','ar') }}">{{__('arabic language')}}</a>
+
+                                @else
+                                    <a href="{{ route('lgn','ar') }}">{{__('arabic language')}}</a>
+                                @endif
+                            </li>
                         </ul>
                         <p><img src="{{asset('images/copy-icon.png')}}" alt="">Copyright <span id="date-nd"></span>
                             <script>
