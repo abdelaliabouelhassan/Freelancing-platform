@@ -102,3 +102,8 @@ Route::post('getPostMessage','API\ChatController@getPostMessage');
 /*BidSystem*/
 Route::get('BidNow/{user}/{slug}','API\BidsController@BidNow');
 /*End BidSystem*/
+
+/*Change Password*/
+Route::post('ChangePassword','API\SettingController@ChangePassword');
+
+/*end chage Password*/

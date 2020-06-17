@@ -11,7 +11,11 @@ return [
     'alreadyheir'=>'You already hired this person',
     'youcantYourself'=>'You Can\'t Bid Your Self',
     'bid'=>'You Bid This Post Successfully',
-    'alreadybid'=>'You Already Bid  this Post'
+    'alreadybid'=>'You Already Bid  this Post',
+    'passwordchange'=>"password change successfully",
+    'oldpassword'=>"old password invalid"
+
+
 
 
 

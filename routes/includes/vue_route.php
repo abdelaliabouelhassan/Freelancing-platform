@@ -21,3 +21,6 @@ route::group(['middleware'=>'auth'],function () {
     });
 
 });
+Route::get('/Settings', function () {
+    return view('home');
+});

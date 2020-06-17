@@ -166,7 +166,9 @@
                                                     <li  v-if="!users.ismy"><a href="javascript:void(0)" title="" @click="SavePost(feedss)" ><i class="la la-bookmark" :class="{savecolor:feedss.IsSave}"></i></a></li>
                                                     <li v-for="us in me "   v-if="!users.ismy"> <router-link  :to="'Chat/' + feedss.postSlug + '/' + us.slug" ><span><i class="la la-envelope"></i></span>
                                                     </router-link></li>
-                                                    <li v-if="feedss.type == 'servic' && !users.ismy"  ><a href="javascript:void(0)" title="" class="bid_now">Bid Now</a></li>
+<!--                                                    <li v-if="feedss.type == 'servic' && !users.ismy"  ><a href="javascript:void(0)" title="" class="bid_now">{{$t('message.Bid_Now')}}</a></li>-->
+                                                    <li v-for="us in me "  v-if="feedss.type == 'servic' && !users.ismy"> <router-link  class="bid_now" :to="'Chat/' + feedss.postSlug + '/' + us.slug" >{{$t('message.Bid_Now')}}
+                                                    </router-link></li>
                                                 </ul>
                                             </div>
                                             <div class="job_descp">

@@ -59,3 +59,12 @@ Route::get('/{lng}/setlongae/youfkingou', function ($lng) {
 
 
 });
+
+
+
+//patri learning delete me later
+//
+
+Route::get('learng/fr/ep1',function (){
+    return "J'arrive au Guatemala le jour des morts, le 1er novembre. Je suis curieux de ces vacances, alors je vais au cimetière pour voir ce qui se passe. Ce que je trouve est assez intéressant. L'ambiance est comme une fête. Il y a des gens partout. Les familles sont assises autour du tombes de leurs ancêtres morts. Ils nettoient les tombes et ajoutent des fleurs fraîches. Je marche à travers le cimetière et admirez la beauté de toutes les fleurs colorées. Il y a aussi de la couleur dans le ciel, car de nombreux enfants volent des cerfs-volants. Certaines familles font un pique-nique à côté des tombes. Ils mangent, boivent et discutent ensemble. Les gens rient et sourient. Aux États-Unis, les cimetières sont toujours sombres. Nous n'avons certainement jamais de festivals ou de fêtes à côté des tombes. Nous ne rions pas, nous ne jouons pas de la musique ou nous ne volons pas de cerf-volant dans les cimetières. Je trouve que je préfère l'approche guatémaltèque. J'aime la façon dont ils se souviennent et célèbrent ces qui sont décédés. J'aime qu'ils reconnaissent la mort, au lieu de la nier comme ça Les Américains le font. J'aime qu'il y ait de la vie et de la mort dans leurs cimetières. Les Guatémaltèques l'appellent «Le jour des morts», mais c'est aussi une journée pour apprécier la vie.";
+});

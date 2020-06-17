@@ -114,8 +114,6 @@
                            {{__('Jobs')}} </router-link>
                         </li>
                         <Message v-if="$gets.IsLogedIn()"></Message>
-
-
                     </ul>
                 </nav><!--nav end-->
                 <!--menu-btn end-->
@@ -205,7 +203,8 @@
 
                         <h3>{{__('Setting')}}</h3>
                         <ul class="us-links">
-                            <li><a href="profile-account-setting.html" title="">{{__('Account Setting')}} </a></li>
+                           <li>  <router-link to="/Settings" >
+                                   {{__('Account Setting')}} </router-link></li>
                             <li><a href="#" title="">{{__('Privacy')}} </a></li>
                             <li><a href="#" title="">{{__('FAQ')}} </a></li>
                             <li><a href="#" title="">{{__('Terms & Conditions')}} </a></li>
@@ -223,43 +222,46 @@
     </header><!--header end-->
     @yield('content')
 </div><!--theme-bricole end-->
-<div class="tags-sec full-width">
-    <ul>
-        <li><a href="javascript:void(0)" title="">{{__('Help Center')}}</a></li>
-        <li><a href="javascript:void(0)" title="">{{__('Privacy Policy')}} </a></li>
-        <li><a href="javascript:void(0)" title="">{{__('Community Guidelines')}} </a></li>
-        <li><a href="javascript:void(0)" title="">{{__('Cookies Policy')}} </a></li>
-        <li><a href="javascript:void(0)" title="">{{__('Career')}} </a></li>
-        <li><a href="javascript:void(0)" title="">{{__('Contact Us')}} </a></li>
-        <li><a href="javascript:void(0)" title="">{{__('Language')}} </a></li>
-        <li><a href="javascript:void(0)" title="">{{__('Copyright Policy')}} </a></li>
-    </ul>
-    <ul>
-        <li></li>
-        <li>
-            @if(auth()->check())
+<footer>
+    <div class="tags-sec full-width">
+        <ul>
+            <li><a href="javascript:void(0)" title="">{{__('Help Center')}}</a></li>
+            <li><a href="javascript:void(0)" title="">{{__('Privacy Policy')}} </a></li>
+            <li><a href="javascript:void(0)" title="">{{__('Community Guidelines')}} </a></li>
+            <li><a href="javascript:void(0)" title="">{{__('Cookies Policy')}} </a></li>
+            <li><a href="javascript:void(0)" title="">{{__('Career')}} </a></li>
+            <li><a href="javascript:void(0)" title="">{{__('Contact Us')}} </a></li>
+            <li><a href="javascript:void(0)" title="">{{__('Language')}} </a></li>
+            <li><a href="javascript:void(0)" title="">{{__('Copyright Policy')}} </a></li>
+        </ul>
+        <ul>
+            <li></li>
+            <li>
+                @if(auth()->check())
 
-                <a href="{{ route('setlng','en') }}">{{__('english language')}}</a>
+                    <a href="{{ route('setlng','en') }}">{{__('english language')}}</a>
 
-            @else
-                <a href="{{ route('lgn','en') }}">{{__('english language')}}</a>
+                @else
+                    <a href="{{ route('lgn','en') }}">{{__('english language')}}</a>
 
-            @endif
-        </li>
-        <li>
-            @if(auth()->check())
-                <a href="{{ route('setlng','ar') }}">{{__('arabic language')}}</a>
+                @endif
+            </li>
+            <li>
+                @if(auth()->check())
+                    <a href="{{ route('setlng','ar') }}">{{__('arabic language')}}</a>
 
-            @else
-                <a href="{{ route('lgn','ar') }}">{{__('arabic language')}}</a>
-            @endif
-        </li>
-    </ul>
-    <div class="cp-sec">
-        <img src="{{asset('images/logotest.png')}}" alt="">
-        <p><img src="{{asset('images/cp.png')}}" alt="">Copyright &copy; 2020 Bricole</p>
+                @else
+                    <a href="{{ route('lgn','ar') }}">{{__('arabic language')}}</a>
+                @endif
+            </li>
+        </ul>
+        <div class="cp-sec">
+            <img src="{{asset('images/logotest.png')}}" alt="">
+            <p><img src="{{asset('images/cp.png')}}" alt="">Copyright &copy; 2020 Bricole</p>
+        </div>
     </div>
-</div>
+</footer>
+
 <script>
     @if(auth()->check())
     window.user = @json(auth()->user()->first('name'));
@@ -302,7 +304,7 @@
         title: 'Welcome To Brikol This Platform Still In Development Please If You Note Any bugs or anything let me know thank You For being here enjoy (:',
         width: 600,
         padding: '3em',
-        background: '#fff url(/images/trees.png)',
+        background: '#fff',
         backdrop: `
     rgba(0,0,123,0.4)
     url("https://media.giphy.com/media/j0R2xnont0Z6E/giphy.gif")

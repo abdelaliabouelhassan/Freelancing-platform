@@ -36,6 +36,7 @@ const routes = [
     { path: '/Jobs', component: require('./components/Job').default },
     { path: '/Projects', component: require('./components/Project').default },
     { path: '/Home', component: require('./components/Home').default },
+    { path: '/Settings', component: require('./components/Settings').default },
     { path: '/', component: require('./components/Home').default, meta: {
             auth: true,
             title: 'Brikole'
@@ -250,7 +251,8 @@ const messages = {
             Experience_not_specified:"الخبرة غير محددة",
             Education_not_specified:"التعليم غير محدد",
             Location_not_specified:"الموقع غير محدد",
-            Empty_Portfolio:"محفظة فارغة"
+            Empty_Portfolio:"محفظة فارغة",
+            passwordchange:"تم تغيير كلمة المرور بنجاح"
 
 
 
@@ -356,7 +358,9 @@ const messages = {
             Experience_not_specified:"Experience not specified",
             Education_not_specified:"Education not specified",
             Location_not_specified:"Location not specified",
-            Empty_Portfolio:"Empty Portfolio"
+            Empty_Portfolio:"Empty Portfolio",
+            passwordchange:"password change successfully"
+
 
 
 
