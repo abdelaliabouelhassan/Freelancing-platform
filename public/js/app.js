@@ -89273,7 +89273,9 @@ var render = function() {
                               _vm._v(" "),
                               _c("ul", { staticClass: "user-fw-status" }, [
                                 _c("li", [
-                                  _c("h4", [_vm._v("Following")]),
+                                  _c("h4", [
+                                    _vm._v(_vm._s(_vm.$t("message.Following")))
+                                  ]),
                                   _vm._v(" "),
                                   _c(
                                     "b",
@@ -89287,7 +89289,9 @@ var render = function() {
                                 ]),
                                 _vm._v(" "),
                                 _c("li", [
-                                  _c("h4", [_vm._v("Followers")]),
+                                  _c("h4", [
+                                    _vm._v(_vm._s(_vm.$t("message.Followers")))
+                                  ]),
                                   _vm._v(" "),
                                   _c(
                                     "b",

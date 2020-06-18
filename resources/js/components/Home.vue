@@ -21,11 +21,11 @@
                                        </div><!--user-profile end-->
                                        <ul class="user-fw-status">
                                            <li>
-                                               <h4>Following</h4>
+                                               <h4>{{$t('message.Following')}}</h4>
                                                <b v-text="fl.followingCount">0</b>
                                            </li>
                                            <li>
-                                               <h4>Followers</h4>
+                                               <h4>{{$t('message.Followers')}}</h4>
                                                <b v-text="fl.followersCount">0</b>
                                            </li>
                                            <li>

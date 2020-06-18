@@ -13,7 +13,8 @@ return [
     'bid'=>'You Bid This Post Successfully',
     'alreadybid'=>'You Already Bid  this Post',
     'passwordchange'=>"password change successfully",
-    'oldpassword'=>"old password invalid"
+    'oldpassword'=>"old password invalid",
+    'nonotif'=>"You Don't Have Any Notification"
 
 
 

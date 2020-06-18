@@ -127,44 +127,21 @@
                                 <a href="#" title="">{{__('Clear all')}}</a>
                             </div>
                             <div class="nott-list">
-                                <div class="notfication-details">
-                                    <div class="noty-user-img">
-                                        <img src="" alt="">
+
+                                    <div class="otfication-details">
+                                        <p class="text-center">{{trans('messages.nonotif')}}</p>
                                     </div>
-                                    <div class="notification-info">
-                                        <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                                        <span>2 min ago</span>
-                                    </div><!--notification-info -->
-                                </div>
-                                <div class="notfication-details">
-                                    <div class="noty-user-img">
-                                        <img src="" alt="">
-                                    </div>
-                                    <div class="notification-info">
-                                        <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                                        <span>2 min ago</span>
-                                    </div><!--notification-info -->
-                                </div>
-                                <div class="notfication-details">
-                                    <div class="noty-user-img">
-                                        <img src="" alt="">
-                                    </div>
-                                    <div class="notification-info">
-                                        <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                                        <span>2 min ago</span>
-                                    </div><!--notification-info -->
-                                </div>
-                                <div class="notfication-details">
-                                    <div class="noty-user-img">
-                                        <img src="" alt="">
-                                    </div>
-                                    <div class="notification-info">
-                                        <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                                        <span>2 min ago</span>
-                                    </div><!--notification-info -->
-                                </div>
+{{--                                <div class="notfication-details">--}}
+{{--                                    <div class="noty-user-img">--}}
+{{--                                        <img src="" alt="">--}}
+{{--                                    </div>--}}
+{{--                                    <div class="notification-info">--}}
+{{--                                        <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>--}}
+{{--                                        <span>2 min ago</span>--}}
+{{--                                    </div><!--notification-info -->--}}
+{{--                                </div>--}}
                                 <div class="view-all-nots">
-                                    <a href="#" title="">{{__('View All Notification')}}</a>
+                                    <a href="javascript:void(0)" title="">{{__('View All Notification')}}</a>
                                 </div>
                             </div><!--nott-list end-->
                         </div><!--notification-box end-->
@@ -205,9 +182,9 @@
                         <ul class="us-links">
                            <li>  <router-link to="/Settings" >
                                    {{__('Account Setting')}} </router-link></li>
-                            <li><a href="#" title="">{{__('Privacy')}} </a></li>
-                            <li><a href="#" title="">{{__('FAQ')}} </a></li>
-                            <li><a href="#" title="">{{__('Terms & Conditions')}} </a></li>
+                            <li><a href="javascript:void(0)" title="">{{__('Privacy')}} </a></li>
+                            <li><a href="javascript:void(0)" title="">{{__('FAQ')}} </a></li>
+                            <li><a href="javascript:void(0)" title="">{{__('Terms & Conditions')}} </a></li>
                         </ul>
                         <h3 class="tc"><a href="{{ route('logout') }}" title="{{ __('Logout') }}"
                                           onclick="event.preventDefault();
